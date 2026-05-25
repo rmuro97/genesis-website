@@ -851,6 +851,79 @@
       .cost-col-note { display: none; }
       section { padding: 60px 24px; }
     }
+
+    /* ═══════════ LIGHT THEME — white canvas, navy + gold main parts ═══════════ */
+    :root {
+      --ink: #16203a;
+      --ink-muted: #59647a;
+      --line-light: rgba(20,30,55,0.10);
+      --surface-2: #f4f6f9;
+      --card-shadow: 0 10px 34px rgba(20,30,55,0.07);
+    }
+    body { background-color: #ffffff; color: var(--ink); }
+    body::before { opacity: 0.10; }
+
+    /* HERO stays dark navy (main part) */
+    .hero { background: radial-gradient(ellipse at 50% -10%, var(--navy-3) 0%, var(--navy) 62%); }
+
+    /* headings & labels on white */
+    h2 { color: var(--ink); }
+    .section-sub { color: var(--ink-muted); }
+    .section-label { color: var(--gold-dark); }
+
+    /* COST SECTION → white */
+    .cost-section { background: var(--surface-2); }
+    .cost-table { background: #ffffff; border-color: var(--line-light); box-shadow: var(--card-shadow); }
+    .cost-table-row { border-bottom-color: var(--line-light); color: var(--ink); }
+    .cost-table-row:hover { background: rgba(200,169,110,0.07); }
+    .cost-table-row.total { color: var(--ink); background: rgba(200,169,110,0.08); }
+    .cost-col-amount, .cost-col-note { color: var(--ink-muted); }
+    .vs-card { background: #ffffff; border-color: var(--line-light); box-shadow: var(--card-shadow); }
+    .vs-card-price { color: var(--ink); }
+    .vs-card-label, .vs-card-sub { color: var(--ink-muted); }
+    .vs-card.winner { background: linear-gradient(160deg, rgba(200,169,110,0.12), #ffffff); }
+    .vs-divider { color: var(--ink-muted); }
+
+    /* PRODUCTS → white cards */
+    .product-card { background: #ffffff; border-color: var(--line-light); box-shadow: var(--card-shadow); }
+    .product-card:hover { border-color: var(--gold); }
+    .product-name { color: var(--ink); }
+    .product-desc { color: var(--ink-muted); }
+    .product-features li { color: var(--ink); border-bottom-color: var(--line-light); }
+
+    /* PRICING → white */
+    .pricing-section { background: var(--surface-2); }
+    .pricing-tabs { background: #ffffff; border: 1px solid var(--line-light); }
+    .pricing-tab { color: var(--ink-muted); }
+    .pricing-card { background: #ffffff; border-color: var(--line-light); box-shadow: var(--card-shadow); }
+    .pricing-card.featured { background: linear-gradient(160deg, rgba(200,169,110,0.12), #ffffff); border-color: var(--gold); }
+    .pricing-tier { color: var(--ink); }
+    .pricing-employees, .pricing-install, .pricing-stat { color: var(--ink-muted); }
+    .pricing-stat strong { color: var(--ink); }
+    .pricing-divider { border-top-color: var(--line-light); }
+
+    /* INDUSTRIES → light */
+    .industry-tag { background: #ffffff; border-color: var(--line-light); color: var(--ink); }
+    .industry-tag:hover { border-color: var(--gold); color: var(--gold-dark); }
+
+    /* HOW IT WORKS → white */
+    .step { background: #ffffff; border-color: var(--line-light); box-shadow: var(--card-shadow); }
+    .step-number { color: rgba(200,169,110,0.25); }
+    .step-title { color: var(--ink); }
+    .step-desc { color: var(--ink-muted); }
+
+    /* CONTACT → white */
+    .contact-section { background: var(--surface-2); }
+    .contact-info p { color: var(--ink-muted); }
+    .contact-detail-text { color: var(--ink); }
+    .contact-detail-label { color: var(--ink-muted); }
+    .contact-form { background: #ffffff; border-color: var(--line-light); box-shadow: var(--card-shadow); }
+    .form-group label { color: var(--ink); }
+    .form-group input, .form-group select, .form-group textarea {
+      background: var(--surface-2); border-color: var(--line-light); color: var(--ink);
+    }
+    .form-group select option { background: #ffffff; color: var(--ink); }
+    /* nav, stats-bar, and footer intentionally remain dark navy (main parts) */
   </style>
 </head>
 <body>
@@ -1010,7 +1083,7 @@
           </ul>
           <div class="product-price">
             <div class="product-price-from">Starting from</div>
-            <div class="product-price-amount">$1,250<span class="product-price-period">/mo</span></div>
+            <div class="product-price-amount">$1,750<span class="product-price-period">/mo</span></div>
           </div>
         </div>
 
@@ -1030,7 +1103,7 @@
           </ul>
           <div class="product-price">
             <div class="product-price-from">Build from</div>
-            <div class="product-price-amount">$3,200<span class="product-price-period"> + $1,250/mo</span></div>
+            <div class="product-price-amount">$2,500<span class="product-price-period"> + $1,500/mo</span></div>
           </div>
         </div>
       </div>
@@ -1112,7 +1185,7 @@
           <div class="pricing-tier">Growth Essential</div>
           <div class="pricing-employees">2 Agents · 4 Marketing Tasks</div>
           <div class="pricing-install">$3,200 one-time install</div>
-          <div class="pricing-monthly">$1,250<span>/mo</span></div>
+          <div class="pricing-monthly">$1,750<span>/mo</span></div>
           <div class="pricing-savings">Facebook · Instagram · Email</div>
           <hr class="pricing-divider">
           <div class="pricing-stat"><span>Agent 1</span><strong>Social Content 3×/wk</strong></div>
@@ -1125,7 +1198,7 @@
           <div class="pricing-tier">Growth Professional</div>
           <div class="pricing-employees">4 Agents · 8 Marketing Tasks</div>
           <div class="pricing-install">$5,500 one-time install</div>
-          <div class="pricing-monthly">$2,500<span>/mo</span></div>
+          <div class="pricing-monthly">$3,000<span>/mo</span></div>
           <div class="pricing-savings">FB · Instagram · LinkedIn · Email · Reviews</div>
           <hr class="pricing-divider">
           <div class="pricing-stat"><span>Agent 1</span><strong>Social 3×/wk + Scheduling</strong></div>
@@ -1137,9 +1210,9 @@
 
         <div class="pricing-card">
           <div class="pricing-tier">Growth Elite</div>
-          <div class="pricing-employees">6 Agents · 12 Marketing Tasks</div>
+          <div class="pricing-employees">8 Agents · 16 Marketing Tasks</div>
           <div class="pricing-install">$8,000 one-time install</div>
-          <div class="pricing-monthly">$3,750<span>/mo</span></div>
+          <div class="pricing-monthly">$5,500<span>/mo</span></div>
           <div class="pricing-savings">All Platforms + Reviews + Ads + Strategy</div>
           <hr class="pricing-divider">
           <div class="pricing-stat"><span>Agent 1</span><strong>Daily Social + Campaigns</strong></div>
@@ -1147,7 +1220,9 @@
           <div class="pricing-stat"><span>Agent 3</span><strong>Weekly Newsletter + Drip Sequences</strong></div>
           <div class="pricing-stat"><span>Agent 4</span><strong>Review Generation + Monitoring</strong></div>
           <div class="pricing-stat"><span>Agent 5</span><strong>Content Calendar + Performance Reports</strong></div>
-          <div class="pricing-stat"><span>Agent 6</span><strong>Ad Copy + Monthly Strategy Summary</strong></div>
+          <div class="pricing-stat"><span>Agent 6</span><strong>Ad Copy + Creative Drafting</strong></div>
+          <div class="pricing-stat"><span>Agent 7</span><strong>Ad-Spend Management + Optimization</strong></div>
+          <div class="pricing-stat"><span>Agent 8</span><strong>Advanced Analytics + Strategy Summary</strong></div>
           <div class="pricing-stat"><span>Best for</span><strong>Platinum / Diamond clients</strong></div>
         </div>
 
@@ -1168,7 +1243,7 @@
           <div class="pricing-tier">Web Build</div>
           <div class="pricing-employees">One-Time · 5-Page Website</div>
           <div class="pricing-install">Delivered in 14 days</div>
-          <div class="pricing-monthly">$3,200<span> one-time</span></div>
+          <div class="pricing-monthly">$2,500<span> one-time</span></div>
           <div class="pricing-savings">Professional. Mobile-First. SEO-Ready.</div>
           <hr class="pricing-divider">
           <div class="pricing-stat"><span>Home</span><strong>Hero + CTA + Trust Signals</strong></div>
@@ -1184,7 +1259,7 @@
           <div class="pricing-tier">Web Management</div>
           <div class="pricing-employees">Monthly · AI-Managed Content</div>
           <div class="pricing-install">Added after your site goes live</div>
-          <div class="pricing-monthly">$1,250<span>/mo</span></div>
+          <div class="pricing-monthly">$1,500<span>/mo</span></div>
           <div class="pricing-savings">Your site never goes stale</div>
           <hr class="pricing-divider">
           <div class="pricing-stat"><span>SEO Blog Posts</span><strong>2× per month</strong></div>
