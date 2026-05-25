@@ -908,7 +908,7 @@
 
     /* HOW IT WORKS → white */
     .step { background: #ffffff; border-color: var(--line-light); box-shadow: var(--card-shadow); }
-    .step-number { color: rgba(200,169,110,0.25); }
+    .step-number { color: var(--gold); }
     .step-title { color: var(--ink); }
     .step-desc { color: var(--ink-muted); }
 
@@ -923,6 +923,11 @@
       background: var(--surface-2); border-color: var(--line-light); color: var(--ink);
     }
     .form-group select option { background: #ffffff; color: var(--ink); }
+    /* dark accent bands (Web packages, Industries) — gold headings on navy */
+    #web-pricing h2, #industries h2 { color: var(--gold); }
+    #web-pricing .section-sub { color: var(--silver); }
+    /* opaque featured cards so heading text stays readable on any background */
+    .pricing-card.featured { background: linear-gradient(160deg, #faf4e8, #ffffff); }
     /* nav, stats-bar, and footer intentionally remain dark navy (main parts) */
   </style>
 </head>
@@ -954,8 +959,9 @@
 <div class="hero-badge">Agentic AI Workflow Automation</div>
       <h1>We Replace Cost<br>With <span class="gold">Intelligence</span></h1>
       <p class="hero-sub">
-        AI agents that eliminate repetitive labor, run your entire marketing engine,
-        and keep your website generating leads — all at a fraction of the cost of one employee.
+        Enterprise-grade AI infrastructure for the modern business — intelligent multi-agent
+        systems on secure cloud servers, optimizing the workflows behind your operations,
+        marketing, and web presence, around the clock.
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Book Your Free Demo</a>
@@ -1255,7 +1261,6 @@
         </div>
 
         <div class="pricing-card featured">
-          <div class="pricing-card-badge">Best Value</div>
           <div class="pricing-tier">Web Management</div>
           <div class="pricing-employees">Monthly · AI-Managed Content</div>
           <div class="pricing-install">Added after your site goes live</div>
