@@ -1426,28 +1426,32 @@
         </div>
 
         <div class="contact-form">
-          <form onsubmit="handleSubmit(event)">
+          <form id="consultationForm" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <div class="form-group">
                 <label>First Name</label>
-                <input type="text" placeholder="Ricardo" required>
+                <input type="text" name="firstName" placeholder="Ricardo" required>
               </div>
               <div class="form-group">
                 <label>Last Name</label>
-                <input type="text" placeholder="Muro" required>
+                <input type="text" name="lastName" placeholder="Muro" required>
               </div>
             </div>
             <div class="form-group">
               <label>Business Email</label>
-              <input type="email" placeholder="info@genesis-agenticai.com" required>
+              <input type="email" name="email" placeholder="info@genesis-agenticai.com" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" placeholder="+1 (555) 000-0000" required>
             </div>
             <div class="form-group">
               <label>Company Name</label>
-              <input type="text" placeholder="Your Company" required>
+              <input type="text" name="company" placeholder="Your Company" required>
             </div>
             <div class="form-group">
               <label>Annual Revenue</label>
-              <select>
+              <select name="revenue">
                 <option>$500K – $1M</option>
                 <option>$1M – $3M</option>
                 <option>$3M – $5M</option>
@@ -1457,7 +1461,7 @@
             </div>
             <div class="form-group">
               <label>Number of Employees</label>
-              <select>
+              <select name="employees">
                 <option>1–5</option>
                 <option>6–15</option>
                 <option>16–30</option>
@@ -1466,7 +1470,7 @@
             </div>
             <div class="form-group">
               <label>What's your biggest workflow challenge?</label>
-              <textarea placeholder="Tell us what your team spends the most time on..."></textarea>
+              <textarea name="challenge" placeholder="Tell us what your team spends the most time on..."></textarea>
             </div>
             <button type="submit" class="form-submit">Book My Free Demo →</button>
           </form>
@@ -1489,12 +1493,49 @@
   </footer>
 
   <script>
-    function handleSubmit(e) {
+    const WORKER_URL = 'https://genesis-contact.muroricky33.workers.dev';
+
+    async function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = '✅ Submitted — We\'ll be in touch today!';
-      btn.style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
-      btn.disabled = true;
+      const form = e.target;
+      const btn  = form.querySelector('.form-submit');
+
+      btn.textContent = 'Sending…';
+      btn.disabled    = true;
+
+      const data = {
+        firstName : form.firstName.value.trim(),
+        lastName  : form.lastName.value.trim(),
+        email     : form.email.value.trim(),
+        phone     : form.phone.value.trim(),
+        company   : form.company.value.trim(),
+        revenue   : form.revenue.value,
+        employees : form.employees.value,
+        challenge : form.challenge.value.trim(),
+        page      : window.location.href,
+        submittedAt: new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+      };
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body   : JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          btn.textContent = '✅ Submitted — We\'ll be in touch today!';
+          btn.style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
+          form.reset();
+        } else {
+          throw new Error('Worker returned ' + res.status);
+        }
+      } catch (err) {
+        console.error('Form submission error:', err);
+        btn.textContent = 'Submission Failed — Please email us directly';
+        btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        btn.disabled = false;
+      }
     }
 
     // Smooth active nav highlighting
