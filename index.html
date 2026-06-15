@@ -1059,6 +1059,43 @@
       section { padding: 60px 24px; }
       footer { padding: 40px 20px; }
       .footer-links { flex-wrap: wrap; gap: 16px 24px; justify-content: center; }
+
+    /* ── TIER ADD-ONS STRIP ───────────────────────────────── */
+    .pkg-addons {
+      border-top: 1px solid var(--border);
+      padding: 20px 24px;
+      background: rgba(200,169,110,0.06);
+    }
+    .pkg-addons-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .pkg-addons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px 24px;
+    }
+    .pkg-addon-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .pkg-addon-plus {
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    @media (max-width: 900px) {
+      .pkg-addons-grid { grid-template-columns: 1fr; }
+    }
       .footer-tagline { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 24px; }
       .footer-copy { font-size: 12px; line-height: 1.8; word-break: break-word; }
     }
@@ -1534,6 +1571,19 @@
             </div>
           </div>
         </div>
+        <div class="pkg-addons">
+          <div class="pkg-addons-title">⚡ What You Gain Upgrading from Silver to Gold</div>
+          <div class="pkg-addons-grid">
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Quote Generation</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>CRM Data Entry &amp; Updates</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Invoice Creation &amp; Payment Follow-Up</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>AI Website Chatbot (Lead Capture)</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Contract &amp; Proposal Automation</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Review Request Automation</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Best &amp; Worst Products/Services Ranked</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Month-Over-Month Revenue Trends</div>
+          </div>
+        </div>
         <div class="pkg-cta">
           <span class="pkg-cta-note">Our most popular package. The most common starting point for new clients</span>
           <a href="#contact" class="pkg-cta-btn">Get Started with Gold →</a>
@@ -1600,6 +1650,17 @@
               <div class="pkg-total-row genesis"><span>What you pay Genesis AI</span><span>$8,500/mo</span></div>
               <div class="pkg-total-row saved"><span>💰 You keep</span><span>$96,536/mo</span></div>
             </div>
+          </div>
+        </div>
+        <div class="pkg-addons">
+          <div class="pkg-addons-title">⚡ What You Gain Upgrading from Gold to Platinum</div>
+          <div class="pkg-addons-grid">
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>90-Day Lead Nurture Sequence</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Review Response Management</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Referral Program Automation</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Quarterly Revenue Report</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>90-Day Revenue Projection</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Quarterly Pivot Strategy</div>
           </div>
         </div>
         <div class="pkg-cta">
@@ -1672,6 +1733,16 @@
               <div class="pkg-total-row genesis"><span>What you pay Genesis AI</span><span>$15,000/mo</span></div>
               <div class="pkg-total-row saved"><span>💰 You keep</span><span>$137,036/mo</span></div>
             </div>
+          </div>
+        </div>
+        <div class="pkg-addons">
+          <div class="pkg-addons-title">⚡ What You Gain Upgrading from Platinum to Diamond</div>
+          <div class="pkg-addons-grid">
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Full Custom Workflow Automation</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Competitor Monitoring (Weekly Brief)</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>12-Month Revenue Forecast</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Custom Pivot &amp; Growth Strategy</div>
+            <div class="pkg-addon-item"><span class="pkg-addon-plus">+</span>Competitor Intelligence Report</div>
           </div>
         </div>
         <div class="pkg-cta">
