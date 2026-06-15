@@ -1062,9 +1062,12 @@
 
     /* ── TIER ADD-ONS STRIP ───────────────────────────────── */
     .pkg-addons {
-      border-top: 1px solid var(--border);
-      padding: 20px 24px;
-      background: rgba(200,169,110,0.06);
+      margin: 0 24px 20px;
+      border: 1px solid rgba(200,169,110,0.4);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 18px 20px;
+      background: rgba(200,169,110,0.08);
     }
     .pkg-addons-title {
       font-size: 11px;
@@ -1072,28 +1075,30 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .pkg-addons-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 6px 24px;
+      gap: 8px 24px;
     }
     .pkg-addon-item {
       display: flex;
       align-items: flex-start;
       gap: 8px;
       font-size: 13px;
-      color: var(--text);
+      color: #ffffff;
+      font-weight: 500;
     }
     .pkg-addon-plus {
       color: var(--gold);
       font-weight: 800;
-      font-size: 14px;
+      font-size: 16px;
       flex-shrink: 0;
-      margin-top: 1px;
+      line-height: 1.2;
     }
     @media (max-width: 900px) {
+      .pkg-addons { margin: 0 16px 16px; }
       .pkg-addons-grid { grid-template-columns: 1fr; }
     }
       .footer-tagline { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 24px; }
