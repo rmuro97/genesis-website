@@ -1,0 +1,290 @@
+{
+"AVGO": {
+"ann": "Dec 10, 2026",
+"eps": "3.45.",
+"n": "10",
+"time": "",
+"status": "estimated",
+"prior": "1.61."
+},
+"AMZN": {
+"ann": "Oct 29, 2026",
+"eps": "2.01.",
+"n": "14",
+"time": "AMC",
+"status": "expected",
+"prior": "1.95."
+},
+"BE": {
+"ann": "",
+"eps": null,
+"n": null,
+"time": "",
+"status": "",
+"prior": null
+},
+"CRDO": {
+"ann": "Dec 7, 2026",
+"eps": "1.03.",
+"n": "6",
+"time": "",
+"status": "estimated",
+"prior": "0.44."
+},
+"SPCX": {
+"ann": "",
+"eps": null,
+"n": null,
+"time": "",
+"status": "",
+"prior": null
+},
+"CIEN": {
+"ann": "Dec 10, 2026",
+"eps": "1.77.",
+"n": "8",
+"time": "",
+"status": "estimated",
+"prior": "0.64."
+},
+"MRVL": {
+"ann": "Dec 1, 2026",
+"eps": "0.79.",
+"n": "12",
+"time": "",
+"status": "estimated",
+"prior": "0.62."
+},
+"SKHY": {
+"ann": "",
+"eps": null,
+"n": null,
+"time": "",
+"status": "",
+"prior": null
+},
+"AMAT": {
+"ann": "Nov 12, 2026",
+"eps": "4.06.",
+"n": "10",
+"time": "AMC",
+"status": "expected",
+"prior": "2.17."
+},
+"VRT": {
+"ann": "Oct 28, 2026",
+"eps": "1.82.",
+"n": "7",
+"time": "BMO",
+"status": "expected",
+"prior": "1.24."
+},
+"COHR": {
+"ann": "Nov 04, 2026",
+"eps": "1.78.",
+"n": "8",
+"time": "AMC",
+"status": "expected",
+"prior": "0.93."
+},
+"HOOD": {
+"ann": "Oct 27, 2026",
+"eps": "0.56.",
+"n": "8",
+"time": "AMC",
+"status": "expected",
+"prior": "0.61."
+},
+"ARM": {
+"ann": "Nov 04, 2026",
+"eps": "0.22.",
+"n": "7",
+"time": "AMC",
+"status": "expected",
+"prior": "0.15."
+},
+"GLW": {
+"ann": "Oct 27, 2026",
+"eps": "0.89.",
+"n": "5",
+"time": "BMO",
+"status": "expected",
+"prior": "0.67."
+},
+"INTC": {
+"ann": "Oct 29, 2026",
+"eps": "0.28.",
+"n": "13",
+"time": "AMC",
+"status": "expected",
+"prior": "0.11."
+},
+"KLAC": {
+"ann": "Oct 28, 2026",
+"eps": "1.18.",
+"n": "8",
+"time": "AMC",
+"status": "expected",
+"prior": "0.88."
+},
+"NVDA": {
+"ann": "Nov 18, 2026",
+"eps": "2.49.",
+"n": "13",
+"time": "",
+"status": "estimated",
+"prior": "1.24."
+},
+"QCOM": {
+"ann": "Nov 04, 2026",
+"eps": "1.46.",
+"n": "9",
+"time": "AMC",
+"status": "expected",
+"prior": "2.56."
+},
+"IONQ": {
+"ann": "Nov 4, 2026",
+"eps": "-0.79.",
+"n": "1",
+"time": "",
+"status": "estimated",
+"prior": "-3.58."
+},
+"CBRS": {
+"ann": "Nov 12, 2026",
+"eps": "-0.13.",
+"n": "3",
+"time": "AMC",
+"status": "expected",
+"prior": null
+},
+"CRWV": {
+"ann": "Nov 9, 2026",
+"eps": "-1.45.",
+"n": "10",
+"time": "",
+"status": "estimated",
+"prior": "-0.31."
+},
+"VICR": {
+"ann": "",
+"eps": null,
+"n": null,
+"time": "",
+"status": "",
+"prior": null
+},
+"LRCX": {
+"ann": "",
+"eps": null,
+"n": null,
+"time": "",
+"status": "",
+"prior": null
+},
+"TER": {
+"ann": "Oct 27, 2026",
+"eps": "2.04.",
+"n": "7",
+"time": "AMC",
+"status": "expected",
+"prior": "0.85."
+},
+"NBIS": {
+"ann": "Nov 10, 2026",
+"eps": "-0.43.",
+"n": "5",
+"time": "",
+"status": "estimated",
+"prior": "-0.39."
+},
+"VST": {
+"ann": "Nov 06, 2026",
+"eps": "2.87.",
+"n": "3",
+"time": "BMO",
+"status": "expected",
+"prior": "1.75."
+},
+"ORCL": {
+"ann": "Dec 9, 2026",
+"eps": "1.57.",
+"n": "9",
+"time": "",
+"status": "estimated",
+"prior": "1.95."
+},
+"AKAM": {
+"ann": "Nov 05, 2026",
+"eps": "0.92.",
+"n": "9",
+"time": "AMC",
+"status": "expected",
+"prior": "1.06."
+},
+"DOCN": {
+"ann": "Nov 03, 2026",
+"eps": "0.11.",
+"n": "6",
+"time": "BMO",
+"status": "expected",
+"prior": "0.38."
+},
+"BAC": {
+"ann": "",
+"eps": null,
+"n": null,
+"time": "",
+"status": "",
+"prior": null
+},
+"COIN": {
+"ann": "Oct 29, 2026",
+"eps": "-0.18.",
+"n": "10",
+"time": "AMC",
+"status": "expected",
+"prior": "1.44."
+},
+"CRCL": {
+"ann": "Nov 04, 2026",
+"eps": "0.4.",
+"n": "9",
+"time": "BMO",
+"status": "expected",
+"prior": "0.64."
+},
+"RDDT": {
+"ann": "Oct 29, 2026",
+"eps": "1.3.",
+"n": "11",
+"time": "AMC",
+"status": "expected",
+"prior": "0.8."
+},
+"AAOI": {
+"ann": "Nov 05, 2026",
+"eps": "0.08.",
+"n": "3",
+"time": "AMC",
+"status": "expected",
+"prior": "-0.14."
+},
+"IREN": {
+"ann": "Nov 5, 2026",
+"eps": "-0.46.",
+"n": "3",
+"time": "",
+"status": "estimated",
+"prior": "-0.34."
+},
+"BABA": {
+"ann": "Nov 24, 2026",
+"eps": "1.31.",
+"n": "3",
+"time": "",
+"status": "estimated",
+"prior": "0.44."
+}
+}

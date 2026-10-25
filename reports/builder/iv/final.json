@@ -1,0 +1,631 @@
+{
+ "AVGO": {
+  "S": 321.68,
+  "hv": 38.6,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 41.0,
+  "spread": 7.4,
+  "ratio": 1.06,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": null,
+  "n_allowed": 7
+ },
+ "AMZN": {
+  "S": 248.0,
+  "hv": 32.7,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 7.8,
+   "straddle": 19.45,
+   "k": 247.5
+  },
+  "n_allowed": 0
+ },
+ "BE": {
+  "S": 193.3,
+  "hv": 95.0,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 77.0,
+  "spread": 10.1,
+  "ratio": 0.81,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
+  "wide": false,
+  "em": null,
+  "n_allowed": 6
+ },
+ "CRDO": {
+  "S": 147.29,
+  "hv": 88.5,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 81.7,
+  "spread": 38.4,
+  "ratio": 0.92,
+  "verdict": "Cheap",
+  "hv_has_earn": false,
+  "wide": true,
+  "em": null,
+  "n_allowed": 5
+ },
+ "SPCX": {
+  "S": 147.49,
+  "hv": 66.7,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 51.3,
+  "spread": 9.9,
+  "ratio": 0.77,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
+  "wide": false,
+  "em": null,
+  "n_allowed": 8
+ },
+ "CIEN": {
+  "S": 320.26,
+  "hv": 99.8,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 74.2,
+  "spread": 33.5,
+  "ratio": 0.74,
+  "verdict": "Cheap",
+  "hv_has_earn": false,
+  "wide": true,
+  "em": null,
+  "n_allowed": 5
+ },
+ "MRVL": {
+  "S": 228.51,
+  "hv": 64.8,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 64.7,
+  "spread": 1.8,
+  "ratio": 1.0,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": null,
+  "n_allowed": 4
+ },
+ "SKHY": {
+  "S": 137.02,
+  "hv": 63.7,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 9.3,
+   "straddle": 12.78,
+   "k": 137.0
+  },
+  "n_allowed": 0
+ },
+ "AMAT": {
+  "S": 377.24,
+  "hv": 52.4,
+  "exp": "2026-11-06",
+  "dte": 11,
+  "iv": 57.0,
+  "spread": 31.5,
+  "ratio": 1.09,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": true,
+  "em": {
+   "exp": "2026-11-13",
+   "move": 11.6,
+   "straddle": 43.7,
+   "k": 375.0
+  },
+  "n_allowed": 1
+ },
+ "VRT": {
+  "S": 194.32,
+  "hv": 46.8,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 11.0,
+   "straddle": 21.4,
+   "k": 195.0
+  },
+  "n_allowed": 0
+ },
+ "COHR": {
+  "S": 209.29,
+  "hv": 93.1,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 14.3,
+   "straddle": 29.95,
+   "k": 210.0
+  },
+  "n_allowed": 0
+ },
+ "HOOD": {
+  "S": 95.07,
+  "hv": 49.1,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 10.2,
+   "straddle": 9.68,
+   "k": 95.0
+  },
+  "n_allowed": 0
+ },
+ "ARM": {
+  "S": 210.33,
+  "hv": 64.6,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 13.8,
+   "straddle": 29.02,
+   "k": 210.0
+  },
+  "n_allowed": 0
+ },
+ "GLW": {
+  "S": 123.69,
+  "hv": 64.2,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 9.6,
+   "straddle": 11.85,
+   "k": 124.0
+  },
+  "n_allowed": 0
+ },
+ "INTC": {
+  "S": 86.96,
+  "hv": 51.4,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 9.9,
+   "straddle": 8.62,
+   "k": 87.0
+  },
+  "n_allowed": 0
+ },
+ "KLAC": {
+  "S": 145.61,
+  "hv": 50.8,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 9.0,
+   "straddle": 13.15,
+   "k": 146.0
+  },
+  "n_allowed": 0
+ },
+ "NVDA": {
+  "S": 210.96,
+  "hv": 29.6,
+  "exp": "2026-11-13",
+  "dte": 18,
+  "iv": 37.8,
+  "spread": 2.0,
+  "ratio": 1.28,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-20",
+   "move": 9.7,
+   "straddle": 20.5,
+   "k": 210.0
+  },
+  "n_allowed": 4
+ },
+ "QCOM": {
+  "S": 175.91,
+  "hv": 38.2,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 10.3,
+   "straddle": 18.17,
+   "k": 175.0
+  },
+  "n_allowed": 0
+ },
+ "IONQ": {
+  "S": 31.27,
+  "hv": 71.9,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 14.3,
+   "straddle": 4.46,
+   "k": 31.5
+  },
+  "n_allowed": 0
+ },
+ "CBRS": {
+  "S": 110.82,
+  "hv": 75.4,
+  "exp": "2026-11-06",
+  "dte": 11,
+  "iv": 85.6,
+  "spread": 50.0,
+  "ratio": 1.14,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": true,
+  "em": {
+   "exp": "2026-11-13",
+   "move": 20.0,
+   "straddle": 22.2,
+   "k": 110.0
+  },
+  "n_allowed": 1
+ },
+ "CRWV": {
+  "S": 54.235,
+  "hv": 90.8,
+  "exp": "2026-11-06",
+  "dte": 11,
+  "iv": 106.1,
+  "spread": 10.1,
+  "ratio": 1.17,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-13",
+   "move": 21.5,
+   "straddle": 11.68,
+   "k": 54.0
+  },
+  "n_allowed": 1
+ },
+ "VICR": {
+  "S": 176.04,
+  "hv": 102.7,
+  "exp": "2026-11-20",
+  "dte": 25,
+  "iv": 98.0,
+  "spread": 25.1,
+  "ratio": 0.95,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
+  "wide": true,
+  "em": null,
+  "n_allowed": 2
+ },
+ "LRCX": {
+  "S": 230.1,
+  "hv": 58.0,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 54.7,
+  "spread": 15.6,
+  "ratio": 0.94,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
+  "wide": true,
+  "em": null,
+  "n_allowed": 6
+ },
+ "TER": {
+  "S": 308.85,
+  "hv": 66.5,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 13.0,
+   "straddle": 40.3,
+   "k": 310.0
+  },
+  "n_allowed": 0
+ },
+ "NBIS": {
+  "S": 158.74,
+  "hv": 80.2,
+  "exp": "2026-11-06",
+  "dte": 11,
+  "iv": 94.2,
+  "spread": 6.0,
+  "ratio": 1.17,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-13",
+   "move": 19.6,
+   "straddle": 31.18,
+   "k": 160.0
+  },
+  "n_allowed": 1
+ },
+ "VST": {
+  "S": 140.16,
+  "hv": 70.8,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 9.6,
+   "straddle": 13.52,
+   "k": 140.0
+  },
+  "n_allowed": 0
+ },
+ "ORCL": {
+  "S": 126.16,
+  "hv": 56.4,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 57.1,
+  "spread": 3.7,
+  "ratio": 1.01,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": null,
+  "n_allowed": 5
+ },
+ "AKAM": {
+  "S": 93.53,
+  "hv": 53.3,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 14.6,
+   "straddle": 13.7,
+   "k": 94.0
+  },
+  "n_allowed": 0
+ },
+ "DOCN": {
+  "S": 93.22,
+  "hv": 84.8,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 18.7,
+   "straddle": 17.4,
+   "k": 93.0
+  },
+  "n_allowed": 0
+ },
+ "BAC": {
+  "S": 50.56,
+  "hv": 21.8,
+  "exp": "2026-11-27",
+  "dte": 32,
+  "iv": 23.9,
+  "spread": 21.0,
+  "ratio": 1.1,
+  "verdict": "Normal",
+  "hv_has_earn": true,
+  "wide": true,
+  "em": null,
+  "n_allowed": 6
+ },
+ "COIN": {
+  "S": 164.45,
+  "hv": 53.3,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 9.6,
+   "straddle": 15.72,
+   "k": 165.0
+  },
+  "n_allowed": 0
+ },
+ "CRCL": {
+  "S": 85.91,
+  "hv": 60.6,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 14.6,
+   "straddle": 12.5,
+   "k": 86.0
+  },
+  "n_allowed": 0
+ },
+ "RDDT": {
+  "S": 144.25,
+  "hv": 48.5,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 12.9,
+   "straddle": 18.6,
+   "k": 144.0
+  },
+  "n_allowed": 0
+ },
+ "AAOI": {
+  "S": 67.51,
+  "hv": 111.5,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 20.4,
+   "straddle": 13.75,
+   "k": 68.0
+  },
+  "n_allowed": 0
+ },
+ "IREN": {
+  "S": 24.905,
+  "hv": 76.1,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 19.9,
+   "straddle": 4.95,
+   "k": 25.0
+  },
+  "n_allowed": 0
+ },
+ "BABA": {
+  "S": 99.64,
+  "hv": 33.7,
+  "exp": "2026-11-20",
+  "dte": 25,
+  "iv": 42.4,
+  "spread": 3.8,
+  "ratio": 1.26,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": null,
+  "n_allowed": 3
+ }
+}
