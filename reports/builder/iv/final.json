@@ -11,7 +11,8 @@
   "hv_has_earn": false,
   "wide": false,
   "em": null,
-  "n_allowed": 7
+  "n_allowed": 7,
+  "ex": null
  },
  "AMZN": {
   "S": 248.0,
@@ -30,7 +31,15 @@
    "straddle": 19.45,
    "k": 247.5
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 31.6,
+   "ratio": 0.97,
+   "verdict": "Cheap",
+   "jump": 8.8,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "BE": {
   "S": 193.3,
@@ -44,7 +53,8 @@
   "hv_has_earn": true,
   "wide": false,
   "em": null,
-  "n_allowed": 6
+  "n_allowed": 6,
+  "ex": null
  },
  "CRDO": {
   "S": 147.29,
@@ -58,7 +68,8 @@
   "hv_has_earn": false,
   "wide": true,
   "em": null,
-  "n_allowed": 5
+  "n_allowed": 5,
+  "ex": null
  },
  "SPCX": {
   "S": 147.49,
@@ -72,7 +83,8 @@
   "hv_has_earn": true,
   "wide": false,
   "em": null,
-  "n_allowed": 8
+  "n_allowed": 8,
+  "ex": null
  },
  "CIEN": {
   "S": 320.26,
@@ -86,7 +98,8 @@
   "hv_has_earn": false,
   "wide": true,
   "em": null,
-  "n_allowed": 5
+  "n_allowed": 5,
+  "ex": null
  },
  "MRVL": {
   "S": 228.51,
@@ -100,7 +113,15 @@
   "hv_has_earn": false,
   "wide": false,
   "em": null,
-  "n_allowed": 4
+  "n_allowed": 4,
+  "ex": {
+   "iv": 61.2,
+   "ratio": 0.94,
+   "verdict": "Cheap",
+   "jump": 11.2,
+   "e1": "2026-12-04",
+   "e2": "2026-12-18"
+  }
  },
  "SKHY": {
   "S": 137.02,
@@ -119,7 +140,15 @@
    "straddle": 12.78,
    "k": 137.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 59.1,
+   "ratio": 0.93,
+   "verdict": "Cheap",
+   "jump": 8.4,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "AMAT": {
   "S": 377.24,
@@ -138,7 +167,15 @@
    "straddle": 43.7,
    "k": 375.0
   },
-  "n_allowed": 1
+  "n_allowed": 1,
+  "ex": {
+   "iv": 48.5,
+   "ratio": 0.93,
+   "verdict": "Cheap",
+   "jump": 8.8,
+   "e1": "2026-11-13",
+   "e2": "2026-12-18"
+  }
  },
  "VRT": {
   "S": 194.32,
@@ -157,7 +194,15 @@
    "straddle": 21.4,
    "k": 195.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 52.3,
+   "ratio": 1.12,
+   "verdict": "Normal",
+   "jump": 11.7,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "COHR": {
   "S": 209.29,
@@ -176,7 +221,15 @@
    "straddle": 29.95,
    "k": 210.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 69.0,
+   "ratio": 0.74,
+   "verdict": "Cheap",
+   "jump": 11.8,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "HOOD": {
   "S": 95.07,
@@ -195,7 +248,15 @@
    "straddle": 9.68,
    "k": 95.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 59.1,
+   "ratio": 1.2,
+   "verdict": "Normal",
+   "jump": 9.8,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "ARM": {
   "S": 210.33,
@@ -214,7 +275,15 @@
    "straddle": 29.02,
    "k": 210.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 61.6,
+   "ratio": 0.95,
+   "verdict": "Cheap",
+   "jump": 12.4,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "GLW": {
   "S": 123.69,
@@ -233,7 +302,15 @@
    "straddle": 11.85,
    "k": 124.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 53.6,
+   "ratio": 0.84,
+   "verdict": "Cheap",
+   "jump": 9.4,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "INTC": {
   "S": 86.96,
@@ -252,7 +329,15 @@
    "straddle": 8.62,
    "k": 87.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 56.6,
+   "ratio": 1.1,
+   "verdict": "Normal",
+   "jump": 9.7,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "KLAC": {
   "S": 145.61,
@@ -271,7 +356,15 @@
    "straddle": 13.15,
    "k": 146.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 55.2,
+   "ratio": 1.09,
+   "verdict": "Normal",
+   "jump": 8.3,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "NVDA": {
   "S": 210.96,
@@ -290,7 +383,15 @@
    "straddle": 20.5,
    "k": 210.0
   },
-  "n_allowed": 4
+  "n_allowed": 4,
+  "ex": {
+   "iv": 35.9,
+   "ratio": 1.21,
+   "verdict": "Normal",
+   "jump": 7.1,
+   "e1": "2026-11-20",
+   "e2": "2026-12-18"
+  }
  },
  "QCOM": {
   "S": 175.91,
@@ -309,7 +410,15 @@
    "straddle": 18.17,
    "k": 175.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 42.3,
+   "ratio": 1.11,
+   "verdict": "Normal",
+   "jump": 10.0,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "IONQ": {
   "S": 31.27,
@@ -328,7 +437,15 @@
    "straddle": 4.46,
    "k": 31.5
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 70.4,
+   "ratio": 0.98,
+   "verdict": "Cheap",
+   "jump": 11.4,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "CBRS": {
   "S": 110.82,
@@ -347,7 +464,15 @@
    "straddle": 22.2,
    "k": 110.0
   },
-  "n_allowed": 1
+  "n_allowed": 1,
+  "ex": {
+   "iv": 65.0,
+   "ratio": 0.86,
+   "verdict": "Cheap",
+   "jump": 19.9,
+   "e1": "2026-11-13",
+   "e2": "2026-12-18"
+  }
  },
  "CRWV": {
   "S": 54.235,
@@ -366,7 +491,15 @@
    "straddle": 11.68,
    "k": 54.0
   },
-  "n_allowed": 1
+  "n_allowed": 1,
+  "ex": {
+   "iv": 90.5,
+   "ratio": 1.0,
+   "verdict": "Normal",
+   "jump": 16.3,
+   "e1": "2026-11-13",
+   "e2": "2026-12-18"
+  }
  },
  "VICR": {
   "S": 176.04,
@@ -380,7 +513,8 @@
   "hv_has_earn": true,
   "wide": true,
   "em": null,
-  "n_allowed": 2
+  "n_allowed": 2,
+  "ex": null
  },
  "LRCX": {
   "S": 230.1,
@@ -394,7 +528,8 @@
   "hv_has_earn": true,
   "wide": true,
   "em": null,
-  "n_allowed": 6
+  "n_allowed": 6,
+  "ex": null
  },
  "TER": {
   "S": 308.85,
@@ -413,7 +548,15 @@
    "straddle": 40.3,
    "k": 310.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 60.6,
+   "ratio": 0.91,
+   "verdict": "Cheap",
+   "jump": 14.0,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "NBIS": {
   "S": 158.74,
@@ -432,7 +575,15 @@
    "straddle": 31.18,
    "k": 160.0
   },
-  "n_allowed": 1
+  "n_allowed": 1,
+  "ex": {
+   "iv": 85.5,
+   "ratio": 1.07,
+   "verdict": "Normal",
+   "jump": 13.6,
+   "e1": "2026-11-13",
+   "e2": "2026-12-18"
+  }
  },
  "VST": {
   "S": 140.16,
@@ -451,7 +602,15 @@
    "straddle": 13.52,
    "k": 140.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 45.1,
+   "ratio": 0.64,
+   "verdict": "Cheap",
+   "jump": 8.3,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "ORCL": {
   "S": 126.16,
@@ -465,7 +624,8 @@
   "hv_has_earn": false,
   "wide": false,
   "em": null,
-  "n_allowed": 5
+  "n_allowed": 5,
+  "ex": null
  },
  "AKAM": {
   "S": 93.53,
@@ -484,7 +644,15 @@
    "straddle": 13.7,
    "k": 94.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 52.0,
+   "ratio": 0.98,
+   "verdict": "Cheap",
+   "jump": 15.3,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "DOCN": {
   "S": 93.22,
@@ -503,7 +671,15 @@
    "straddle": 17.4,
    "k": 93.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 82.1,
+   "ratio": 0.97,
+   "verdict": "Cheap",
+   "jump": 17.1,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "BAC": {
   "S": 50.56,
@@ -517,7 +693,8 @@
   "hv_has_earn": true,
   "wide": true,
   "em": null,
-  "n_allowed": 6
+  "n_allowed": 6,
+  "ex": null
  },
  "COIN": {
   "S": 164.45,
@@ -536,7 +713,15 @@
    "straddle": 15.72,
    "k": 165.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 65.5,
+   "ratio": 1.23,
+   "verdict": "Normal",
+   "jump": 7.8,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "CRCL": {
   "S": 85.91,
@@ -555,7 +740,15 @@
    "straddle": 12.5,
    "k": 86.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 72.3,
+   "ratio": 1.19,
+   "verdict": "Normal",
+   "jump": 11.5,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "RDDT": {
   "S": 144.25,
@@ -574,7 +767,15 @@
    "straddle": 18.6,
    "k": 144.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 61.0,
+   "ratio": 1.26,
+   "verdict": "Normal",
+   "jump": 13.8,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
  },
  "AAOI": {
   "S": 67.51,
@@ -593,7 +794,15 @@
    "straddle": 13.75,
    "k": 68.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 86.8,
+   "ratio": 0.78,
+   "verdict": "Cheap",
+   "jump": 19.0,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "IREN": {
   "S": 24.905,
@@ -612,7 +821,15 @@
    "straddle": 4.95,
    "k": 25.0
   },
-  "n_allowed": 0
+  "n_allowed": 0,
+  "ex": {
+   "iv": 98.1,
+   "ratio": 1.29,
+   "verdict": "Normal",
+   "jump": 15.9,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
  },
  "BABA": {
   "S": 99.64,
@@ -626,6 +843,14 @@
   "hv_has_earn": false,
   "wide": false,
   "em": null,
-  "n_allowed": 3
+  "n_allowed": 3,
+  "ex": {
+   "iv": 41.8,
+   "ratio": 1.24,
+   "verdict": "Normal",
+   "jump": 3.9,
+   "e1": "2026-11-27",
+   "e2": "2026-12-18"
+  }
  }
 }

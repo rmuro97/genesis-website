@@ -13,7 +13,7 @@ from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_RIGHT, TA_CENTER
 from reportlab.platypus import (BaseDocTemplate, PageTemplate, Frame, Paragraph, Spacer, Table, TableStyle,
-                                Image, PageBreak, KeepTogether, NextPageTemplate)
+                                Image, PageBreak, KeepTogether, NextPageTemplate, KeepInFrame)
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
@@ -21,6 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(ROOT, "rep"))
 import content as C
+import targets as TG
 
 P = json.load(open(os.path.join(ROOT, "p2/final/prices/latest.json")))
 K = json.load(open(os.path.join(ROOT, "rep/consensus.json")))
@@ -31,6 +32,10 @@ MK = {m["key"]: m for m in P["market"]}
 TODAY = dt.date(2026, 10, 26)
 NEXT_SESSION = dt.date(2026, 10, 26)
 LAST = max(dt.date.fromisoformat(r[-1][0]) for r in H.values())  # last official close in pdf/hist.json
+# EDIT EACH MONTH: Rule 3 data days (FOMC, CPI, PCE, PPI, jobs, GDP) and market holidays for the next ~2 months
+RULE3_DAYS = {dt.date(2026, 10, 28), dt.date(2026, 10, 29), dt.date(2026, 11, 6), dt.date(2026, 11, 10), dt.date(2026, 11, 13),
+              dt.date(2026, 11, 25), dt.date(2026, 12, 4), dt.date(2026, 12, 9), dt.date(2026, 12, 10)}
+HOLIDAYS = {dt.date(2026, 11, 26), dt.date(2026, 12, 25)}
 CH = os.path.join(HERE, "charts")
 os.makedirs(CH, exist_ok=True)
 
@@ -134,6 +139,28 @@ def rule_note(t, ei):
     return ("warn", f"Reports {fmt_d(nxt)}, {days} days out. Friday expiries that are ≥7 DTE and still before the report: {', '.join(fmt_d(x, False) for x in fris)}. Anything later is held into earnings (Rules 3 and 4).")
 
 
+def first_buy(t, ei):
+    """First day a new option is allowed after the report: after-close/unknown-time reports -> next day; then skip
+    Fridays (Rule 2), Rule 3 data days and holidays."""
+    nd = ei["nxt"]
+    if not nd:
+        return None
+    x = nd if (K.get(t, {}).get("time") == "BMO" and t not in TIME_OVERRIDE) else nd + dt.timedelta(days=1)
+    while x.weekday() >= 4 or x in RULE3_DAYS or x in HOLIDAYS:
+        x += dt.timedelta(days=1)
+    return x
+
+
+def vlabel(t):
+    """IV verdict for every name: the rule-allowed check, or the earnings-adjusted estimate when blocked."""
+    v = IVF[t]
+    if v["verdict"] != "Blocked":
+        return f'<font color="{VCOL[v["verdict"]]}"><b>{v["verdict"]}</b></font>'
+    if v.get("ex"):
+        return f'<font color="{VCOL[v["ex"]["verdict"]]}"><b>{v["ex"]["verdict"]}</b></font><font size="6.5" color="#62656e"> after earn.</font>'
+    return '<font color="#62656e"><b>n/a</b></font>'
+
+
 # ---------- stats from official daily closes ----------
 def stats(t):
     rows = H[t]
@@ -152,13 +179,41 @@ def stats(t):
 
 ST = {t: stats(t) for t in H}
 IVF = json.load(open(os.path.join(ROOT, "iv/final.json")))
+PT = json.load(open(os.path.join(ROOT, "rep/consensus_pt.json")))  # Nasdaq analyst consensus
+
+
+def pt_named(t, short=False):
+    """Named firm targets, the six top firms first and in bold."""
+    xs = sorted(TG.T.get(t, []), key=lambda x: (x[0] not in TG.TOP_FIRMS,))
+    out = []
+    for firm, rating, tgt, when, outlet, url in xs:
+        name = f"<b>{X(firm)}</b>" if firm in TG.TOP_FIRMS else X(firm)
+        if short:
+            out.append(f"{name} {'$%s' % format(tgt, ',') if tgt else X(rating)}")
+        else:
+            bits = [b for b in (X(rating), f"${tgt:,}" if tgt else "") if b]
+            out.append(f'{name} {" ".join(bits)} <font color="#62656e">({X(when)}, <a href="{X(url)}" color="#1f5fbf">{X(outlet)}</a>)</font>')
+    return out
+
+
+def pt_cons(t, last):
+    c = PT.get(t)
+    if not c:
+        return "No Nasdaq consensus yet (recent U.S. listing)."
+    up = (c["priceTarget"] / last - 1) * 100
+    return (f'Consensus <b>${c["priceTarget"]:,.0f}</b> ({pc(up, False)} vs close) · range ${c["lowPriceTarget"]:,.0f}–${c["highPriceTarget"]:,.0f} · '
+            f'{c["buy"]} buy / {c["hold"]} hold / {c["sell"]} sell (Nasdaq)')
 VCOL = {"Cheap": "#13804a", "Normal": "#1c1d21", "Expensive": "#b42318", "Blocked": "#62656e"}
 
 
 def iv_rows(t, ei):
     v = IVF[t]
     if v["verdict"] == "Blocked":
-        txt = f'<font color="#62656e"><b>No check</b>: every 7–60 DTE expiry runs past earnings on {fmt_d(ei["nxt"], False)} (Rule 3). Recheck after the report. Actual 20-day movement: {v["hv"]:.0f}%.</font>'
+        txt = f'<font color="#62656e">No new options yet: every 7–60 DTE expiry runs past earnings on {fmt_d(ei["nxt"], False)} (Rule 3).</font>'
+        if v.get("ex"):
+            x = v["ex"]; fb = first_buy(t, ei)
+            txt += (f' <b>After the report:</b> <font color="{VCOL[x["verdict"]]}"><b>{x["verdict"]}</b></font> · IV without the earnings move about {x["iv"]:.0f}% vs {v["hv"]:.0f}% '
+                    f'actual 20-day movement (ratio {x["ratio"]:.2f}). <b>First day you can buy: {fmt_d(fb)}.</b>')
     else:
         ed = dt.date.fromisoformat(v["exp"])
         txt = (f'<font color="{VCOL[v["verdict"]]}"><b>{v["verdict"]}</b></font> · IV {v["iv"]:.0f}% vs {v["hv"]:.0f}% actual 20-day movement '
@@ -184,7 +239,7 @@ def chart(t):
     ds, cl = s["dates"][s["base3"]:], s["close"][s["base3"]:]
     up = cl[-1] >= cl[0]
     col = "#13804a" if up else "#c2362b"
-    fig, ax = plt.subplots(figsize=(7.3, 2.15), dpi=200)
+    fig, ax = plt.subplots(figsize=(7.3, 1.9), dpi=200)
     ax.axvspan(s["dates"][s["i1m"]], ds[-1] + dt.timedelta(days=1), color="#1f5fbf", alpha=0.06, lw=0)
     lo = min(cl); hi = max(cl); pad = (hi - lo) * 0.12 or 1
     ax.fill_between(ds, cl, lo - pad, color=col, alpha=0.08, lw=0)
@@ -248,7 +303,8 @@ def on_page(c, doc):
 doc = BaseDocTemplate(OUT, pagesize=letter, leftMargin=M, rightMargin=M, topMargin=0.5 * inch, bottomMargin=0.6 * inch,
                       title=TITLE, author="Muro's Investing Analysis",
                       subject="Earnings, guidance, capex, partnerships, catalysts and market events for 36 stocks")
-frame = Frame(M, 0.6 * inch, W - 2 * M, Hh - 1.1 * inch, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
+FRAME_H = Hh - 1.1 * inch
+frame = Frame(M, 0.6 * inch, W - 2 * M, FRAME_H, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
 doc.addPageTemplates([PageTemplate(id="p", frames=[frame], onPage=on_page)])
 CW = W - 2 * M
 story = []
@@ -307,7 +363,7 @@ for t in OPEN_T:
                   Paragraph(f'{v["iv"]:.0f}% vs {v["hv"]:.0f}% <font color="#62656e">({v["ratio"]:.2f})</font>', S_SM),
                   Paragraph(f'{fmt_d(dt.date.fromisoformat(v["exp"]), False)} · {v["dte"]} DTE', S_SM),
                   Paragraph(ne, S_SM), Paragraph(X("; ".join(note)), st("nt", fontSize=7, leading=8.4, textColor=WARN))])
-bt = Table(brows, colWidths=[0.62 * inch, 0.9 * inch, 0.74 * inch, 1.34 * inch, 1.12 * inch, 1.16 * inch, CW - 5.88 * inch], repeatRows=1)
+bt = Table(brows, colWidths=[0.62 * inch, 1.02 * inch, 0.7 * inch, 1.34 * inch, 1.12 * inch, 1.16 * inch, CW - 5.96 * inch], repeatRows=1)
 bsty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.8), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.8),
         ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
 for i, t in enumerate(OPEN_T, 1):
@@ -319,9 +375,33 @@ story += [Spacer(1, 8), Paragraph("Where to buy options: IV check", S_H1),
                          '<font color="#13804a"><b>Cheap</b></font> = options cost less than the stock has actually been moving (IV below 20-day movement): the better time to buy. '
                          'Normal = fair. Expensive = wait. The expiry shown is the allowed one nearest 30 days (7–60 DTE and ending before the next report); take profit at +25% to +100% (Rule 1).', S_B)], OKBG, border=OK),
           Spacer(1, 4), bt, Spacer(1, 3),
-          Paragraph(f'<b>No new options now ({len(SHUT_T)}):</b> {X(", ".join(SHUT_T))}: every 7–60 DTE expiry runs into their earnings (Rules 3 and 4). '
-                    "Quotes are Nasdaq delayed option prices at the last close; recheck live before buying. A cheap reading is not a buy signal on its own.", S_M),
-          PageBreak(), Paragraph("This week: when you can trade", S_H1)]
+          Paragraph("Quotes are Nasdaq delayed option prices at the last close; recheck live before buying. A cheap reading is not a buy signal on its own.", S_M),
+          Spacer(1, 8)]
+# the names blocked by earnings: earnings-adjusted IV and the first day each can be bought
+SHUT_T.sort(key=lambda t: (first_buy(t, earn_info(t)) or dt.date.max, t))
+ah = [Paragraph(x, S_LAB) for x in ("TICKER", "LIST", "REPORTS", "FIRST BUY DAY", "IV AFTER EARNINGS (EST.)", "VERDICT", "EARNINGS MOVE PRICED")]
+arows = [ah]
+for t in SHUT_T:
+    v, ei = IVF[t], earn_info(t); x = v.get("ex")
+    lab, pos, _ = LISTPOS[t]
+    short = {"Top 5": "Top 5", "2026 Portfolio": "Portfolio"}.get(lab, "Dip")
+    mv = f'±{v["em"]["move"]:.1f}% (straddle)' if v.get("em") else (f'±{x["jump"]:.1f}% (1 sd)' if x else "–")
+    arows.append([Paragraph(f'<font name="DVB">{t}</font>', S_SM), Paragraph(f"{short} #{pos}", S_SM),
+                  Paragraph(fmt_d(ei["nxt"]) + (" est." if ei["est"] else ""), S_SM), Paragraph(f'<b>{fmt_d(first_buy(t, ei))}</b>', S_SM),
+                  Paragraph(f'{x["iv"]:.0f}% vs {v["hv"]:.0f}% <font color="#62656e">({x["ratio"]:.2f})</font>' if x else "n/a", S_SM),
+                  Paragraph(f'<font color="{VCOL[x["verdict"]]}"><b>{x["verdict"]}</b></font>' if x else "n/a", S_SM), Paragraph(mv, S_SM)])
+at = Table(arows, colWidths=[0.62 * inch, 1.02 * inch, 1.0 * inch, 1.05 * inch, 1.45 * inch, 0.72 * inch, CW - 5.86 * inch], repeatRows=1)
+asty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.8), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.8),
+        ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
+for i, t in enumerate(SHUT_T, 1):
+    if (IVF[t].get("ex") or {}).get("verdict") == "Cheap":
+        asty.append(("BACKGROUND", (0, i), (-1, i), OKBG))
+at.setStyle(TableStyle(asty))
+story += [PageBreak(), Paragraph(f"After earnings: the other {len(SHUT_T)} names", S_H1),
+          Paragraph("No new options on these until their report is out (Rules 3 and 4). IV here is estimated without the earnings move, from two expiries after the report, "
+                    "so you know where each one stands and the first day you can buy (skipping Fridays and Rule 3 data days). Recheck live after the report: IV usually drops once earnings pass.", S_M),
+          Spacer(1, 3), at,
+          Spacer(1, 12), Paragraph("This week: when you can trade", S_H1)]
 wt = Table([[Paragraph(f"<b>{a}</b>", S_B), Paragraph(X(b), S_B)] for a, _, b in WEEK], colWidths=[1.05 * inch, CW - 1.05 * inch])
 ws = [("VALIGN", (0, 0), (-1, -1), "TOP"), ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
       ("LINEBELOW", (0, 0), (-1, -2), 0.5, colors.white)]
@@ -329,7 +409,7 @@ for i, (_, tone, _) in enumerate(WEEK):
     ws += [("BACKGROUND", (0, i), (-1, i), TONE[tone][1]), ("LINEBEFORE", (0, i), (0, i), 3, TONE[tone][0])]
 wt.setStyle(TableStyle(ws)); story.append(wt)
 
-story += [Spacer(1, 10), Paragraph("Market backdrop", S_H1),
+story += [PageBreak(), Paragraph("Market backdrop", S_H1),
           box([Paragraph('<font color="#b42318"><b>Headwind.</b></font> Rates near 5%, hot inflation, a live Fed and Brent at $116.72 (a six-month high) weigh on high-multiple growth. The offset is hyperscaler capex: this week\'s Microsoft, Alphabet and Amazon reports decide whether the AI build-out keeps getting funded.', S_B)], BADBG),
           Spacer(1, 6)]
 spx, comp, y10, y30, btc = MK["SPX"], MK["COMP"], MK["US10Y"], MK["US30Y"], MK["BTC"]
@@ -505,16 +585,41 @@ for key, label, names in C.LISTS:
         data.append([Paragraph(f'<font name="DVB">{t}</font>', S_SM), Paragraph(f"${s['last']:,.2f}", st("rr", fontSize=8.4, alignment=TA_RIGHT)),
                      Paragraph(pc(s["day"], False), st("rr2", fontSize=8.4, alignment=TA_RIGHT)), Paragraph(pc(s["m1"]), st("rr3", fontSize=8.4, alignment=TA_RIGHT)),
                      Paragraph(pc(s["m3"]), st("rr4", fontSize=8.4, alignment=TA_RIGHT)), Paragraph(pc(s["offhi"], False), st("rr5", fontSize=8.4, alignment=TA_RIGHT)),
-                     Image(spark(t), width=1.1 * inch, height=0.23 * inch), Paragraph(f'<font color="{VCOL[IVF[t]["verdict"]]}"><b>{IVF[t]["verdict"]}</b></font>', S_SM), Paragraph(ne, S_SM)])
+                     Image(spark(t), width=1.1 * inch, height=0.23 * inch), Paragraph(vlabel(t), S_SM), Paragraph(ne, S_SM)])
     gt = Table(data, colWidths=[0.58 * inch, 0.76 * inch, 0.62 * inch, 0.66 * inch, 0.74 * inch, 0.78 * inch, 1.14 * inch, 0.78 * inch, CW - 6.06 * inch], repeatRows=1)
     gt.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.6), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.6),
                             ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE), ("ALIGN", (1, 0), (5, 0), "RIGHT")]))
     story += [KeepTogether([Paragraph(f"{X(label)} <font size='8' color='#62656e'>· {len(names)} names in your order</font>", S_H2), gt])]
 
 # IV check page
-story += [PageBreak(), Paragraph("Options IV check: are the options you're allowed to buy cheap?", S_H1),
+# Wall Street price targets summary
+story += [PageBreak(), Paragraph("Wall Street price targets", S_H1),
+          Paragraph("Consensus = Nasdaq analyst consensus (average, low–high, buy/hold/sell count). Named targets are the most recent ones reported by your outlets "
+                    "(CNBC, Seeking Alpha; \"via TipRanks\" = headline on CNBC's quote page). <b>Bold</b> = JPMorgan, BofA, Morgan Stanley, Goldman Sachs, Oppenheimer, Mizuho. "
+                    "Dates and sources are on each stock page. Many targets were set before October's selloff, so the upside looks large; watch for cuts after earnings.", S_M), Spacer(1, 4)]
+S_T7 = st("t7", fontSize=7.4, leading=9.2)
+S_T7R = st("t7r", fontSize=7.4, leading=9.2, alignment=TA_RIGHT)
+pdata = [[Paragraph(x, S_LAB) for x in ("TICKER", "CLOSE", "AVG", "UPSIDE", "LOW–HIGH", "B/H/S", "NAMED FIRM TARGETS")]]
+psty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.3), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.3), ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
+for key, label, names in C.LISTS:
+    psty += [("BACKGROUND", (0, len(pdata)), (-1, len(pdata)), CHIP), ("SPAN", (0, len(pdata)), (-1, len(pdata)))]
+    pdata.append([Paragraph(f"<b>{X(label)}</b>", S_T7)] + [""] * 6)
+    for t in names:
+        c, last = PT.get(t), ST[t]["last"]
+        pdata.append([Paragraph(f"<b>{t}</b>", S_T7), Paragraph(f"${last:,.2f}", S_T7R),
+                      Paragraph(f'${c["priceTarget"]:,.0f}' if c else "–", S_T7R),
+                      Paragraph(pc((c["priceTarget"] / last - 1) * 100, False) if c else "–", S_T7R),
+                      Paragraph(f'${c["lowPriceTarget"]:,.0f}–${c["highPriceTarget"]:,.0f}' if c else "–", S_T7R),
+                      Paragraph(f'{c["buy"]}/{c["hold"]}/{c["sell"]}' if c else "–", S_T7R),
+                      Paragraph(" · ".join(pt_named(t, short=True)) or '<font color="#62656e">none reported recently</font>', S_T7)])
+ptab = Table(pdata, colWidths=[0.6 * inch, 0.66 * inch, 0.62 * inch, 0.7 * inch, 0.92 * inch, 0.55 * inch, CW - 4.05 * inch], repeatRows=1)
+ptab.setStyle(TableStyle(psty))
+story.append(KeepInFrame(CW, FRAME_H - 60, [ptab], mode="shrink"))
+
+IVP_START = PageBreak()
+story += [IVP_START, Paragraph("Options IV check: are the options you're allowed to buy cheap?", S_H1),
           Paragraph(f"For each name, I took the expiry your rules allow (7–60 DTE from {fmt_d(NEXT_SESSION)}, ending before the next report) closest to 30 days. Its at-the-money implied volatility (IV) is compared with how much the stock has actually moved over the last 20 trading days (HV).", S_B), Spacer(1, 3),
-          Paragraph('<font color="#13804a"><b>Cheap</b></font>: IV below actual movement (ratio under 1.0); the better time to buy. <b>Normal</b>: ratio 1.0–1.5. <font color="#b42318"><b>Expensive</b></font>: ratio 1.5 or more; you pay up and need a bigger move. <font color="#62656e"><b>No check</b></font>: every allowed expiry runs into earnings, so no new options under Rule 3.', S_B), Spacer(1, 3),
+          Paragraph('<font color="#13804a"><b>Cheap</b></font>: IV below actual movement (ratio under 1.0); the better time to buy. <b>Normal</b>: ratio 1.0–1.5. <font color="#b42318"><b>Expensive</b></font>: ratio 1.5 or more; you pay up and need a bigger move. <b>after earn.</b> = every allowed expiry runs into earnings, so no new options yet (Rule 3); the verdict and IV marked * are estimated without the earnings move, from two expiries after the report (term structure), so you know where each name stands once it has reported.', S_B), Spacer(1, 3),
           Paragraph(f"Source: Nasdaq delayed option quotes at {LAST:%A} {fmt_d(LAST, False)}'s close (mid of bid/ask), IV solved with Black-Scholes; HV from official closes. This compares IV with actual movement, not a true IV rank, because I don't have a verified year of IV history. Earnings move = straddle price on the first expiry after the report. Quotes change daily; check live before trading.", S_M), Spacer(1, 8)]
 data = [[Paragraph(x, S_LAB) for x in ("TICKER", "IV CHECK", "IV", "HV (20D)", "RATIO", "EXPIRY USED", "EARNINGS MOVE", "NOTE")]]
 sty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.1), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.1), ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
@@ -525,22 +630,24 @@ for key, label, names in C.LISTS:
     data.append([Paragraph(f"<b>{X(label)}</b>", S_T8)] + [""] * 7)
     for t in names:
         v, ei = IVF[t], earn_info(t)
-        vd = "No check" if v["verdict"] == "Blocked" else v["verdict"]
-        em = f'±{v["em"]["move"]:.1f}% by {fmt_d(dt.date.fromisoformat(v["em"]["exp"]), False)}' if v["em"] else ('<font color="#62656e">Report too far out</font>' if ei["nxt"] else '<font color="#62656e">Already reported</font>')
+        xv = v.get("ex") if v["verdict"] == "Blocked" else None
+        em = f'±{v["em"]["move"]:.1f}% by {fmt_d(dt.date.fromisoformat(v["em"]["exp"]), False)}' if v["em"] else (f'±{xv["jump"]:.1f}% on report day (est.)' if xv else '<font color="#62656e">Report too far out</font>' if ei["nxt"] else '<font color="#62656e">Already reported</font>')
         notes = []
         if v["verdict"] == "Blocked":
-            notes.append(f'Earnings {fmt_d(ei["nxt"], False)}')
+            notes.append(f'After earnings {fmt_d(ei["nxt"], False)} (est.); buy from {fmt_d(first_buy(t, ei), False)}')
         if v["hv_has_earn"]:
             notes.append("HV has earnings move")
         if v["wide"]:
             notes.append("Wide quotes")
-        data.append([Paragraph(f"<b>{t}</b>", S_T8), Paragraph(f'<font color="{VCOL[v["verdict"]]}"><b>{vd}</b></font>', S_T8),
-                     Paragraph(f'{v["iv"]:.0f}%' if v["iv"] else "–", S_T8R), Paragraph(f'{v["hv"]:.0f}%', S_T8R),
-                     Paragraph(f'{v["ratio"]:.2f}' if v["ratio"] else "–", S_T8R),
+        data.append([Paragraph(f"<b>{t}</b>", S_T8), Paragraph(vlabel(t), S_T8),
+                     Paragraph(f'{v["iv"]:.0f}%' if v["iv"] else (f'{xv["iv"]:.0f}%*' if xv else "–"), S_T8R), Paragraph(f'{v["hv"]:.0f}%', S_T8R),
+                     Paragraph(f'{v["ratio"]:.2f}' if v["ratio"] else (f'{xv["ratio"]:.2f}*' if xv else "–"), S_T8R),
                      Paragraph(f'{fmt_d(dt.date.fromisoformat(v["exp"]), False)} ({v["dte"]}d)' if v["exp"] else "–", S_T8),
                      Paragraph(em, S_T8), Paragraph("; ".join(notes), st("t8m", fontSize=7.4, leading=9.5, textColor=WARN))])
 it = Table(data, colWidths=[0.62 * inch, 0.75 * inch, 0.52 * inch, 0.65 * inch, 0.55 * inch, 0.95 * inch, 1.45 * inch, CW - 5.49 * inch], repeatRows=1)
-it.setStyle(TableStyle(sty)); story.append(it)
+it.setStyle(TableStyle(sty))
+ivp = story.index(IVP_START)
+story[ivp + 1:] = [KeepInFrame(CW, FRAME_H - 2, story[ivp + 1:] + [it], mode="shrink")]
 
 # Stock pages
 for key, label, names in C.LISTS:
@@ -565,7 +672,7 @@ for key, label, names in C.LISTS:
         stt = Table([[Paragraph(a, S_LAB) for a, _ in vals], [Paragraph(b, st("v", leading=16)) for _, b in vals]], colWidths=sw)
         stt.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, -1), CHIP), ("LEFTPADDING", (0, 0), (-1, -1), 7), ("TOPPADDING", (0, 0), (-1, 0), 5),
                                  ("BOTTOMPADDING", (0, -1), (-1, -1), 5), ("TOPPADDING", (0, 1), (-1, 1), 0), ("LINEAFTER", (0, 0), (-2, -1), 0.6, colors.white)]))
-        f += [stt, Spacer(1, 4), Image(chart(t), width=CW, height=CW * 2.15 / 7.3),
+        f += [stt, Spacer(1, 4), Image(chart(t), width=CW, height=CW * 1.9 / 7.3),
               Paragraph(f"3 months of daily closes ({fmt_d(s['m3_from'], False)} to {fmt_d(LAST, False)}); shaded = last month. Intraday ranges: 1 month ${s['lo1']:,.2f}–${s['hi1']:,.2f}; 3 months ${s['lo3']:,.2f}–${s['hi3']:,.2f}.", S_M),
               Spacer(1, 6)]
         if ei["nxt"]:
@@ -592,13 +699,15 @@ for key, label, names in C.LISTS:
             return "<br/>".join("•  " + X(x) for x in xs)
         sec = [("LATEST RESULTS", X(info["results"])), ("GUIDANCE", X(info["guide"])), ("CAPEX & INVESTMENT", X(info["capex"])),
                ("CURRENT PARTNERSHIPS", bl(info["partners"])), ("CATALYSTS", bl(info["catalysts"])),
-               ("MARKET EVENTS", X(info["macro"])), ("RISKS", X(info["risks"]))]
+               ("MARKET EVENTS", X(info["macro"])), ("RISKS", X(info["risks"])),
+               ("WALL STREET TARGETS", pt_cons(t, s["last"]) + ("<br/>" + " · ".join(pt_named(t)) if TG.T.get(t) else "<br/><font color=\"#62656e\">No named firm target reported recently in your outlets.</font>"))]
         dt_ = Table([[Paragraph(a, S_LAB), Paragraph(b, S_B)] for a, b in sec], colWidths=[1.35 * inch, CW - 1.35 * inch])
         dt_.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LINEABOVE", (0, 1), (-1, -1), 0.5, LINE), ("LEFTPADDING", (0, 0), (-1, -1), 0),
                                  ("TOPPADDING", (0, 0), (-1, -1), 3.2), ("BOTTOMPADDING", (0, 0), (-1, -1), 3.2)]))
         src = " · ".join(f'<a href="{X(u)}" color="#1f5fbf">{X(l)}</a>' for l, u in info["src"])
         f += [dt_, Spacer(1, 5), Paragraph("<b>SOURCES</b>  " + src, st("src", fontSize=7.4, leading=10, textColor=MUT))]
-        story += f
+        # one page per stock, always: shrink the page slightly if the content runs long
+        story += [f[0], KeepInFrame(CW, FRAME_H - 2, f[1:], mode="shrink")]
 
 doc.build(story)
 print("wrote", OUT)
