@@ -2,9 +2,9 @@
 # Every fact comes from the notes gathered Oct 25, 2026 (his outlets: CNBC, Bloomberg, Seeking Alpha, plus company SEC filings where coverage cited them).
 SA = "https://seekingalpha.com/news/"
 LISTS = [
- ("top5", "Top 5", ["SPCX", "AVGO", "AMZN", "SKHY"]),
- ("portfolio", "2026 Portfolio", ["BE", "CRDO", "CIEN", "MRVL", "AMAT", "VRT", "COHR", "HOOD", "ARM", "GLW", "INTC", "KLAC", "NVDA", "QCOM"]),
- ("dips", "15–50% Dip", ["IONQ", "CBRS", "CRWV", "VICR", "LRCX", "TER", "NBIS", "VST", "ORCL", "AKAM", "DOCN", "BAC", "COIN", "CRCL", "RDDT", "AAOI", "IREN", "BABA"]),
+ ("top5", "Top 5", ["SKHY", "AVGO", "TER", "GLW", "SPCX"]),
+ ("portfolio", "2026 Portfolio", ["BE", "CRDO", "CIEN", "MRVL", "AMAT", "VRT", "COHR", "HOOD", "ARM", "INTC", "KLAC", "NVDA", "QCOM", "AMZN"]),
+ ("dips", "15–50% Dip", ["IONQ", "CBRS", "CRWV", "VICR", "LRCX", "NBIS", "VST", "ORCL", "AKAM", "DOCN", "BAC", "COIN", "CRCL", "RDDT", "AAOI", "IREN", "BABA"]),
 ]
 
 S = {}
