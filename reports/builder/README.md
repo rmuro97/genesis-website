@@ -12,7 +12,8 @@ Run everything from this folder with `/usr/bin/python3` (needs reportlab + matpl
 1. **Lists**: update `LISTS` in `rep/content.py` from the app DB (`lists/conviction`), in the broker's order.
 2. **Prices**: save the app DB doc `prices/latest` to `p2/final/prices/latest.json` (earnings dates, highs).
 3. **Closes**: `python3 pdf/fetch.py` (100 days of official Nasdaq closes into `pdf/hist.json`).
-4. **Consensus**: refresh `rep/consensus.json` (Nasdaq earnings-date + EPS forecast per name).
+4. **Consensus**: `python3 rep/fetch_consensus.py` (Nasdaq earnings-date + EPS forecast per name). Nasdaq drops a date on report
+   day: keep a known report date for today or later by hand, and set `PRE_REPORT` in `pdf/mkpdf.py` for names that reported after the last close.
 5. **IV**: `python3 iv/fetch_iv.py .`, `python3 iv/analyze.py .`, then `python3 iv/exearn.py .` (writes `iv/final.json`;
    exearn adds the earnings-adjusted IV so names blocked by earnings still get a verdict and a first buy day).
 5b. **Price targets**: `python3 rep/fetch_targets.py` (Nasdaq consensus) and update `rep/targets.py` with the latest named

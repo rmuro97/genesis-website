@@ -88,14 +88,14 @@ S["MRVL"] = dict(
 
 S["SKHY"] = dict(
  name="SK hynix", what="Memory chips: HBM for AI accelerators, DRAM and NAND (Solidigm).",
- results="Q2 (Jul 29): revenue about ₩79.3T (+257%), operating profit ₩60.5T (76% margin). Both were records but missed consensus; shares fell 9.6%.",
- guide="No formal guidance. HBM4 mass shipments began in Q2, with HBM4E samples out. Q3 results come before 9:00 AM Seoul on Oct 28, which is after the US close on Tue Oct 27.",
- capex="M15X fab started wafer processing; first phase of the Yongin fab targeted for Q1 2027. ASML is raising parts prices 10%.",
- partners=["HBM supplier to AI accelerator makers", "Solidigm (NAND): $10B US IPO pulled Oct 22; New York plant talks with Gov. Hochul", "SK Group chairman selling a 1.34% stake to the Dell family office (Oct 14)"],
- catalysts=["⚠ Q3 earnings Tue Oct 27 after the US close", "Samsung's full Q3 results ~Oct 29", "Nvidia AI Day Seoul Nov 9–10; Nvidia earnings Nov 18", "BofA expects bigger shareholder returns"],
+ results="Q3 (Oct 28 Seoul, Tue evening US): record revenue ₩104.6T (+328% y/y, the first quarter above ₩100T); operating profit ₩83.3T (+632%, 80% margin), above the ~₩77T consensus; net profit ₩39.8T. Shares jumped about 8% (Seeking Alpha).",
+ guide="No formal guidance. HBM4 shipments began in earnest in Q3 and should pass HBM3E in shipments and revenue in Q4. Long-term deals with 14 customers cover over half of 2027–28 capacity; it sees demand above supply through 2030.",
+ capex="M15X ramps to full capacity by year-end; investment rises 'significantly' next year as Yongin phase 1 starts full operation.",
+ partners=["~₩100T of 2026 shareholder returns: ₩30T+ dividends, ₩60T+ buybacks", "Q3 dividend ₩20,000/share (half special, from Kioxia gains) + ₩20T buyback", "DRAM supply talks with Alibaba and Tencent (report, Oct 27)", "Solidigm: $45B U.S. plant talks (report)"],
+ catalysts=["Reported Oct 27 (US time); next date not set", "Samsung full Q3 results ~Oct 29", "Nvidia AI Day Seoul Nov 9–10; Nvidia earnings Nov 18"],
  macro="Memory pricing, Korean won and the Kospi; China capacity (CXMT) and US approvals for its China fabs.",
- risks="Memory-cycle fears (Cathie Wood warned of 'vicious' cycles); China competition; high expectations (it missed in Q2).",
- src=[("CNBC · Q2 results", "https://www.cnbc.com/2026/07/29/sk-hynix-earnings-profit-revenue-hbm-memory.html"), ("Seeking Alpha · trims losses after Solidigm IPO pulled", SA+"4656416"), ("Seeking Alpha · BofA on shareholder returns", SA+"4656657"), ("Seeking Alpha · US NAND plant tied to China approvals", SA+"4653233"), ("SK hynix newsroom · Q3 date", "https://news.skhynix.com/en/?p=13734")])
+ risks="Memory-cycle fears; net profit fell 58% q/q on non-operating losses; 27% off its high.",
+ src=[("SK hynix newsroom · Q3 results", "https://news.skhynix.com/en/q3-2026-business-results/"), ("Seeking Alpha · shares jump on profit beat, payout plan", SA+"4658610"), ("Seeking Alpha · Q3 headline numbers", SA+"4658571"), ("Seeking Alpha · Alibaba/Tencent DRAM talks", SA+"4657792")])
 
 S["AMAT"] = dict(
  name="Applied Materials", what="The largest chip-equipment maker (deposition, etch, inspection).",
@@ -132,14 +132,14 @@ S["COHR"] = dict(
 
 S["HOOD"] = dict(
  name="Robinhood", what="Retail brokerage: stocks, options, crypto, prediction markets.",
- results="Q2: revenue $1.308B, up 32%; EPS $0.62, up 48%; net deposits $21.7B; Gold subscribers 4.84M; prediction-market (event contract) revenue $156M; crypto transaction revenue down 38%.",
- guide="Expense guide trimmed (analyst report). Q3 consensus EPS $0.56 (Nasdaq).",
+ results="Q3 (Oct 27): revenue $1.42B, $10M below estimates; non-GAAP EPS $0.60, $0.04 below, hit by venture-fund-related losses. The stock dipped after hours.",
+ guide="2026 adjusted operating expenses $2.675–2.75B. Plans 24/7 stock trading later this year.",
  capex="Light. Bought its first $25M of bitcoin for its balance sheet (Oct 7).",
- partners=["Crypto.com (prediction markets)", "Susquehanna (Rothera prediction-market platform)", "Cboe KPI options approved by the SEC (Oct 14)", "Dubai expansion (Oct 23)"],
- catalysts=["⚠ Q3 earnings Tue Oct 27 after the close", "Coinbase Oct 29 and Circle Nov 4 reports", "SEC tokenized-stock framework (it rose 9% on Sep 18)"],
+ partners=["Ripple infrastructure: stablecoins, institutional markets, treasury (Oct 27)", "Crypto.com and Susquehanna (prediction markets)", "Cboe KPI options approved by the SEC (Oct 14)", "Dubai expansion (Oct 23)"],
+ catalysts=["Reported Oct 27; next date not set", "Coinbase Oct 29 and Circle Nov 4 reports", "24/7 equity trading launch"],
  macro="Bitcoin and trading volumes; rate path (interest income); crypto legislation (the Clarity Act stalled in the Senate).",
- risks="Crypto weakness; regulatory pushback on tokenized stocks.",
- src=[("SEC 10-Q / CNBC · Q2", "https://www.cnbc.com/2026/09/08/stock-market-today-live-updates.html"), ("Seeking Alpha · Dubai expansion", SA+"4656534"), ("Seeking Alpha · Cboe KPI options", SA+"4653064"), ("Seeking Alpha · tokenized stock framework", SA+"4644519")])
+ risks="Earnings miss and higher spending; crypto weakness; regulatory pushback on tokenized stocks.",
+ src=[("Seeking Alpha · Q3 miss", SA+"4658351"), ("Seeking Alpha · VC losses hit EPS", SA+"4658309"), ("Seeking Alpha · OpEx guide, 24/7 trading", SA+"4658555"), ("Seeking Alpha · Ripple deal", SA+"4657939")])
 
 S["ARM"] = dict(
  name="Arm Holdings", what="Licenses chip designs (CPU IP) and is building its own data-center CPU.",
@@ -154,14 +154,14 @@ S["ARM"] = dict(
 
 S["GLW"] = dict(
  name="Corning", what="Optical fiber and cable for AI data centers, plus glass and solar materials.",
- results="Q2 (Jul 28): core sales $4.74B, up 17%; core EPS $0.78, up 30%; Optical Communications $2.07B, up 32% (Enterprise up 65%).",
- guide="Q3 core sales $4.9–5.0B (+16%), core EPS $0.85–0.89 (+28%). 'Springboard' run-rate targets: $20B by end-2026, $30B by 2028, $40B by 2030.",
+ results="Q3 (Oct 27): core sales $5.08B (+19%), $50M above estimates; core EPS $0.91, $0.03 above. Optical Communications $2.38B (+44%); Solar +37%, ramping slower than planned. The stock still closed −1.1%.",
+ guide="Q4 core sales $5.2–5.3B and core EPS $0.96–1.00 (about +36%), above estimates. The 'Springboard' run rate has passed $20B; targets $30B by 2028 and $40B by 2030.",
  capex="Raised money through a $2B equity distribution agreement (stock fell 14%, Sep 14) to fund growth.",
- partners=["Verizon multi-billion fiber deal (Sep 8)", "AT&T multi-year fiber deal (Sep 29)", "Lumentum + Qualcomm AI optical tech (Sep 21)", "Zayo fiber deal"],
- catalysts=["⚠ Q3 earnings Tue Oct 27 before the open", "JPM expects strong AI revenue (Oct 21)", "Apple earnings Nov 2"],
+ partners=["Verizon multi-billion fiber deal (Sep 8)", "AT&T multi-year fiber deal (Sep 29)", "Lumentum + Qualcomm AI optical tech (Sep 21)", "Meta fiber deal (Jan)"],
+ catalysts=["Reported Oct 27; next date not set", "Hyperscaler capex: Microsoft/Alphabet Oct 28, Amazon Oct 29", "Apple earnings Nov 2"],
  macro="AI optics demand; telecom fiber builds; solar trade policy (polysilicon tariffs).",
- risks="Share dilution from the equity program; 52% off its high.",
- src=[("Seeking Alpha · Springboard and Q3 guide", SA+"4619971"), ("Seeking Alpha · Verizon deal", SA+"4640949"), ("Seeking Alpha · AT&T deal", SA+"4648005"), ("Seeking Alpha · $2B equity offering", SA+"4642663")])
+ risks="Share dilution from the equity program; slower solar ramp; 51% off its high.",
+ src=[("Seeking Alpha · Q3 beat", SA+"4657766"), ("Seeking Alpha · Q4 guide, Springboard past $20B", SA+"4658093"), ("Corning 8-K · Q3 release", "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000273/glw-20261027xex99xq32026.htm"), ("Seeking Alpha · AT&T deal", SA+"4648005")])
 
 S["INTC"] = dict(
  name="Intel", what="CPUs (PC and data center) and a contract foundry (18A / 14A).",
@@ -264,14 +264,14 @@ S["LRCX"] = dict(
 
 S["TER"] = dict(
  name="Teradyne", what="Chip test equipment (AI accelerators, HBM/memory, networking) plus robotics.",
- results="Q2 (Jul 28): record revenue $1.33B (+104%), $110M above estimates; non-GAAP EPS $2.47, $0.42 above. About 70% of revenue is tied to AI.",
- guide="Q3 revenue $1.2–1.3B; GAAP EPS $1.79–2.09. Second half led by memory, auto/industrial, product test and robotics; mobile soft. Consensus EPS $2.04.",
+ results="Q3 (Oct 27): revenue $1.306B (+70% y/y), $40M above estimates; non-GAAP EPS $2.29, $0.23 above. Semiconductor Test $1.072B, Product Test $138M, Robotics $96M.",
+ guide="Q4 revenue $1.25–1.35B; non-GAAP EPS $1.95–2.25 (GAAP $1.88–2.18). CEO: demand 'extended across the AI value chain, from memory and hard disk drive test to high-speed interconnect and robotics.'",
  capex="Its demand follows AI-chip and HBM test needs.",
- partners=["FormFactor collaboration (Oct 12)"],
- catalysts=["⚠ Q3 earnings Tue Oct 27 after the close", "SK hynix the same night (HBM read)", "Fell 11% on Oct 22 in the chip selloff"],
+ partners=["FormFactor collaboration (Oct 12)", "HBM/memory test demand (SK hynix record quarter the same night)"],
+ catalysts=["Reported Oct 27; next date not set", "KLA reports Oct 28, Applied Materials Nov 12 (equipment read)", "Nvidia earnings Nov 18"],
  macro="Chip-equipment sentiment; memory test demand.",
- risks="Revenue swings from concentrated AI orders; ARK trimmed its stake.",
- src=[("Seeking Alpha · Q3 guide $1.2–1.3B", SA+"4620570"), ("Seeking Alpha · FormFactor collaboration", SA+"4652273")])
+ risks="Q4 guide midpoint roughly flat with Q3; revenue swings from concentrated AI orders; 33% off its high.",
+ src=[("Seeking Alpha · Q3 beat", SA+"4658431"), ("Teradyne · Q3 release", "https://investors.teradyne.com/news-events/press-releases/detail/455/teradyne-reports-third-quarter-2026-results"), ("Seeking Alpha · FormFactor collaboration", SA+"4652273")])
 
 S["NBIS"] = dict(
  name="Nebius", what="AI neocloud (GPU cloud), CoreWeave's closest peer.",
@@ -404,3 +404,25 @@ S["BABA"] = dict(
  macro="China policy and stimulus; US export controls; Hong Kong market sentiment.",
  risks="Profit squeeze from AI spending; regulation.",
  src=[("CNBC · June-quarter results", "https://www.cnbc.com/2026/08/20/alibaba-cloud-revenue.html"), ("Seeking Alpha · V900 chip, 20 GW", SA+"4645223"), ("Seeking Alpha · quality-standards selloff", SA+"4655687")])
+
+S["AEHR"] = dict(
+ name="Aehr Test Systems", what="Wafer-level test and burn-in systems (FOX, Sonoma) for AI processors, silicon carbide and silicon photonics.",
+ results="Fiscal Q4 2026 (Jul 14; quarter ended May 29): revenue $18.8M (vs $14.1M); GAAP EPS $0.04; record bookings $60.7M; effective backlog $100.6M. Fiscal 2026 revenue $50.0M.",
+ guide="Fiscal 2027 revenue $130–150M (about 160–200% growth); non-GAAP net income 18–22% of revenue. Q1 consensus EPS $0.05 (Nasdaq).",
+ capex="Light (an equipment maker; capacity follows orders).",
+ partners=["Lead hyperscaler: follow-on Sonoma production orders for its next-gen AI processor (Oct; about $6M per Seeking Alpha)", "A top-tier AI processor supplier moving toward pilot production (Jul)", "Silicon-carbide WaferPak orders, incl. a major automaker", "Oppenheimer starts at Outperform (Sep 10); Jefferies at Buy (Aug)"],
+ catalysts=["⚠ Fiscal Q1 results Mon Nov 2 after the close", "New AI-processor customer wins", "Nvidia earnings Nov 18"],
+ macro="AI-accelerator build-outs; silicon-carbide demand from EVs; small-cap volatility.",
+ risks="Lumpy orders from a few customers; valuation; 56% off its high even after +13% on Oct 27.",
+ src=[("Aehr · fiscal Q4 results", "https://www.aehr.com/2026/07/aehr-test-systems-reports-fiscal-2026-fourth-quarter-and-full-year-financial-results-with-record-quarterly-bookings-and-100-million-effective-backlog/"), ("Seeking Alpha · $6M follow-on AI orders", SA+"4650915"), ("Seeking Alpha · Oppenheimer Outperform", SA+"4641618"), ("Seeking Alpha · Jefferies starts bullish", SA+"4633322"), ("Aehr · Nov 2 results date", "https://www.aehr.com/2026/10/aehr-test-systems-to-announce-first-quarter-fiscal-2027-financial-results-on-november-2-2026/")])
+
+S["NOK"] = dict(
+ name="Nokia", what="Network equipment: optical and IP networking for AI data centers (Infinera, bought 2025), mobile networks and patent licensing.",
+ results="Q3 (Oct 22): net sales €5.15B (+9% at constant currency), €90M above estimates; comparable EPS €0.09, €0.03 above; comparable operating margin 11.7% (+220 bp). IP Networks +43%, Optical +18%; AI & cloud sales +123%, orders €1.5B.",
+ guide="Full-year 2026 outlook unchanged. Expects combined Optical and IP Networks to grow 25–30% in 2027. Infinera integration finishes by end-2026, a year early, with €200M of net synergies.",
+ capex="Investing in optical and IP for hyperscalers; restructuring and integration costs cut the reported operating margin to 3.8%.",
+ partners=["Google's €13B Finland investment (optical and IP)", "T-Mobile + Nvidia: first AI-RAN call on a live network", "L&T Technology Services 5-year R&D deal (Oct 26)", "BofA upgraded to Buy (Apr)"],
+ catalysts=["Reported Oct 22; next date not set", "Hyperscaler capex: Microsoft/Alphabet Oct 28, Amazon Oct 29", "Optical peers: Coherent Nov 4, Ciena Dec 10"],
+ macro="AI data-center networking spend; telecom operator budgets; euro/dollar (it reports in euros).",
+ risks="Free-cash-flow worries after Q3; slow mobile networks; 47% off its high.",
+ src=[("Nokia · Q3 interim report", "https://www.nokia.com/system/files/2026-10/nokia_results_2026_q3.pdf"), ("Seeking Alpha · Q3 beat", SA+"4655689"), ("Seeking Alpha · 25–30% Optical/IP growth in 2027", SA+"4656040"), ("Seeking Alpha · L&T R&D deal", SA+"4657018"), ("Seeking Alpha · BofA upgrade", "https://seekingalpha.com/news/4574458")])

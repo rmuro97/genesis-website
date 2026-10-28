@@ -1,54 +1,12 @@
 {
- "AVGO": {
-  "S": 321.68,
-  "hv": 38.6,
+ "SKHY": {
+  "S": 145.36,
+  "hv": 64.9,
   "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 41.0,
-  "spread": 7.4,
-  "ratio": 1.06,
-  "verdict": "Normal",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": null,
-  "n_allowed": 7,
-  "ex": null
- },
- "AMZN": {
-  "S": 248.0,
-  "hv": 32.7,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-10-30",
-   "move": 7.8,
-   "straddle": 19.45,
-   "k": 247.5
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 31.6,
-   "ratio": 0.97,
-   "verdict": "Cheap",
-   "jump": 8.8,
-   "e1": "2026-10-30",
-   "e2": "2026-12-18"
-  }
- },
- "BE": {
-  "S": 193.3,
-  "hv": 95.0,
-  "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 77.0,
-  "spread": 10.1,
-  "ratio": 0.81,
+  "dte": 30,
+  "iv": 63.3,
+  "spread": 12.0,
+  "ratio": 0.98,
   "verdict": "Cheap",
   "hv_has_earn": true,
   "wide": false,
@@ -56,44 +14,158 @@
   "n_allowed": 6,
   "ex": null
  },
- "CRDO": {
-  "S": 147.29,
-  "hv": 88.5,
+ "AVGO": {
+  "S": 342.33,
+  "hv": 42.1,
   "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 81.7,
-  "spread": 38.4,
-  "ratio": 0.92,
+  "dte": 30,
+  "iv": 40.4,
+  "spread": 3.0,
+  "ratio": 0.96,
   "verdict": "Cheap",
   "hv_has_earn": false,
-  "wide": true,
-  "em": null,
-  "n_allowed": 5,
-  "ex": null
- },
- "SPCX": {
-  "S": 147.49,
-  "hv": 66.7,
-  "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 51.3,
-  "spread": 9.9,
-  "ratio": 0.77,
-  "verdict": "Cheap",
-  "hv_has_earn": true,
   "wide": false,
   "em": null,
   "n_allowed": 8,
   "ex": null
  },
- "CIEN": {
-  "S": 320.26,
-  "hv": 99.8,
+ "TER": {
+  "S": 323.68,
+  "hv": 69.4,
   "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 74.2,
-  "spread": 33.5,
-  "ratio": 0.74,
+  "dte": 30,
+  "iv": 72.6,
+  "spread": 21.8,
+  "ratio": 1.05,
+  "verdict": "Normal",
+  "hv_has_earn": true,
+  "wide": true,
+  "em": null,
+  "n_allowed": 6,
+  "ex": null
+ },
+ "GLW": {
+  "S": 126.3,
+  "hv": 62.2,
+  "exp": "2026-11-27",
+  "dte": 30,
+  "iv": 58.5,
+  "spread": 27.5,
+  "ratio": 0.94,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
+  "wide": true,
+  "em": null,
+  "n_allowed": 6,
+  "ex": null
+ },
+ "SPCX": {
+  "S": 148.58,
+  "hv": 65.8,
+  "exp": "2026-11-27",
+  "dte": 30,
+  "iv": 49.3,
+  "spread": 3.5,
+  "ratio": 0.75,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
+  "wide": false,
+  "em": null,
+  "n_allowed": 9,
+  "ex": null
+ },
+ "HOOD": {
+  "S": 94.56,
+  "hv": 50.1,
+  "exp": "2026-11-27",
+  "dte": 30,
+  "iv": 65.9,
+  "spread": 3.1,
+  "ratio": 1.32,
+  "verdict": "Normal",
+  "hv_has_earn": true,
+  "wide": false,
+  "em": null,
+  "n_allowed": 6,
+  "ex": null
+ },
+ "ORCL": {
+  "S": 130.53,
+  "hv": 55.0,
+  "exp": "2026-11-27",
+  "dte": 30,
+  "iv": 56.4,
+  "spread": 2.3,
+  "ratio": 1.03,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": null,
+  "n_allowed": 5,
+  "ex": null
+ },
+ "AMZN": {
+  "S": 253.1,
+  "hv": 32.8,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 7.5,
+   "straddle": 19.08,
+   "k": 252.5
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 31.3,
+   "ratio": 0.96,
+   "verdict": "Cheap",
+   "jump": 9.0,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
+ },
+ "AMAT": {
+  "S": 395.93,
+  "hv": 50.4,
+  "exp": "2026-11-06",
+  "dte": 9,
+  "iv": 61.2,
+  "spread": 23.2,
+  "ratio": 1.21,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": true,
+  "em": {
+   "exp": "2026-11-13",
+   "move": 10.8,
+   "straddle": 42.68,
+   "k": 395.0
+  },
+  "n_allowed": 1,
+  "ex": {
+   "iv": 50.7,
+   "ratio": 1.01,
+   "verdict": "Normal",
+   "jump": 8.0,
+   "e1": "2026-11-13",
+   "e2": "2026-12-18"
+  }
+ },
+ "CIEN": {
+  "S": 351.15,
+  "hv": 101.5,
+  "exp": "2026-11-27",
+  "dte": 30,
+  "iv": 69.2,
+  "spread": 35.4,
+  "ratio": 0.68,
   "verdict": "Cheap",
   "hv_has_earn": false,
   "wide": true,
@@ -101,13 +173,124 @@
   "n_allowed": 5,
   "ex": null
  },
- "MRVL": {
-  "S": 228.51,
-  "hv": 64.8,
+ "VICR": {
+  "S": 212.0,
+  "hv": 116.6,
+  "exp": "2026-11-20",
+  "dte": 23,
+  "iv": 91.5,
+  "spread": 14.2,
+  "ratio": 0.78,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
+  "wide": false,
+  "em": null,
+  "n_allowed": 2,
+  "ex": null
+ },
+ "CRDO": {
+  "S": 167.43,
+  "hv": 94.6,
   "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 64.7,
-  "spread": 1.8,
+  "dte": 30,
+  "iv": 81.2,
+  "spread": 30.9,
+  "ratio": 0.86,
+  "verdict": "Cheap",
+  "hv_has_earn": false,
+  "wide": true,
+  "em": null,
+  "n_allowed": 5,
+  "ex": null
+ },
+ "COHR": {
+  "S": 235.79,
+  "hv": 98.3,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 13.5,
+   "straddle": 31.85,
+   "k": 235.0
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 65.0,
+   "ratio": 0.66,
+   "verdict": "Cheap",
+   "jump": 13.1,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
+ },
+ "INTC": {
+  "S": 93.74,
+  "hv": 55.4,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 9.4,
+   "straddle": 8.85,
+   "k": 94.0
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 54.0,
+   "ratio": 0.98,
+   "verdict": "Cheap",
+   "jump": 10.8,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
+ },
+ "ARM": {
+  "S": 226.6,
+  "hv": 62.9,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 12.5,
+   "straddle": 28.23,
+   "k": 227.5
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 60.8,
+   "ratio": 0.97,
+   "verdict": "Cheap",
+   "jump": 11.9,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
+ },
+ "MRVL": {
+  "S": 243.57,
+  "hv": 64.1,
+  "exp": "2026-11-27",
+  "dte": 30,
+  "iv": 64.4,
+  "spread": 7.3,
   "ratio": 1.0,
   "verdict": "Normal",
   "hv_has_earn": false,
@@ -115,232 +298,43 @@
   "em": null,
   "n_allowed": 4,
   "ex": {
-   "iv": 61.2,
-   "ratio": 0.94,
+   "iv": 58.6,
+   "ratio": 0.91,
    "verdict": "Cheap",
-   "jump": 11.2,
+   "jump": 12.4,
    "e1": "2026-12-04",
    "e2": "2026-12-18"
   }
  },
- "SKHY": {
-  "S": 137.02,
-  "hv": 63.7,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
+ "NVDA": {
+  "S": 217.94,
+  "hv": 30.5,
+  "exp": "2026-11-13",
+  "dte": 16,
+  "iv": 35.1,
+  "spread": 1.9,
+  "ratio": 1.15,
+  "verdict": "Normal",
   "hv_has_earn": false,
   "wide": false,
   "em": {
-   "exp": "2026-10-30",
-   "move": 9.3,
-   "straddle": 12.78,
-   "k": 137.0
+   "exp": "2026-11-20",
+   "move": 8.7,
+   "straddle": 19.0,
+   "k": 217.5
   },
-  "n_allowed": 0,
+  "n_allowed": 5,
   "ex": {
-   "iv": 59.1,
-   "ratio": 0.93,
-   "verdict": "Cheap",
-   "jump": 8.4,
-   "e1": "2026-10-30",
-   "e2": "2026-12-18"
-  }
- },
- "AMAT": {
-  "S": 377.24,
-  "hv": 52.4,
-  "exp": "2026-11-06",
-  "dte": 11,
-  "iv": 57.0,
-  "spread": 31.5,
-  "ratio": 1.09,
-  "verdict": "Normal",
-  "hv_has_earn": false,
-  "wide": true,
-  "em": {
-   "exp": "2026-11-13",
-   "move": 11.6,
-   "straddle": 43.7,
-   "k": 375.0
-  },
-  "n_allowed": 1,
-  "ex": {
-   "iv": 48.5,
-   "ratio": 0.93,
-   "verdict": "Cheap",
-   "jump": 8.8,
-   "e1": "2026-11-13",
+   "iv": 35.3,
+   "ratio": 1.16,
+   "verdict": "Normal",
+   "jump": 6.2,
+   "e1": "2026-11-20",
    "e2": "2026-12-18"
   }
  },
  "VRT": {
-  "S": 194.32,
-  "hv": 46.8,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-10-30",
-   "move": 11.0,
-   "straddle": 21.4,
-   "k": 195.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 52.3,
-   "ratio": 1.12,
-   "verdict": "Normal",
-   "jump": 11.7,
-   "e1": "2026-10-30",
-   "e2": "2026-12-18"
-  }
- },
- "COHR": {
-  "S": 209.29,
-  "hv": 93.1,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-11-06",
-   "move": 14.3,
-   "straddle": 29.95,
-   "k": 210.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 69.0,
-   "ratio": 0.74,
-   "verdict": "Cheap",
-   "jump": 11.8,
-   "e1": "2026-11-06",
-   "e2": "2026-12-18"
-  }
- },
- "HOOD": {
-  "S": 95.07,
-  "hv": 49.1,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-10-30",
-   "move": 10.2,
-   "straddle": 9.68,
-   "k": 95.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 59.1,
-   "ratio": 1.2,
-   "verdict": "Normal",
-   "jump": 9.8,
-   "e1": "2026-10-30",
-   "e2": "2026-12-18"
-  }
- },
- "ARM": {
-  "S": 210.33,
-  "hv": 64.6,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-11-06",
-   "move": 13.8,
-   "straddle": 29.02,
-   "k": 210.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 61.6,
-   "ratio": 0.95,
-   "verdict": "Cheap",
-   "jump": 12.4,
-   "e1": "2026-11-06",
-   "e2": "2026-12-18"
-  }
- },
- "GLW": {
-  "S": 123.69,
-  "hv": 64.2,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-10-30",
-   "move": 9.6,
-   "straddle": 11.85,
-   "k": 124.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 53.6,
-   "ratio": 0.84,
-   "verdict": "Cheap",
-   "jump": 9.4,
-   "e1": "2026-10-30",
-   "e2": "2026-12-18"
-  }
- },
- "INTC": {
-  "S": 86.96,
-  "hv": 51.4,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-10-30",
-   "move": 9.9,
-   "straddle": 8.62,
-   "k": 87.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 56.6,
-   "ratio": 1.1,
-   "verdict": "Normal",
-   "jump": 9.7,
-   "e1": "2026-10-30",
-   "e2": "2026-12-18"
-  }
- },
- "KLAC": {
-  "S": 145.61,
+  "S": 208.56,
   "hv": 50.8,
   "exp": null,
   "dte": null,
@@ -352,242 +346,161 @@
   "wide": false,
   "em": {
    "exp": "2026-10-30",
-   "move": 9.0,
-   "straddle": 13.15,
-   "k": 146.0
+   "move": 10.1,
+   "straddle": 21.15,
+   "k": 207.5
   },
   "n_allowed": 0,
   "ex": {
-   "iv": 55.2,
-   "ratio": 1.09,
+   "iv": 50.6,
+   "ratio": 1.0,
+   "verdict": "Normal",
+   "jump": 11.9,
+   "e1": "2026-10-30",
+   "e2": "2026-12-18"
+  }
+ },
+ "KLAC": {
+  "S": 153.66,
+  "hv": 51.0,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-10-30",
+   "move": 7.6,
+   "straddle": 11.65,
+   "k": 152.5
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 51.5,
+   "ratio": 1.01,
    "verdict": "Normal",
    "jump": 8.3,
    "e1": "2026-10-30",
    "e2": "2026-12-18"
   }
  },
- "NVDA": {
-  "S": 210.96,
-  "hv": 29.6,
-  "exp": "2026-11-13",
-  "dte": 18,
-  "iv": 37.8,
-  "spread": 2.0,
-  "ratio": 1.28,
-  "verdict": "Normal",
-  "hv_has_earn": false,
+ "BE": {
+  "S": 218.5,
+  "hv": 89.4,
+  "exp": "2026-11-27",
+  "dte": 30,
+  "iv": 78.2,
+  "spread": 7.8,
+  "ratio": 0.87,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
   "wide": false,
-  "em": {
-   "exp": "2026-11-20",
-   "move": 9.7,
-   "straddle": 20.5,
-   "k": 210.0
-  },
-  "n_allowed": 4,
-  "ex": {
-   "iv": 35.9,
-   "ratio": 1.21,
-   "verdict": "Normal",
-   "jump": 7.1,
-   "e1": "2026-11-20",
-   "e2": "2026-12-18"
-  }
+  "em": null,
+  "n_allowed": 6,
+  "ex": null
  },
- "QCOM": {
-  "S": 175.91,
-  "hv": 38.2,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-11-06",
-   "move": 10.3,
-   "straddle": 18.17,
-   "k": 175.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 42.3,
-   "ratio": 1.11,
-   "verdict": "Normal",
-   "jump": 10.0,
-   "e1": "2026-11-06",
-   "e2": "2026-12-18"
-  }
- },
- "IONQ": {
-  "S": 31.27,
-  "hv": 71.9,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-11-06",
-   "move": 14.3,
-   "straddle": 4.46,
-   "k": 31.5
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 70.4,
-   "ratio": 0.98,
-   "verdict": "Cheap",
-   "jump": 11.4,
-   "e1": "2026-11-06",
-   "e2": "2026-12-18"
-  }
- },
- "CBRS": {
-  "S": 110.82,
-  "hv": 75.4,
-  "exp": "2026-11-06",
-  "dte": 11,
-  "iv": 85.6,
-  "spread": 50.0,
-  "ratio": 1.14,
-  "verdict": "Normal",
-  "hv_has_earn": false,
+ "LRCX": {
+  "S": 240.85,
+  "hv": 59.0,
+  "exp": "2026-11-27",
+  "dte": 30,
+  "iv": 52.4,
+  "spread": 17.1,
+  "ratio": 0.89,
+  "verdict": "Cheap",
+  "hv_has_earn": true,
   "wide": true,
+  "em": null,
+  "n_allowed": 6,
+  "ex": null
+ },
+ "NBIS": {
+  "S": 170.47,
+  "hv": 91.1,
+  "exp": "2026-11-06",
+  "dte": 9,
+  "iv": 98.4,
+  "spread": 5.9,
+  "ratio": 1.08,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": false,
   "em": {
    "exp": "2026-11-13",
-   "move": 20.0,
-   "straddle": 22.2,
-   "k": 110.0
+   "move": 18.0,
+   "straddle": 30.6,
+   "k": 170.0
   },
   "n_allowed": 1,
   "ex": {
-   "iv": 65.0,
-   "ratio": 0.86,
+   "iv": 82.9,
+   "ratio": 0.91,
    "verdict": "Cheap",
-   "jump": 19.9,
+   "jump": 13.8,
    "e1": "2026-11-13",
    "e2": "2026-12-18"
   }
  },
  "CRWV": {
-  "S": 54.235,
-  "hv": 90.8,
+  "S": 59.57,
+  "hv": 97.8,
   "exp": "2026-11-06",
-  "dte": 11,
-  "iv": 106.1,
-  "spread": 10.1,
-  "ratio": 1.17,
+  "dte": 9,
+  "iv": 105.6,
+  "spread": 1.8,
+  "ratio": 1.08,
   "verdict": "Normal",
   "hv_has_earn": false,
   "wide": false,
   "em": {
    "exp": "2026-11-13",
-   "move": 21.5,
-   "straddle": 11.68,
-   "k": 54.0
+   "move": 19.7,
+   "straddle": 11.73,
+   "k": 60.0
   },
   "n_allowed": 1,
   "ex": {
-   "iv": 90.5,
-   "ratio": 1.0,
-   "verdict": "Normal",
-   "jump": 16.3,
-   "e1": "2026-11-13",
-   "e2": "2026-12-18"
-  }
- },
- "VICR": {
-  "S": 176.04,
-  "hv": 102.7,
-  "exp": "2026-11-20",
-  "dte": 25,
-  "iv": 98.0,
-  "spread": 25.1,
-  "ratio": 0.95,
-  "verdict": "Cheap",
-  "hv_has_earn": true,
-  "wide": true,
-  "em": null,
-  "n_allowed": 2,
-  "ex": null
- },
- "LRCX": {
-  "S": 230.1,
-  "hv": 58.0,
-  "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 54.7,
-  "spread": 15.6,
-  "ratio": 0.94,
-  "verdict": "Cheap",
-  "hv_has_earn": true,
-  "wide": true,
-  "em": null,
-  "n_allowed": 6,
-  "ex": null
- },
- "TER": {
-  "S": 308.85,
-  "hv": 66.5,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-10-30",
-   "move": 13.0,
-   "straddle": 40.3,
-   "k": 310.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 60.6,
-   "ratio": 0.91,
+   "iv": 86.5,
+   "ratio": 0.88,
    "verdict": "Cheap",
-   "jump": 14.0,
-   "e1": "2026-10-30",
-   "e2": "2026-12-18"
-  }
- },
- "NBIS": {
-  "S": 158.74,
-  "hv": 80.2,
-  "exp": "2026-11-06",
-  "dte": 11,
-  "iv": 94.2,
-  "spread": 6.0,
-  "ratio": 1.17,
-  "verdict": "Normal",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-11-13",
-   "move": 19.6,
-   "straddle": 31.18,
-   "k": 160.0
-  },
-  "n_allowed": 1,
-  "ex": {
-   "iv": 85.5,
-   "ratio": 1.07,
-   "verdict": "Normal",
-   "jump": 13.6,
+   "jump": 16.1,
    "e1": "2026-11-13",
    "e2": "2026-12-18"
   }
  },
- "VST": {
-  "S": 140.16,
-  "hv": 70.8,
+ "CBRS": {
+  "S": 119.31,
+  "hv": 87.3,
+  "exp": "2026-11-06",
+  "dte": 9,
+  "iv": 96.7,
+  "spread": 23.7,
+  "ratio": 1.11,
+  "verdict": "Normal",
+  "hv_has_earn": false,
+  "wide": true,
+  "em": {
+   "exp": "2026-11-13",
+   "move": 18.3,
+   "straddle": 21.85,
+   "k": 119.0
+  },
+  "n_allowed": 1,
+  "ex": {
+   "iv": 74.7,
+   "ratio": 0.86,
+   "verdict": "Cheap",
+   "jump": 16.5,
+   "e1": "2026-11-13",
+   "e2": "2026-12-18"
+  }
+ },
+ "QCOM": {
+  "S": 184.17,
+  "hv": 30.8,
   "exp": null,
   "dte": null,
   "iv": null,
@@ -598,38 +511,23 @@
   "wide": false,
   "em": {
    "exp": "2026-11-06",
-   "move": 9.6,
-   "straddle": 13.52,
-   "k": 140.0
+   "move": 10.0,
+   "straddle": 18.4,
+   "k": 185.0
   },
   "n_allowed": 0,
   "ex": {
-   "iv": 45.1,
-   "ratio": 0.64,
-   "verdict": "Cheap",
-   "jump": 8.3,
+   "iv": 43.5,
+   "ratio": 1.41,
+   "verdict": "Normal",
+   "jump": 10.2,
    "e1": "2026-11-06",
    "e2": "2026-12-18"
   }
  },
- "ORCL": {
-  "S": 126.16,
-  "hv": 56.4,
-  "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 57.1,
-  "spread": 3.7,
-  "ratio": 1.01,
-  "verdict": "Normal",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": null,
-  "n_allowed": 5,
-  "ex": null
- },
  "AKAM": {
-  "S": 93.53,
-  "hv": 53.3,
+  "S": 99.59,
+  "hv": 56.2,
   "exp": null,
   "dte": null,
   "iv": null,
@@ -640,23 +538,23 @@
   "wide": false,
   "em": {
    "exp": "2026-11-06",
-   "move": 14.6,
-   "straddle": 13.7,
-   "k": 94.0
+   "move": 13.5,
+   "straddle": 13.4,
+   "k": 100.0
   },
   "n_allowed": 0,
   "ex": {
-   "iv": 52.0,
-   "ratio": 0.98,
+   "iv": 51.0,
+   "ratio": 0.91,
    "verdict": "Cheap",
-   "jump": 15.3,
+   "jump": 14.6,
    "e1": "2026-11-06",
    "e2": "2026-12-18"
   }
  },
  "DOCN": {
-  "S": 93.22,
-  "hv": 84.8,
+  "S": 106.39,
+  "hv": 94.7,
   "exp": null,
   "dte": null,
   "iv": null,
@@ -667,38 +565,146 @@
   "wide": false,
   "em": {
    "exp": "2026-11-06",
-   "move": 18.7,
-   "straddle": 17.4,
-   "k": 93.0
+   "move": 17.8,
+   "straddle": 18.9,
+   "k": 106.0
   },
   "n_allowed": 0,
   "ex": {
-   "iv": 82.1,
-   "ratio": 0.97,
+   "iv": 80.3,
+   "ratio": 0.85,
    "verdict": "Cheap",
-   "jump": 17.1,
+   "jump": 18.0,
    "e1": "2026-11-06",
    "e2": "2026-12-18"
   }
  },
- "BAC": {
-  "S": 50.56,
-  "hv": 21.8,
+ "AEHR": {
+  "S": 63.95,
+  "hv": 103.8,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 19.7,
+   "straddle": 12.6,
+   "k": 64.0
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 100.0,
+   "ratio": 0.96,
+   "verdict": "Cheap",
+   "jump": 18.4,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
+ },
+ "IONQ": {
+  "S": 32.95,
+  "hv": 78.3,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 12.3,
+   "straddle": 4.04,
+   "k": 33.0
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 70.5,
+   "ratio": 0.9,
+   "verdict": "Cheap",
+   "jump": 10.0,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
+ },
+ "NOK": {
+  "S": 8.89,
+  "hv": 80.9,
   "exp": "2026-11-27",
-  "dte": 32,
-  "iv": 23.9,
-  "spread": 21.0,
-  "ratio": 1.1,
-  "verdict": "Normal",
+  "dte": 30,
+  "iv": 51.5,
+  "spread": 7.5,
+  "ratio": 0.64,
+  "verdict": "Cheap",
   "hv_has_earn": true,
-  "wide": true,
+  "wide": false,
   "em": null,
   "n_allowed": 6,
   "ex": null
  },
+ "AAOI": {
+  "S": 76.95,
+  "hv": 117.1,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 19.1,
+   "straddle": 14.7,
+   "k": 77.0
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 84.6,
+   "ratio": 0.72,
+   "verdict": "Cheap",
+   "jump": 19.5,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
+ },
+ "VST": {
+  "S": 146.66,
+  "hv": 71.6,
+  "exp": null,
+  "dte": null,
+  "iv": null,
+  "spread": null,
+  "ratio": null,
+  "verdict": "Blocked",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": {
+   "exp": "2026-11-06",
+   "move": 8.5,
+   "straddle": 12.53,
+   "k": 147.0
+  },
+  "n_allowed": 0,
+  "ex": {
+   "iv": 44.6,
+   "ratio": 0.62,
+   "verdict": "Cheap",
+   "jump": 7.8,
+   "e1": "2026-11-06",
+   "e2": "2026-12-18"
+  }
+ },
  "COIN": {
-  "S": 164.45,
-  "hv": 53.3,
+  "S": 161.09,
+  "hv": 54.2,
   "exp": null,
   "dte": null,
   "iv": null,
@@ -709,23 +715,23 @@
   "wide": false,
   "em": {
    "exp": "2026-10-30",
-   "move": 9.6,
-   "straddle": 15.72,
-   "k": 165.0
+   "move": 8.3,
+   "straddle": 13.4,
+   "k": 160.0
   },
   "n_allowed": 0,
   "ex": {
-   "iv": 65.5,
-   "ratio": 1.23,
+   "iv": 61.8,
+   "ratio": 1.14,
    "verdict": "Normal",
-   "jump": 7.8,
+   "jump": 8.8,
    "e1": "2026-10-30",
    "e2": "2026-12-18"
   }
  },
  "CRCL": {
-  "S": 85.91,
-  "hv": 60.6,
+  "S": 81.58,
+  "hv": 64.8,
   "exp": null,
   "dte": null,
   "iv": null,
@@ -736,77 +742,23 @@
   "wide": false,
   "em": {
    "exp": "2026-11-06",
-   "move": 14.6,
-   "straddle": 12.5,
-   "k": 86.0
+   "move": 13.0,
+   "straddle": 10.62,
+   "k": 82.0
   },
   "n_allowed": 0,
   "ex": {
-   "iv": 72.3,
-   "ratio": 1.19,
+   "iv": 68.4,
+   "ratio": 1.05,
    "verdict": "Normal",
-   "jump": 11.5,
-   "e1": "2026-11-06",
-   "e2": "2026-12-18"
-  }
- },
- "RDDT": {
-  "S": 144.25,
-  "hv": 48.5,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-10-30",
-   "move": 12.9,
-   "straddle": 18.6,
-   "k": 144.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 61.0,
-   "ratio": 1.26,
-   "verdict": "Normal",
-   "jump": 13.8,
-   "e1": "2026-10-30",
-   "e2": "2026-12-18"
-  }
- },
- "AAOI": {
-  "S": 67.51,
-  "hv": 111.5,
-  "exp": null,
-  "dte": null,
-  "iv": null,
-  "spread": null,
-  "ratio": null,
-  "verdict": "Blocked",
-  "hv_has_earn": false,
-  "wide": false,
-  "em": {
-   "exp": "2026-11-06",
-   "move": 20.4,
-   "straddle": 13.75,
-   "k": 68.0
-  },
-  "n_allowed": 0,
-  "ex": {
-   "iv": 86.8,
-   "ratio": 0.78,
-   "verdict": "Cheap",
-   "jump": 19.0,
+   "jump": 11.7,
    "e1": "2026-11-06",
    "e2": "2026-12-18"
   }
  },
  "IREN": {
-  "S": 24.905,
-  "hv": 76.1,
+  "S": 27.44,
+  "hv": 85.1,
   "exp": null,
   "dte": null,
   "iv": null,
@@ -817,38 +769,43 @@
   "wide": false,
   "em": {
    "exp": "2026-11-06",
-   "move": 19.9,
+   "move": 18.0,
    "straddle": 4.95,
-   "k": 25.0
+   "k": 27.5
   },
   "n_allowed": 0,
   "ex": {
-   "iv": 98.1,
-   "ratio": 1.29,
+   "iv": 95.2,
+   "ratio": 1.12,
    "verdict": "Normal",
-   "jump": 15.9,
+   "jump": 16.2,
    "e1": "2026-11-06",
    "e2": "2026-12-18"
   }
  },
  "BABA": {
-  "S": 99.64,
-  "hv": 33.7,
+  "S": 100.24,
+  "hv": 33.9,
   "exp": "2026-11-20",
-  "dte": 25,
-  "iv": 42.4,
-  "spread": 3.8,
-  "ratio": 1.26,
+  "dte": 23,
+  "iv": 41.5,
+  "spread": 4.7,
+  "ratio": 1.22,
   "verdict": "Normal",
   "hv_has_earn": false,
   "wide": false,
-  "em": null,
+  "em": {
+   "exp": "2026-11-27",
+   "move": 9.8,
+   "straddle": 9.82,
+   "k": 100.0
+  },
   "n_allowed": 3,
   "ex": {
-   "iv": 41.8,
+   "iv": 42.1,
    "ratio": 1.24,
    "verdict": "Normal",
-   "jump": 3.9,
+   "jump": 1.3,
    "e1": "2026-11-27",
    "e2": "2026-12-18"
   }

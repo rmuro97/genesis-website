@@ -29,13 +29,15 @@ H = json.load(open(os.path.join(HERE, "hist.json")))
 PX = {t["ticker"]: t for t in P["tickers"]}
 MK = {m["key"]: m for m in P["market"]}
 # EDIT EACH MONTH: TODAY = the edition date (the Monday after the build Sunday); NEXT_SESSION = first trading day.
-TODAY = dt.date(2026, 10, 26)
-NEXT_SESSION = dt.date(2026, 10, 26)
+TODAY = dt.date(2026, 10, 28)
+NEXT_SESSION = dt.date(2026, 10, 28)
 LAST = max(dt.date.fromisoformat(r[-1][0]) for r in H.values())  # last official close in pdf/hist.json
 # EDIT EACH MONTH: Rule 3 data days (FOMC, CPI, PCE, PPI, jobs, GDP) and market holidays for the next ~2 months
 RULE3_DAYS = {dt.date(2026, 10, 28), dt.date(2026, 10, 29), dt.date(2026, 11, 6), dt.date(2026, 11, 10), dt.date(2026, 11, 13),
               dt.date(2026, 11, 25), dt.date(2026, 12, 4), dt.date(2026, 12, 9), dt.date(2026, 12, 10)}
 HOLIDAYS = {dt.date(2026, 11, 26), dt.date(2026, 12, 25)}
+# EDIT EACH MONTH: names that reported after the last close in hist.json: their option prices predate the report
+PRE_REPORT = {"SKHY", "TER", "HOOD"}
 CH = os.path.join(HERE, "charts")
 os.makedirs(CH, exist_ok=True)
 
@@ -218,10 +220,12 @@ def iv_rows(t, ei):
         ed = dt.date.fromisoformat(v["exp"])
         txt = (f'<font color="{VCOL[v["verdict"]]}"><b>{v["verdict"]}</b></font> · IV {v["iv"]:.0f}% vs {v["hv"]:.0f}% actual 20-day movement '
                f'(ratio {v["ratio"]:.2f}) on the {fmt_d(ed, False)} expiry, {v["dte"]} DTE.')
-        if v["hv_has_earn"]:
+        if t in PRE_REPORT:
+            txt += f' <font color="#8a5a00">These option prices are from before its {fmt_d(ei["last"], False)} after-close report; recheck live before buying.</font>'
+        elif v["hv_has_earn"]:
             txt += f' <font color="#8a5a00">Actual movement includes the {fmt_d(ei["last"], False)} earnings move, so "cheap" may be overstated.</font>'
         if v["wide"]:
-            txt += ' <font color="#8a5a00">Wide bid/ask at Friday\'s close; check live quotes.</font>'
+            txt += ' <font color="#8a5a00">Wide bid/ask at the last close; check live quotes.</font>'
     rows = [("IV CHECK", txt)]
     if v["em"]:
         em = v["em"]
@@ -325,17 +329,17 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY STOCK ANALYSIS", S_LAB), Spacer(1, 4),
           Paragraph("Stock Analysis", S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph("All 36 names on your lists, in your order: 3-month price charts, price moves, earnings, guidance, capex, partnerships, catalysts and the market events that can move each one. Ready for Monday Oct 26, 2026, with the weekend's news. Prices are official Nasdaq closes through Friday Oct 23 (the last session). Times are Pacific.", S_BL),
+          Paragraph("All 36 names on your lists, in your order: 3-month price charts, price moves, earnings, guidance, capex, partnerships, catalysts and the market events that can move each one. Updated Wednesday Oct 28, 2026 for your new lists (AEHR and NOK added, BAC and RDDT removed) and this week's results from SK hynix, Teradyne, Corning and Robinhood. Prices are official Nasdaq closes through Tuesday Oct 27. Times are Pacific.", S_BL),
           Spacer(1, 5),
-          Paragraph("Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Seeking Alpha and Al Jazeera (the outlets on your list this session could reach), plus company filings cited there. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
+          Paragraph("Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, WSJ, Seeking Alpha and Al Jazeera, plus company releases and filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
 # EDIT EACH MONTH (editorial: verified facts only)
 WEEK = [
-    ("Mon Oct 26", "ok", "Clear for trading. No major data, and none of your names report. The last fully clear day before FOMC Wednesday."),
-    ("Tue Oct 27", "ok", "Clear for trading, but Corning reports before the open, and SK hynix, Teradyne and Robinhood report after the close. No new options on GLW, SKHY, TER or HOOD."),
     ("Wed Oct 28", "bad", "FOMC at 11:00 AM PT, so no trades (Rule 3). Vertiv reports before the open; KLA, Microsoft and Alphabet report after the close."),
-    ("Thu Oct 29", "bad", "GDP and PCE at 5:30 AM PT, so no trades (Rule 3). Amazon, Intel, Coinbase and Reddit report after the close."),
+    ("Thu Oct 29", "bad", "GDP and PCE at 5:30 AM PT, so no trades (Rule 3). Amazon, Intel and Coinbase report after the close."),
     ("Fri Oct 30", "warn", "Friday, so no new trades (Rule 2). Employment Cost Index at 5:30 AM PT."),
+    ("Mon Nov 2", "ok", "Clear for trading. Aehr and Apple report after the close, so no new AEHR options."),
+    ("Tue Nov 3", "ok", "Clear for trading, but it's Election Day. DigitalOcean reports before the open (no new DOCN options); AMD, Arista, Astera Labs and Super Micro after the close."),
 ]
 TONE = {"ok": (OK, OKBG), "bad": (BAD, BADBG), "warn": (WARN, WARNBG)}
 
@@ -353,7 +357,9 @@ for t in OPEN_T:
     lab, pos, _ = LISTPOS[t]
     short = {"Top 5": "Top 5", "2026 Portfolio": "Portfolio"}.get(lab, "Dip")
     note = []
-    if v["hv_has_earn"]:
+    if t in PRE_REPORT:
+        note.append(f"priced before the {fmt_d(ei['last'], False)} report")
+    elif v["hv_has_earn"]:
         note.append("incl. last earnings move")
     if v["wide"]:
         note.append("wide bid/ask")
@@ -371,7 +377,7 @@ for i, t in enumerate(OPEN_T, 1):
         bsty.append(("BACKGROUND", (0, i), (-1, i), OKBG))
 bt.setStyle(TableStyle(bsty))
 story += [Spacer(1, 8), Paragraph("Where to buy options: IV check", S_H1),
-          box([Paragraph(f'<b>Buy days this week: {X(", ".join(BUYDAYS))}.</b> Only names your rules allow are listed, best value first. '
+          box([Paragraph(f'<b>Next buy days: {X(", ".join(BUYDAYS))}.</b> Only names your rules allow are listed, best value first. '
                          '<font color="#13804a"><b>Cheap</b></font> = options cost less than the stock has actually been moving (IV below 20-day movement): the better time to buy. '
                          'Normal = fair. Expensive = wait. The expiry shown is the allowed one nearest 30 days (7–60 DTE and ending before the next report); take profit at +25% to +100% (Rule 1).', S_B)], OKBG, border=OK),
           Spacer(1, 4), bt, Spacer(1, 3),
@@ -401,7 +407,7 @@ story += [PageBreak(), Paragraph(f"After earnings: the other {len(SHUT_T)} names
           Paragraph("No new options on these until their report is out (Rules 3 and 4). IV here is estimated without the earnings move, from two expiries after the report, "
                     "so you know where each one stands and the first day you can buy (skipping Fridays and Rule 3 data days). Recheck live after the report: IV usually drops once earnings pass.", S_M),
           Spacer(1, 3), at,
-          Spacer(1, 12), Paragraph("This week: when you can trade", S_H1)]
+          Spacer(1, 12), Paragraph("The next 5 sessions: when you can trade", S_H1)]
 wt = Table([[Paragraph(f"<b>{a}</b>", S_B), Paragraph(X(b), S_B)] for a, _, b in WEEK], colWidths=[1.05 * inch, CW - 1.05 * inch])
 ws = [("VALIGN", (0, 0), (-1, -1), "TOP"), ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
       ("LINEBELOW", (0, 0), (-1, -2), 0.5, colors.white)]
@@ -410,18 +416,18 @@ for i, (_, tone, _) in enumerate(WEEK):
 wt.setStyle(TableStyle(ws)); story.append(wt)
 
 story += [PageBreak(), Paragraph("Market backdrop", S_H1),
-          box([Paragraph('<font color="#b42318"><b>Headwind.</b></font> Rates near 5%, hot inflation, a live Fed and Brent at $116.72 (a six-month high) weigh on high-multiple growth. The offset is hyperscaler capex: this week\'s Microsoft, Alphabet and Amazon reports decide whether the AI build-out keeps getting funded.', S_B)], BADBG),
+          box([Paragraph('<font color="#b42318"><b>Headwind.</b></font> Rates near 5%, hot inflation, a Fed decision today and Brent near $116 weigh on high-multiple growth. The offset is hyperscaler capex: Microsoft and Alphabet tonight and Amazon tomorrow decide whether the AI build-out keeps getting funded.', S_B)], BADBG),
           Spacer(1, 6)]
 spx, comp, y10, y30, btc = MK["SPX"], MK["COMP"], MK["US10Y"], MK["US30Y"], MK["BTC"]
-# EDIT EACH MONTH (editorial: verified facts only)
-TILES = [("FED FUNDS", "3.75–4.00%", "Hiked 25 bp Sep 16 · next decision Wed Oct 28", BAD),
+# EDIT EACH MONTH (editorial: verified facts only; the Headwind box above too)
+TILES = [("FED FUNDS", "3.75–4.00%", "Hiked 25 bp Sep 16 · decision today, 11:00 AM PT", BAD),
          ("CPI (SEP)", "3.7% y/y", "Core 2.6% · hotter than expected", BAD),
          ("PPI (SEP)", "+1.3% m/m", "6.3% y/y · biggest rise in 4+ years", BAD),
-         ("10-YR YIELD", f"{y10['price']:.2f}%", f"30-yr {y30['price']:.2f}% · Fri close", WARN),
-         ("BRENT CRUDE", "$116.72", "Fri settle, +3.1% · +6.2% on week, highest since Apr 29", BAD),
-         ("S&P 500", f"{spx['price']:,.0f}", f"{spx['chg']:+.2f}% Fri · Nasdaq {comp['chg']:+.2f}%", INK),
-         ("BITCOIN", f"${btc['price']:,.0f}", f"{btc['chg']:+.2f}% Fri · moves COIN, HOOD, CRCL, IREN", INK),
-         ("NEXT BIG EVENTS", "Oct 28–29", "FOMC, then GDP/PCE + Amazon", INK)]
+         ("10-YR YIELD", f"{y10['price']:.2f}%", f"30-yr {y30['price']:.2f}% · Tue close", WARN),
+         ("BRENT CRUDE", "$115.81", "Mon settle, −0.8% (Bloomberg) · slid Tue on Mideast diplomacy", BAD),
+         ("S&P 500", f"{spx['price']:,.0f}", f"{spx['chg']:+.2f}% Tue · Nasdaq {comp['chg']:+.2f}%", INK),
+         ("BITCOIN", f"${btc['price']:,.0f}", f"{btc['chg']:+.2f}% Tue · moves COIN, HOOD, CRCL, IREN", INK),
+         ("NEXT BIG EVENTS", "Oct 28–29", "FOMC today, then GDP/PCE + Amazon", INK)]
 cells = [[Paragraph(X(a), S_LAB), Paragraph(f'<font name="DVB" size="14" color="{c.hexval().replace("0x", "#")}">{X(b)}</font>', st("tv", leading=18)), Paragraph(X(s_), S_M)] for a, b, s_, c in TILES]
 tw = (CW - 3 * 6) / 4
 tt = Table([cells[0:4], cells[4:8]], colWidths=[tw] * 4, rowHeights=None)
@@ -437,33 +443,33 @@ story += [tt, PageBreak()]
 
 # EDIT EACH MONTH (editorial: verified facts only)
 # Monday game plan
-story += [Paragraph("Monday Oct 26 game plan", S_H1),
-          Paragraph("What changed over the weekend, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, Seeking Alpha and Al Jazeera; prices are Friday's official closes.", S_M), Spacer(1, 6)]
+story += [Paragraph("Wednesday Oct 28 game plan", S_H1),
+          Paragraph("What changed since Monday, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, WSJ and Seeking Alpha; prices are Tuesday's official closes.", S_M), Spacer(1, 6)]
 WKND = [
-    ("Rules", "<b>Monday is clear to trade</b> (no Fed, CPI, PCE, PPI, jobs or GDP data; it isn't a Friday). Tuesday is also clear except for names reporting. Wednesday (FOMC) and Thursday (GDP/PCE) are no-trade days, and Friday is Rule 2. <b>So Monday and Tuesday are the only open days this week.</b>"),
-    ("Oil", "Brent settled at <b>$116.72</b> Friday (+3.1%; +6.2% on the week; highest since Apr 29), WTI $103.27 (CNBC). CNBC reported Oct 24 that the administration vowed to hold off new strikes on Iran until after the Nov 3 midterms; Iran said it won't let U.S. warships get close (Al Jazeera)."),
-    ("Fed", "Decision Wed 11:00 AM PT. Futures price only ~10% odds of a hike (Seeking Alpha week-ahead, Oct 24); CNBC had a hold at 92% on Oct 23. 10-year closed Friday at 5.00%."),
-    ("AI trade", "Nasdaq −0.7% and S&amp;P 500 −0.5% last week. Thursday's 2.6% Nasdaq drop was the worst since June, led by neoclouds; CDS spreads on Nvidia and Oracle hit records (CNBC). Microsoft/Alphabet (Wed) and Amazon (Thu) capex is the next test."),
-    ("Movers", "<b>BE</b> −11.2% to $193.30 despite a Q3 beat and raised guide (adj. EPS $0.94 vs $0.68; revenue $1.24B vs $1.06B) on negative free cash flow; Jefferies cut its target to $242 from $289 (CNBC, Seeking Alpha). <b>SKHY</b> +4.1% after scrapping the Solidigm U.S. IPO (CNBC, Bloomberg). <b>CRDO</b> −9.5% after −10.7% Thursday; I found no company-specific news in your outlets, so treat it as part of the AI selloff."),
+    ("Rules", "<b>No new trades Wednesday through Friday</b>: FOMC today (11:00 AM PT, Rule 3), GDP and PCE Thursday (Rule 3), and Friday (Rule 2). <b>The next clear days are Mon Nov 2 and Tue Nov 3</b> (Election Day). That fits your plan to enter SKHY and AVGO on Monday."),
+    ("Results", "<b>SKHY</b>: record Q3, operating profit ₩83.3T (80% margin) vs ~₩77T expected, plus ~₩100T of 2026 shareholder returns; shares jumped ~8% (SK hynix, Seeking Alpha). <b>TER</b>: revenue $1.306B and EPS $2.29 beat; Q4 guide $1.25–1.35B. <b>GLW</b>: beat and guided Q4 above estimates, but closed −1.1%. <b>HOOD</b>: EPS $0.60 missed by $0.04; −3.4% after hours."),
+    ("AI trade", "Tuesday's rebound: Nasdaq +1.18%, S&amp;P 500 +0.60%. Chips bounced late (Astera Labs +10%); neoclouds rallied after Crusoe's CEO called the selloff 'overblown' (Bloomberg): NBIS +11%, CRWV +8%. Broadcom +4% on a DA Davidson upgrade and its $63B Anthropic chip-financing deal (WSJ). Oracle will offer Cerebras systems in its cloud (Bloomberg); CBRS +10%."),
+    ("Fed", "Decision today at 11:00 AM PT, then Warsh's press conference. A hold is expected (~90% per fed funds futures, Bloomberg Oct 26 wrap), but Warsh may signal more hikes (CNBC). 10-year closed Tuesday near 5.0%."),
+    ("Your lists", "Updated Oct 28 in your broker's order. Top 5: SKHY, AVGO, TER, GLW, SPCX. 2026 Portfolio now starts with HOOD and ORCL and adds VICR. 15–50% Dip now starts with BE and adds QCOM, plus two new names, <b>AEHR</b> (reports Nov 2) and <b>NOK</b>. BAC and RDDT are off."),
 ]
 wk = Table([[Paragraph(f'<font name="DVB">{X(a)}</font>', S_SM), Paragraph(b, S_B)] for a, b in WKND], colWidths=[0.75 * inch, CW - 0.75 * inch])
 wk.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LINEBELOW", (0, 0), (-1, -2), 0.4, LINE),
                         ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
                         ("BACKGROUND", (0, 0), (-1, 0), OKBG), ("LINEBEFORE", (0, 0), (0, 0), 3, OK)]))
-story += [Paragraph("Weekend update", S_H2), wk, Spacer(1, 8)]
+story += [Paragraph("Update since Monday", S_H2), wk, Spacer(1, 8)]
 
-# Friday's biggest movers on his lists, from official closes
+# Tuesday's biggest movers on his lists, from official closes
 mv = sorted(((t, ST[t]["day"]) for _, _, ns in C.LISTS for t in ns), key=lambda x: x[1])
 dn, up = mv[:5], mv[::-1][:5]
 def mvcell(xs):
     return Paragraph(" · ".join(f'<font name="DVB">{t}</font> {pc(v, False)}' for t, v in xs), S_B)
-mt = Table([[Paragraph("FRIDAY'S BIGGEST GAINERS", S_LAB), Paragraph("FRIDAY'S BIGGEST DECLINERS", S_LAB)], [mvcell(up), mvcell(dn)]],
+mt = Table([[Paragraph("TUESDAY'S BIGGEST GAINERS", S_LAB), Paragraph("TUESDAY'S BIGGEST DECLINERS", S_LAB)], [mvcell(up), mvcell(dn)]],
            colWidths=[CW / 2] * 2)
 mt.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, -1), CHIP), ("VALIGN", (0, 0), (-1, -1), "TOP"),
                         ("LINEAFTER", (0, 0), (0, -1), 4, colors.white), ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5)]))
 story += [mt, Spacer(1, 8)]
 
-# Options status for Monday, by rule and IV
+# Options status for the next clear days, by rule and IV
 ALL = [t for _, _, ns in C.LISTS for t in ns]
 blocked, windowed, cheap = [], [], []
 for t in ALL:
@@ -477,7 +483,7 @@ for t in ALL:
 def tk(xs):
     return ", ".join(xs) if xs else "none"
 OPT = [
-    ("bad", "No new options this week", f"{len(blocked)} names: every 7–60 DTE expiry runs into their report (Rules 3 and 4): {tk(blocked)}."),
+    ("bad", "No new options right now", f"{len(blocked)} names: every 7–60 DTE expiry runs into their report (Rules 3 and 4): {tk(blocked)}."),
     ("warn", "Open, with an earnings cutoff", f"{tk(windowed)}: expiries must end before each report; each stock page lists the allowed Fridays."),
 ]
 ot = Table([[Paragraph(f"<b>{X(a)}</b>", S_B), Paragraph(X(b), S_B)] for _, a, b in OPT], colWidths=[1.6 * inch, CW - 1.6 * inch])
@@ -486,28 +492,28 @@ os_ = [("VALIGN", (0, 0), (-1, -1), "TOP"), ("TOPPADDING", (0, 0), (-1, -1), 5),
 for i, (tone, _, _) in enumerate(OPT):
     os_ += [("BACKGROUND", (0, i), (-1, i), TONE[tone][1]), ("LINEBEFORE", (0, i), (0, i), 3, TONE[tone][0])]
 ot.setStyle(TableStyle(os_))
-story += [Paragraph("Your options on Monday", S_H2), Paragraph("Where options look cheap is on page 1.", S_M), Spacer(1, 3), ot, Spacer(1, 8)]
+story += [Paragraph("Your options on Mon Nov 2", S_H2), Paragraph("Where options look cheap is on page 1.", S_M), Spacer(1, 3), ot, Spacer(1, 8)]
 
 SCHED = [("5:50 AM", "Morning analysis in chat, with a live IV check"),
          ("6:30 AM", "Open; app prices refresh about every 15 min"),
          ("6:32 AM", "Morning briefing in chat and on your phone"),
          ("9:48 AM", "Midday analysis in chat"),
          ("1:00 PM", "Market closes"),
-         ("1:50 PM", "After-close analysis with Tuesday's rule status")]
+         ("1:50 PM", "After-close analysis with the next day's rule status")]
 sc = Table([sum(([Paragraph(f'<font name="DVB">{a}</font>', S_SM), Paragraph(X(b), S_SM)] for a, b in SCHED[i::3]), []) for i in range(3)],
            colWidths=[0.74 * inch, CW / 2 - 0.74 * inch] * 2)
 sc.setStyle(TableStyle([("LINEBELOW", (0, 0), (-1, -2), 0.4, LINE), ("TOPPADDING", (0, 0), (-1, -1), 2.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 2.5)]))
-story += [KeepTogether([Paragraph("Monday's schedule (PT)", S_H2), sc]), PageBreak()]
+story += [KeepTogether([Paragraph("Daily schedule (PT)", S_H2), sc]), PageBreak()]
 
 # EDIT EACH MONTH (editorial: verified facts only)
 THEMES = [
-    ("Rates and the Fed", "The Fed raised rates in September for the first time since 2023. Hot CPI and PPI kept another hike in play for Oct 28: CME FedWatch odds of an Oct 28 hike jumped to about 49% after the Oct 14 CPI, then fell to about 8% by Oct 23 (92% hold, per CNBC). Seeking Alpha's week-ahead (Oct 24) puts the odds of a hike on Wednesday near 10%, so a hold is expected; a December hike is still priced near 78%. Watch Warsh's press conference at 11:30 AM PT for December guidance. The 10-year is near 5%. That is the biggest pressure on high-multiple growth names: AI optics, neoclouds and quantum.", "All 36, most of all IONQ, CRWV, NBIS, IREN, AAOI, CBRS"),
-    ("AI capex: the core driver", "Microsoft and Alphabet report Oct 28 and Amazon Oct 29. Their capex guidance feeds straight into Nvidia, Broadcom, Marvell, Credo, the optics names, Vertiv, Corning and the chip-equipment makers. Amazon already raised 2026 capex to about $220B. The CEOs of Nvidia and Broadcom both say capital, not demand, is now the limit.", "NVDA, AVGO, MRVL, CRDO, CIEN, COHR, GLW, AAOI, VRT, AMZN"),
-    ("AI credit stress", "In mid-October, worries about debt-funded data centers (CoreWeave, Oracle, the OpenAI build-outs) hit the neoclouds and their suppliers. SpaceX's ~$40B debt sale and Broadcom's OpenAI financing talks show how much of this cycle runs on borrowed money.", "CRWV, NBIS, IREN, ORCL, BE, AVGO, SPCX"),
-    ("Memory shortage and prices", "DRAM and HBM prices are rising. That helps SK hynix, but it squeezes Nvidia's margins (expected to bottom near 71–72%), cut Intel's PC outlook, hurt Qualcomm's handset guide and lifted Amazon's capex.", "SKHY, NVDA, INTC, QCOM, AMZN, LRCX, AMAT"),
-    ("Chip equipment and China", "Lam's cautious Oct 21 guide pulled the group lower; KLA fell 10% on Oct 22. China export rules still limit sales. KLA reports Oct 28 and Applied Materials Nov 12.", "LRCX, KLAC, AMAT, TER, SKHY"),
-    ("Oil and inflation", "Brent settled at $116.72 on Friday (+6.2% on the week, third straight weekly gain, highest since Apr 29) on fears of renewed U.S. strikes on Iran and Houthi attacks on Saudi Arabia; at least 18 vessels have come under fire in two weeks (Kpler, via CNBC). OPEC+ meets around Nov 1. Higher oil feeds inflation and keeps the Fed hawkish. Power and utility names react to energy prices too.", "VST, BE, broad market"),
-    ("Crypto", "Bitcoin was about $80.5K on Friday. Crypto volumes and prices drive Coinbase, Robinhood and Circle, and IREN's legacy mining business.", "COIN, HOOD, CRCL, IREN"),
+    ("Rates and the Fed", "The Fed raised rates in September for the first time since 2023. Hot CPI (3.7%) and PPI kept another hike in play. For today's decision, fed funds futures price about a 90% chance of a hold (Bloomberg, Oct 26), but CNBC says Warsh may signal more hikes, and a December hike was priced near 90% in mid-October. The 10-year is near 5%. That is the biggest pressure on high-multiple growth names: AI optics, neoclouds and quantum.", "All 36, most of all IONQ, CRWV, NBIS, IREN, AAOI, CBRS, AEHR"),
+    ("AI capex: the core driver", "Microsoft and Alphabet report tonight and Amazon tomorrow. Their capex guidance feeds straight into Nvidia, Broadcom, Marvell, Credo, the optics names, Vertiv, Corning, Nokia and the chip-equipment makers. Corning's Q4 guide beat estimates on AI fiber demand, and Nokia expects its optical and IP business to grow 25–30% in 2027.", "NVDA, AVGO, MRVL, CRDO, CIEN, COHR, GLW, NOK, AAOI, VRT, AMZN"),
+    ("AI credit stress", "Worries about debt-funded data centers hit the neoclouds in mid-October. Tuesday brought relief: Crusoe's CEO called the selloff overblown (Bloomberg) and Broadcom sealed a $63B Anthropic chip-financing package (WSJ). Debt-backed demand lowers customer-funding risk but keeps the cycle tied to credit markets.", "CRWV, NBIS, DOCN, IREN, ORCL, BE, AVGO, SPCX"),
+    ("Memory boom", "SK hynix posted record Q3 profit (80% operating margin), says HBM4 overtakes HBM3E in Q4, and sees demand above supply through 2030. Memory strength helps chip-test and equipment makers, but rising memory costs squeeze Nvidia's margins, Intel's PC outlook, Qualcomm's handsets and Amazon's capex.", "SKHY, TER, AEHR, LRCX, AMAT, NVDA, INTC, QCOM"),
+    ("Chip equipment and test", "Teradyne beat and guided Q4 roughly flat at the midpoint. KLA reports tonight and Applied Materials Nov 12; Applied raised its BE Semiconductor stake to about 20% (Bloomberg). Aehr reports Nov 2. China export rules still limit sales.", "TER, KLAC, AMAT, LRCX, AEHR, SKHY"),
+    ("Oil and inflation", "Brent settled at $115.81 on Monday (Bloomberg) near its highest since April on Iran and Strait of Hormuz risk, then slid Tuesday on Middle East diplomacy (WSJ, CNBC). OPEC+ meets around Nov 1. Higher oil feeds inflation and keeps the Fed hawkish. Power and utility names react to energy prices too.", "VST, BE, broad market"),
+    ("Crypto", "Bitcoin was about $80.8K at Tuesday's close. Crypto volumes and prices drive Coinbase, Robinhood and Circle, and IREN's legacy mining business. Robinhood's Q3 showed the crypto slump (crypto revenue down) offset by options and event contracts.", "COIN, HOOD, CRCL, IREN"),
     ("Event risk ahead", "Midterm elections Nov 3; Nvidia earnings Nov 18 (the biggest single read-through for the AI names); Nvidia GTC DC and AWS re:Invent Nov 30–Dec 4.", "All 36"),
 ]
 story.append(Paragraph("Market themes that can move your stocks", S_H1))
@@ -517,7 +523,6 @@ for a, b, c in THEMES:
 # Key dates
 # EDIT EACH MONTH (editorial: verified facts only)
 MACRO = [
-    ("2026-10-27", "7:00 AM", "Consumer Confidence (Oct)", "m2", ""),
     ("2026-10-28", "11:00 AM", "FOMC rate decision + Warsh press conference (11:30 AM)", "m", "rule3"),
     ("2026-10-28", "after close", "Microsoft and Alphabet earnings: AI capex read-through", "r", ""),
     ("2026-10-29", "5:30 AM", "Q3 GDP (advance) + September PCE inflation", "m", "rule3"),

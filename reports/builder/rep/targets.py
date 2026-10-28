@@ -76,5 +76,7 @@ T = {
           ("Morgan Stanley", "Underweight (downgraded)", 38, "Aug 3", "CNBC", CN + "2026/08/03/td-cowen-says-buy-stablecoin-issuer-circle-morgan-stanley-thinks-its-time-to-sell.html"),
           ("TD Cowen", "Buy", 82, "Aug 3", "CNBC", CN + "2026/08/03/td-cowen-says-buy-stablecoin-issuer-circle-morgan-stanley-thinks-its-time-to-sell.html")],
  "RDDT": [("BofA", "Neutral", 190, "May 1", "Seeking Alpha", "https://seekingalpha.com/symbol/RDDT")],
+ "AEHR": [("Jefferies", "Buy", 175, "Aug", "Seeking Alpha", "https://seekingalpha.com/news/4633322-aehr-test-systems-surges-after-jefferies-initiates-with-bullish-views"),
+          ("Oppenheimer", "Outperform", 120, "Sep 10", "Seeking Alpha", "https://seekingalpha.com/news/4641618")],
 }
 TOP_FIRMS = {"JPMorgan", "BofA", "Morgan Stanley", "Goldman Sachs", "Oppenheimer", "Mizuho"}
