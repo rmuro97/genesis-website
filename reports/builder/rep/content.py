@@ -3,8 +3,8 @@
 SA = "https://seekingalpha.com/news/"
 LISTS = [
  ("top5", "Top 5", ["SKHY", "AVGO", "TER", "GLW", "SPCX"]),
- ("portfolio", "2026 Portfolio", ["BE", "CRDO", "CIEN", "MRVL", "AMAT", "VRT", "COHR", "HOOD", "ARM", "INTC", "KLAC", "NVDA", "QCOM", "AMZN"]),
- ("dips", "15–50% Dip", ["IONQ", "CBRS", "CRWV", "VICR", "LRCX", "NBIS", "VST", "ORCL", "AKAM", "DOCN", "BAC", "COIN", "CRCL", "RDDT", "AAOI", "IREN", "BABA"]),
+ ("portfolio", "2026 Portfolio", ["HOOD", "ORCL", "AMZN", "AMAT", "CIEN", "VICR", "CRDO", "COHR", "INTC", "ARM", "MRVL", "NVDA", "VRT", "KLAC"]),
+ ("dips", "15–50% Dip", ["BE", "LRCX", "NBIS", "CRWV", "CBRS", "QCOM", "AKAM", "DOCN", "AEHR", "IONQ", "NOK", "AAOI", "VST", "COIN", "CRCL", "IREN", "BABA"]),
 ]
 
 S = {}
