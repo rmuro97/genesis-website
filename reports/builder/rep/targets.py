@@ -84,5 +84,13 @@ T = {
  "RDDT": [("BofA", "Neutral", 190, "May 1", "Seeking Alpha", "https://seekingalpha.com/symbol/RDDT")],
  "AEHR": [("Jefferies", "Buy", 175, "Aug", "Seeking Alpha", "https://seekingalpha.com/news/4633322-aehr-test-systems-surges-after-jefferies-initiates-with-bullish-views"),
           ("Oppenheimer", "Outperform", 120, "Sep 10", "Seeking Alpha", "https://seekingalpha.com/news/4641618")],
+ "GOOGL": [("Goldman Sachs", "Buy", 385, "Oct 29", "CNBC", CN + "2026/10/29/alphabet-q3-earnings-analyst-reaction.html"),
+          ("Bank of America", "Buy", 380, "Oct 29", "CNBC", CN + "2026/10/29/alphabet-q3-earnings-analyst-reaction.html"),
+          ("Morgan Stanley", "Overweight", 375, "Oct 29", "CNBC", CN + "2026/10/29/alphabet-q3-earnings-analyst-reaction.html")],
+ "NOW": [("Guggenheim", "", 175, "Oct", "Seeking Alpha", "https://seekingalpha.com/news/4656546-servicenow-target-bumped-to-175-at-guggenheim-on-expected-earnings-upside")],
+ "FTNT": [("TD Cowen", "", 190, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT"),
+          ("RBC Capital", "", 165, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT"),
+          ("Scotiabank", "", 140, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT"),
+          ("Deutsche Bank", "", 130, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT")],
 }
 TOP_FIRMS = {"JPMorgan", "BofA", "Morgan Stanley", "Goldman Sachs", "Oppenheimer", "Mizuho"}

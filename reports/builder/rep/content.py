@@ -2,9 +2,9 @@
 # Every fact comes from the notes gathered Oct 25–30, 2026 (his outlets: CNBC, Bloomberg, Seeking Alpha, plus company SEC filings where coverage cited them).
 SA = "https://seekingalpha.com/news/"
 LISTS = [
- ("top5", "Top 5", ["SKHY", "AVGO", "TER", "GLW", "SPCX"]),
- ("portfolio", "2026 Portfolio", ["HOOD", "ORCL", "AMZN", "AMAT", "CIEN", "VICR", "CRDO", "COHR", "INTC", "ARM", "MRVL", "NVDA", "VRT", "KLAC"]),
- ("dips", "15–50% Dip", ["BE", "LRCX", "NBIS", "CRWV", "CBRS", "QCOM", "AKAM", "DOCN", "AEHR", "IONQ", "NOK", "AAOI", "VST", "COIN", "CRCL", "IREN", "BABA"]),
+ ("top5", "Top 5", ["SKHY", "INTC", "AVGO", "AMZN", "SPCX"]),
+ ("portfolio", "2026 Portfolio", ["MRVL", "CIEN", "VICR", "TER", "CRDO", "NVDA", "COHR", "ARM", "AMAT", "HOOD", "GOOGL", "GLW", "ORCL", "KLAC", "VRT", "IONQ"]),
+ ("dips", "15–50% Dip", ["HPE", "NBIS", "DOCN", "FTNT", "BE", "NOW", "CRWV", "CBRS", "QCOM", "NOK", "AKAM", "AEHR", "AAOI", "VST", "COIN", "CRCL", "IREN", "BABA"]),
 ]
 
 S = {}
@@ -426,3 +426,47 @@ S["NOK"] = dict(
  macro="AI data-center networking spend; telecom operator budgets; euro/dollar (it reports in euros).",
  risks="Free-cash-flow worries after Q3; slow mobile networks; 47% off its high.",
  src=[("Nokia · Q3 interim report", "https://www.nokia.com/system/files/2026-10/nokia_results_2026_q3.pdf"), ("Seeking Alpha · Q3 beat", SA+"4655689"), ("Seeking Alpha · 25–30% Optical/IP growth in 2027", SA+"4656040"), ("Seeking Alpha · L&T R&D deal", SA+"4657018"), ("Seeking Alpha · BofA upgrade", "https://seekingalpha.com/news/4574458")])
+
+S["GOOGL"] = dict(
+ name="Alphabet", what="Google Search and YouTube ads, Google Cloud (incl. its own TPU AI chips), Gemini AI models, Waymo.",
+ results="Q3 (Oct 28): revenue $127.6B, up 25%; Google Cloud $30.7B, up 103% (GCP plus TPU system sales); Search $63.35B, up 12% but below the $64.96B estimate; EPS $2.12 vs $2.94 expected, hit by an $8.66B loss on equity holdings. First top- and bottom-line miss in nearly four years (CNBC).",
+ guide="2026 capex held at $195–205B. Free cash flow about −$9B in the quarter, roughly three times the expected deficit (Fox Business).",
+ capex="One of the four biggest AI spenders; its TPU program also buys from Broadcom (custom chips) and the optics chain.",
+ partners=["TPU systems now sold to outside customers (a meaningful part of Cloud growth)", "Broadcom: TPU design partner", "Anthropic and other AI labs on Google Cloud"],
+ catalysts=["Reported Oct 28; next report early February", "Worst day on record Oct 29 (−12.6%, ~$500B) on a search miss as ChatGPT, Claude and its own AI Mode take share (CNBC, Bloomberg)", "CNBC Investing Club cut its target to $350 from $400 (Oct 29)", "Nvidia earnings Nov 17 (AI read)"],
+ macro="AI-spending scrutiny: investors now punish cash burn; antitrust remedies; ad market.",
+ risks="AI eroding search revenue; negative free cash flow; capex discipline questions.",
+ src=[("Alphabet · Q3 2026 results (SEC)", "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000080/googexhibit991q32026.htm"), ("CNBC · Q3 earnings", "https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html"), ("CNBC · worst day ever, −$500B", "https://www.cnbc.com/2026/10/29/alphabet-google-microsoft-msft-shares-today-earnings.html"), ("Fox Business · $500B wipeout on AI spending fears", "https://www.foxbusiness.com/markets/google-parent-alphabet-suffers-nearly-500b-wall-street-wipeout-amid-ai-spending-fears")])
+
+S["HPE"] = dict(
+ name="Hewlett Packard Enterprise", what="AI and enterprise servers, networking (Juniper, bought 2025; Aruba) and hybrid cloud.",
+ results="Fiscal Q3 (Sep 2; quarter ended Jul 31): record revenue $12.2B, up 34% (Juniper drove networking; Cloud & AI up on higher prices); non-GAAP EPS $1.02 vs $0.82 expected (Nasdaq).",
+ guide="Raised: fiscal 2026 (Oct year-end) revenue growth 34–37%; about 15% growth at the midpoint for fiscal 2027, above estimates (Bloomberg). Plans to return at least 75% of Q4 free cash flow to shareholders.",
+ capex="Builds AI racks to order; component costs (memory) are the margin swing factor.",
+ partners=["Vultr: $1.2B AMD Helios AI rack order (Seeking Alpha)", "Nvidia and AMD AI systems", "Juniper networking synergies"],
+ catalysts=["Fiscal Q4 earnings est. Wed Dec 3 (Nasdaq estimate)", "Super Micro and Dell results (AI-server read-through)", "Nvidia earnings Nov 17"],
+ macro="Hyperscaler, neocloud and sovereign AI spending; memory and component prices; enterprise IT budgets.",
+ risks="Juniper integration; rising component costs squeezing margins; a slowdown in AI-infrastructure orders.",
+ src=[("Bloomberg · raises outlook on AI servers, networking", "https://www.bloomberg.com/news/articles/2026-09-02/hpe-lifts-sales-forecast-on-ai-demand-for-servers-networking"), ("HPE · fiscal Q3 results (SEC)", "https://www.sec.gov/Archives/edgar/data/0001645590/000164559026000078/ex-991x922026x8k.htm"), ("Seeking Alpha · rises 12% on AI infrastructure", SA+"4642222"), ("Seeking Alpha · 52-week high, Vultr order", SA+"4649989")])
+
+S["FTNT"] = dict(
+ name="Fortinet", what="Network security: FortiGate firewalls, secure networking/SASE and security operations.",
+ results="Q3 (Oct 28): revenue $2.08B, up 20%; non-GAAP EPS $0.91 vs $0.86 expected; billings up 29% (product revenue up 37%). Gross margin 79.6% vs 80.1% expected on longer lead times and higher component costs.",
+ guide="2026 billings raised again to $9.568–9.718B (from $9.35–9.55B). Stock still fell ~21–25% Oct 29 on the margin miss (CNBC, Seeking Alpha).",
+ capex="Owns much of its real estate and builds its own ASICs; component (memory) costs are the margin swing.",
+ partners=["Firewall refresh cycle", "SASE and AI-driven security operations"],
+ catalysts=["Reported Oct 28; next report early February", "Analyst cuts Oct 29: RBC $165 (from $205), TD Cowen $190 (from $225), Deutsche $130, Scotiabank $140 (CNBC via TipRanks)", "Cyber incidents (e.g. the Binance hack) keep security spending in focus"],
+ macro="Enterprise IT budgets; memory and component costs; software-sector selloff on AI-disruption fears.",
+ risks="Gross-margin pressure; firewall refresh fading; valuation reset after the drop.",
+ src=[("Seeking Alpha · falls despite strong Q3, higher guide", SA+"4659184"), ("Seeking Alpha · 2026 billings $9.568–9.718B", SA+"4659806"), ("Seeking Alpha · Q3 call transcript", "https://seekingalpha.com/article/4958933"), ("CNBC · biggest movers Oct 29", "https://www.cnbc.com/2026/10/29/stocks-making-the-biggest-moves-midday-adt-googl-cat-lly-cmg.html")])
+
+S["NOW"] = dict(
+ name="ServiceNow", what="Enterprise workflow software (IT, HR, customer service) and AI agents on its Now platform.",
+ results="Q3 (Oct 28): revenue $4.11B (in line); subscription revenue $3.99B, up 21%; adjusted EPS $1.00 vs $1.02 expected; current RPO $13.65B, up 20.5%. Net new AI contract value up 65%.",
+ guide="2026 subscription revenue raised to $15.78–15.79B; year-end AI contract-value target raised $200M to $1.7B. But cRPO and subscription growth guidance looked weaker; shares fell 27% Oct 29, a record drop, on fears AI disrupts traditional software (CNBC).",
+ capex="Software; light capex.",
+ partners=["Nvidia and hyperscaler AI partnerships", "AI agents (Now Assist) upsell"],
+ catalysts=["Reported Oct 28; next report late January", "Analysts blame timing and accounting for the weak cRPO guide (Seeking Alpha)", "Salesforce and Workday results (software read)"],
+ macro="Software multiples under pressure from AI-disruption fears; enterprise IT budgets; rates.",
+ risks="AI agents cannibalizing seat-based software; growth slowing; sentiment on software.",
+ src=[("CNBC · Q3 earnings, record drop", "https://www.cnbc.com/2026/10/29/servicenow-now-earnings-q3-2026.html"), ("Seeking Alpha · crashes on weak forecast", SA+"4660127"), ("ServiceNow · Q3 results (SEC)", "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000092/erq3fy26.htm")])

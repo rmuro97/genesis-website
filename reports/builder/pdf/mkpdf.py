@@ -306,7 +306,7 @@ def on_page(c, doc):
 
 doc = BaseDocTemplate(OUT, pagesize=letter, leftMargin=M, rightMargin=M, topMargin=0.5 * inch, bottomMargin=0.6 * inch,
                       title=TITLE, author="Muro's Investing Analysis",
-                      subject="Earnings, guidance, capex, partnerships, catalysts and market events for 36 stocks")
+                      subject="Earnings, guidance, capex, partnerships, catalysts and market events for 39 stocks")
 FRAME_H = Hh - 1.1 * inch
 frame = Frame(M, 0.6 * inch, W - 2 * M, FRAME_H, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
 doc.addPageTemplates([PageTemplate(id="p", frames=[frame], onPage=on_page)])
@@ -329,7 +329,7 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY STOCK ANALYSIS", S_LAB), Spacer(1, 4),
           Paragraph("Stock Analysis", S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph("All 36 names on your lists, in your order: 3-month price charts, price moves, earnings, guidance, capex, partnerships, catalysts and the market events that can move each one. Updated for Monday Nov 2, 2026: your Oct 28 lists, this week's results (SK hynix, Teradyne, Corning, Robinhood, Vertiv, KLA, Amazon, Intel, Coinbase), the Fed's hold and Friday's tech selloff. Prices are official Nasdaq closes through Friday Oct 30. Times are Pacific.", S_BL),
+          Paragraph("All 39 names on your lists, in your order: 3-month price charts, price moves, earnings, guidance, capex, partnerships, catalysts and the market events that can move each one. Updated for Monday Nov 2, 2026: your Oct 30 lists (INTC and AMZN now in the Top 5; GOOGL, HPE, FTNT and NOW added; LRCX removed), this week's results (SK hynix, Teradyne, Corning, Robinhood, Vertiv, KLA, Alphabet, Fortinet, ServiceNow, Amazon, Intel, Coinbase), the Fed's hold and Friday's tech selloff. Prices are official Nasdaq closes through Friday Oct 30. Times are Pacific.", S_BL),
           Spacer(1, 5),
           Paragraph("Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Fox Business, WSJ, Seeking Alpha and Al Jazeera, plus company releases and filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
@@ -451,6 +451,8 @@ WKND = [
     ("AI spending", "Alphabet fell 12.6% Thu, its worst day ever (~$500B), on a search miss and negative free cash flow (CNBC, Fox Business). Amazon missed on sales and EPS; AWS grew 39% but capex hit $77.3B (CNBC). Microsoft beat with Azure +48% but trimmed capex to $170B on chip-supply delays. All held or trimmed budgets; none cut. Friday the Nasdaq was −3.6% at 11:30 AM PT."),
     ("Results", "<b>VRT</b> +16% Wed: sales +61%, orders +100%+, 2026 raised to $7.15 EPS. <b>KLAC</b> beat and guided $4.5–4.9B; sees 2027 WFE above $200B. <b>INTC</b> beat but guided Q4 to $0.25 EPS on a PC slowdown; ~−31% Fri, worst day since 1974. <b>COIN</b> revenue $1.20B missed. <b>SKHY</b> +11% in Seoul Wed after its record quarter."),
     ("Fed and data", "Fed held at 3.75–4.00% Wed, 10–2 (Cook and Hammack wanted a hike). Warsh gave no guidance; December hike odds rose to ~83% (CNBC). Q3 GDP +3.4% beat; September PCE 3.6% y/y, core 3.1% (CNBC)."),
+    ("Your lists", "Updated Oct 30 in your broker's order. Top 5: <b>SKHY, INTC, AVGO, AMZN, SPCX</b> (TER and GLW moved to the Portfolio). 2026 Portfolio now starts with MRVL and adds <b>GOOGL</b> and IONQ. 15–50% Dip adds <b>HPE, FTNT and NOW</b>. LRCX is off. 39 names."),
+    ("Software hit", "<b>NOW</b> fell 27% Thu (record) on weaker cRPO guidance despite a beat and AI contract value up 65% (CNBC). <b>FTNT</b> fell ~21–25% on a gross-margin miss despite raising billings guidance again (Seeking Alpha). AI-disruption fears are hitting software."),
     ("Deals and crypto", "<b>MRVL</b> is in advanced talks to buy Lumentum in an all-stock deal (Bloomberg); MRVL fell 11%+. Binance lost a record $6.3B to a hack (Bloomberg); bitcoin fell under $77K and Circle froze $800M of USDC tied to it (CNBC)."),
 ]
 ]
@@ -510,8 +512,8 @@ story += [KeepTogether([Paragraph("Daily schedule (PT)", S_H2), sc]), PageBreak(
 # EDIT EACH MONTH (editorial: verified facts only)
 THEMES = [
     ("AI spending under scrutiny", "The market now rewards companies that show a return on AI spending and punishes cash burn. Alphabet had its worst day ever, Amazon's free cash flow is −$42.4B over 12 months, and Intel's weak guide hit the whole chip group Friday. But budgets were held (Amazon $220B, Alphabet $195–205B) or trimmed only for supply (Microsoft $170B), so suppliers' orders are still intact: Vertiv's orders doubled and KLA raised its outlook.", "NVDA, AVGO, MRVL, CRDO, CIEN, COHR, GLW, NOK, AAOI, VRT, AMZN, ORCL, CRWV, NBIS"),
-    ("Rates and the Fed", "The Fed held Oct 28 but two officials wanted a hike, and December hike odds rose to ~83% (CNBC). September PCE ran 3.6% with core at 3.1%, and Q3 GDP grew 3.4%. October CPI (Tue Nov 10) is the next big test. The 10-year near 4.9% keeps pressure on high-multiple names.", "All 36, most of all IONQ, CRWV, NBIS, IREN, AAOI, CBRS, AEHR"),
-    ("Memory and chip equipment", "SK hynix's record quarter (80% operating margin) and KLA's outlook (2027 wafer-equipment spending above $200B) show the supply chain is still booming, even as memory costs squeeze PCs (Intel) and handsets. Applied Materials reports Nov 12; Aehr reports Nov 2.", "SKHY, TER, AEHR, LRCX, AMAT, KLAC, INTC, QCOM"),
+    ("Rates and the Fed", "The Fed held Oct 28 but two officials wanted a hike, and December hike odds rose to ~83% (CNBC). September PCE ran 3.6% with core at 3.1%, and Q3 GDP grew 3.4%. October CPI (Tue Nov 10) is the next big test. The 10-year near 4.9% keeps pressure on high-multiple names.", "All 36, most of all IONQ, CRWV, NBIS, IREN, AAOI, CBRS, AEHR, NOW"),
+    ("Memory and chip equipment", "SK hynix's record quarter (80% operating margin) and KLA's outlook (2027 wafer-equipment spending above $200B) show the supply chain is still booming, even as memory costs squeeze PCs (Intel) and handsets. Applied Materials reports Nov 12; Aehr reports Nov 2.", "SKHY, TER, AEHR, AMAT, KLAC, INTC, QCOM"),
     ("Optics consolidation", "Marvell is in advanced talks to buy Lumentum, whose CEO says optical parts are sold out into early 2029 (Bloomberg). A deal would reshape the optics group; Coherent reports Wed Nov 4 and AAOI Thu Nov 5.", "MRVL, COHR, AAOI, CIEN, CRDO, GLW, NOK, AVGO"),
     ("Crypto shock", "Binance's $6.3B hack (Oct 29), attributed to North Korea's TraderTraitor, pushed bitcoin under $77K. Binance says it will cover losses; about $3B was frozen, including $800M of USDC by Circle (Bloomberg, CNBC). Coinbase also missed on revenue.", "COIN, HOOD, CRCL, IREN"),
     ("Oil", "Brent settled at $114.88 Thursday, easing on reports of renewed U.S.–Iran talks, with Houthi and post-election military risks still in play (CNBC). Higher oil feeds inflation and keeps the Fed hawkish.", "VST, BE, broad market"),
@@ -572,7 +574,7 @@ ct = Table(data, colWidths=[0.95 * inch, 0.88 * inch, CW - 0.95 * inch - 0.88 * 
 ct.setStyle(TableStyle(sty)); story.append(ct)
 
 # At a glance
-story += [PageBreak(), Paragraph("All 36 at a glance", S_H1),
+story += [PageBreak(), Paragraph("All 39 at a glance", S_H1),
           Paragraph(f"Official closes {fmt_d(LAST)}. 1M = since {fmt_d(ST['AVGO']['m1_from'], False)}; 3M = since {fmt_d(ST['AVGO']['m3_from'], False)}. Sparkline = 3 months, shaded = last month. IV check: see the next page. Red earnings dates are within 21 days.", S_M)]
 for key, label, names in C.LISTS:
     data = [[Paragraph(x, S_LAB) for x in ("TICKER", "CLOSE", "DAY", "1M", "3M", "FROM HIGH", "3-MONTH TREND", "IV CHECK", "NEXT EARNINGS")]]
