@@ -288,7 +288,7 @@ def spark(t):
 
 
 # ---------- doc ----------
-M1 = TODAY.replace(day=1); M2 = (M1 + dt.timedelta(days=32)).replace(day=1)
+M1 = LAST.replace(day=1); M2 = (M1 + dt.timedelta(days=32)).replace(day=1)  # named for the month of the last close (the build month)
 EDITION = f"{M1:%B}–{M2:%B} Opportunities {M2.year if M1.month == 12 else M1.year}"
 TITLE = f"Stock Analysis: {EDITION}"
 OUT = os.path.join(HERE, f"Stock_Analysis_{M1:%B}-{M2:%B}_Opportunities_{M2.year if M1.month == 12 else M1.year}.pdf")
@@ -369,7 +369,7 @@ for t in OPEN_T:
                   Paragraph(f'{v["iv"]:.0f}% vs {v["hv"]:.0f}% <font color="#62656e">({v["ratio"]:.2f})</font>', S_SM),
                   Paragraph(f'{fmt_d(dt.date.fromisoformat(v["exp"]), False)} · {v["dte"]} DTE', S_SM),
                   Paragraph(ne, S_SM), Paragraph(X("; ".join(note)), st("nt", fontSize=7, leading=8.4, textColor=WARN))])
-bt = Table(brows, colWidths=[0.62 * inch, 1.02 * inch, 0.7 * inch, 1.34 * inch, 1.12 * inch, 1.16 * inch, CW - 5.96 * inch], repeatRows=1)
+bt = Table(brows, colWidths=[0.72 * inch, 1.02 * inch, 0.7 * inch, 1.34 * inch, 1.12 * inch, 1.16 * inch, CW - 6.06 * inch], repeatRows=1)
 bsty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.8), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.8),
         ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
 for i, t in enumerate(OPEN_T, 1):
@@ -396,7 +396,7 @@ for t in SHUT_T:
                   Paragraph(fmt_d(ei["nxt"]) + (" est." if ei["est"] else ""), S_SM), Paragraph(f'<b>{fmt_d(first_buy(t, ei))}</b>', S_SM),
                   Paragraph(f'{x["iv"]:.0f}% vs {v["hv"]:.0f}% <font color="#62656e">({x["ratio"]:.2f})</font>' if x else "n/a", S_SM),
                   Paragraph(f'<font color="{VCOL[x["verdict"]]}"><b>{x["verdict"]}</b></font>' if x else "n/a", S_SM), Paragraph(mv, S_SM)])
-at = Table(arows, colWidths=[0.62 * inch, 1.02 * inch, 1.0 * inch, 1.05 * inch, 1.45 * inch, 0.72 * inch, CW - 5.86 * inch], repeatRows=1)
+at = Table(arows, colWidths=[0.72 * inch, 1.02 * inch, 1.0 * inch, 1.05 * inch, 1.45 * inch, 0.72 * inch, CW - 5.96 * inch], repeatRows=1)
 asty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.8), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.8),
         ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
 for i, t in enumerate(SHUT_T, 1):
@@ -416,7 +416,7 @@ for i, (_, tone, _) in enumerate(WEEK):
 wt.setStyle(TableStyle(ws)); story.append(wt)
 
 story += [PageBreak(), Paragraph("Market backdrop", S_H1),
-          box([Paragraph('<font color="#b42318"><b>Headwind.</b></font> The market turned on AI spending this week. Alphabet had its worst day ever (−12.6%) on a search miss and cash burn, Amazon's $77B quarterly capex drove free cash flow to −$42B, and Intel's guide sank it 28.6% Friday. Add a Fed that held but leans toward a December hike, 3.6% PCE inflation, a 10-year near 4.9%, Brent near $115 and a record $6.3B crypto hack. The offset: capex budgets were held, not cut, and Vertiv, KLA and SK hynix posted blowout quarters.', S_B)], BADBG),
+          box([Paragraph('<font color="#b42318"><b>Headwind.</b></font> The market turned on AI spending this week. Alphabet had its worst day ever (−12.6%) on a search miss and cash burn, Amazon’s $77B quarterly capex drove free cash flow to −$42B, and Intel’s guide sank it 28.6% Friday. Add a Fed that held but leans toward a December hike, 3.6% PCE inflation, a 10-year near 4.9%, Brent near $115 and a record $6.3B crypto hack. The offset: capex budgets were held, not cut, and Vertiv, KLA and SK hynix posted blowout quarters.', S_B)], BADBG),
           Spacer(1, 6)]
 BRENT = ("$114.88", "Thu Oct 29 settle (CNBC) · eased on U.S.–Iran talk reports")
 spx, comp, y10, y30, btc = MK["SPX"], MK["COMP"], MK["US10Y"], MK["US30Y"], MK["BTC"]
@@ -447,16 +447,15 @@ story += [tt, PageBreak()]
 story += [Paragraph("Monday Nov 2 game plan", S_H1),
           Paragraph("What changed this week, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, Fox Business and Seeking Alpha; prices are Friday's official closes.", S_M), Spacer(1, 6)]
 WKND = [
-    ("Rules", "<b>Mon Nov 2 through Thu Nov 5 are clear</b> (Tuesday is Election Day). Fri Nov 6 is out: jobs report (Rule 3) and Friday (Rule 2). This week's reporters (AEHR, DOCN, CRCL, COHR, ARM, QCOM, AKAM, IONQ, AAOI, IREN, VST): no new options held into their reports. Your SKHY + AVGO entry check runs Monday at 7:40 AM PT."),
-    ("AI spending", "Alphabet fell 12.6% Thu, its worst day ever (~$500B), on a search miss and negative free cash flow (CNBC, Fox Business). Amazon missed on sales and EPS; AWS grew 39% but capex hit $77.3B (CNBC). Microsoft beat with Azure +48% but trimmed capex to $170B on chip-supply delays. All held or trimmed budgets; none cut. Friday the Nasdaq closed −2.86% and the S&amp;P 500 −1.82%; INTC −28.6%."),
+    ("Rules", "<b>Mon Nov 2 through Thu Nov 5 are clear</b> (Tuesday is Election Day). Fri Nov 6 is out: jobs report (Rule 3) and Friday (Rule 2). This week's reporters (AEHR, DOCN, CRCL, COHR, ARM, QCOM, AKAM, IONQ, AAOI, IREN, VST): no new options held into their reports. SKHY + AVGO entry check: Mon 7:40 AM PT."),
+    ("AI spend", "Alphabet fell 12.6% Thu, its worst day ever (~$500B), on a search miss and negative free cash flow (CNBC, Fox Business). Amazon missed on sales and EPS; AWS grew 39% but capex hit $77.3B (CNBC). Microsoft beat with Azure +48% but trimmed capex to $170B on chip-supply delays. Friday the Nasdaq closed −2.86% and the S&amp;P 500 −1.82%; INTC −28.6%."),
     ("Results", "<b>VRT</b> +16% Wed: sales +61%, orders +100%+, 2026 raised to $7.15 EPS. <b>KLAC</b> beat and guided $4.5–4.9B; sees 2027 WFE above $200B. <b>INTC</b> beat but guided Q4 to $0.25 EPS on a PC slowdown; −28.6% Fri, worst day since 1974. <b>COIN</b> revenue $1.20B missed. <b>SKHY</b> +11% in Seoul Wed after its record quarter."),
     ("Fed and data", "Fed held at 3.75–4.00% Wed, 10–2 (Cook and Hammack wanted a hike). Warsh gave no guidance; December hike odds rose to ~83% (CNBC). Q3 GDP +3.4% beat; September PCE 3.6% y/y, core 3.1% (CNBC)."),
     ("Your lists", "Updated Oct 30 in your broker's order. Top 5: <b>SKHY, INTC, AVGO, AMZN, SPCX</b> (TER and GLW moved to the Portfolio). 2026 Portfolio now starts with MRVL and adds <b>GOOGL</b> and IONQ. 15–50% Dip adds <b>HPE, FTNT and NOW</b>. LRCX is off. 39 names."),
-    ("Software hit", "<b>NOW</b> fell 27% Thu (record) on weaker cRPO guidance despite a beat and AI contract value up 65% (CNBC). <b>FTNT</b> fell ~21–25% on a gross-margin miss despite raising billings guidance again (Seeking Alpha). AI-disruption fears are hitting software."),
+    ("Software", "<b>NOW</b> fell 27% Thu (record) on weaker cRPO guidance despite a beat and AI contract value up 65% (CNBC). <b>FTNT</b> fell ~21–25% on a gross-margin miss despite raising billings guidance again (Seeking Alpha). AI-disruption fears are hitting software."),
     ("Deals and crypto", "<b>MRVL</b> is in advanced talks to buy Lumentum in an all-stock deal (Bloomberg); MRVL fell 11%+. Binance lost a record $6.3B to a hack (Bloomberg); bitcoin fell under $77K and Circle froze $800M of USDC tied to it (CNBC)."),
 ]
-]
-wk = Table([[Paragraph(f'<font name="DVB">{X(a)}</font>', S_SM), Paragraph(b, S_B)] for a, b in WKND], colWidths=[0.75 * inch, CW - 0.75 * inch])
+wk = Table([[Paragraph(f'<font name="DVB">{X(a)}</font>', S_SM), Paragraph(b, S_B)] for a, b in WKND], colWidths=[0.9 * inch, CW - 0.9 * inch])
 wk.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LINEBELOW", (0, 0), (-1, -2), 0.4, LINE),
                         ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
                         ("BACKGROUND", (0, 0), (-1, 0), OKBG), ("LINEBEFORE", (0, 0), (0, 0), 3, OK)]))
@@ -467,7 +466,7 @@ mv = sorted(((t, ST[t]["day"]) for _, _, ns in C.LISTS for t in ns), key=lambda 
 dn, up = mv[:5], mv[::-1][:5]
 def mvcell(xs):
     return Paragraph(" · ".join(f'<font name="DVB">{t}</font> {pc(v, False)}' for t, v in xs), S_B)
-mt = Table([[Paragraph("FRIDAY'S BIGGEST GAINERS", S_LAB), Paragraph("FRIDAY'S BIGGEST DECLINERS", S_LAB)], [mvcell(up), mvcell(dn)]],
+mt = Table([[Paragraph("FRIDAY'S BIGGEST GAINERS" if up[0][1] > 0 else "HELD UP BEST FRIDAY (ALL FELL)", S_LAB), Paragraph("FRIDAY'S BIGGEST DECLINERS", S_LAB)], [mvcell(up), mvcell(dn)]],
            colWidths=[CW / 2] * 2)
 mt.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, -1), CHIP), ("VALIGN", (0, 0), (-1, -1), "TOP"),
                         ("LINEAFTER", (0, 0), (0, -1), 4, colors.white), ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5)]))
@@ -589,7 +588,7 @@ for key, label, names in C.LISTS:
                      Paragraph(pc(s["day"], False), st("rr2", fontSize=8.4, alignment=TA_RIGHT)), Paragraph(pc(s["m1"]), st("rr3", fontSize=8.4, alignment=TA_RIGHT)),
                      Paragraph(pc(s["m3"]), st("rr4", fontSize=8.4, alignment=TA_RIGHT)), Paragraph(pc(s["offhi"], False), st("rr5", fontSize=8.4, alignment=TA_RIGHT)),
                      Image(spark(t), width=1.1 * inch, height=0.23 * inch), Paragraph(vlabel(t), S_SM), Paragraph(ne, S_SM)])
-    gt = Table(data, colWidths=[0.58 * inch, 0.76 * inch, 0.62 * inch, 0.66 * inch, 0.74 * inch, 0.78 * inch, 1.14 * inch, 0.78 * inch, CW - 6.06 * inch], repeatRows=1)
+    gt = Table(data, colWidths=[0.68 * inch, 0.76 * inch, 0.62 * inch, 0.66 * inch, 0.74 * inch, 0.78 * inch, 1.14 * inch, 0.78 * inch, CW - 6.16 * inch], repeatRows=1)
     gt.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.6), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.6),
                             ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE), ("ALIGN", (1, 0), (5, 0), "RIGHT")]))
     story += [KeepTogether([Paragraph(f"{X(label)} <font size='8' color='#62656e'>· {len(names)} names in your order</font>", S_H2), gt])]
@@ -615,7 +614,7 @@ for key, label, names in C.LISTS:
                       Paragraph(f'${c["lowPriceTarget"]:,.0f}–${c["highPriceTarget"]:,.0f}' if c else "–", S_T7R),
                       Paragraph(f'{c["buy"]}/{c["hold"]}/{c["sell"]}' if c else "–", S_T7R),
                       Paragraph(" · ".join(pt_named(t, short=True)) or '<font color="#62656e">none reported recently</font>', S_T7)])
-ptab = Table(pdata, colWidths=[0.6 * inch, 0.66 * inch, 0.62 * inch, 0.7 * inch, 0.92 * inch, 0.55 * inch, CW - 4.05 * inch], repeatRows=1)
+ptab = Table(pdata, colWidths=[0.7 * inch, 0.66 * inch, 0.62 * inch, 0.7 * inch, 0.92 * inch, 0.55 * inch, CW - 4.15 * inch], repeatRows=1)
 ptab.setStyle(TableStyle(psty))
 story.append(KeepInFrame(CW, FRAME_H - 60, [ptab], mode="shrink"))
 
@@ -647,7 +646,7 @@ for key, label, names in C.LISTS:
                      Paragraph(f'{v["ratio"]:.2f}' if v["ratio"] else (f'{xv["ratio"]:.2f}*' if xv else "–"), S_T8R),
                      Paragraph(f'{fmt_d(dt.date.fromisoformat(v["exp"]), False)} ({v["dte"]}d)' if v["exp"] else "–", S_T8),
                      Paragraph(em, S_T8), Paragraph("; ".join(notes), st("t8m", fontSize=7.4, leading=9.5, textColor=WARN))])
-it = Table(data, colWidths=[0.62 * inch, 0.75 * inch, 0.52 * inch, 0.65 * inch, 0.55 * inch, 0.95 * inch, 1.45 * inch, CW - 5.49 * inch], repeatRows=1)
+it = Table(data, colWidths=[0.72 * inch, 0.75 * inch, 0.52 * inch, 0.65 * inch, 0.55 * inch, 0.95 * inch, 1.45 * inch, CW - 5.59 * inch], repeatRows=1)
 it.setStyle(TableStyle(sty))
 ivp = story.index(IVP_START)
 story[ivp + 1:] = [KeepInFrame(CW, FRAME_H - 2, story[ivp + 1:] + [it], mode="shrink")]
