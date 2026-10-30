@@ -165,7 +165,7 @@ S["GLW"] = dict(
 
 S["INTC"] = dict(
  name="Intel", what="CPUs (PC and data center) and a contract foundry (18A / 14A).",
- results="Q3 (Oct 29): revenue $16.51B, up 21%, in line with $16.50B expected; adjusted EPS $0.52 vs $0.40. Data-center and AI segment had its fastest growth in 15 years. The stock fell ~31% Friday, its worst day since 1974 (CNBC).",
+ results="Q3 (Oct 29): revenue $16.51B, up 21%, in line with $16.50B expected; adjusted EPS $0.52 vs $0.40. Data-center and AI segment had its fastest growth in 15 years. The stock fell 28.6% Friday, its worst day since 1974 (CNBC).",
  guide="Q4 revenue $15–16B and adjusted EPS $0.25, below estimates. CFO Zinsner: 'We see the PC slowdown continuing at least through the first half of next year' (memory costs). 18A ramp continues; 14A customer decisions expected into 1H 2027.",
  capex="Arizona fab tools being installed (Wedbush says this supports revenue growth).",
  partners=["Applied Materials collaboration", "Musk's Terafab project", "Agentic AI is lifting CPU demand (Mizuho)"],

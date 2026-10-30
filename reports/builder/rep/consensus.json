@@ -7,6 +7,14 @@
   "status": "",
   "prior": null
  },
+ "INTC": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
  "AVGO": {
   "ann": "Dec 10, 2026",
   "eps": "3.45.",
@@ -15,15 +23,7 @@
   "status": "expected",
   "prior": "1.61."
  },
- "TER": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "GLW": {
+ "AMZN": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -39,37 +39,13 @@
   "status": "",
   "prior": null
  },
- "HOOD": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "ORCL": {
-  "ann": "Dec 9, 2026",
-  "eps": "1.57.",
-  "n": "10",
+ "MRVL": {
+  "ann": "Dec 1, 2026",
+  "eps": "0.79.",
+  "n": "12",
   "time": "",
   "status": "expected",
-  "prior": "1.95."
- },
- "AMZN": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "AMAT": {
-  "ann": "Nov 12, 2026",
-  "eps": "4.06.",
-  "n": "10",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "2.17."
+  "prior": "0.62."
  },
  "CIEN": {
   "ann": "Dec 10, 2026",
@@ -87,23 +63,7 @@
   "status": "",
   "prior": null
  },
- "CRDO": {
-  "ann": "Dec 7, 2026",
-  "eps": "1.03.",
-  "n": "6",
-  "time": "",
-  "status": "expected",
-  "prior": "0.44."
- },
- "COHR": {
-  "ann": "Nov 04, 2026",
-  "eps": "1.78.",
-  "n": "8",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "0.93."
- },
- "INTC": {
+ "TER": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -111,21 +71,13 @@
   "status": "",
   "prior": null
  },
- "ARM": {
-  "ann": "Nov 04, 2026",
-  "eps": "0.22.",
-  "n": "7",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "0.15."
- },
- "MRVL": {
-  "ann": "Dec 1, 2026",
-  "eps": "0.79.",
-  "n": "12",
+ "CRDO": {
+  "ann": "Dec 7, 2026",
+  "eps": "1.03.",
+  "n": "6",
   "time": "",
   "status": "expected",
-  "prior": "0.62."
+  "prior": "0.44."
  },
  "NVDA": {
   "ann": "Nov 17, 2026",
@@ -135,6 +87,70 @@
   "status": "expected",
   "prior": "1.24."
  },
+ "COHR": {
+  "ann": "Nov 04, 2026",
+  "eps": "1.78.",
+  "n": "8",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0.93."
+ },
+ "ARM": {
+  "ann": "Nov 04, 2026",
+  "eps": "0.22.",
+  "n": "7",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0.15."
+ },
+ "AMAT": {
+  "ann": "Nov 12, 2026",
+  "eps": "4.06.",
+  "n": "10",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "2.17."
+ },
+ "HOOD": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "GOOGL": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "GLW": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "ORCL": {
+  "ann": "Dec 9, 2026",
+  "eps": "1.57.",
+  "n": "10",
+  "time": "",
+  "status": "expected",
+  "prior": "1.95."
+ },
+ "KLAC": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
  "VRT": {
   "ann": "",
   "eps": null,
@@ -143,7 +159,39 @@
   "status": "",
   "prior": null
  },
- "KLAC": {
+ "IONQ": {
+  "ann": "Nov 05, 2026",
+  "eps": "-0.79.",
+  "n": "1",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "-3.58."
+ },
+ "HPE": {
+  "ann": "Dec 3, 2026",
+  "eps": "1.17.",
+  "n": "7",
+  "time": "",
+  "status": "expected",
+  "prior": "0.54."
+ },
+ "NBIS": {
+  "ann": "Nov 10, 2026",
+  "eps": "-0.43.",
+  "n": "5",
+  "time": "",
+  "status": "expected",
+  "prior": "-0.39."
+ },
+ "DOCN": {
+  "ann": "Nov 03, 2026",
+  "eps": "0.11.",
+  "n": "6",
+  "time": "BMO",
+  "status": "expected",
+  "prior": "0.38."
+ },
+ "FTNT": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -159,21 +207,13 @@
   "status": "",
   "prior": null
  },
- "LRCX": {
+ "NOW": {
   "ann": "",
   "eps": null,
   "n": null,
   "time": "",
   "status": "",
   "prior": null
- },
- "NBIS": {
-  "ann": "Nov 10, 2026",
-  "eps": "-0.43.",
-  "n": "5",
-  "time": "",
-  "status": "expected",
-  "prior": "-0.39."
  },
  "CRWV": {
   "ann": "Nov 10, 2026",
@@ -199,6 +239,14 @@
   "status": "expected",
   "prior": "2.56."
  },
+ "NOK": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
  "AKAM": {
   "ann": "Nov 05, 2026",
   "eps": "0.92.",
@@ -207,14 +255,6 @@
   "status": "expected",
   "prior": "1.06."
  },
- "DOCN": {
-  "ann": "Nov 03, 2026",
-  "eps": "0.11.",
-  "n": "6",
-  "time": "BMO",
-  "status": "expected",
-  "prior": "0.38."
- },
  "AEHR": {
   "ann": "Nov 02, 2026",
   "eps": "0.05.",
@@ -222,22 +262,6 @@
   "time": "AMC",
   "status": "expected",
   "prior": "-0.05."
- },
- "IONQ": {
-  "ann": "Nov 05, 2026",
-  "eps": "-0.79.",
-  "n": "1",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "-3.58."
- },
- "NOK": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
  },
  "AAOI": {
   "ann": "Nov 05, 2026",

@@ -20,7 +20,7 @@ Run everything from this folder with `/usr/bin/python3` (needs reportlab + matpl
    targets (JPMorgan, BofA, Morgan Stanley, Goldman Sachs, Oppenheimer, Mizuho first; 3–5 per name; firm, rating, target, date,
    outlet, link) from his outlets. Also update `RULE3_DAYS` / `HOLIDAYS` in `pdf/mkpdf.py`.
 6. **Research**: rewrite each name's entry in `rep/content.py` (results, guidance, capex, partners,
-   catalysts, macro, risks, sources). A name new to the lists has no entry yet (AEHR and NOK, added Oct 28): add a full `S["<TICKER>"]` entry
+   catalysts, macro, risks, sources). A name new to the lists has no entry yet (GOOGL, HPE, FTNT and NOW were added Oct 30; 39 names now): add a full `S["<TICKER>"]` entry
    for it, plus its targets, before building and every block in `pdf/mkpdf.py` marked `EDIT EACH MONTH`
    (dates, week table, tiles, game plan, themes, key dates). His 16 outlets only, never Yahoo,
    verified facts only.
