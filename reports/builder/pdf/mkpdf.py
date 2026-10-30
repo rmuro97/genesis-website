@@ -29,15 +29,15 @@ H = json.load(open(os.path.join(HERE, "hist.json")))
 PX = {t["ticker"]: t for t in P["tickers"]}
 MK = {m["key"]: m for m in P["market"]}
 # EDIT EACH MONTH: TODAY = the edition date (the Monday after the build Sunday); NEXT_SESSION = first trading day.
-TODAY = dt.date(2026, 10, 28)
-NEXT_SESSION = dt.date(2026, 10, 28)
+TODAY = dt.date(2026, 11, 2)
+NEXT_SESSION = dt.date(2026, 11, 2)
 LAST = max(dt.date.fromisoformat(r[-1][0]) for r in H.values())  # last official close in pdf/hist.json
 # EDIT EACH MONTH: Rule 3 data days (FOMC, CPI, PCE, PPI, jobs, GDP) and market holidays for the next ~2 months
 RULE3_DAYS = {dt.date(2026, 10, 28), dt.date(2026, 10, 29), dt.date(2026, 11, 6), dt.date(2026, 11, 10), dt.date(2026, 11, 13),
               dt.date(2026, 11, 25), dt.date(2026, 12, 4), dt.date(2026, 12, 9), dt.date(2026, 12, 10)}
 HOLIDAYS = {dt.date(2026, 11, 26), dt.date(2026, 12, 25)}
 # EDIT EACH MONTH: names that reported after the last close in hist.json: their option prices predate the report
-PRE_REPORT = {"SKHY", "TER", "HOOD"}
+PRE_REPORT = set()
 CH = os.path.join(HERE, "charts")
 os.makedirs(CH, exist_ok=True)
 
@@ -329,17 +329,17 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY STOCK ANALYSIS", S_LAB), Spacer(1, 4),
           Paragraph("Stock Analysis", S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph("All 36 names on your lists, in your order: 3-month price charts, price moves, earnings, guidance, capex, partnerships, catalysts and the market events that can move each one. Updated Wednesday Oct 28, 2026 for your new lists (AEHR and NOK added, BAC and RDDT removed) and this week's results from SK hynix, Teradyne, Corning and Robinhood. Prices are official Nasdaq closes through Tuesday Oct 27. Times are Pacific.", S_BL),
+          Paragraph("All 36 names on your lists, in your order: 3-month price charts, price moves, earnings, guidance, capex, partnerships, catalysts and the market events that can move each one. Updated for Monday Nov 2, 2026: your Oct 28 lists, this week's results (SK hynix, Teradyne, Corning, Robinhood, Vertiv, KLA, Amazon, Intel, Coinbase), the Fed's hold and Friday's tech selloff. Prices are official Nasdaq closes through Friday Oct 30. Times are Pacific.", S_BL),
           Spacer(1, 5),
-          Paragraph("Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, WSJ, Seeking Alpha and Al Jazeera, plus company releases and filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
+          Paragraph("Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Fox Business, WSJ, Seeking Alpha and Al Jazeera, plus company releases and filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
 # EDIT EACH MONTH (editorial: verified facts only)
 WEEK = [
-    ("Wed Oct 28", "bad", "FOMC at 11:00 AM PT, so no trades (Rule 3). Vertiv reports before the open; KLA, Microsoft and Alphabet report after the close."),
-    ("Thu Oct 29", "bad", "GDP and PCE at 5:30 AM PT, so no trades (Rule 3). Amazon, Intel and Coinbase report after the close."),
-    ("Fri Oct 30", "warn", "Friday, so no new trades (Rule 2). Employment Cost Index at 5:30 AM PT."),
     ("Mon Nov 2", "ok", "Clear for trading. Aehr and Apple report after the close, so no new AEHR options."),
     ("Tue Nov 3", "ok", "Clear for trading, but it's Election Day. DigitalOcean reports before the open (no new DOCN options); AMD, Arista, Astera Labs and Super Micro after the close."),
+    ("Wed Nov 4", "ok", "Clear for trading. Circle reports before the open; Coherent, Arm and Qualcomm after the close (no new options on those four)."),
+    ("Thu Nov 5", "ok", "Clear for trading. Akamai, IonQ, Applied Optoelectronics and IREN report (no new options on those four)."),
+    ("Fri Nov 6", "bad", "October jobs report at 5:30 AM PT and a Friday, so no new trades (Rules 2 and 3). Vistra reports."),
 ]
 TONE = {"ok": (OK, OKBG), "bad": (BAD, BADBG), "warn": (WARN, WARNBG)}
 
@@ -416,18 +416,19 @@ for i, (_, tone, _) in enumerate(WEEK):
 wt.setStyle(TableStyle(ws)); story.append(wt)
 
 story += [PageBreak(), Paragraph("Market backdrop", S_H1),
-          box([Paragraph('<font color="#b42318"><b>Headwind.</b></font> Rates near 5%, hot inflation, a Fed decision today and Brent near $116 weigh on high-multiple growth. The offset is hyperscaler capex: Microsoft and Alphabet tonight and Amazon tomorrow decide whether the AI build-out keeps getting funded.', S_B)], BADBG),
+          box([Paragraph('<font color="#b42318"><b>Headwind.</b></font> The market turned on AI spending this week. Alphabet had its worst day ever (−12.6%) on a search miss and cash burn, Amazon's $77B quarterly capex drove free cash flow to −$42B, and Intel's guide sank it ~31% Friday. Add a Fed that held but leans toward a December hike, 3.6% PCE inflation, a 10-year near 4.9%, Brent near $115 and a record $6.3B crypto hack. The offset: capex budgets were held, not cut, and Vertiv, KLA and SK hynix posted blowout quarters.', S_B)], BADBG),
           Spacer(1, 6)]
+BRENT = ("$114.88", "Thu Oct 29 settle (CNBC) · eased on U.S.–Iran talk reports")
 spx, comp, y10, y30, btc = MK["SPX"], MK["COMP"], MK["US10Y"], MK["US30Y"], MK["BTC"]
 # EDIT EACH MONTH (editorial: verified facts only; the Headwind box above too)
-TILES = [("FED FUNDS", "3.75–4.00%", "Hiked 25 bp Sep 16 · decision today, 11:00 AM PT", BAD),
-         ("CPI (SEP)", "3.7% y/y", "Core 2.6% · hotter than expected", BAD),
-         ("PPI (SEP)", "+1.3% m/m", "6.3% y/y · biggest rise in 4+ years", BAD),
-         ("10-YR YIELD", f"{y10['price']:.2f}%", f"30-yr {y30['price']:.2f}% · Tue close", WARN),
-         ("BRENT CRUDE", "$115.81", "Mon settle, −0.8% (Bloomberg) · slid Tue on Mideast diplomacy", BAD),
-         ("S&P 500", f"{spx['price']:,.0f}", f"{spx['chg']:+.2f}% Tue · Nasdaq {comp['chg']:+.2f}%", INK),
-         ("BITCOIN", f"${btc['price']:,.0f}", f"{btc['chg']:+.2f}% Tue · moves COIN, HOOD, CRCL, IREN", INK),
-         ("NEXT BIG EVENTS", "Oct 28–29", "FOMC today, then GDP/PCE + Amazon", INK)]
+TILES = [("FED FUNDS", "3.75–4.00%", "Held Oct 28 (10–2, two wanted a hike) · Dec hike odds ~83% (CNBC)", BAD),
+         ("PCE (SEP)", "3.6% y/y", "Core 3.1% · Q3 GDP +3.4% (CNBC)", BAD),
+         ("CPI (SEP)", "3.7% y/y", "October CPI Tue Nov 10 (Rule 3 day)", BAD),
+         ("10-YR YIELD", f"{y10['price']:.2f}%", f"30-yr {y30['price']:.2f}% · Fri close", WARN),
+         ("BRENT CRUDE", BRENT[0], BRENT[1], BAD),
+         ("S&P 500", f"{spx['price']:,.0f}", f"{spx['chg']:+.2f}% Fri · Nasdaq {comp['chg']:+.2f}%", INK),
+         ("BITCOIN", f"${btc['price']:,.0f}", f"{btc['chg']:+.2f}% Fri · Binance $6.3B hack", INK),
+         ("NEXT BIG EVENTS", "Nov 3–6", "Election Tue · jobs report Fri", INK)]
 cells = [[Paragraph(X(a), S_LAB), Paragraph(f'<font name="DVB" size="14" color="{c.hexval().replace("0x", "#")}">{X(b)}</font>', st("tv", leading=18)), Paragraph(X(s_), S_M)] for a, b, s_, c in TILES]
 tw = (CW - 3 * 6) / 4
 tt = Table([cells[0:4], cells[4:8]], colWidths=[tw] * 4, rowHeights=None)
@@ -443,27 +444,28 @@ story += [tt, PageBreak()]
 
 # EDIT EACH MONTH (editorial: verified facts only)
 # Monday game plan
-story += [Paragraph("Wednesday Oct 28 game plan", S_H1),
-          Paragraph("What changed since Monday, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, WSJ and Seeking Alpha; prices are Tuesday's official closes.", S_M), Spacer(1, 6)]
+story += [Paragraph("Monday Nov 2 game plan", S_H1),
+          Paragraph("What changed this week, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, Fox Business and Seeking Alpha; prices are Friday's official closes.", S_M), Spacer(1, 6)]
 WKND = [
-    ("Rules", "<b>No new trades Wednesday through Friday</b>: FOMC today (11:00 AM PT, Rule 3), GDP and PCE Thursday (Rule 3), and Friday (Rule 2). <b>The next clear days are Mon Nov 2 and Tue Nov 3</b> (Election Day). That fits your plan to enter SKHY and AVGO on Monday."),
-    ("Results", "<b>SKHY</b>: record Q3, operating profit ₩83.3T (80% margin) vs ~₩77T expected, plus ~₩100T of 2026 shareholder returns; shares jumped ~8% (SK hynix, Seeking Alpha). <b>TER</b>: revenue $1.306B and EPS $2.29 beat; Q4 guide $1.25–1.35B. <b>GLW</b>: beat and guided Q4 above estimates, but closed −1.1%. <b>HOOD</b>: EPS $0.60 missed by $0.04; −3.4% after hours."),
-    ("AI trade", "Tuesday's rebound: Nasdaq +1.18%, S&amp;P 500 +0.60%. Chips bounced late (Astera Labs +10%); neoclouds rallied after Crusoe's CEO called the selloff 'overblown' (Bloomberg): NBIS +11%, CRWV +8%. Broadcom +4% on a DA Davidson upgrade and its $63B Anthropic chip-financing deal (WSJ). Oracle will offer Cerebras systems in its cloud (Bloomberg); CBRS +10%."),
-    ("Fed", "Decision today at 11:00 AM PT, then Warsh's press conference. A hold is expected (~90% per fed funds futures, Bloomberg Oct 26 wrap), but Warsh may signal more hikes (CNBC). 10-year closed Tuesday near 5.0%."),
-    ("Your lists", "Updated Oct 28 in your broker's order. Top 5: SKHY, AVGO, TER, GLW, SPCX. 2026 Portfolio now starts with HOOD and ORCL and adds VICR. 15–50% Dip now starts with BE and adds QCOM, plus two new names, <b>AEHR</b> (reports Nov 2) and <b>NOK</b>. BAC and RDDT are off."),
+    ("Rules", "<b>Mon Nov 2 through Thu Nov 5 are clear</b> (Tuesday is Election Day). Fri Nov 6 is out: jobs report (Rule 3) and Friday (Rule 2). This week's reporters (AEHR, DOCN, CRCL, COHR, ARM, QCOM, AKAM, IONQ, AAOI, IREN, VST): no new options held into their reports. Your SKHY + AVGO entry check runs Monday at 7:40 AM PT."),
+    ("AI spending", "Alphabet fell 12.6% Thu, its worst day ever (~$500B), on a search miss and negative free cash flow (CNBC, Fox Business). Amazon missed on sales and EPS; AWS grew 39% but capex hit $77.3B (CNBC). Microsoft beat with Azure +48% but trimmed capex to $170B on chip-supply delays. All held or trimmed budgets; none cut. Friday the Nasdaq was −3.6% at 11:30 AM PT."),
+    ("Results", "<b>VRT</b> +16% Wed: sales +61%, orders +100%+, 2026 raised to $7.15 EPS. <b>KLAC</b> beat and guided $4.5–4.9B; sees 2027 WFE above $200B. <b>INTC</b> beat but guided Q4 to $0.25 EPS on a PC slowdown; ~−31% Fri, worst day since 1974. <b>COIN</b> revenue $1.20B missed. <b>SKHY</b> +11% in Seoul Wed after its record quarter."),
+    ("Fed and data", "Fed held at 3.75–4.00% Wed, 10–2 (Cook and Hammack wanted a hike). Warsh gave no guidance; December hike odds rose to ~83% (CNBC). Q3 GDP +3.4% beat; September PCE 3.6% y/y, core 3.1% (CNBC)."),
+    ("Deals and crypto", "<b>MRVL</b> is in advanced talks to buy Lumentum in an all-stock deal (Bloomberg); MRVL fell 11%+. Binance lost a record $6.3B to a hack (Bloomberg); bitcoin fell under $77K and Circle froze $800M of USDC tied to it (CNBC)."),
+]
 ]
 wk = Table([[Paragraph(f'<font name="DVB">{X(a)}</font>', S_SM), Paragraph(b, S_B)] for a, b in WKND], colWidths=[0.75 * inch, CW - 0.75 * inch])
 wk.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LINEBELOW", (0, 0), (-1, -2), 0.4, LINE),
                         ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
                         ("BACKGROUND", (0, 0), (-1, 0), OKBG), ("LINEBEFORE", (0, 0), (0, 0), 3, OK)]))
-story += [Paragraph("Update since Monday", S_H2), wk, Spacer(1, 8)]
+story += [Paragraph("This week in review", S_H2), wk, Spacer(1, 8)]
 
-# Tuesday's biggest movers on his lists, from official closes
+# Friday's biggest movers on his lists, from official closes
 mv = sorted(((t, ST[t]["day"]) for _, _, ns in C.LISTS for t in ns), key=lambda x: x[1])
 dn, up = mv[:5], mv[::-1][:5]
 def mvcell(xs):
     return Paragraph(" · ".join(f'<font name="DVB">{t}</font> {pc(v, False)}' for t, v in xs), S_B)
-mt = Table([[Paragraph("TUESDAY'S BIGGEST GAINERS", S_LAB), Paragraph("TUESDAY'S BIGGEST DECLINERS", S_LAB)], [mvcell(up), mvcell(dn)]],
+mt = Table([[Paragraph("FRIDAY'S BIGGEST GAINERS", S_LAB), Paragraph("FRIDAY'S BIGGEST DECLINERS", S_LAB)], [mvcell(up), mvcell(dn)]],
            colWidths=[CW / 2] * 2)
 mt.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, -1), CHIP), ("VALIGN", (0, 0), (-1, -1), "TOP"),
                         ("LINEAFTER", (0, 0), (0, -1), 4, colors.white), ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5)]))
@@ -507,14 +509,13 @@ story += [KeepTogether([Paragraph("Daily schedule (PT)", S_H2), sc]), PageBreak(
 
 # EDIT EACH MONTH (editorial: verified facts only)
 THEMES = [
-    ("Rates and the Fed", "The Fed raised rates in September for the first time since 2023. Hot CPI (3.7%) and PPI kept another hike in play. For today's decision, fed funds futures price about a 90% chance of a hold (Bloomberg, Oct 26), but CNBC says Warsh may signal more hikes, and a December hike was priced near 90% in mid-October. The 10-year is near 5%. That is the biggest pressure on high-multiple growth names: AI optics, neoclouds and quantum.", "All 36, most of all IONQ, CRWV, NBIS, IREN, AAOI, CBRS, AEHR"),
-    ("AI capex: the core driver", "Microsoft and Alphabet report tonight and Amazon tomorrow. Their capex guidance feeds straight into Nvidia, Broadcom, Marvell, Credo, the optics names, Vertiv, Corning, Nokia and the chip-equipment makers. Corning's Q4 guide beat estimates on AI fiber demand, and Nokia expects its optical and IP business to grow 25–30% in 2027.", "NVDA, AVGO, MRVL, CRDO, CIEN, COHR, GLW, NOK, AAOI, VRT, AMZN"),
-    ("AI credit stress", "Worries about debt-funded data centers hit the neoclouds in mid-October. Tuesday brought relief: Crusoe's CEO called the selloff overblown (Bloomberg) and Broadcom sealed a $63B Anthropic chip-financing package (WSJ). Debt-backed demand lowers customer-funding risk but keeps the cycle tied to credit markets.", "CRWV, NBIS, DOCN, IREN, ORCL, BE, AVGO, SPCX"),
-    ("Memory boom", "SK hynix posted record Q3 profit (80% operating margin), says HBM4 overtakes HBM3E in Q4, and sees demand above supply through 2030. Memory strength helps chip-test and equipment makers, but rising memory costs squeeze Nvidia's margins, Intel's PC outlook, Qualcomm's handsets and Amazon's capex.", "SKHY, TER, AEHR, LRCX, AMAT, NVDA, INTC, QCOM"),
-    ("Chip equipment and test", "Teradyne beat and guided Q4 roughly flat at the midpoint. KLA reports tonight and Applied Materials Nov 12; Applied raised its BE Semiconductor stake to about 20% (Bloomberg). Aehr reports Nov 2. China export rules still limit sales.", "TER, KLAC, AMAT, LRCX, AEHR, SKHY"),
-    ("Oil and inflation", "Brent settled at $115.81 on Monday (Bloomberg) near its highest since April on Iran and Strait of Hormuz risk, then slid Tuesday on Middle East diplomacy (WSJ, CNBC). OPEC+ meets around Nov 1. Higher oil feeds inflation and keeps the Fed hawkish. Power and utility names react to energy prices too.", "VST, BE, broad market"),
-    ("Crypto", "Bitcoin was about $80.8K at Tuesday's close. Crypto volumes and prices drive Coinbase, Robinhood and Circle, and IREN's legacy mining business. Robinhood's Q3 showed the crypto slump (crypto revenue down) offset by options and event contracts.", "COIN, HOOD, CRCL, IREN"),
-    ("Event risk ahead", "Midterm elections Nov 3; Nvidia earnings Nov 18 (the biggest single read-through for the AI names); Nvidia GTC DC and AWS re:Invent Nov 30–Dec 4.", "All 36"),
+    ("AI spending under scrutiny", "The market now rewards companies that show a return on AI spending and punishes cash burn. Alphabet had its worst day ever, Amazon's free cash flow is −$42.4B over 12 months, and Intel's weak guide hit the whole chip group Friday. But budgets were held (Amazon $220B, Alphabet $195–205B) or trimmed only for supply (Microsoft $170B), so suppliers' orders are still intact: Vertiv's orders doubled and KLA raised its outlook.", "NVDA, AVGO, MRVL, CRDO, CIEN, COHR, GLW, NOK, AAOI, VRT, AMZN, ORCL, CRWV, NBIS"),
+    ("Rates and the Fed", "The Fed held Oct 28 but two officials wanted a hike, and December hike odds rose to ~83% (CNBC). September PCE ran 3.6% with core at 3.1%, and Q3 GDP grew 3.4%. October CPI (Tue Nov 10) is the next big test. The 10-year near 4.9% keeps pressure on high-multiple names.", "All 36, most of all IONQ, CRWV, NBIS, IREN, AAOI, CBRS, AEHR"),
+    ("Memory and chip equipment", "SK hynix's record quarter (80% operating margin) and KLA's outlook (2027 wafer-equipment spending above $200B) show the supply chain is still booming, even as memory costs squeeze PCs (Intel) and handsets. Applied Materials reports Nov 12; Aehr reports Nov 2.", "SKHY, TER, AEHR, LRCX, AMAT, KLAC, INTC, QCOM"),
+    ("Optics consolidation", "Marvell is in advanced talks to buy Lumentum, whose CEO says optical parts are sold out into early 2029 (Bloomberg). A deal would reshape the optics group; Coherent reports Wed Nov 4 and AAOI Thu Nov 5.", "MRVL, COHR, AAOI, CIEN, CRDO, GLW, NOK, AVGO"),
+    ("Crypto shock", "Binance's $6.3B hack (Oct 29), attributed to North Korea's TraderTraitor, pushed bitcoin under $77K. Binance says it will cover losses; about $3B was frozen, including $800M of USDC by Circle (Bloomberg, CNBC). Coinbase also missed on revenue.", "COIN, HOOD, CRCL, IREN"),
+    ("Oil", "Brent settled at $114.88 Thursday, easing on reports of renewed U.S.–Iran talks, with Houthi and post-election military risks still in play (CNBC). Higher oil feeds inflation and keeps the Fed hawkish.", "VST, BE, broad market"),
+    ("Event risk ahead", "Midterm elections Tue Nov 3; jobs report Fri Nov 6; CPI Tue Nov 10; Nvidia earnings Nov 17 (the biggest single read-through for the AI names); Nvidia GTC DC and AWS re:Invent Nov 30–Dec 4.", "All 36"),
 ]
 story.append(Paragraph("Market themes that can move your stocks", S_H1))
 for a, b, c in THEMES:
@@ -523,11 +524,6 @@ for a, b, c in THEMES:
 # Key dates
 # EDIT EACH MONTH (editorial: verified facts only)
 MACRO = [
-    ("2026-10-28", "11:00 AM", "FOMC rate decision + Warsh press conference (11:30 AM)", "m", "rule3"),
-    ("2026-10-28", "after close", "Microsoft and Alphabet earnings: AI capex read-through", "r", ""),
-    ("2026-10-29", "5:30 AM", "Q3 GDP (advance) + September PCE inflation", "m", "rule3"),
-    ("2026-10-30", "5:30 AM", "Employment Cost Index (Q3)", "m2", ""),
-    ("2026-11-01", "TBD", "OPEC+ monthly meeting (oil supply)", "m2", ""),
     ("2026-11-02", "after close", "Apple earnings", "r", ""),
     ("2026-11-03", "all day", "U.S. midterm elections; AMD, Arista, Astera Labs and Super Micro earnings", "r", ""),
     ("2026-11-06", "5:30 AM", "October jobs report", "m", "rule3"),

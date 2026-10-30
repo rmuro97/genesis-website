@@ -50,18 +50,18 @@
  "ORCL": {
   "ann": "Dec 9, 2026",
   "eps": "1.57.",
-  "n": "9",
+  "n": "10",
   "time": "",
   "status": "expected",
   "prior": "1.95."
  },
  "AMZN": {
-  "ann": "Oct 29, 2026",
-  "eps": "2.01.",
-  "n": "14",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "1.95."
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "AMAT": {
   "ann": "Nov 12, 2026",
@@ -104,12 +104,12 @@
   "prior": "0.93."
  },
  "INTC": {
-  "ann": "Oct 29, 2026",
-  "eps": "0.28.",
-  "n": "13",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "0.11."
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "ARM": {
   "ann": "Nov 04, 2026",
@@ -128,28 +128,28 @@
   "prior": "0.62."
  },
  "NVDA": {
-  "ann": "Nov 18, 2026",
+  "ann": "Nov 17, 2026",
   "eps": "2.49.",
   "n": "13",
-  "time": "",
+  "time": "AMC",
   "status": "expected",
   "prior": "1.24."
  },
  "VRT": {
-  "ann": "Oct 28, 2026",
-  "eps": "1.82.",
-  "n": "7",
-  "time": "BMO",
-  "status": "expected",
-  "prior": "1.24."
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "KLAC": {
-  "ann": "Oct 28, 2026",
-  "eps": "1.18.",
-  "n": "8",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "0.88."
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "BE": {
   "ann": "",
@@ -176,10 +176,10 @@
   "prior": "-0.39."
  },
  "CRWV": {
-  "ann": "Nov 9, 2026",
-  "eps": "-1.5.",
-  "n": "9",
-  "time": "",
+  "ann": "Nov 10, 2026",
+  "eps": "-1.45.",
+  "n": "10",
+  "time": "AMC",
   "status": "expected",
   "prior": "-0.31."
  },
@@ -249,19 +249,19 @@
  },
  "VST": {
   "ann": "Nov 06, 2026",
-  "eps": "2.87.",
-  "n": "3",
+  "eps": "2.26.",
+  "n": "4",
   "time": "BMO",
   "status": "expected",
   "prior": "1.75."
  },
  "COIN": {
-  "ann": "Oct 29, 2026",
-  "eps": "-0.15.",
-  "n": "10",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "1.44."
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "CRCL": {
   "ann": "Nov 04, 2026",
