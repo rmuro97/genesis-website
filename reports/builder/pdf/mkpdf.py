@@ -38,6 +38,7 @@ RULE3_DAYS = {dt.date(2026, 10, 28), dt.date(2026, 10, 29), dt.date(2026, 11, 6)
 HOLIDAYS = {dt.date(2026, 11, 26), dt.date(2026, 12, 25)}
 # EDIT EACH MONTH: names that reported after the last close in hist.json: their option prices predate the report
 PRE_REPORT = {"ANET", "ALAB"}
+POST_LIVE = {"DDOG": "live Nov 4 quotes, after its Nov 4 morning report"}  # option IV taken intraday after a same-day report
 CH = os.path.join(HERE, "charts")
 os.makedirs(CH, exist_ok=True)
 
@@ -220,7 +221,9 @@ def iv_rows(t, ei):
         ed = dt.date.fromisoformat(v["exp"])
         txt = (f'<font color="{VCOL[v["verdict"]]}"><b>{v["verdict"]}</b></font> · IV {v["iv"]:.0f}% vs {v["hv"]:.0f}% actual 20-day movement '
                f'(ratio {v["ratio"]:.2f}) on the {fmt_d(ed, False)} expiry, {v["dte"]} DTE.')
-        if t in PRE_REPORT:
+        if t in POST_LIVE:
+            txt += f' <font color="#8a5a00">IV from {POST_LIVE[t]} (stock near ${v["S"]:,.2f}); recheck live before buying.</font>'
+        elif t in PRE_REPORT:
             txt += f' <font color="#8a5a00">These option prices are from before its {fmt_d(ei["last"], False)} after-close report; recheck live before buying.</font>'
         elif v["hv_has_earn"]:
             txt += f' <font color="#8a5a00">Actual movement includes the {fmt_d(ei["last"], False)} earnings move, so "cheap" may be overstated.</font>'
@@ -306,7 +309,7 @@ def on_page(c, doc):
 
 doc = BaseDocTemplate(OUT, pagesize=letter, leftMargin=M, rightMargin=M, topMargin=0.5 * inch, bottomMargin=0.6 * inch,
                       title=TITLE, author="Muro's Investing Analysis",
-                      subject="Price targets, 2026 capex, earnings, guidance, catalysts and market events for 39 stocks")
+                      subject="Price targets, 2026 capex, earnings, guidance, catalysts and market events for 40 stocks")
 FRAME_H = Hh - 1.1 * inch
 frame = Frame(M, 0.6 * inch, W - 2 * M, FRAME_H, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
 doc.addPageTemplates([PageTemplate(id="p", frames=[frame], onPage=on_page)])
@@ -329,7 +332,7 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY REPORT", S_LAB), Spacer(1, 4),
           Paragraph(X(TITLE), S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph("All 39 names on your lists, in your broker's order, each with Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. This edition reflects your Nov 4 lists: <b>ANET, WDC, LRCX, CSCO and ALAB added</b>; GOOGL, AEHR, AAOI, IREN and NOK removed. It also covers this week's news: Marvell's $115B Lumentum deal, Oracle's $20B raise, beats from Arista, Astera Labs, AMD and Super Micro, and the Democratic midterm sweep that hit AI stocks overnight. Prices are official Nasdaq closes through Tuesday Nov 3. Times are Pacific.", S_BL),
+          Paragraph("All 40 names on your lists, in your broker's order, each with a company profile (what it does and specializes in), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. This edition reflects your Nov 4 lists: <b>ANET, WDC, LRCX, CSCO and ALAB added, and Datadog (DDOG) at the top of the 15–50% Dip</b>; GOOGL, AEHR, AAOI, IREN and NOK removed. It also covers this week's news: Marvell's $115B Lumentum deal, Oracle's $20B raise, beats from Arista, Astera Labs, AMD and Super Micro, and the Democratic midterm sweep that hit AI stocks overnight. Prices are official Nasdaq closes through Tuesday Nov 3. Times are Pacific.", S_BL),
           Spacer(1, 5),
           Paragraph("Price targets: Nasdaq consensus (mean, low–high, buy/hold/sell count) for every name, plus named firm targets from your outlets. 2026 capex: spending to date from company SEC filings, with guidance from your outlets where companies give it. Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Seeking Alpha and Fox Business, plus company releases and SEC filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
@@ -357,7 +360,9 @@ for t in OPEN_T:
     lab, pos, _ = LISTPOS[t]
     short = {"Top 5": "Top 5", "2026 Portfolio": "Portfolio"}.get(lab, "Dip")
     note = []
-    if t in PRE_REPORT:
+    if t in POST_LIVE:
+        note.append(POST_LIVE[t])
+    elif t in PRE_REPORT:
         note.append(f"priced before the {fmt_d(ei['last'], False)} report")
     elif v["hv_has_earn"]:
         note.append("incl. last earnings move")
@@ -449,10 +454,10 @@ story += [Paragraph("Wednesday Nov 4 game plan", S_H1),
 WKND = [
     ("Rules", "<b>Wed Nov 4, Thu Nov 5 and Mon Nov 9 are clear.</b> Fri Nov 6 is out (jobs report and a Friday) and Tue Nov 10 is out (CPI). No new options held into reports: CRCL, COHR, ARM, QCOM (Nov 4), AKAM, IONQ (Nov 5), VST (Nov 6), CRWV (Nov 10), CSCO (Nov 11), AMAT, NBIS, CBRS (Nov 12), NVDA (Nov 17)."),
     ("Midterms", "Democrats are projected to take both chambers (AP). The Texas governor-elect pledged a data-center moratorium and an end to tax incentives. Traders read that as slower AI buildout: futures fell, the Nikkei dropped 4.5%, and SK hynix (−5.1%), SpaceX (−5–6%) and CoreWeave (−3.4%) fell overnight. Trump said he expects to “work with the Democrats” (CNBC)."),
-    ("Results", "<b>ANET</b> +12% after hours: Q4 guide $3.9–4.0B vs $3.60B expected. <b>ALAB</b> revenue $584.9M (+154%), Q4 guide $730–750M. <b>DOCN</b> revenue +40%, 2027 growth 60%+ expected. AMD beat (EPS $2.09 vs $1.95) and Super Micro guided FY27 sales of $72–82B. Skyworks fell 16% on its guide."),
+    ("Results", "<b>ANET</b> +12% after hours: Q4 guide $3.9–4.0B vs $3.60B expected. <b>ALAB</b> revenue $584.9M (+154%), Q4 guide $730–750M. <b>DOCN</b> revenue +40%, 2027 growth 60%+ expected. AMD beat (EPS $2.09 vs $1.95) and Super Micro guided FY27 sales of $72–82B. Skyworks fell 16% on its guide. <b>DDOG</b> reported Wed morning: revenue +35% and a beat, but a flat Q4 guide ($1.19–1.20B vs $1.20B expected) sank it 17% (CNBC)."),
     ("Deals", "<b>MRVL</b> agreed Nov 2 to buy Lumentum for $115B in stock and fell 13%. BofA downgraded it to Neutral ($225 target). <b>ORCL</b> filed a $20B stock and bond raise and fell 8.8%; the stock priced at $116, and shares rebounded 5.9% Tuesday."),
     ("Analysts", "Barclays upgraded <b>BE</b> to Overweight (+9%). Morgan Stanley cut <b>COIN</b> to Underweight, target $120 from $258. Melius cut its <b>NVDA</b> target to $315 from $420. Stephens upgraded <b>ORCL</b>. Bernstein cut its <b>QCOM</b> target to $155 before tonight's report."),
-    ("Your lists", "Updated Nov 4 in your broker's order. Top 5: <b>SKHY, AMZN, AVGO, SPCX, INTC</b>. 2026 Portfolio adds <b>ANET, WDC, LRCX, CSCO and ALAB</b> and now starts with ANET. 15–50% Dip starts with VRT. GOOGL, AEHR, AAOI, IREN and NOK are off. 39 names."),
+    ("Your lists", "Updated Nov 4 in your broker's order. Top 5: <b>SKHY, AMZN, AVGO, SPCX, INTC</b>. 2026 Portfolio adds <b>ANET, WDC, LRCX, CSCO and ALAB</b> and now starts with ANET. 15–50% Dip now starts with <b>DDOG</b> (added Nov 4), then VRT. GOOGL, AEHR, AAOI, IREN and NOK are off. 40 names."),
     ("Market", "Tuesday the S&amp;P 500 rose 0.36% (ending a 3-day skid) and the Nasdaq 0.83%. Monday the Nasdaq fell over 1%. The 10-year is near 4.9% and Brent near $104. VIX futures are about 21 (CNBC)."),
 ]
 wk = Table([[Paragraph(f'<font name="DVB">{X(a)}</font>', S_SM), Paragraph(b, S_B)] for a, b in WKND], colWidths=[0.9 * inch, CW - 0.9 * inch])
@@ -514,7 +519,7 @@ THEMES = [
     ("AI spending: still rising, now financed", "Results keep beating: Arista, Astera Labs, AMD and Super Micro all guided above estimates Nov 3. The 2026 capex lines in this report show the scale: Amazon about $220B, Oracle about $70B (fiscal 2027), CoreWeave $35–39B, Nebius $20–25B, SpaceX $48B in 9 months. But the money is increasingly borrowed. Oracle is raising $20B more, SpaceX ~$40B of debt, and the market punishes cash burn.", "NVDA, AVGO, ANET, ALAB, MRVL, CRDO, CSCO, HPE, CIEN, COHR, GLW, AMZN, ORCL, CRWV, NBIS"),
     ("Optics consolidation", "Marvell agreed to buy Lumentum for $115B in stock (Nov 2), betting on optics co-design for AI. MRVL fell 13% and BofA downgraded it on dilution and a China review. The deal is expected to close in the first half of 2028. Coherent reports tonight and Lumentum Thursday.", "MRVL, COHR, CIEN, CRDO, GLW, ALAB, ANET, AVGO"),
     ("Memory and chip equipment", "SK hynix's record quarter, KLA's 2027 WFE outlook above $200B and Western Digital's 58% gross margin show the memory and storage cycle is strong. Lam's cautious December guide and the Nov 4 Asia equipment selloff are the overhangs. Applied Materials reports Nov 12.", "SKHY, WDC, LRCX, AMAT, KLAC, TER, INTC, QCOM"),
-    ("Rates and the Fed", "The Fed held Oct 28 with two dissents for a hike; the next FOMC is Dec 9. September PCE was 3.6%, core 3.1%. October CPI (Tue Nov 10) is the next test. The 10-year eased to about 4.90% overnight on the election result, but it remains high for high-multiple names.", "All 39, most of all IONQ, CRWV, NBIS, CBRS, ALAB, NOW, CRDO"),
+    ("Rates and the Fed", "The Fed held Oct 28 with two dissents for a hike; the next FOMC is Dec 9. September PCE was 3.6%, core 3.1%. October CPI (Tue Nov 10) is the next test. The 10-year eased to about 4.90% overnight on the election result, but it remains high for high-multiple names.", "All 40, most of all IONQ, CRWV, NBIS, CBRS, ALAB, NOW, CRDO"),
     ("Crypto", "Coinbase was downgraded to Underweight by Morgan Stanley (target $120) on weak October volumes after the Binance hack, then bounced 8%. Circle reports this week.", "COIN, HOOD, CRCL"),
     ("Event risk ahead", "Jobs report Fri Nov 6; CPI Tue Nov 10; CoreWeave Nov 10; Cisco Nov 11; Applied Materials, Nebius and Cerebras Nov 12; Nvidia earnings Nov 17 (the biggest single read for the AI names); HPE Nov 23; Alibaba Nov 24; Nvidia GTC DC and AWS re:Invent Nov 30–Dec 4; FOMC Dec 9.", "All 39"),
 ]
@@ -575,7 +580,7 @@ ct = Table(data, colWidths=[0.95 * inch, 0.88 * inch, CW - 0.95 * inch - 0.88 * 
 ct.setStyle(TableStyle(sty)); story.append(ct)
 
 # At a glance
-story += [PageBreak(), Paragraph("All 39 at a glance", S_H1),
+story += [PageBreak(), Paragraph("All 40 at a glance", S_H1),
           Paragraph(f"Official closes {fmt_d(LAST)}. 1M = since {fmt_d(ST['AVGO']['m1_from'], False)}; 3M = since {fmt_d(ST['AVGO']['m3_from'], False)}. Sparkline = 3 months, shaded = last month. IV check: see the next page. Red earnings dates are within 21 days.", S_M)]
 for key, label, names in C.LISTS:
     data = [[Paragraph(x, S_LAB) for x in ("TICKER", "CLOSE", "DAY", "1M", "3M", "FROM HIGH", "3-MONTH TREND", "IV CHECK", "NEXT EARNINGS")]]
@@ -639,6 +644,8 @@ for key, label, names in C.LISTS:
         notes = []
         if v["verdict"] == "Blocked":
             notes.append(f'After earnings {fmt_d(ei["nxt"], False)} (est.); buy from {fmt_d(first_buy(t, ei), False)}')
+        if t in POST_LIVE:
+            notes.append("Live Nov 4 quotes, post-report")
         if v["hv_has_earn"]:
             notes.append("HV has earnings move")
         if v["wide"]:
@@ -665,7 +672,7 @@ for key, label, names in C.LISTS:
                      colWidths=[CW * 0.68, CW * 0.32])
         head.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "BOTTOM"), ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
                                   ("LINEBELOW", (0, 0), (-1, -1), 1.2, INK), ("BOTTOMPADDING", (0, 0), (-1, -1), 5)]))
-        f += [head, Spacer(1, 4), Paragraph(X(info["what"]), st("w", textColor=MUT, fontName="DVI", fontSize=9)), Spacer(1, 6)]
+        f += [head, Spacer(1, 4), box([Paragraph('<font color="#1f5fbf"><b>WHAT IT DOES</b></font>  ' + X(info.get("profile") or info["what"]), st("pf", fontSize=8.8, leading=11.6))], ACCBG, pad=6), Spacer(1, 6)]
         hi_d = s["hiDate"].replace(", 2026", "").replace(", 2025", " 2025")
         vals = [(f"CLOSE {LAST:%b} {LAST.day}".upper(), f'<font name="DVB" size="13">${s["last"]:,.2f}</font>'),
                 ("DAY", pc(s["day"], size=12)), ("1 WEEK", pc(s["wk"], size=12)),

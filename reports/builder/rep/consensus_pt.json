@@ -296,5 +296,13 @@
   "buy": 10,
   "sell": 0,
   "hold": 0
+ },
+ "DDOG": {
+  "lowPriceTarget": 158.0,
+  "highPriceTarget": 350.0,
+  "priceTarget": 301.34,
+  "buy": 30,
+  "sell": 1,
+  "hold": 1
  }
 }

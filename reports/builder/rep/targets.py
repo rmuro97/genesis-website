@@ -122,3 +122,6 @@ T["QCOM"] = [("Bernstein", "", 155, "Nov 2", "CNBC via TipRanks", CN + "quotes/Q
 T["KLAC"] = T["KLAC"] + [("Wells Fargo", "", 210, "Oct 29", "CNBC via TipRanks", CN + "quotes/KLAC")]
 for _old in ("RDDT", "AEHR", "GOOGL", "AAOI", "IREN", "NOK", "BAC"):
     T.pop(_old, None)
+T["DDOG"] = [("Bernstein", "Outperform (upgraded)", 350, "Oct", "Seeking Alpha", SA_ + "4654186-datadog-receives-upgrade-to-outperform-on-ai-driven-demand-bernstein"),
+             ("BofA", "Buy", 335, "Nov 1", "CNBC", CN + "2026/11/01/top-analysts-are-bullish-on-these-3-stocks-for-the-long-haul.html"),
+             ("Benchmark", "Buy", 330, "Jul", "Seeking Alpha", SA_ + "4609688-datadogs-moat-should-thrive-in-ai-super-cycle-benchmark")]

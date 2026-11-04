@@ -777,5 +777,20 @@
    "e1": "2026-11-13",
    "e2": "2026-12-18"
   }
+ },
+ "DDOG": {
+  "S": 188.77,
+  "hv": 81.6,
+  "exp": "2026-12-04",
+  "dte": 30,
+  "iv": 65.4,
+  "spread": null,
+  "ratio": 0.8,
+  "verdict": "Cheap",
+  "hv_has_earn": false,
+  "wide": false,
+  "em": null,
+  "n_allowed": 6,
+  "ex": null
  }
 }
