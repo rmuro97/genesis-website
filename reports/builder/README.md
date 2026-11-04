@@ -1,7 +1,7 @@
 # Monthly Market Analysis PDF
 
-Builds **<Month> Market Analysis** (`<Month>_Market_Analysis_<Year>.pdf`, named for the month of the
-last close in `pdf/hist.json`; first edition: November_Market_Analysis_2026.pdf, Nov 4), one per month, made on the
+Builds **<Month> Market Analysis** (`<Month>_Market_Analysis_<Year>.pdf`, named for the month the edition
+mainly covers, i.e. the month of TODAY + 7 days, so the last-Sunday build is next month's report; first edition: November_Market_Analysis_2026.pdf, Nov 4), one per month, made on the
 **last Sunday of the month**. Page 1 is the "Where to buy options: IV check" list; then the week's
 trading calendar, market backdrop, game plan, themes, key dates, all names at a glance, the IV page
 and one page per stock.

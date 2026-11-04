@@ -288,7 +288,7 @@ def spark(t):
 
 
 # ---------- doc ----------
-M1 = LAST.replace(day=1); M2 = (M1 + dt.timedelta(days=32)).replace(day=1)  # named for the month of the last close (the build month)
+M1 = (TODAY + dt.timedelta(days=7)).replace(day=1); M2 = (M1 + dt.timedelta(days=32)).replace(day=1)  # named for the month the edition mainly covers (a Nov 30 edition is "December")
 EDITION = f"{M1:%B} {M1.year} edition · Wednesday {fmt_d(TODAY, False)}"
 TITLE = f"{M1:%B} Market Analysis"
 OUT = os.path.join(HERE, f"{M1:%B}_Market_Analysis_{M1.year}.pdf")
