@@ -332,7 +332,7 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY REPORT", S_LAB), Spacer(1, 4),
           Paragraph(X(TITLE), S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph("All 40 names on your lists, in your broker's order, each with a company profile (what it does and specializes in), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. This edition reflects your Nov 4 lists: <b>ANET, WDC, LRCX, CSCO and ALAB added, and Datadog (DDOG) at the top of the 15–50% Dip</b>; GOOGL, AEHR, AAOI, IREN and NOK removed. It also covers this week's news: Marvell's $115B Lumentum deal, Oracle's $20B raise, beats from Arista, Astera Labs, AMD and Super Micro, and the Democratic midterm sweep that hit AI stocks overnight. Prices are official Nasdaq closes through Tuesday Nov 3. Times are Pacific.", S_BL),
+          Paragraph("All 40 names on your lists, in your broker's order, each with a company summary (what it does and specializes in; all 40 together on the \"Company summaries\" pages, and at the top of every stock page), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. This edition reflects your Nov 4 lists: <b>ANET, WDC, LRCX, CSCO and ALAB added, and Datadog (DDOG) at the top of the 15–50% Dip</b>; GOOGL, AEHR, AAOI, IREN and NOK removed. It also covers this week's news: Marvell's $115B Lumentum deal, Oracle's $20B raise, beats from Arista, Astera Labs, AMD and Super Micro, and the Democratic midterm sweep that hit AI stocks overnight. Prices are official Nasdaq closes through Tuesday Nov 3. Times are Pacific.", S_BL),
           Spacer(1, 5),
           Paragraph("Price targets: Nasdaq consensus (mean, low–high, buy/hold/sell count) for every name, plus named firm targets from your outlets. 2026 capex: spending to date from company SEC filings, with guidance from your outlets where companies give it. Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Seeking Alpha and Fox Business, plus company releases and SEC filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
@@ -602,6 +602,20 @@ for key, label, names in C.LISTS:
 
 # IV check page
 # Wall Street price targets summary
+# Company summaries: what each company does, all 40 in one place (also shown at the top of each stock page)
+story += [PageBreak(), Paragraph("Company summaries: what each company does", S_H1),
+          Paragraph("Every name on your lists in your broker's order, with what the company does and what it specializes in. The same summary opens each stock page.", S_M), Spacer(1, 4)]
+S_PF = st("pfs", fontSize=8.2, leading=10.6)
+for key, label, names in C.LISTS:
+    prow = [[Paragraph(f"<b>{X(label)}</b> · {len(names)} names", S_B), ""]]
+    for i, t in enumerate(names, 1):
+        prow.append([Paragraph(f'<font name="DVB" color="#1f5fbf">{t}</font><br/><font size="7.4">{X(C.S[t]["name"])}<br/>#{i}</font>', S_SM),
+                     Paragraph(X(C.S[t].get("profile") or C.S[t]["what"]), S_PF)])
+    ptb = Table(prow, colWidths=[1.15 * inch, CW - 1.15 * inch], repeatRows=1)
+    ptb.setStyle(TableStyle([("SPAN", (0, 0), (-1, 0)), ("BACKGROUND", (0, 0), (-1, 0), CHIP), ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                             ("LINEBELOW", (0, 1), (-1, -1), 0.4, LINE), ("TOPPADDING", (0, 0), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -1), 3)]))
+    story += [ptb, Spacer(1, 8)]
+
 story += [PageBreak(), Paragraph("Wall Street price targets", S_H1),
           Paragraph("Consensus = Nasdaq analyst consensus (average, low–high, buy/hold/sell count). Named targets are the most recent ones reported by your outlets "
                     "(CNBC, Seeking Alpha; \"via TipRanks\" = headline on CNBC's quote page). <b>Bold</b> = JPMorgan, BofA, Morgan Stanley, Goldman Sachs, Oppenheimer, Mizuho. "
