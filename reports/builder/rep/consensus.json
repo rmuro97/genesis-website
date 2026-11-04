@@ -7,7 +7,7 @@
   "status": "",
   "prior": null
  },
- "INTC": {
+ "AMZN": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -23,14 +23,6 @@
   "status": "expected",
   "prior": "1.61."
  },
- "AMZN": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
  "SPCX": {
   "ann": "",
   "eps": null,
@@ -39,29 +31,37 @@
   "status": "",
   "prior": null
  },
- "MRVL": {
-  "ann": "Dec 1, 2026",
-  "eps": "0.79.",
-  "n": "12",
-  "time": "",
-  "status": "expected",
-  "prior": "0.62."
- },
- "CIEN": {
-  "ann": "Dec 10, 2026",
-  "eps": "1.77.",
-  "n": "8",
-  "time": "",
-  "status": "expected",
-  "prior": "0.64."
- },
- "VICR": {
+ "INTC": {
   "ann": "",
   "eps": null,
   "n": null,
   "time": "",
   "status": "",
   "prior": null
+ },
+ "ANET": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "WDC": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "HPE": {
+  "ann": "Nov 23, 2026",
+  "eps": "1.17.",
+  "n": "7",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0.54."
  },
  "TER": {
   "ann": "",
@@ -71,21 +71,37 @@
   "status": "",
   "prior": null
  },
- "CRDO": {
-  "ann": "Dec 7, 2026",
-  "eps": "1.03.",
-  "n": "6",
-  "time": "",
-  "status": "expected",
-  "prior": "0.44."
- },
- "NVDA": {
-  "ann": "Nov 17, 2026",
-  "eps": "2.49.",
-  "n": "13",
+ "AMAT": {
+  "ann": "Nov 12, 2026",
+  "eps": "4.06.",
+  "n": "10",
   "time": "AMC",
   "status": "expected",
-  "prior": "1.24."
+  "prior": "2.17."
+ },
+ "LRCX": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CIEN": {
+  "ann": "Dec 10, 2026",
+  "eps": "1.77.",
+  "n": "8",
+  "time": "",
+  "status": "expected",
+  "prior": "0.64."
+ },
+ "MRVL": {
+  "ann": "Dec 1, 2026",
+  "eps": "0.79.",
+  "n": "12",
+  "time": "",
+  "status": "expected",
+  "prior": "0.62."
  },
  "COHR": {
   "ann": "Nov 04, 2026",
@@ -95,6 +111,30 @@
   "status": "expected",
   "prior": "0.93."
  },
+ "CRDO": {
+  "ann": "Dec 7, 2026",
+  "eps": "1.03.",
+  "n": "6",
+  "time": "",
+  "status": "expected",
+  "prior": "0.44."
+ },
+ "QCOM": {
+  "ann": "Nov 04, 2026",
+  "eps": "1.46.",
+  "n": "9",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "2.56."
+ },
+ "VICR": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
  "ARM": {
   "ann": "Nov 04, 2026",
   "eps": "0.22.",
@@ -103,47 +143,23 @@
   "status": "expected",
   "prior": "0.15."
  },
- "AMAT": {
-  "ann": "Nov 12, 2026",
-  "eps": "4.06.",
-  "n": "10",
+ "NVDA": {
+  "ann": "Nov 17, 2026",
+  "eps": "2.49.",
+  "n": "13",
   "time": "AMC",
   "status": "expected",
-  "prior": "2.17."
+  "prior": "1.24."
  },
- "HOOD": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "GOOGL": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "GLW": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "ORCL": {
-  "ann": "Dec 9, 2026",
-  "eps": "1.57.",
-  "n": "10",
+ "CSCO": {
+  "ann": "Nov 11, 2026",
+  "eps": "1.15.",
+  "n": "8",
   "time": "",
   "status": "expected",
-  "prior": "1.95."
+  "prior": "0.81."
  },
- "KLAC": {
+ "ALAB": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -159,6 +175,14 @@
   "status": "",
   "prior": null
  },
+ "HOOD": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
  "IONQ": {
   "ann": "Nov 05, 2026",
   "eps": "-0.79.",
@@ -167,31 +191,7 @@
   "status": "expected",
   "prior": "-3.58."
  },
- "HPE": {
-  "ann": "Dec 3, 2026",
-  "eps": "1.17.",
-  "n": "7",
-  "time": "",
-  "status": "expected",
-  "prior": "0.54."
- },
- "NBIS": {
-  "ann": "Nov 10, 2026",
-  "eps": "-0.43.",
-  "n": "5",
-  "time": "",
-  "status": "expected",
-  "prior": "-0.39."
- },
- "DOCN": {
-  "ann": "Nov 03, 2026",
-  "eps": "0.11.",
-  "n": "6",
-  "time": "BMO",
-  "status": "expected",
-  "prior": "0.38."
- },
- "FTNT": {
+ "KLAC": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -199,7 +199,55 @@
   "status": "",
   "prior": null
  },
+ "ORCL": {
+  "ann": "Dec 9, 2026",
+  "eps": "1.56.",
+  "n": "10",
+  "time": "",
+  "status": "expected",
+  "prior": "1.95."
+ },
+ "GLW": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "NBIS": {
+  "ann": "Nov 12, 2026",
+  "eps": "-0.61.",
+  "n": "4",
+  "time": "BMO",
+  "status": "expected",
+  "prior": "-0.39."
+ },
  "BE": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "DOCN": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "AKAM": {
+  "ann": "Nov 05, 2026",
+  "eps": "0.92.",
+  "n": "9",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "1.06."
+ },
+ "FTNT": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -223,57 +271,9 @@
   "status": "expected",
   "prior": "-0.31."
  },
- "CBRS": {
-  "ann": "Nov 12, 2026",
-  "eps": "-0.13.",
-  "n": "3",
-  "time": "AMC",
-  "status": "expected",
-  "prior": null
- },
- "QCOM": {
-  "ann": "Nov 04, 2026",
-  "eps": "1.46.",
-  "n": "9",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "2.56."
- },
- "NOK": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "AKAM": {
-  "ann": "Nov 05, 2026",
-  "eps": "0.92.",
-  "n": "9",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "1.06."
- },
- "AEHR": {
-  "ann": "Nov 02, 2026",
-  "eps": "0.05.",
-  "n": "2",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "-0.05."
- },
- "AAOI": {
-  "ann": "Nov 05, 2026",
-  "eps": "0.08.",
-  "n": "3",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "-0.14."
- },
  "VST": {
   "ann": "Nov 06, 2026",
-  "eps": "2.26.",
+  "eps": "2.18.",
   "n": "4",
   "time": "BMO",
   "status": "expected",
@@ -288,20 +288,12 @@
   "prior": null
  },
  "CRCL": {
-  "ann": "Nov 04, 2026",
-  "eps": "0.4.",
-  "n": "9",
-  "time": "BMO",
-  "status": "expected",
-  "prior": "0.64."
- },
- "IREN": {
-  "ann": "Nov 05, 2026",
-  "eps": "-0.46.",
-  "n": "3",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "-0.34."
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "BABA": {
   "ann": "Nov 24, 2026",
@@ -310,5 +302,13 @@
   "time": "",
   "status": "expected",
   "prior": "0.44."
+ },
+ "CBRS": {
+  "ann": "Nov 12, 2026",
+  "eps": "-0.13.",
+  "n": "3",
+  "time": "AMC",
+  "status": "expected",
+  "prior": null
  }
 }

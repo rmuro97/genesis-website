@@ -470,3 +470,130 @@ S["NOW"] = dict(
  macro="Software multiples under pressure from AI-disruption fears; enterprise IT budgets; rates.",
  risks="AI agents cannibalizing seat-based software; growth slowing; sentiment on software.",
  src=[("CNBC · Q3 earnings, record drop", "https://www.cnbc.com/2026/10/29/servicenow-now-earnings-q3-2026.html"), ("Seeking Alpha · crashes on weak forecast", SA+"4660127"), ("ServiceNow · Q3 results (SEC)", "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000092/erq3fy26.htm")])
+
+
+# ===================== NOVEMBER 4, 2026 UPDATE =====================
+# New names (ANET, WDC, CSCO, ALAB), a refreshed LRCX, a 2026 capex line for every name
+# (company SEC filings for spending to date; outlet figures for guidance), and Nov 2–4 news.
+CN_ = "https://www.cnbc.com/"
+SEC_ = "https://www.sec.gov/Archives/edgar/data/"
+
+S["ANET"] = dict(
+ name="Arista Networks", what="High-speed Ethernet switches and software for AI clusters and cloud data centers (Microsoft and Meta are its largest customers).",
+ results="Q3 (Nov 3, after the close): revenue about $3.66B, up 58.5% and above its $3.3B guide; adjusted EPS $1.20 vs $1.08 expected (Seeking Alpha).",
+ guide="Q4 revenue $3.9–4.0B vs $3.60B expected; EPS $1.26–1.30 vs $1.15 (LSEG via CNBC). Initial fiscal 2027 outlook about $18.5B (38–40% growth) with a $7B AI-networking target. Shares rose about 12% after hours.",
+ capex="2026: $84.2M spent in the first half vs $52.4M a year ago (SEC 10-Q). That's light because it outsources manufacturing; its demand follows cloud-titan capex.",
+ partners=["Microsoft and Meta (largest customers)", "AI back-end and front-end networks for hyperscalers and neoclouds", "AMD Helios and Nvidia-based AI racks"],
+ catalysts=["Reported Nov 3; next report mid-February", "Post-earnings price-target changes (prior: Citi $248, Evercore $250, JPMorgan $250)", "Cisco Nov 11 and Nvidia Nov 17 (AI-networking read)"],
+ macro="Its customers' AI capex (Microsoft $170B, Amazon $220B, Alphabet $195–205B) is its revenue. The Nov 3 Democratic sweep raised worries about data-center restrictions (the incoming Texas governor pledged a moratorium).",
+ risks="Customer concentration; supply costs (memory, optics); valuation after a 12% pop. Before the report it was about 22% off its high.",
+ src=[("CNBC · after-hours movers: ANET +12% on guide", CN_ + "2026/11/03/stocks-making-the-biggest-moves-after-hours-anet-amd-smci-swks.html"), ("Seeking Alpha · Q3 results", SA + "4664027"), ("Seeking Alpha · FY27 outlook, AI target", SA + "4664443"), ("Seeking Alpha · 2026 outlook raised", SA + "4551641")])
+
+S["WDC"] = dict(
+ name="Western Digital", what="Hard-disk drives for cloud data centers (the flash business was spun off as Sandisk). AI data needs mass storage.",
+ results="Fiscal Q1 FY27 (Oct 22): revenue $4.38B, up 55%; non-GAAP gross margin 58.1%; non-GAAP EPS $4.64 vs $4.10 expected (Seeking Alpha).",
+ guide="Fiscal Q2 revenue $5.1B ±$100M at a 60–61% gross margin. 44TB HAMR drives in the first half of 2027; dividend raised 17% to $0.175.",
+ capex="Fiscal 2027 (July year-start): $227M in Q1 vs $73M a year ago; fiscal 2026 total $418M (SEC 10-Q). The step-up funds the HAMR ramp.",
+ partners=["Hyperscale cloud customers (most of revenue)", "HAMR technology roadmap"],
+ catalysts=["Reported Oct 22; next report late January", "Seagate and Sandisk reads; Nvidia Nov 17", "Price-target cuts: Wells Fargo $450 from $730 (Oct 16)"],
+ macro="Cloud storage pricing, DRAM/NAND input costs, AI capex sentiment.",
+ risks="Industry capacity additions and pricing; input costs; 53.5% off its high, so the stock is volatile.",
+ src=[("Seeking Alpha · FQ1 results", SA + "4656388"), ("Seeking Alpha · guide, HAMR timing", SA + "4655457"), ("Seeking Alpha · dividend raise", SA + "4627115")])
+
+S["CSCO"] = dict(
+ name="Cisco Systems", what="Networking (switches, routers, Silicon One AI chips), security (Splunk) and collaboration.",
+ results="Fiscal Q4 (Aug 12): revenue $17.3B, up 18%; fiscal 2026 revenue $63.3B, up 12%. About $4B of AI-infrastructure revenue from hyperscalers in fiscal 2026, plus more than $1B of AI orders from neocloud, sovereign and enterprise customers. RPO $46.7B, up 7%.",
+ guide="Fiscal 2027 revenue growth of about 15% guided (CNBC); Piper Sandler called the guide conservative. Shares fell 8.4% after the August report.",
+ capex="Fiscal 2026 (to Jul 25): $1.41B vs $905M a year earlier (SEC 10-K). Product gross margin fell 0.5 point on memory costs.",
+ partners=["Hyperscalers (AI networking)", "Neocloud and sovereign AI builds", "Nvidia Spectrum-X partnership"],
+ catalysts=["⚠ Earnings Wed Nov 11 after the close: no new options into the report", "Arista's beat (Nov 3) raises the bar for AI networking", "Morgan Stanley target $135 (Aug)"],
+ macro="Enterprise IT budgets, memory costs and AI networking share vs Arista and Nvidia.",
+ risks="Slower growth expected after fiscal 2027; memory-driven margin pressure; 21% off its high.",
+ src=[("CNBC · shares slide despite beat (Aug 13)", CN_ + "2026/08/13/cisco-shares-slide-9percent-despite-earnings-beat-and-strong-guidance.html"), ("Seeking Alpha · Q4 and analyst reactions", SA + "4632225"), ("Seeking Alpha · FY26 AI orders", SA + "4550809")])
+
+S["ALAB"] = dict(
+ name="Astera Labs", what="Connectivity chips for AI racks: PCIe/CXL retimers (Aries), Scorpio fabric switches, Leo memory controllers, Taurus cables.",
+ results="Q3 (Nov 3): record revenue $584.9M, up 154% and 49% sequentially; non-GAAP gross margin 72.4%; non-GAAP EPS $1.32. Scorpio fabric switches became its largest product family (company release).",
+ guide="Q4 revenue $730–750M; non-GAAP EPS $1.62–1.66 vs $1.43 consensus (Seeking Alpha); gross margin about 72%. Aries 7 sampling in Q4. Shares erased losses and rose slightly after hours.",
+ capex="2026: $73.4M in the first 9 months vs $18.9M a year ago (Q3 release). It's fabless, so capex stays light.",
+ partners=["Hyperscaler custom-accelerator and GPU platforms (Nvidia, AMD and others)", "Orion rack-scale reference design (customers choose GPU/CPU)"],
+ catalysts=["Reported Nov 3; next report early February", "Post-earnings price-target changes", "Nvidia Nov 17; AWS re:Invent Nov 30"],
+ macro="AI-rack build pace and hyperscaler capex; trades with the AI-connectivity group (CRDO, MRVL, ANET).",
+ risks="Customer concentration; a high valuation (about 35x 2026 sales per Seeking Alpha); 52% off its high, so it swings hard. Jefferies cut its target to $350 from $450.",
+ src=[("Astera Labs · Q3 2026 results (SEC)", SEC_ + "0001736297/000173629726000044/q326exhibit991.htm"), ("Seeking Alpha · Q3 and guide top estimates", SA + "4663598"), ("Seeking Alpha · Q2 results", SA + "4625643")])
+
+S["LRCX"] = dict(
+ name="Lam Research", what="Etch and deposition equipment, heavily tied to memory (HBM, NAND) and advanced-logic capex.",
+ results="Fiscal Q1 FY27 (Oct 21): revenue $8.22B, up 54%; non-GAAP EPS $2.20, $0.02 above; operating margin above 40%.",
+ guide="December quarter $8.60B ±$0.4B, gross margin 52.5%, EPS $2.33 ±$0.15. That was below Morgan Stanley's >$9B hope, on supply constraints and a lower China share, and the stock fell 12% on Oct 22. Sees 2027 wafer-equipment spending above $200B.",
+ capex="Fiscal 2027 (July year-start): $257.7M in Q1 vs $185.1M a year ago; fiscal 2026 total $966.4M (SEC 10-Q). Plus a $3B R&D lab network over 5 years.",
+ partners=["Memory makers (SK hynix, Samsung, Micron) are its key customers", "TSMC and Intel (advanced logic and packaging)"],
+ catalysts=["Reported Oct 21; next report late January", "Applied Materials Nov 12 (group read)", "SK hynix plans to raise investment significantly in 2027; KLA sees 2027 WFE above $200B", "Deutsche Bank Buy, $375 target (Oct 19)"],
+ macro="Export controls and China; memory capex; the Nov 4 Asia chip-equipment selloff (Tokyo Electron −7%, Disco −10%) after the US midterms.",
+ risks="China decline; supply constraints; 47% off its high.",
+ src=[("Seeking Alpha · retreats 12% on cautious guide", SA + "4656207"), ("Seeking Alpha · Dec-quarter guide", SA + "4650254"), ("Seeking Alpha · Deutsche expects strong results", SA + "4654214"), ("CNBC · Nov 4 futures, Asia chip selloff", CN_ + "2026/11/03/stock-market-today-live-updates.html")])
+
+# ---- 2026 capex for every name (spending to date from SEC filings; guidance from outlets) ----
+CAPEX26 = {
+ "SKHY": "2026: guided to the high-40 trillion won range, raised in July (CNBC; Bloomberg: at least ₩45T, about $31B). Q3 capex about $9.3B, up 265% (Seeking Alpha). ₩54T committed to two new fabs, Yongin Y2 and Cheongju M17 (Aug 7). M15X is at full capacity by year-end, and investment rises 'significantly' in 2027.",
+ "AMZN": "2026: about $220B guided (held Oct 29). It spent $175.7B Jan–Sep vs $92.3B a year ago (SEC 10-Q); Q3 alone was $77.3B vs $58.7B expected. 2025 total: $131.8B. Trailing free cash flow of −$42.4B drove the selloff.",
+ "AVGO": "Fiscal 2026 (Nov year-end): $1.01B in the first 9 months vs $386M; fiscal 2025 total $623M (SEC). That's small for its size. The real exposure is customers' AI budgets and the $50B+ OpenAI chip-financing talks.",
+ "SPCX": "2026: $48.1B in the first 9 months vs $13.9B a year ago (SEC); Q3 alone $19.6B, more than its revenue. Funded by a ~$40B debt sale. KeyBanc (Nov 2) says heavy Starbase spending delays cash returns.",
+ "INTC": "2026: $10.2B through Sep 26 vs $11.2B a year ago; 2025 total $14.65B (SEC). Spending is held below last year while Arizona fab tools are installed.",
+ "HPE": "Fiscal 2026 (Oct year-end): $1.90B through Jul 31 vs $1.65B; fiscal 2025 total $2.29B (SEC). It builds AI racks to order; memory costs are the margin swing.",
+ "TER": "2026: $241.8M in the first 9 months vs $161.1M, already above 2025's full-year $224M (SEC). The money adds capacity for AI-chip and HBM test.",
+ "AMAT": "Fiscal 2026 (Oct year-end): $1.99B through Jul 26 vs $1.48B; fiscal 2025 total $2.26B (SEC). Plus a $5B EPIC R&D center and $5B for India. Customers' spending: KLA sees calendar-2026 WFE in the mid-$150B range and 2027 above $200B.",
+ "CIEN": "Fiscal 2026 (Oct year-end): $194.9M through Aug 1 vs $95.4M, already above fiscal 2025's $140.8M (SEC). It also launched a $200M venture fund.",
+ "MRVL": "Fiscal 2027 (Jan year-end): $282.4M in the first half vs $166.3M; fiscal 2026 total $354.1M (SEC). That's light because it's fabless. The big capital move is the $115B all-stock Lumentum deal (Nov 2).",
+ "COHR": "Fiscal 2026 (to Jun 30): $1.10B vs $440.8M a year earlier, 2.5x (SEC). It's expanding transceiver and 300mm silicon-carbide capacity.",
+ "CRDO": "Fiscal 2027 (May year-start): $7.3M in Q1 vs $2.8M; fiscal 2026 total $57.3M (SEC). Light because it's fabless; its demand follows hyperscaler AI-cluster builds.",
+ "QCOM": "Fiscal 2026 (Sep year-end): $1.58B through Jun 28 vs $785M; fiscal 2025 total $1.19B (SEC). Spending doubled as it builds data-center silicon.",
+ "VICR": "2026: $39.7M in the first 9 months vs $14.8M, nearly double 2025's $20.3M (SEC). Fab-2 equipment deployment targeted for Q2 2027.",
+ "ARM": "Fiscal 2027 (Apr year-start): $197M in Q1 vs $154M; fiscal 2026 total $545M (SEC). Rising as it moves into its own chips.",
+ "NVDA": "Fiscal 2027 (Jan year-end): $4.43B in the first half vs $3.12B; fiscal 2026 total $6.04B (SEC). It's putting larger sums into partners: a ~$10B European push and German AI startups. TD Cowen says it may be backstopping Oracle data centers.",
+ "VRT": "2026: $425M in the first 9 months vs $126.7M, nearly double 2025's $220M (SEC). It's also buying capacity: UtilityInnovation Group ($1.45B + earnouts) and King Environmental (liquid cooling).",
+ "HOOD": "2026: $32M (equipment and capitalized software) in the first 9 months vs $28M (SEC). That's light. It bought its first $25M of bitcoin for the balance sheet (Oct 7).",
+ "IONQ": "2026: $18.6M in the first half vs $3.5M, already above 2025's $16.4M (SEC). Funded by equity: about $2B net from a stock and warrant offering (Oct 14).",
+ "KLAC": "Fiscal 2027 (July year-start): $194.8M in Q1 vs $95.9M; fiscal 2026 total $375.9M (SEC). Customers' spending: it sees calendar-2026 WFE in the mid-$150B range and 2027 above $200B.",
+ "ORCL": "Fiscal 2027 (June year-start): $28.5B in Q1 vs $8.5B; fiscal 2026 total $55.7B (SEC). The CFO puts fiscal 2027 net capex at about $70B. Funding: a $20B stock-and-bond raise (Nov 2; the $10B stock sale priced at $116).",
+ "GLW": "2026: $1.30B in the first 9 months vs $850M, already above 2025's $1.28B (SEC), adding optical-fiber capacity for AI. It also has a $2B equity distribution agreement (Sep 14).",
+ "NBIS": "2026: $20–25B guided; customer prepayments cover 50–70% of project capex. New $3.5B Citi financing facility (Oct 22).",
+ "BE": "2026: $231.3M in the first 9 months vs $33.8M, 4x 2025's $56.8M (SEC), for the factory expansion (Sep 29). That spending is why Q3 cash flow disappointed.",
+ "DOCN": "2026: $105.1M in the first 9 months vs $102.9M; 2025 total $129.1M (SEC). About 155 MW of committed data-center capacity; $725M equipment-finance facility (Sep 10).",
+ "AKAM": "2026: $246.6M in the first half vs $263.3M; 2025 total $507.8M (SEC). Analysts estimate about $5.5B of capex to serve the Anthropic contract, starting in 2027.",
+ "FTNT": "2026: $212.8M in the first 9 months vs $322M a year ago, down about a third (SEC). It's a light-capex software and appliance model.",
+ "NOW": "2026: $346M in the first 9 months vs $630M, down 45%; 2025 total $868M (SEC). Light; it's software.",
+ "CRWV": "2026: $35–39B guided (raised from $31–35B); $14.1B spent in the first half vs $3.9B (SEC). Debt about $35.6B; Q2 net interest $640M.",
+ "VST": "2026: $1.57B in the first half vs $1.46B; 2025 total $2.75B (SEC). The DOE confirmed a loan of up to $4.2B to raise nuclear output (Oct 5).",
+ "COIN": "No separate capex line. 'Other investing' (incl. software and equipment) was $85.0M in the first 9 months vs $86.3M, and it bought $217.9M of crypto for investment (SEC 10-Q). It cut its 2026 expense guidance after a May restructuring.",
+ "CRCL": "2026: $35.8M (capitalized software) in the first half vs $24.9M; 2025 total $56.2M (SEC). Light. It's spending on acquisitions instead: Tazapay ($400M in stock).",
+ "BABA": "Latest quarter's capex was ¥67.7B, up 75%. It targets 20 GW of data centers, with new sites in Europe and the Middle East. As a foreign filer it has no quarterly 10-Q figure.",
+ "CBRS": "2026: $548.9M in the first half vs $185.1M, 3x (SEC), building OpenAI capacity. 600 MW of data-center capacity under contract; Compute Nordic 165 MW site in Finland.",
+}
+for _t, _c in CAPEX26.items():
+    S[_t]["capex"] = _c
+
+# ---- Nov 2–4 news ----
+S["MRVL"]["catalysts"] = ["Nov 2: agreed to buy Lumentum in an all-stock deal ($115B enterprise value, 4.5 MRVL shares per LITE share; MRVL holders keep ~67%). MRVL fell 13% that day. Expected to close in the first half of 2028", "BofA downgraded to Neutral and cut its target to $225 from $400 (Nov 3), citing the share overhang and a long China review", "Earnings Tue Dec 1 (estimated)"]
+S["MRVL"]["risks"] = "About 50% share dilution and limited EPS accretion (BofA); a long regulatory review including China; deal-arbitrage pressure on the stock."
+S["MRVL"]["src"] = S["MRVL"]["src"] + [("CNBC · Marvell to buy Lumentum for $115B", CN_ + "2026/11/02/marvell-to-buy-lumentum-in-115-billion-deal-in-ai-data-center-bet-.html"), ("CNBC · BofA downgrade", CN_ + "2026/11/03/acquisition-marvell-lumentum-acquisition-bofa-downgrade.html")]
+S["ORCL"]["catalysts"] = ["Nov 2: filed a $20B raise ($10B stock, $10B notes) and fell 8.8%. The stock sale priced at $116 (an 11.2% discount); shares rebounded 5.9% Nov 3", "Stephens upgraded to Overweight (Nov 2): investor day resolved key questions", "Earnings Wed Dec 9"]
+S["ORCL"]["src"] = S["ORCL"]["src"] + [("CNBC · files to sell $20B in stock, bonds", CN_ + "2026/11/02/oracle-files-to-sell-20-billion-in-new-stock-bonds-to-finance-ai-buildout.html"), ("Seeking Alpha · prices $20B offering at $116", SA + "4663122")]
+S["COIN"]["catalysts"] = ["Morgan Stanley downgraded to Underweight and cut its target to $120 from $258 (Nov 2) on weak October trading. Q4 transaction revenue is tracking about 11% below consensus", "Rebounded 8% Nov 3 after a 15% three-day slide", "Next report February"]
+S["COIN"]["src"] = S["COIN"]["src"] + [("CNBC · Morgan Stanley downgrade", CN_ + "2026/11/02/coinbase-stock-morgan-stanley-downgrade.html")]
+S["BE"]["catalysts"] = ["Barclays upgraded to Overweight (Nov 3), citing faster demand, capacity and deposits; target $289 (from $319). The stock rose 9% that day", "Midterms: the Democratic sweep could slow data-center permits (Texas), but on-site power is the workaround", "New hyperscaler power contracts"]
+S["BE"]["src"] = S["BE"]["src"] + [("CNBC · midday movers Nov 3 (Barclays upgrade)", CN_ + "2026/11/03/stocks-making-the-biggest-moves-midday-aapl-pltr-nvda-coin-be.html")]
+S["DOCN"]["results"] = "Q3 (Nov 3): revenue $321M, up 40%; a record $160M of incremental ARR; AI-customer ARR up 288% to $376M; customers spending $100K+ are 41% of revenue (company release)."
+S["DOCN"]["guide"] = "Raised its Q4 exit growth rate to 44–45% and expects 2027 revenue growth of 60% or more. The stock rose 0.8% on the day."
+S["DOCN"]["catalysts"] = ["Reported Nov 3; next report February", "CoreWeave Nov 10 and Nebius Nov 12 (neocloud read)", "AI-capacity additions (155 MW committed)"]
+S["DOCN"]["src"] = [("DigitalOcean · Q3 2026 results (SEC)", SEC_ + "0001582961/000162828026069125/a2026-q3dopressrelease.htm"), ("Seeking Alpha · Q3 call transcript", "https://seekingalpha.com/article/4961526-digitalocean-holdings-inc-docn-q3-2026-earnings-call-transcript")] + S["DOCN"]["src"]
+S["NVDA"]["catalysts"] = ["⚠ Earnings Tue Nov 17 after the close: no new options into the report", "Melius kept Buy but cut its target to $315 from $420 (Nov 2); Bernstein reiterated Outperform (Nov 3)", "AMD beat Nov 3 (EPS $2.09 vs $1.95); Super Micro guided FY27 sales of $72–82B vs $69.2B", "Nvidia AI Day Seoul Nov 9–10; GTC DC Nov 30–Dec 3"]
+S["SPCX"]["catalysts"] = ["Fell 5–6% overnight Nov 3–4 on the midterm results; Tesla −4%", "Morgan Stanley reiterated Overweight (EchoStar tie-up thesis, Nov 3); KeyBanc Sector Weight on Starbase capex (Nov 2)", "Tesla merger terms; debt-sale pricing"]
+S["SKHY"]["catalysts"] = ["Fell 5.1% in Seoul Nov 4 as Asian chip stocks sold off after the US midterms (Nikkei −4.5%)", "Nvidia AI Day Seoul Nov 9–10; Nvidia earnings Nov 17", "Reported Oct 27 (record ₩83.3T operating profit); next date not set"]
+S["CRWV"]["catalysts"] = ["⚠ Earnings Tue Nov 10 after the close: no new options into the report", "Down about 41% in a month; short interest above 21% of float (CNBC, Nov 3)", "Midterms: data-center restriction fears (Texas holds ~27% of US data-center GW, per Wells Fargo)"]
+S["NBIS"]["catalysts"] = ["⚠ Earnings Thu Nov 12 before the open (Nasdaq): no new options into the report", "CoreWeave Nov 10", "Rose 7% Nov 3 as AI names rebounded"]
+S["CBRS"]["catalysts"] = ["⚠ Earnings Thu Nov 12 after the close (Nasdaq)", "New OpenAI capacity tranches", "Nvidia Nov 17"]
+S["IONQ"]["catalysts"] = ["⚠ Earnings Thu Nov 5 after the close (Nasdaq)", "Quantum-sector headlines", "Integration of SkyWater and Elisity"]
+for _t in ("VST", "VRT", "BE", "CRWV", "NBIS", "IREN"):
+    if _t in S and "Midterm" not in S[_t]["macro"]:
+        S[_t]["macro"] = S[_t]["macro"] + " Midterms (Nov 3): Democrats are projected to win both chambers, and Texas's governor-elect pledged a data-center moratorium. Traders bet that slows the buildout."

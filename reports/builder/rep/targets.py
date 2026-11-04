@@ -94,3 +94,31 @@ T = {
           ("Deutsche Bank", "", 130, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT")],
 }
 TOP_FIRMS = {"JPMorgan", "BofA", "Morgan Stanley", "Goldman Sachs", "Oppenheimer", "Mizuho"}
+
+# ---- Nov 4, 2026 additions (new names and Nov 2–3 calls) ----
+SA_ = "https://seekingalpha.com/news/"
+T["ANET"] = [("Evercore ISI", "", 250, "Aug 5", "CNBC via TipRanks", CN + "quotes/ANET"),
+             ("JPMorgan", "Overweight", 250, "Aug 5", "Seeking Alpha", SA_ + "4625836-arista-surges-after-q2-results-and-outlook-keep-analysts-bullish"),
+             ("Citi", "", 248, "Oct 8", "CNBC via TipRanks", CN + "quotes/ANET"),
+             ("Morgan Stanley", "", 220, "Aug 5", "CNBC via TipRanks", CN + "quotes/ANET")]
+T["WDC"] = [("Morgan Stanley", "", 650, "Jun", "Seeking Alpha", SA_ + "4603551-western-digital-sees-bullish-views-at-morgan-stanley-on-hdd-demand-hamr-roadmap"),
+            ("Wells Fargo", "", 450, "Oct 16", "CNBC via TipRanks", CN + "quotes/WDC")]
+T["HPE"] = [("Citi", "", 92, "Oct", "Seeking Alpha", SA_ + "4648988-hpe-in-spotlight-as-citi-ups-price-target-after-investor-event"),
+            ("Loop Capital", "Buy", 75, "Jun 2", "CNBC", CN + "2026/06/02/hewlett-packard-is-surging-on-big-beat-loop-capital-sees-more-upside.html"),
+            ("Morgan Stanley", "Equal-weight", 69, "Aug 10", "CNBC", CN + "2026/08/10/hpe-will-gain-ground-on-sky-high-hardware-demand-morgan-stanley-says.html")]
+T["CSCO"] = [("Morgan Stanley", "", 135, "Aug 13", "CNBC", CN + "2026/08/13/cisco-shares-slide-9percent-despite-earnings-beat-and-strong-guidance.html")]
+T["ALAB"] = [("Jefferies", "", 350, "recent (from $450)", "CNBC via TipRanks", CN + "quotes/ALAB"),
+             ("JPMorgan", "Overweight", 280, "May", "Seeking Alpha", SA_ + "4586856-asteras-strong-q1-results-see-bullish-views-from-analysts")]
+T["NBIS"] = [("BofA", "Buy", 310, "Aug 13", "CNBC", CN + "2026/08/13/nebius-has-tripled-in-2026-but-it-can-rise-more-bank-of-america-says.html"),
+             ("Freedom Capital", "Buy", 200, "Jul 20", "Seeking Alpha", SA_ + "4615238-nebius-in-focus-as-freedom-capital-upgrades-boosts-price-target")]
+T["BABA"] = [("Citi", "Buy", 205, "Apr", "CNBC", CN + "2026/04/19/baba-makes-ai-investments-stock-analysts-want-to-see.html"),
+             ("Bernstein", "Outperform", 186, "Apr", "CNBC", CN + "2026/04/19/baba-makes-ai-investments-stock-analysts-want-to-see.html"),
+             ("BofA", "Buy", 172, "Apr", "CNBC", CN + "2026/04/19/baba-makes-ai-investments-stock-analysts-want-to-see.html")]
+T["MRVL"] = [("BofA", "Neutral (downgraded)", 225, "Nov 3", "CNBC", CN + "2026/11/03/acquisition-marvell-lumentum-acquisition-bofa-downgrade.html")] + T["MRVL"]
+T["COIN"] = [("Morgan Stanley", "Underweight (downgraded)", 120, "Nov 2", "CNBC", CN + "2026/11/02/coinbase-stock-morgan-stanley-downgrade.html")] + [x for x in T["COIN"] if x[0] != "Morgan Stanley"]
+T["BE"] = [("Barclays", "Overweight (upgraded)", 289, "Nov 3", "CNBC", CN + "2026/11/03/stocks-making-the-biggest-moves-midday-aapl-pltr-nvda-coin-be.html")] + T["BE"]
+T["NVDA"] = T["NVDA"] + [("Melius", "Buy", 315, "Nov 2", "CNBC", CN + "2026/11/02/biggest-stocks-by-analyst-calls-on-wall-street.html")]
+T["QCOM"] = [("Bernstein", "", 155, "Nov 2", "CNBC via TipRanks", CN + "quotes/QCOM")] + T["QCOM"]
+T["KLAC"] = T["KLAC"] + [("Wells Fargo", "", 210, "Oct 29", "CNBC via TipRanks", CN + "quotes/KLAC")]
+for _old in ("RDDT", "AEHR", "GOOGL", "AAOI", "IREN", "NOK", "BAC"):
+    T.pop(_old, None)

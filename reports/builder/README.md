@@ -1,7 +1,7 @@
-# Monthly Stock Analysis PDF
+# Monthly Market Analysis PDF
 
-Builds **Stock Analysis: <Month>–<Next month> Opportunities <Year>**
-(`Stock_Analysis_<Month>-<Next month>_Opportunities_<Year>.pdf`), one per month, made on the
+Builds **<Month> Market Analysis** (`<Month>_Market_Analysis_<Year>.pdf`, named for the month of the
+last close in `pdf/hist.json`; first edition: November_Market_Analysis_2026.pdf, Nov 4), one per month, made on the
 **last Sunday of the month**. Page 1 is the "Where to buy options: IV check" list; then the week's
 trading calendar, market backdrop, game plan, themes, key dates, all names at a glance, the IV page
 and one page per stock.
@@ -20,7 +20,7 @@ Run everything from this folder with `/usr/bin/python3` (needs reportlab + matpl
    targets (JPMorgan, BofA, Morgan Stanley, Goldman Sachs, Oppenheimer, Mizuho first; 3–5 per name; firm, rating, target, date,
    outlet, link) from his outlets. Also update `RULE3_DAYS` / `HOLIDAYS` in `pdf/mkpdf.py`.
 6. **Research**: rewrite each name's entry in `rep/content.py` (results, guidance, capex, partners,
-   catalysts, macro, risks, sources). A name new to the lists has no entry yet (Nov 4: ANET, WDC, CSCO and ALAB were added and need entries; LRCX is back and its entry should be refreshed; GOOGL, AEHR, AAOI, IREN and NOK were removed; 39 names): add a full `S["<TICKER>"]` entry
+   catalysts, macro, risks, sources). Every name needs a price target (Nasdaq consensus from step 4, plus named firms in `rep/targets.py`), a **current-year capex** line that leads with the year's figure (`CAPEX26` in `rep/content.py`: spending to date from the SEC filing, guidance from his outlets), and current catalysts. A name new to the lists has no entry yet: add a full `S["<TICKER>"]` entry
    for it, plus its targets, before building and every block in `pdf/mkpdf.py` marked `EDIT EACH MONTH`
    (dates, week table, tiles, game plan, themes, key dates). His 16 outlets only, never Yahoo,
    verified facts only.
