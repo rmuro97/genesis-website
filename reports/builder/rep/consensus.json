@@ -318,5 +318,45 @@
   "time": "",
   "status": "",
   "prior": null
+ },
+ "APH": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CRWD": {
+  "ann": "Dec 01, 2026",
+  "eps": null,
+  "n": "13",
+  "time": "AMC",
+  "status": "expected",
+  "prior": null
+ },
+ "LYTE": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "DRAM": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "NCLD": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  }
 }

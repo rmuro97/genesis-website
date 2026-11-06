@@ -38,7 +38,12 @@ RULE3_DAYS = {dt.date(2026, 10, 28), dt.date(2026, 10, 29), dt.date(2026, 11, 6)
 HOLIDAYS = {dt.date(2026, 11, 26), dt.date(2026, 12, 25)}
 # EDIT EACH MONTH: names that reported after the last close in hist.json: their option prices predate the report
 PRE_REPORT = {"ANET", "ALAB"}
-POST_LIVE = {"DDOG": "live Nov 4 quotes, after its Nov 4 morning report"}  # option IV taken intraday after a same-day report
+POST_LIVE = {"DDOG": "live Nov 4 quotes, after its Nov 4 morning report"}
+# EDIT EACH MONTH: names added to the lists after the build: option IV from live quotes on the day they were added
+NEW_LIVE = "live Nov 6 quotes (added to your lists Nov 6)"
+for _t in ("APH", "CRWD", "LYTE", "DRAM", "NCLD"):
+    POST_LIVE[_t] = NEW_LIVE
+ETFS = getattr(C, "ETFS", set())  # option IV taken intraday after a same-day report
 CH = os.path.join(HERE, "charts")
 os.makedirs(CH, exist_ok=True)
 
@@ -125,6 +130,8 @@ def earn_info(t):
 
 def rule_note(t, ei):
     nxt = ei["nxt"]
+    if t in ETFS:
+        return ("ok", "An ETF has no earnings, so a 7–60 DTE option never runs into a report. Only Rules 2 and 3 (Fridays and data days) apply.")
     if not nxt:
         return ("ok", f"Already reported {fmt_d(ei['last'])}; next date not set yet. A 7–60 DTE option bought now is not expected to run into a report.")
     days = (nxt - TODAY).days
@@ -169,7 +176,7 @@ def stats(t):
     rows = H[t]
     ds = [d(r[0]) for r in rows]; cl = [r[1] for r in rows]
     last = cl[-1]
-    base3 = max(i for i, x in enumerate(ds) if x <= LAST - dt.timedelta(days=92))
+    base3 = max([i for i, x in enumerate(ds) if x <= LAST - dt.timedelta(days=92)] or [0])  # funds launched < 3 months ago: since launch
     i1m = len(cl) - 22
     p = PX[t]
     return dict(
@@ -200,6 +207,8 @@ def pt_named(t, short=False):
 
 
 def pt_cons(t, last):
+    if t in ETFS:
+        return "Not applicable: an ETF has no analyst price targets. See its top holdings' pages and targets instead."
     c = PT.get(t)
     if not c:
         return "No Nasdaq consensus yet (recent U.S. listing)."
@@ -292,7 +301,7 @@ def spark(t):
 
 # ---------- doc ----------
 M1 = (TODAY + dt.timedelta(days=7)).replace(day=1); M2 = (M1 + dt.timedelta(days=32)).replace(day=1)  # named for the month the edition mainly covers (a Nov 30 edition is "December")
-EDITION = f"{M1:%B} {M1.year} edition · Wednesday {fmt_d(TODAY, False)}"
+EDITION = f"{M1:%B} {M1.year} edition · Wednesday {fmt_d(TODAY, False)} · updated Nov 6"
 TITLE = f"{M1:%B} Market Analysis"
 OUT = os.path.join(HERE, f"{M1:%B}_Market_Analysis_{M1.year}.pdf")
 W, Hh = letter
@@ -309,7 +318,7 @@ def on_page(c, doc):
 
 doc = BaseDocTemplate(OUT, pagesize=letter, leftMargin=M, rightMargin=M, topMargin=0.5 * inch, bottomMargin=0.6 * inch,
                       title=TITLE, author="Muro's Investing Analysis",
-                      subject="Price targets, 2026 capex, earnings, guidance, catalysts and market events for 40 stocks")
+                      subject="Price targets, 2026 capex, earnings, guidance, catalysts and market events for 45 stocks and ETFs")
 FRAME_H = Hh - 1.1 * inch
 frame = Frame(M, 0.6 * inch, W - 2 * M, FRAME_H, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
 doc.addPageTemplates([PageTemplate(id="p", frames=[frame], onPage=on_page)])
@@ -332,7 +341,7 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY REPORT", S_LAB), Spacer(1, 4),
           Paragraph(X(TITLE), S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph("All 40 names on your lists, in your broker's order, each with a company summary (what it does and specializes in; all 40 together on the \"Company summaries\" pages, and at the top of every stock page), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. This edition reflects your Nov 4 lists: <b>ANET, WDC, LRCX, CSCO and ALAB added, and Datadog (DDOG) at the top of the 15–50% Dip</b>; GOOGL, AEHR, AAOI, IREN and NOK removed. It also covers this week's news: Marvell's $115B Lumentum deal, Oracle's $20B raise, beats from Arista, Astera Labs, AMD and Super Micro, and the Democratic midterm sweep that hit AI stocks overnight. Prices are official Nasdaq closes through Tuesday Nov 3. Times are Pacific.", S_BL),
+          Paragraph("All 45 names on your lists, in your broker's order, each with a company summary (what it does and specializes in; all 45 together on the \"Company summaries\" pages, and at the top of every stock page), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. <b>Updated Nov 6 with your new lists and order:</b> Top 5 is now SKHY, INTC, AMZN, AVGO, SPCX; <b>Amphenol (APH) and CrowdStrike (CRWD)</b> join the 2026 Portfolio, plus three Roundhill ETFs at its end: <b>LYTE</b> (photonics/optics), <b>DRAM</b> (memory) and <b>NCLD</b> (neoclouds); the 15–50% Dip now starts with BE. (Nov 4 changes: ANET, WDC, LRCX, CSCO, ALAB and DDOG added; GOOGL, AEHR, AAOI, IREN and NOK removed.) It also covers this week's news: Marvell's $115B Lumentum deal, Oracle's $20B raise, beats from Arista, Astera Labs, AMD and Super Micro, and the Democratic midterm sweep that hit AI stocks overnight. Prices are official Nasdaq closes through Tuesday Nov 3 (the five new names too, so everything compares on the same day); their IV checks use live Nov 6 option quotes. Times are Pacific.", S_BL),
           Spacer(1, 5),
           Paragraph("Price targets: Nasdaq consensus (mean, low–high, buy/hold/sell count) for every name, plus named firm targets from your outlets. 2026 capex: spending to date from company SEC filings, with guidance from your outlets where companies give it. Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Seeking Alpha and Fox Business, plus company releases and SEC filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
@@ -457,7 +466,7 @@ WKND = [
     ("Results", "<b>ANET</b> +12% after hours: Q4 guide $3.9–4.0B vs $3.60B expected. <b>ALAB</b> revenue $584.9M (+154%), Q4 guide $730–750M. <b>DOCN</b> revenue +40%, 2027 growth 60%+ expected. AMD beat (EPS $2.09 vs $1.95) and Super Micro guided FY27 sales of $72–82B. Skyworks fell 16% on its guide. <b>DDOG</b> reported Wed morning: revenue +35% and a beat, but a flat Q4 guide ($1.19–1.20B vs $1.20B expected) sank it 17% (CNBC)."),
     ("Deals", "<b>MRVL</b> agreed Nov 2 to buy Lumentum for $115B in stock and fell 13%. BofA downgraded it to Neutral ($225 target). <b>ORCL</b> filed a $20B stock and bond raise and fell 8.8%; the stock priced at $116, and shares rebounded 5.9% Tuesday."),
     ("Analysts", "Barclays upgraded <b>BE</b> to Overweight (+9%). Morgan Stanley cut <b>COIN</b> to Underweight, target $120 from $258. Melius cut its <b>NVDA</b> target to $315 from $420. Stephens upgraded <b>ORCL</b>. Bernstein cut its <b>QCOM</b> target to $155 before tonight's report."),
-    ("Your lists", "Updated Nov 4 in your broker's order. Top 5: <b>SKHY, AMZN, AVGO, SPCX, INTC</b>. 2026 Portfolio adds <b>ANET, WDC, LRCX, CSCO and ALAB</b> and now starts with ANET. 15–50% Dip now starts with <b>DDOG</b> (added Nov 4), then VRT. GOOGL, AEHR, AAOI, IREN and NOK are off. 40 names."),
+    ("Your lists", "Updated Nov 6 in your broker's order (45 names). Top 5: <b>SKHY, INTC, AMZN, AVGO, SPCX</b>. 2026 Portfolio: ANET, <b>APH, CRWD</b> (new), CSCO, WDC, HPE, TER, AMAT, LRCX, CIEN, MRVL, COHR, CRDO, QCOM, VICR, ARM, NVDA, ALAB, then the new ETFs <b>LYTE, DRAM, NCLD</b>. 15–50% Dip: BE, VRT, KLAC, NBIS, DDOG, HOOD, IONQ, ORCL, GLW, DOCN, AKAM, FTNT, NOW, CRWV, VST, COIN, CRCL, BABA, CBRS."),
     ("Market", "Tuesday the S&amp;P 500 rose 0.36% (ending a 3-day skid) and the Nasdaq 0.83%. Monday the Nasdaq fell over 1%. The 10-year is near 4.9% and Brent near $104. VIX futures are about 21 (CNBC)."),
 ]
 wk = Table([[Paragraph(f'<font name="DVB">{X(a)}</font>', S_SM), Paragraph(b, S_B)] for a, b in WKND], colWidths=[0.9 * inch, CW - 0.9 * inch])
@@ -580,7 +589,7 @@ ct = Table(data, colWidths=[0.95 * inch, 0.88 * inch, CW - 0.95 * inch - 0.88 * 
 ct.setStyle(TableStyle(sty)); story.append(ct)
 
 # At a glance
-story += [PageBreak(), Paragraph("All 40 at a glance", S_H1),
+story += [PageBreak(), Paragraph(f"All {len(ALL)} at a glance", S_H1),
           Paragraph(f"Official closes {fmt_d(LAST)}. 1M = since {fmt_d(ST['AVGO']['m1_from'], False)}; 3M = since {fmt_d(ST['AVGO']['m3_from'], False)}. Sparkline = 3 months, shaded = last month. IV check: see the next page. Red earnings dates are within 21 days.", S_M)]
 for key, label, names in C.LISTS:
     data = [[Paragraph(x, S_LAB) for x in ("TICKER", "CLOSE", "DAY", "1M", "3M", "FROM HIGH", "3-MONTH TREND", "IV CHECK", "NEXT EARNINGS")]]
@@ -590,7 +599,7 @@ for key, label, names in C.LISTS:
             soon = (ei["nxt"] - TODAY).days <= 21
             ne = f'<font color="{"#b42318" if soon else "#1c1d21"}">{"<b>" if soon else ""}{fmt_d(ei["nxt"])}{"</b>" if soon else ""}</font>' + (' <font color="#62656e">est.</font>' if ei["est"] else "")
         else:
-            ne = f'<font color="#62656e">Reported {fmt_d(ei["last"], False)}</font>'
+            ne = '<font color="#62656e">ETF · no earnings</font>' if t in ETFS else f'<font color="#62656e">Reported {fmt_d(ei["last"], False)}</font>'
         data.append([Paragraph(f'<font name="DVB">{t}</font>', S_SM), Paragraph(f"${s['last']:,.2f}", st("rr", fontSize=8.4, alignment=TA_RIGHT)),
                      Paragraph(pc(s["day"], False), st("rr2", fontSize=8.4, alignment=TA_RIGHT)), Paragraph(pc(s["m1"]), st("rr3", fontSize=8.4, alignment=TA_RIGHT)),
                      Paragraph(pc(s["m3"]), st("rr4", fontSize=8.4, alignment=TA_RIGHT)), Paragraph(pc(s["offhi"], False), st("rr5", fontSize=8.4, alignment=TA_RIGHT)),
@@ -602,7 +611,7 @@ for key, label, names in C.LISTS:
 
 # IV check page
 # Wall Street price targets summary
-# Company summaries: what each company does, all 40 in one place (also shown at the top of each stock page)
+# Company summaries: what each company does, all names in one place (also shown at the top of each stock page)
 story += [PageBreak(), Paragraph("Company summaries: what each company does", S_H1),
           Paragraph("Every name on your lists in your broker's order, with what the company does and what it specializes in. The same summary opens each stock page.", S_M), Spacer(1, 4)]
 S_PF = st("pfs", fontSize=8.2, leading=10.6)
@@ -634,7 +643,7 @@ for key, label, names in C.LISTS:
                       Paragraph(pc((c["priceTarget"] / last - 1) * 100, False) if c else "–", S_T7R),
                       Paragraph(f'${c["lowPriceTarget"]:,.0f}–${c["highPriceTarget"]:,.0f}' if c else "–", S_T7R),
                       Paragraph(f'{c["buy"]}/{c["hold"]}/{c["sell"]}' if c else "–", S_T7R),
-                      Paragraph(" · ".join(pt_named(t, short=True)) or '<font color="#62656e">none reported recently</font>', S_T7)])
+                      Paragraph(" · ".join(pt_named(t, short=True)) or ('<font color="#62656e">ETF: no analyst targets</font>' if t in ETFS else '<font color="#62656e">none reported recently</font>'), S_T7)])
 ptab = Table(pdata, colWidths=[0.7 * inch, 0.66 * inch, 0.62 * inch, 0.7 * inch, 0.92 * inch, 0.55 * inch, CW - 4.15 * inch], repeatRows=1)
 ptab.setStyle(TableStyle(psty))
 story.append(KeepInFrame(CW, FRAME_H - 60, [ptab], mode="shrink"))
@@ -654,12 +663,12 @@ for key, label, names in C.LISTS:
     for t in names:
         v, ei = IVF[t], earn_info(t)
         xv = v.get("ex") if v["verdict"] == "Blocked" else None
-        em = f'±{v["em"]["move"]:.1f}% by {fmt_d(dt.date.fromisoformat(v["em"]["exp"]), False)}' if v["em"] else (f'±{xv["jump"]:.1f}% on report day (est.)' if xv else '<font color="#62656e">Report too far out</font>' if ei["nxt"] else '<font color="#62656e">Already reported</font>')
+        em = f'±{v["em"]["move"]:.1f}% by {fmt_d(dt.date.fromisoformat(v["em"]["exp"]), False)}' if v["em"] else (f'±{xv["jump"]:.1f}% on report day (est.)' if xv else '<font color="#62656e">Report too far out</font>' if ei["nxt"] else '<font color="#62656e">' + ("ETF · no earnings" if t in ETFS else "Already reported") + '</font>')
         notes = []
         if v["verdict"] == "Blocked":
             notes.append(f'After earnings {fmt_d(ei["nxt"], False)} (est.); buy from {fmt_d(first_buy(t, ei), False)}')
         if t in POST_LIVE:
-            notes.append("Live Nov 4 quotes, post-report")
+            notes.append("Live Nov 6 quotes (new name)" if POST_LIVE[t] == NEW_LIVE else "Live Nov 4 quotes, post-report")
         if v["hv_has_earn"]:
             notes.append("HV has earnings move")
         if v["wide"]:
@@ -705,7 +714,7 @@ for key, label, names in C.LISTS:
             red = days <= 21
             e1 = f'<font color="{"#b42318" if red else "#1c1d21"}"><b>{fmt_d(ei["nxt"])}</b></font>{" (est.)" if ei["est"] else ""} · {X(ei["when"])} · in {days} days'
         else:
-            e1 = f"<b>Not set</b> · last reported {fmt_d(ei['last'])}"
+            e1 = "<b>None</b> · an ETF does not report earnings" if t in ETFS else f"<b>Not set</b> · last reported {fmt_d(ei['last'])}"
         er = [[Paragraph("NEXT EARNINGS", S_LAB), Paragraph(e1, S_B)]]
         if ei["eps"] is not None:
             e2 = f"<b>{eps_s(ei['eps'])}</b>" + (f" vs {eps_s(ei['prior'])} a year ago" if ei["prior"] is not None else "") + (f" · {ei['n']} analyst{'s' if ei['n'] != '1' else ''}" if ei["n"] else "")
@@ -725,7 +734,7 @@ for key, label, names in C.LISTS:
         sec = [("LATEST RESULTS", X(info["results"])), ("GUIDANCE", X(info["guide"])), ("2026 CAPEX", X(info["capex"])),
                ("CURRENT PARTNERSHIPS", bl(info["partners"])), ("CATALYSTS", bl(info["catalysts"])),
                ("MARKET EVENTS", X(info["macro"])), ("RISKS", X(info["risks"])),
-               ("WALL STREET TARGETS", pt_cons(t, s["last"]) + ("<br/>" + " · ".join(pt_named(t)) if TG.T.get(t) else "<br/><font color=\"#62656e\">No named firm target reported recently in your outlets.</font>"))]
+               ("WALL STREET TARGETS", pt_cons(t, s["last"]) + ("<br/>" + " · ".join(pt_named(t)) if TG.T.get(t) else "" if t in ETFS else "<br/><font color=\"#62656e\">No named firm target reported recently in your outlets.</font>"))]
         dt_ = Table([[Paragraph(a, S_LAB), Paragraph(b, S_B)] for a, b in sec], colWidths=[1.35 * inch, CW - 1.35 * inch])
         dt_.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LINEABOVE", (0, 1), (-1, -1), 0.5, LINE), ("LEFTPADDING", (0, 0), (-1, -1), 0),
                                  ("TOPPADDING", (0, 0), (-1, -1), 3.2), ("BOTTOMPADDING", (0, 0), (-1, -1), 3.2)]))

@@ -656,3 +656,79 @@ PROFILE = {
 }
 for _t, _p in PROFILE.items():
     S[_t]["profile"] = _p
+
+# ---------------- NOV 6 UPDATE: new list order from his broker (45 names); APH, CRWD, LYTE, DRAM, NCLD added ----------------
+LISTS = [
+ ("top5", "Top 5", ["SKHY", "INTC", "AMZN", "AVGO", "SPCX"]),
+ ("portfolio", "2026 Portfolio", ["ANET", "APH", "CRWD", "CSCO", "WDC", "HPE", "TER", "AMAT", "LRCX", "CIEN", "MRVL", "COHR", "CRDO", "QCOM", "VICR", "ARM", "NVDA", "ALAB", "LYTE", "DRAM", "NCLD"]),
+ ("dips", "15–50% Dip", ["BE", "VRT", "KLAC", "NBIS", "DDOG", "HOOD", "IONQ", "ORCL", "GLW", "DOCN", "AKAM", "FTNT", "NOW", "CRWV", "VST", "COIN", "CRCL", "BABA", "CBRS"]),
+]
+ETFS = {"LYTE", "DRAM", "NCLD"}
+RH_ = "https://www.roundhillinvestments.com/etf/"
+
+S["APH"] = dict(
+ name="Amphenol", what="Connectors, cable assemblies, antennas and sensors; its IT datacom unit makes the high-speed interconnect inside AI servers and racks.",
+ results="Q3 (Oct 28): record sales $10.2B, up 65% (37% organic); orders $12.2B, book-to-bill 1.19; adjusted EPS $0.80, up 74%; adjusted operating margin 29.7%; free cash flow $1.6B. Sales and EPS both beat the top of its own guidance, led by 'exceptional' IT datacom growth (company release). Revenue beat consensus by about $727M (Seeking Alpha).",
+ guide="Q4 sales $10.3–10.5B (about +60%), adjusted EPS $0.81–0.83. Full-year 2026 sales $36.9–37.1B (about +60%), adjusted EPS $2.82–2.84; CommScope's acquired business adds about $5.1B of 2026 sales. Excludes three pending deals (company release). Guidance topped consensus (Seeking Alpha).",
+ capex="2026: $1,104.3M in the first 9 months vs $742.9M a year ago (Q3 10-Q cash-flow statement), up about 49% as it adds capacity for AI datacom demand.",
+ partners=["AI datacom: high-speed copper and fiber interconnect for AI servers and racks (its fastest-growing market)", "Acquisitions: closed Empire Electronics (Sept); signed AdvancedPCB, Dexgreen and Humanetics Sensors (~$1.6B combined with Empire)", "CommScope connectivity business (acquired; ~$5.1B of 2026 sales)"],
+ catalysts=["Reported Oct 28; next report late January (date not set)", "Dividend up 20% to $0.15 (paid Jan 13) and a new $4B buyback from Jan 1, 2027", "Price targets raised after Q3: JPMorgan $115, UBS $111 (Oct 29)", "AI rack build-outs and hyperscaler capex updates read straight through"],
+ macro="Trades with AI data-center spending and hyperscaler capex; the Nov 5 chip rout on midterm data-center fears hit the AI-hardware group. Also exposed to autos, defense and industrial cycles.",
+ risks="A pause in AI rack orders after record bookings; integration of several acquisitions; premium valuation after a long run.",
+ src=[("Amphenol · Q3 2026 results (SEC)", SEC_ + "820313/000110465926119421/aph-ex99d1.htm"), ("Amphenol · Q3 2026 10-Q (SEC)", SEC_ + "820313/000110465926120646/aph-20260930x10q.htm"),
+      ("Seeking Alpha · Amphenol jumps on Q3 revenue surge; guidance tops consensus", SA + "4658881-amphenol-jumps-on-q3-revenue-surge-guidance-tops-consensus"),
+      ("Seeking Alpha · BNP Paribas ups target after management meeting", SA + "4645447-bnp-paribas-ups-estimates-price-target-on-amphenol-after-management-meeting")])
+
+S["CRWD"] = dict(
+ name="CrowdStrike", what="Cloud-native cybersecurity: the Falcon platform for endpoint, cloud, identity, SIEM and AI security.",
+ results="Q2 FY27 (Aug 26, quarter to Jul 31): revenue $1.47B, up 26%; ARR $5.84B, up 25%, with record net new ARR of $333M (up 51%); non-GAAP EPS $0.31; record Q2 free cash flow $377M; cash $5.01B. Falcon Flex ARR passed $2.29B, up 101% (company release).",
+ guide="Q3 FY27 (to Oct 31): revenue $1.523–1.529B, non-GAAP EPS $0.31. Full FY27 (to Jan 31, 2027): revenue $5.99–6.01B, ending ARR $6.60–6.61B, non-GAAP EPS $1.25–1.26; net new ARR growth outlook raised to 34% at the midpoint (company release).",
+ capex="FY2027 (Feb–Jul 2026, first half): $222.0M of property and equipment plus $49.1M of capitalized software, vs $116.2M and $34.7M a year ago (Q2 10-Q cash-flow statement). Mostly data-center capacity for its cloud platform.",
+ partners=["Nvidia: real-time AI security agents for data centers and cloud (deepened in 2026, per CNBC)", "AWS: AI, cloud and Next-Gen SIEM work; Project QuiltWorks coalition", "Cerebras collaboration (also on your list); Schwarz Digits partnership in Europe and the XM Cyber technology purchase"],
+ catalysts=["Next earnings Tue Dec 1 after the close (est.)", "Deutsche Bank upgraded to Buy, target $300 from $240 (Nov 2); Truist Buy $300 (Sept 1)", "AI-agent security demand; Falcon Flex adoption"],
+ macro="Software and cybersecurity sentiment (AI-disruption fears hit software in late October), plus breach headlines that lift security demand. Less tied to data-center capex than the hardware names.",
+ risks="Valuation after a 114% run this year (CNBC, Nov 2); GAAP profit still near breakeven; competition from Palo Alto, Microsoft and Zscaler.",
+ src=[("CrowdStrike · Q2 FY27 results (SEC)", SEC_ + "1535527/000153552726000029/crwd-20260826xex991.htm"), ("CrowdStrike · Q2 FY27 10-Q (SEC)", SEC_ + "1535527/000153552726000031/crwd-20260731.htm"),
+      ("CNBC · Deutsche Bank upgrade, Nov 2", CN_ + "2026/11/02/this-stock-is-a-double-in-2026-and-still-has-room-to-run-deutsche-bank-says.html"),
+      ("Seeking Alpha · Truist on the 'Mythos moment'", SA + "4638911-crowdstrikes-mythos-moment-drives-platform-wide-adoption-truist")])
+
+_ETF_RES = "An ETF: no earnings, guidance or analyst targets. Judge it by its holdings' news, its price trend and its options (it has listed options)."
+S["LYTE"] = dict(
+ name="Roundhill Photonics & Optics ETF", what="Actively managed ETF holding a concentrated basket of global photonics and optics makers.",
+ results=_ETF_RES + " Launched Aug 6, 2026; expense ratio 0.65% (Roundhill). Down sharply from its Aug 17 high with the optics selloff.",
+ guide="Not applicable (ETF). The driver is the optics group's guidance: Lumentum, Coherent and Ciena reports, plus Marvell's pending purchase of Lumentum.",
+ capex="Not applicable (ETF has no capex). Its holdings ride AI data-center optics spending; see COHR and CIEN pages for their 2026 capex.",
+ partners=["Top holdings (Roundhill): Lumentum, Eoptolink, Zhongji Innolight, Coherent, Ciena", "Overlaps your COHR, CIEN and, through Lumentum, MRVL"],
+ catalysts=["Holdings' earnings: Lumentum and AAOI reported Nov 5; Coherent Nov 4", "Marvell–Lumentum deal news", "Hyperscaler capex and 800G/1.6T optics orders"],
+ macro="AI networking spend, China supplier exposure (Eoptolink and Innolight are Chinese), and rates; it fell hard in the Nov 5 chip rout.",
+ risks="Concentrated, actively managed and young (launched Aug 2026); China-listed holdings add tariff and export-control risk; wide option spreads.",
+ src=[("Roundhill · LYTE fund page (holdings, launch, fee)", RH_ + "lyte/")])
+S["DRAM"] = dict(
+ name="Roundhill Memory ETF", what="Actively managed ETF holding a basket of global memory-chip makers (DRAM, HBM, NAND, storage).",
+ results=_ETF_RES + " Launched Apr 2, 2026 (described by Roundhill as the first memory stock ETF); expense ratio 0.65%.",
+ guide="Not applicable (ETF). The driver is memory pricing and its holdings' outlooks: SK hynix (record Q3), Micron and Samsung.",
+ capex="Not applicable (ETF has no capex). Memory makers' capex drives LRCX, AMAT and TER; see SKHY's page for its 2026 capex.",
+ partners=["Top holdings (Roundhill): Micron, Samsung, SK hynix, CXMT, Seagate", "Overlaps your SKHY and, through storage, WDC"],
+ catalysts=["Memory price moves and HBM supply news", "Micron's next report (mid-December)", "Kospi and Korean export data"],
+ macro="Memory is the tightest part of the AI supply chain; Qualcomm blamed a memory shortage for its Nov 4 guide. Moves with the Kospi and the chip index.",
+ risks="Memory is the most cyclical corner of chips; a price rollover or capex cuts would hit it hard; foreign listings (Korea, China) add currency and policy risk.",
+ src=[("Roundhill · DRAM fund page (holdings, launch, fee)", RH_ + "dram/")])
+S["NCLD"] = dict(
+ name="Roundhill Neocloud ETF", what="Actively managed ETF holding AI 'neocloud' companies that build and rent out GPU data centers.",
+ results=_ETF_RES + " Launched Aug 6, 2026; expense ratio 0.65% (Roundhill). Down sharply since launch with the neocloud selloff.",
+ guide="Not applicable (ETF). The driver is its holdings' guidance and financing: CoreWeave (reports Nov 10), Nebius and IREN.",
+ capex="Not applicable (ETF has no capex). Its holdings are among the heaviest capex spenders; see CRWV and NBIS pages for their 2026 capex.",
+ partners=["Top holdings (Roundhill): Nebius, CoreWeave, IREN, Hut 8, Galaxy", "Overlaps your NBIS and CRWV"],
+ catalysts=["CoreWeave earnings Nov 10; Nebius Nov 12", "Neocloud financing deals and GPU-rental contracts", "Microsoft souring on neoclouds (Bloomberg, Nov 5) is the current headwind"],
+ macro="Trades on credit and AI-capex sentiment: bond yields, financing spreads and hyperscaler contracts. Hit hardest in the post-midterm data-center selloff.",
+ risks="Very volatile, concentrated holdings with heavy debt; young fund (Aug 2026); wide option spreads.",
+ src=[("Roundhill · NCLD fund page (holdings, launch, fee)", RH_ + "ncld/")])
+
+for _t, _p in {
+ "APH": "Amphenol (Wallingford, Connecticut) is one of the world's largest makers of electrical and fiber-optic connectors, cable assemblies, antennas and sensors. Its IT datacom business, which supplies the high-speed copper and fiber interconnect inside AI servers and racks, is its fastest-growing market; it also serves autos, defense, aerospace, industrial and mobile devices, and has grown through a steady stream of acquisitions.",
+ "CRWD": "CrowdStrike (Austin) sells cloud-delivered cybersecurity on its Falcon platform: endpoint protection, cloud and identity security, next-gen SIEM, threat intelligence and managed detection. It specializes in AI-driven threat detection and now in securing AI agents; customers buy modules through Falcon Flex subscriptions.",
+ "LYTE": "Roundhill Photonics & Optics ETF: an actively managed fund (launched Aug 2026) holding a concentrated basket of global companies that make lasers, optical transceivers and other light-based components for AI data centers. Top holdings include Lumentum, Eoptolink, Zhongji Innolight, Coherent and Ciena.",
+ "DRAM": "Roundhill Memory ETF: an actively managed fund (launched April 2026) holding a targeted basket of global memory-chip makers. Top holdings include Micron, Samsung, SK hynix, CXMT and Seagate, so it tracks DRAM, HBM and storage pricing.",
+ "NCLD": "Roundhill Neocloud ETF: an actively managed fund (launched Aug 2026) holding AI 'neocloud' companies that build GPU data centers and rent the capacity on multi-year contracts. Top holdings include Nebius, CoreWeave, IREN, Hut 8 and Galaxy.",
+}.items():
+    S[_t]["profile"] = _p

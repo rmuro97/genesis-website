@@ -125,3 +125,10 @@ for _old in ("RDDT", "AEHR", "GOOGL", "AAOI", "IREN", "NOK", "BAC"):
 T["DDOG"] = [("Bernstein", "Outperform (upgraded)", 350, "Oct", "Seeking Alpha", SA_ + "4654186-datadog-receives-upgrade-to-outperform-on-ai-driven-demand-bernstein"),
              ("BofA", "Buy", 335, "Nov 1", "CNBC", CN + "2026/11/01/top-analysts-are-bullish-on-these-3-stocks-for-the-long-haul.html"),
              ("Benchmark", "Buy", 330, "Jul", "Seeking Alpha", SA_ + "4609688-datadogs-moat-should-thrive-in-ai-super-cycle-benchmark")]
+
+# Nov 6: new names
+T["APH"] = [("JPMorgan", "", 115, "Oct 29 (from $107)", "CNBC via TipRanks", CN + "quotes/APH"),
+            ("UBS", "", 111, "Oct 29 (from $105)", "CNBC via TipRanks", CN + "quotes/APH"),
+            ("BNP Paribas", "", 110, "Sep 22", "Seeking Alpha", SA_ + "4645447-bnp-paribas-ups-estimates-price-target-on-amphenol-after-management-meeting")]
+T["CRWD"] = [("Deutsche Bank", "Buy (upgraded)", 300, "Nov 2 (from $240)", "CNBC", CN + "2026/11/02/this-stock-is-a-double-in-2026-and-still-has-room-to-run-deutsche-bank-says.html"),
+             ("Truist", "Buy", 300, "Sep 1 (from $245)", "Seeking Alpha", SA_ + "4638911-crowdstrikes-mythos-moment-drives-platform-wide-adoption-truist")]

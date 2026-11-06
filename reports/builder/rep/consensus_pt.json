@@ -304,5 +304,24 @@
   "buy": 30,
   "sell": 1,
   "hold": 1
- }
+ },
+ "APH": {
+  "lowPriceTarget": 90.0,
+  "highPriceTarget": 122.0,
+  "priceTarget": 108.5,
+  "buy": 10,
+  "sell": 0,
+  "hold": 1
+ },
+ "CRWD": {
+  "lowPriceTarget": 132.0,
+  "highPriceTarget": 425.0,
+  "priceTarget": 267.24,
+  "buy": 34,
+  "sell": 0,
+  "hold": 6
+ },
+ "LYTE": null,
+ "DRAM": null,
+ "NCLD": null
 }
