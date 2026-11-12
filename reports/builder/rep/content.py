@@ -2,9 +2,9 @@
 # Every fact comes from the notes gathered Oct 25–30, 2026 (his outlets: CNBC, Bloomberg, Seeking Alpha, plus company SEC filings where coverage cited them).
 SA = "https://seekingalpha.com/news/"
 LISTS = [
- ("top5", "Top 5", ["SKHY", "AMZN", "AVGO", "SPCX", "INTC"]),
- ("portfolio", "2026 Portfolio", ["ANET", "WDC", "HPE", "TER", "AMAT", "LRCX", "CIEN", "MRVL", "COHR", "CRDO", "QCOM", "VICR", "ARM", "NVDA", "CSCO", "ALAB"]),
- ("dips", "15–50% Dip", ["DDOG", "VRT", "HOOD", "IONQ", "KLAC", "ORCL", "GLW", "NBIS", "BE", "DOCN", "AKAM", "FTNT", "NOW", "CRWV", "VST", "COIN", "CRCL", "BABA", "CBRS"]),
+ ("top5", "Top 5", ["SKHY", "AVGO", "AMZN", "NVDA", "SPCX"]),
+ ("portfolio", "2026 Portfolio", ["BE", "COHR", "HPE", "CRDO", "TER", "AMAT", "LRCX", "MRVL", "CIEN", "CRWD", "ANET", "WDC", "APH", "QCOM", "CSCO", "VICR", "LYTE", "DRAM", "NCLD"]),
+ ("dips", "15–50% Dip", ["ARM", "INTC", "ALAB", "VRT", "KLAC", "NBIS", "DDOG", "HOOD", "ZS", "IONQ", "ORCL", "GLW", "DOCN", "AKAM", "FTNT", "NOW", "CRWV", "VST", "COIN", "CRCL", "BABA", "CBRS"]),
 ]
 
 S = {}
@@ -658,11 +658,7 @@ for _t, _p in PROFILE.items():
     S[_t]["profile"] = _p
 
 # ---------------- NOV 6 UPDATE: new list order from his broker (45 names); APH, CRWD, LYTE, DRAM, NCLD added ----------------
-LISTS = [
- ("top5", "Top 5", ["SKHY", "INTC", "AMZN", "AVGO", "SPCX"]),
- ("portfolio", "2026 Portfolio", ["ANET", "APH", "CRWD", "CSCO", "WDC", "HPE", "TER", "AMAT", "LRCX", "CIEN", "MRVL", "COHR", "CRDO", "QCOM", "VICR", "ARM", "NVDA", "ALAB", "LYTE", "DRAM", "NCLD"]),
- ("dips", "15–50% Dip", ["BE", "VRT", "KLAC", "NBIS", "DDOG", "HOOD", "IONQ", "ORCL", "GLW", "DOCN", "AKAM", "FTNT", "NOW", "CRWV", "VST", "COIN", "CRCL", "BABA", "CBRS"]),
-]
+LISTS = LISTS  # Nov 12 lists are set at the top of the file
 ETFS = {"LYTE", "DRAM", "NCLD"}
 RH_ = "https://www.roundhillinvestments.com/etf/"
 
@@ -732,3 +728,113 @@ for _t, _p in {
  "NCLD": "Roundhill Neocloud ETF: an actively managed fund (launched Aug 2026) holding AI 'neocloud' companies that build GPU data centers and rent the capacity on multi-year contracts. Top holdings include Nebius, CoreWeave, IREN, Hut 8 and Galaxy.",
 }.items():
     S[_t]["profile"] = _p
+
+# ---------------- NOV 12 UPDATE: lists reordered from his broker (46 names); Zscaler (ZS) added; Nov 4–11 reports and news ----------------
+S["ZS"] = dict(
+ name="Zscaler", what="Cloud security: the Zero Trust Exchange, a SASE platform that secures users, apps, data and AI traffic.",
+ results="Fiscal Q4 FY26 (Sep 3, quarter to Jul 31): revenue $898.2M, up 25%; ARR $3.77B, up 25% (20% without the Red Canary acquisition), with $246M of net new ARR; non-GAAP EPS $1.19 vs $0.89 a year ago; GAAP net loss $3.4M. Fiscal 2026 revenue $3.35B (+25%) and free cash flow $779M, a 23% margin (company release).",
+ guide="Q1 FY27 (to Oct 31): revenue $935–939M (about +19%), non-GAAP EPS $1.15–1.16. Full FY27: revenue $3.908–3.938B and ARR $4.396–4.426B (both about +17%), non-GAAP EPS $4.86–4.90, free-cash-flow margin 23–23.5% (company release). That slowdown from 25% is what sank the stock in May.",
+ capex="Fiscal 2026 (Aug 2025–Jul 2026): $277.3M of property and equipment plus $73.2M of capitalized software, vs $164.3M and $81.5M a year earlier (SEC 8-K cash-flow statement). The CFO said capex stays elevated in fiscal 2027 as it adds data-center capacity, with memory costs higher.",
+ partners=["Red Canary (managed detection and response) acquired in fiscal 2026, adding $141M of ARR", "Product focus: Zero Trust SASE, agentic security operations, data security and security for AI; Z-Flex buying program", "Competes with Palo Alto, Fortinet, Cloudflare and CrowdStrike"],
+ catalysts=["Earnings Wed Dec 2 after the close (Nasdaq, est.); no new options held into it", "Read-through from CrowdStrike (Dec 1) and Palo Alto results", "Recovery from the May 27 crash: the stock fell 31%, its worst day ever, on the 'prudent' FY27 guide and a sales-leadership shakeup (CNBC)"],
+ macro="Software and cybersecurity sentiment: AI-disruption fears hit software in late October, and high-multiple software fell with the Nov 10 yield spike. Breach headlines lift security demand.",
+ risks="Growth slowing to about 17%; sales-leadership turnover; SASE competition (the reason Morgan Stanley cut it to Equal-weight); still loss-making on a GAAP basis.",
+ src=[("Zscaler · Q4 and fiscal 2026 results (SEC)", SEC_ + "1713683/000171368326000156/zs-07312026_991.htm"),
+      ("CNBC · Zscaler tanks 31% on 'prudent' guidance (May 27)", CN_ + "2026/05/27/zscaler-zs-earnings-q3-2026.html"),
+      ("Seeking Alpha · analysts lower targets after the plunge", SA + "4597354-zscaler-collapses-over-outlook-analysts-lower-targets-but-remain-upbeat-on-strong-nrr"),
+      ("Seeking Alpha · KeyBanc raises target to $210", SA + "4635864-zscaler-in-focus-as-keybanc-ups-price-target")])
+S["ZS"]["profile"] = "Zscaler (San Jose) runs one of the largest cloud security platforms, the Zero Trust Exchange: instead of firewalls and VPNs, company traffic is routed through its global cloud, which checks every user, device and app connection. It sells secure web and private-app access (SASE), data protection, and, since buying Red Canary, managed threat detection; it is adding security for AI apps and agents."
+
+S["COHR"].update(
+ results="Fiscal Q1 FY27 (Nov 4): revenue $2.37B, up about 50% on AI data-center optics demand; non-GAAP EPS $2.09, above its $1.85–2.05 guide; non-GAAP gross margin 40.6%. It fell 5.9% on report day in the post-election chip selloff, then jumped 16.7% Nov 9 and 9.3% Nov 11.",
+ guide="Fiscal Q2 revenue $2.55–2.75B. Expects fiscal 2027 pro forma revenue growth above 60%, its first $3B quarter by the end of fiscal 2027 and a first $4B quarter in fiscal 2028.",
+ catalysts=["Reported Nov 4; next report early February (date not set)", "Cisco reports Thu Nov 12 after the close (networking/optics read)", "Lumentum +15% and AAOI +19% on Nov 11 after CoreWeave's beat", "Nvidia Nov 17"],
+ src=[("Seeking Alpha · Q1 revenue surges 50%", SA + "4665073-coherents-q1-revenue-surges-50-as-it-takes-advantage-of-optical-connectivity-in-data-centers"),
+      ("Barron's · Coherent climbs back from AI doom and gloom", "https://www.barrons.com/articles/coherent-earnings-stock-price-352c4976"),
+      ("CNBC · biggest movers Nov 9: Coherent", CN_ + "2026/11/09/stock-market-movers-live-updates.html"),
+      ("Seeking Alpha · Lumentum rises 15% (Nov 11)", SA + "4670858-lumentum-rises-15-percent-amid-broad-technology-rally")])
+S["ARM"].update(
+ results="Fiscal Q2 FY27 (Nov 4): revenue $1.44B, up 27%, $60M above estimates; EPS $0.52, $0.04 above; guidance in line (WSJ, Seeking Alpha). It fell 11.9% Nov 5 with Qualcomm in the post-election chip rout, then rebounded 12% on Nov 11.",
+ guide="Next-quarter guidance was in line with estimates. CEO Rene Haas called the election-driven AI selloff 'very, very short term thinking' (CNBC, Nov 6).",
+ catalysts=["Reported Nov 4; next report early February", "Moved to your 15–50% Dip list Nov 12", "Qualcomm litigation fallout; Nvidia Nov 17 and AWS re:Invent Nov 30 (data-center CPUs)"],
+ src=[("WSJ · Arm sales climb 27% on AI demand", "https://www.wsj.com/business/earnings/arm-holdings-sales-climb-27-on-ai-demand-206782b6"),
+      ("Seeking Alpha · Arm slips even as Q2 tops estimates", SA + "4664949"),
+      ("CNBC · OpenAI, Arm, Qualcomm executives on the selloff", CN_ + "2026/11/06/tech-executives-ai-data-center-selloff-midterms.html")])
+S["QCOM"].update(
+ results="Fiscal Q4 (Nov 4): revenue $10.32B and non-GAAP EPS $2.17, both above estimates. Handset chips fell 26% to $5.14B (a miss); autos rose 89% to $1.99B; data center about $650M. It fell 9.6% Nov 5 on the outlook (CNBC).",
+ guide="Fiscal Q1 revenue $10.4–11.2B and non-GAAP EPS $2.15–2.35 (midpoint below the ~$2.32 expected). CEO Amon says a memory shortage, not demand, is limiting phones. Targets $5B of data-center revenue in fiscal 2027.",
+ catalysts=["Reported Nov 4; next report early February", "SpaceX Starlink Mobile base-station deal (Nov 4), with deployments from 2027", "Alphabet disclosed a new $548M Qualcomm stake (Nov 9)"],
+ src=[("CNBC · Qualcomm drops on weak forecast as memory shortage hits phones", CN_ + "2026/11/04/qualcomm-qcom-earnings-report-q4-2026.html"),
+      ("Seeking Alpha · $5B FY27 data-center target", SA + "4666012-qualcomm-targets-5b-fiscal-2027-data-center-revenue-as-it-expects-starlink-mobile-deployments"),
+      ("CNBC · Qualcomm slides 9%, leads chip selloff", CN_ + "2026/11/05/qualcomm-earnings-chip-stocks-election.html"),
+      ("Seeking Alpha · Alphabet's $548M Qualcomm stake", SA + "4668792-alphabet-maintains-massive-spacex-bet-initiates-548m-qualcomm-stake")])
+S["CRCL"].update(
+ results="Q3 (Nov 4, before the open): GAAP EPS $0.84, $0.45 above estimates; revenue $865M, $76M above (Seeking Alpha). Most revenue is interest on USDC reserves.",
+ catalysts=["Reported Nov 4; next report February", "Goldman, Citi, Santander and Deutsche Bank committed ~$270M to a rival bank stablecoin venture (Bloomberg, Nov 10)", "Rates: the hot October CPI raised Fed-hike bets, which helps reserve income"],
+ src=[("Seeking Alpha · Q3 beats on EPS and revenue", SA + "4664575"),
+      ("Bloomberg · banks back $270M stablecoin venture", "https://www.bloomberg.com/news/articles/2026-11-10/goldman-citi-among-banks-in-270-million-stablecoin-backing")])
+S["AKAM"].update(
+ results="Q3 (Nov 5): revenue $1.12B, up 6%; non-GAAP EPS $1.77 vs $1.67 expected; security revenue up 9% to $622M; cloud infrastructure services up 34% to $109M. It has signed over $14B of multiyear cloud-infrastructure commitments in 2026, including an $11.6B Anthropic contract that ramps from Q4 (company release).",
+ guide="Q4 revenue $1.145–1.17B, light because of about $30M of data-center delays (Seeking Alpha). Sees 2027 revenue growth accelerating to 17–22% (FX-adjusted) and 2028 revenue above $7B. Buybacks paused to fund GPU capacity.",
+ catalysts=["Reported Nov 5; next report February", "Priced a $2.2B convertible note offering (Nov 10) to refinance debt and fund cloud build-out", "Evercore downgraded it on financing concerns (Nov 11)", "Anthropic IPO (pricing Nov 18) spotlights its biggest customer"],
+ src=[("Akamai · Q3 2026 results", "https://www.morningstar.com/news/globe-newswire/9871603/akamai-reports-third-quarter-2026-financial-results"),
+      ("Seeking Alpha · jumps as cloud outlook shows momentum", SA + "4668291-akamai-jumps-as-cis-outlook-shows-momentum"),
+      ("Seeking Alpha · prices $2.2B convertible", SA + "4669696-akamai-prices-22b-convertible-note-offering"),
+      ("Seeking Alpha · Evercore downgrade", SA + "4670615-akamai-downgraded-at-evercore-on-financing-concerns")])
+S["IONQ"].update(
+ results="Q3 (Nov 5): record revenue $173.8M, up 336%, vs about $141M expected; GAAP net income $564M from a non-cash warrant gain; adjusted EBITDA loss $133.6M; backlog (RPO) $1.2B. The stock rose 23% on Nov 6 (company release, Seeking Alpha).",
+ guide="2026 revenue raised to $505–515M from $450–460M. Pro forma cash and investments about $3.7B after a $2.0B October share sale.",
+ catalysts=["Reported Nov 5; next report late February", "Analysts bullish on the raised outlook (Seeking Alpha, Nov 6)", "Quantum-sector headlines; SkyWater foundry integration"],
+ src=[("IonQ · record Q3, FY26 guide raised to $505–515M", "https://investors.ionq.com/news/news-details/2026/IonQ-Announces-Record-3Q26-Revenues-and-Raises-FY2026-Guidance-to-505---515-Million-as-Backlog-Grows-to-1-2-Billion/"),
+      ("Bloomberg · IonQ sees revenue quadrupling", "https://www.bloomberg.com/news/articles/2026-11-05/ionq-sees-revenue-quadrupling-on-quantum-computing-demand"),
+      ("Seeking Alpha · analysts bullish on outlook lift", SA + "4668342-ionq-wall-street-analysts-bullish-on-revenue-outlook-lift")])
+S["VST"].update(
+ results="Q3 (Nov 6): record ongoing adjusted EBITDA of $2.38B, up more than 50% (company release). The stock rose 10.5% that day after falling 13.9% Nov 4 on a KeyBanc downgrade and Texas policy worries.",
+ guide="2026 adjusted EBITDA narrowed to $7.1–7.5B (midpoint raised). First 2027 guide: $7.7–8.5B, after closing the Cogentrix purchase and signing a Meta power deal at its Perry plant (Seeking Alpha).",
+ catalysts=["Reported Nov 6; next report late February", "Texas data-center policy after the midterms (the governor-elect pledged a moratorium)", "More data-center power contracts (Meta at Perry)"],
+ src=[("Vistra · Q3 2026 results (SEC)", SEC_ + "1692819/000169281926000023/vistra-20260930xearningsre.htm"),
+      ("Seeking Alpha · 2027 EBITDA $7.7–8.5B, Meta Perry PPA", SA + "4668452-vistra-outlines-2027-adjusted-ebitda-of-7_7b-8_5b-following-cogentrix-close-and-meta-perry"),
+      ("Seeking Alpha · KeyBanc downgrade on Texas policy", SA + "4665122-vistra-downgraded-at-keybanc-as-texas-policy-questions-swirl-after-midterm-election")])
+S["CRWV"].update(
+ results="Q3 (Nov 10): revenue $3.66B, up 168%, vs $3.55B expected; backlog $132.5B, up from $104B (CNBC). The stock jumped 24.7% Nov 11, its best day since April 2025, after losing about half its value in a month.",
+ guide="2026 revenue raised to $13.0–13.3B; adjusted operating income $1.275–1.375B vs $1.07B expected; 2026 capex $37–39B. Funding through ~$9B of customer prepayments and chip-backed debt: no new parent-level unsecured bonds through 2027 (CNBC).",
+ catalysts=["Reported Nov 10; next report February", "CEO Intrator cancelled his planned share-sale program (CNBC, Nov 11); Goldman reiterated Buy", "Nebius reports Thu Nov 12 before the open; Nvidia Nov 17", "Its bonds yielded over 16% before the report (CNBC, Nov 6): credit is still the swing factor"],
+ src=[("CNBC · CoreWeave beats and lifts guidance", CN_ + "2026/11/10/coreweave-crwv-q3-earnings-report-2026.html"),
+      ("CNBC · soars 24% for best day since April 2025", CN_ + "2026/11/11/coreweave-crwv-outlook-earnings-ai.html"),
+      ("CNBC · CEO cancels share-sale program", CN_ + "2026/11/11/coreweave-ceo-election-data-center-buildout.html"),
+      ("CNBC · bond yield tops 16%", CN_ + "2026/11/06/coreweave-bond-yield-tops-16percent-as-ai-credit-stress-rises.html")])
+S["CSCO"]["catalysts"] = ["⚠ Earnings Thu Nov 12 after the close (call 1:30 PM PT): no new options into the report. Consensus EPS $1.33 on $18.13B revenue (Seeking Alpha)", "Morgan Stanley downgraded it ahead of the report (Nov 5)", "Rose about 5% Nov 9 as a Dow leader; reads through to ANET, CIEN, COHR, CRDO, MRVL, GLW, ALAB"]
+S["CSCO"]["src"] = S["CSCO"]["src"][:2] + [("Seeking Alpha · Cisco Q1 earnings on deck", SA + "4670775-cisco-q1-earnings-on-deck-what-to-expect"),
+                                           ("Seeking Alpha · Morgan Stanley downgrade", SA + "4666618-cisco-downgraded-at-morgan-stanley-ahead-of-earnings")]
+S["NVDA"]["catalysts"] = ["⚠ Earnings Tue Nov 17 after the close: no new options into the report", "Nov 9: the board opened a probe into CEO Jensen Huang's relationship with an alleged Chinese spy (Wachtell leads it; Wedbush's Ives expects 4–6 weeks). The stock fell 4.3% Nov 9 and 5.5% Nov 10, about $470B of value (CNBC)", "Baird cut it to Neutral ($200 target, from $500); Morgan Stanley dropped it as a top pick; Citi cut to $285 and Wells Fargo to $300 (both still Buy); Congress plans to subpoena Huang (Bloomberg, Nov 11)", "Moved up to your Top 5 Nov 12"]
+S["NVDA"]["src"] = S["NVDA"]["src"][:2] + [("CNBC · board probes Huang; stock falls", CN_ + "2026/11/09/nvidia-jensen-huang-chinese-spy-investigation.html"),
+                                           ("CNBC · Baird downgrades on CEO worries", CN_ + "2026/11/11/nvidia-baird-downgrade-ceo-ai-capex.html"),
+                                           ("Bloomberg · Congress set to subpoena Huang", "https://www.bloomberg.com/news/articles/2026-11-11/congress-set-to-subpoena-nvidia-s-jensen-huang-republican-says")]
+S["AVGO"]["catalysts"] = ["Earnings Wed Dec 9 after the close (company)", "Rotation from Nvidia into custom chips: AVGO rose 8.8% Nov 9 during the Huang probe (MarketWatch)", "JPMorgan: Google's latest TPUs show Broadcom remains central (Nov 10)", "Progress on the OpenAI chip-financing deal; AWS re:Invent Nov 30"]
+S["AVGO"]["src"] = S["AVGO"]["src"][:3] + [("Seeking Alpha · Broadcom climbs 9% in chip rebound", SA + "4669286-broadcom-climbs-9-percent-amid-ai-and-chip-stock-rebound"),
+                                           ("Seeking Alpha · JPM: Broadcom remains central to Google TPUs", SA + "4670003-googles-latest-tpus-show-broadcom-remains-central-jpm")]
+S["SKHY"]["catalysts"] = ["Reported Oct 27 (US time); next date not set", "Memory squeeze: SKHY rose 9.7% Nov 11 with Micron (+13%) and SanDisk (+16%) after CoreWeave's beat (Seeking Alpha)", "BofA says the memory supercycle runs through 2028 (Nov 10); Nvidia earnings Nov 17"]
+S["SKHY"]["src"] = S["SKHY"]["src"][:3] + [("Seeking Alpha · memory stocks jump on CoreWeave results", SA + "4670524-memory-stocks-jump-as-coreweave-results-lift-ai-sentiment"),
+                                           ("Bloomberg · Korean chipmakers roar back (Nov 10)", "https://www.bloomberg.com/news/articles/2026-11-10/south-korean-stocks-jump-as-chipmakers-roar-back-on-dip-buying")]
+S["AMZN"]["catalysts"] = ["Reported Oct 29; next report late January (date not set)", "Anthropic IPO: range $70–78, pricing Nov 18 and trading Nov 19, valuing it at up to ~$1.4T; Amazon is one of its biggest holders (CNBC, NYT)", "JPMorgan added it to its AI focus list, expecting AWS growth of 40%+ in 2027 and 2028 (CNBC, Nov 9)", "AWS re:Invent Nov 30–Dec 4"]
+S["AMZN"]["src"] = S["AMZN"]["src"][:3] + [("CNBC · Anthropic sets IPO range of $70–78", CN_ + "2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html"),
+                                           ("NYTimes · Amazon and Google will see big paydays from Anthropic IPO", "https://www.nytimes.com/2026/11/10/technology/anthropic-ipo-google-amazon.html")]
+S["SPCX"]["catalysts"] = ["Starship Flight 15 targeted Fri Nov 13, trying to recover both booster and ship (Seeking Alpha)", "Plans a $24B data center and gas plant in Texas (Bloomberg, Nov 9); Starbase city vote Dec 9", "Musk: US government is under 10% of revenue (Bloomberg, Nov 6); Deutsche Bank and Morgan Stanley reiterated Buy/Overweight", "Democratic Congress to scrutinize SpaceX and Golden Dome (Bloomberg)"]
+S["SPCX"]["src"] = S["SPCX"]["src"][:3] + [("Bloomberg · SpaceX plans $24B Texas data center", "https://www.bloomberg.com/news/articles/2026-11-09/spacex-plans-24-billion-data-center-and-gas-plant-in-texas"),
+                                           ("Seeking Alpha · Starship double recovery attempt", SA + "4669730-spacex-targets-historic-double-rocket-recovery-in-starship-launch-friday")]
+S["INTC"]["catalysts"] = ["Reported Oct 29; next report late January", "Moved from your Top 5 to the 15–50% Dip list Nov 12", "Rose 7.5% Nov 11 with the chip rebound; TSMC told Nikkei it sees 'insatiable' chip demand"]
+S["BE"]["catalysts"] = ["Rose 13% Nov 11 as CoreWeave's outlook calmed data-center fears (MarketWatch)", "Barclays upgraded to Overweight (Nov 3), target $289", "Moved up to your 2026 Portfolio Nov 12", "Texas data-center policy after the midterms; on-site power is the workaround"]
+S["BE"]["src"] = S["BE"]["src"][:3] + [("MarketWatch · Bloom rallies as data-center jitters subside", "https://www.marketwatch.com/story/bloom-energys-stock-is-soaring-as-data-center-jitters-subside-5fda5689")]
+S["GLW"]["catalysts"] = ["Jefferies started coverage at Buy with a $134 target, citing its shift to AI optical infrastructure (Seeking Alpha, Nov 11)", "Optics peers rallied Nov 11 (Lumentum +15%, AAOI +19%)", "Cisco Nov 12 and Nvidia Nov 17 reads"] + S["GLW"]["catalysts"][1:2]
+S["GLW"]["src"] = S["GLW"]["src"][:3] + [("Seeking Alpha · Jefferies starts at Buy", SA + "4670820-corning-in-focus-as-jefferies-starts-with-buy-rating")]
+S["TER"]["catalysts"] = ["Jefferies sees a $2B Nvidia test opportunity (Barron's, Nov 11); the stock rose 8.3%", "Applied Materials reports Thu Nov 12 after the close (equipment read)", "Nvidia Nov 17"]
+S["TER"]["src"] = S["TER"]["src"][:3] + [("Barron's · Jefferies sees $2B Nvidia opportunity", "https://www.barrons.com/articles/teradyne-stock-nvidia-ai-jefferies-50418278")]
+S["ORCL"]["catalysts"] = ["Earnings Wed Dec 9 (Nasdaq)", "Bernstein: two key investor concerns will soon subside; 'a go-to AI play' (MarketWatch, Nov 11); the stock rose 8.8%", "Follow-through on the $20B stock-and-bond raise (Nov 2)"]
+S["ORCL"]["src"] = S["ORCL"]["src"][:3] + [("MarketWatch · Oracle is 'totally misunderstood'", "https://www.marketwatch.com/story/oracles-stock-is-totally-misunderstood-and-should-be-a-go-to-ai-play-says-this-analyst-2a87e80d")]
+S["COIN"]["catalysts"] = ["Received final approval for a national trust-bank charter (Bloomberg, Nov 9–10)", "Morgan Stanley (Underweight) says the earnings recovery is less certain (Bloomberg, Nov 6)", "Bitcoin near $74K; crypto legislation (Clarity Act)"]
+S["COIN"]["src"] = S["COIN"]["src"][:3] + [("Bloomberg · Coinbase gets final trust-bank charter approval", "https://www.bloomberg.com/news/articles/2026-11-09/coinbase-gets-final-regulatory-stamp-for-trust-bank-charter")]
+S["BABA"]["catalysts"] = ["⚠ Earnings Thu Nov 19: no new options into the report", "Plans a Hong Kong listing of its T-Head AI-chip unit, a Nvidia rival (CNBC, Nov 11)"] + S["BABA"]["catalysts"][1:2]
+S["BABA"]["src"] = S["BABA"]["src"][:3] + [("CNBC · Alibaba plans T-Head listing", CN_ + "2026/11/11/alibaba-pr.html")]
+S["NBIS"]["catalysts"] = ["⚠ Earnings Thu Nov 12 before the open (call 5:00 AM PT): no new options into the report", "Rose 15.4% Nov 11 on CoreWeave's beat-and-raise, its closest peer", "Nvidia Nov 17"]
+S["CBRS"]["catalysts"] = ["⚠ Earnings Thu Nov 12 after the close (call 2:00 PM PT): no new options into the report", "New OpenAI capacity tranches", "Nvidia Nov 17; AI-compute read from CoreWeave's Nov 10 beat"]
+S["AMAT"]["catalysts"] = ["⚠ Earnings Thu Nov 12 after the close (call 1:30 PM PT): consensus EPS $4.06 on $10.3B revenue (Seeking Alpha)", "Rose 6.1% Nov 11 with the chip rebound", "Lam's cautious Dec-quarter guide (Oct 21) is the overhang"]

@@ -132,3 +132,15 @@ T["APH"] = [("JPMorgan", "", 115, "Oct 29 (from $107)", "CNBC via TipRanks", CN 
             ("BNP Paribas", "", 110, "Sep 22", "Seeking Alpha", SA_ + "4645447-bnp-paribas-ups-estimates-price-target-on-amphenol-after-management-meeting")]
 T["CRWD"] = [("Deutsche Bank", "Buy (upgraded)", 300, "Nov 2 (from $240)", "CNBC", CN + "2026/11/02/this-stock-is-a-double-in-2026-and-still-has-room-to-run-deutsche-bank-says.html"),
              ("Truist", "Buy", 300, "Sep 1 (from $245)", "Seeking Alpha", SA_ + "4638911-crowdstrikes-mythos-moment-drives-platform-wide-adoption-truist")]
+
+# ---- Nov 12, 2026: Zscaler added; Nov 6–11 calls ----
+T["ZS"] = [("KeyBanc", "", 210, "Aug (raised)", "Seeking Alpha", SA_ + "4635864-zscaler-in-focus-as-keybanc-ups-price-target"),
+           ("B. Riley", "Buy (upgraded)", 225, "May (from $275)", "Seeking Alpha", SA_ + "4594397-zscaler-rises-after-rating-upgrade-at-b-riley"),
+           ("Guggenheim", "Buy (upgraded)", 214, "May", "Seeking Alpha", SA_ + "4598910-zscaler-pops-up-guggenheim-upgrades-to-buy-after-post-earnings-plunge"),
+           ("Morgan Stanley", "Equal-weight (downgraded)", 155, "Apr (from $200)", "Seeking Alpha", SA_ + "4577690-zscalers-rating-cut-at-morgan-stanley-on-growing-competition")]
+T["NVDA"] = [("BofA", "Buy", 350, "Nov 6", "CNBC", CN + "2026/11/06/biggest-friday-wall-street-analyst-calls-like-nvidia.html"),
+             ("Wells Fargo", "Overweight", 300, "Nov 10 (from $315)", "CNBC", CN + "2026/11/10/tuesday-biggest-analyst-calls-like-nvidia.html"),
+             ("Citi", "Buy", 285, "Nov 10 (from $315)", "CNBC", CN + "2026/11/10/tuesday-biggest-analyst-calls-like-nvidia.html"),
+             ("Baird", "Neutral (downgraded)", 200, "Nov 11 (from $500)", "Bloomberg", "https://www.bloomberg.com/news/articles/2026-11-11/nvidia-gets-rare-downgrade-as-baird-raises-ceo-uncertainities")] + \
+            [x for x in T["NVDA"] if x[0] in ("JPMorgan", "Goldman Sachs", "Melius", "Seaport")]
+T["GLW"] = [("Jefferies", "Buy (initiated)", 134, "Nov 11", "Seeking Alpha", SA_ + "4670820-corning-in-focus-as-jefferies-starts-with-buy-rating")] + T["GLW"]

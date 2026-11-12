@@ -49,10 +49,14 @@ def f(x):
 
 
 def chain(t):
-    u = f"https://api.nasdaq.com/api/quote/{t}/option-chain?assetclass=stocks&limit=1000&fromdate={ASOF + dt.timedelta(days=1)}&todate={ASOF + dt.timedelta(days=62)}&money=at"
+    ac = "etf" if t in getattr(C, "ETFS", set()) else "stocks"
+    u = f"https://api.nasdaq.com/api/quote/{t}/option-chain?assetclass={ac}&limit=1000&fromdate={ASOF + dt.timedelta(days=1)}&todate={ASOF + dt.timedelta(days=62)}&money=at"
     for a in range(3):
         try:
-            return json.load(urllib.request.urlopen(urllib.request.Request(u, headers=HDR), timeout=30))["data"]
+            d = json.load(urllib.request.urlopen(urllib.request.Request(u, headers=HDR), timeout=30))["data"]
+            if not (d and d.get("table")):
+                raise ValueError("empty option chain")
+            return d
         except Exception as e:
             err = e
             time.sleep(2)

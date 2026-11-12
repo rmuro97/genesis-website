@@ -25,3 +25,6 @@ Run everything from this folder with `/usr/bin/python3` (needs reportlab + matpl
    (dates, week table, tiles, game plan, themes, key dates). His 16 outlets only, never Yahoo,
    verified facts only.
 7. **Build**: `python3 pdf/mkpdf.py`, check every stock fits on one page, copy the PDF to `reports/`.
+
+## Nasdaq access
+Nasdaq's CDN blocks Python's urllib but not curl, so run the Nasdaq fetch steps through `curlrun.py`, e.g. `python3 curlrun.py pdf/fetch.py`, `python3 curlrun.py rep/fetch_consensus.py`, `python3 curlrun.py rep/fetch_targets.py`, `python3 curlrun.py iv/fetch_iv.py .`. `pdf/fetch.py` uses assetclass=stocks, so re-pull the ETFs (LYTE, DRAM, NCLD) with assetclass=etf; `iv/fetch_iv.py` already does.
