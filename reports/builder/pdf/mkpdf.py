@@ -204,6 +204,8 @@ def pt_named(t, short=False):
 
 
 def pt_cons(t, last):
+    if t == "IBIT":
+        return "Not applicable: an ETF that holds bitcoin has no analyst price targets; it moves with the bitcoin price."
     if t in ETFS:
         return "Not applicable: an ETF has no analyst price targets. See its top holdings' pages and targets instead."
     c = PT.get(t)
@@ -427,7 +429,7 @@ for i, (_, tone, _) in enumerate(WEEK):
 wt.setStyle(TableStyle(ws)); story.append(wt)
 
 story += [PageBreak(), Paragraph("Market backdrop", S_H1),
-          box([Paragraph('<font color="#b42318"><b>Headwind.</b></font> Nvidia lost its CEO: Jensen Huang resigned Nov 12 after reports of affairs, including one with a woman US officials suspect of spying for China; CFO Colette Kress is interim CEO (CNBC). NVDA fell as much as 14% that day and 12.75% on the week, its sixth straight weekly drop, and closed below a $4T value Friday. HSBC cut it to Hold ($170). The AI-hardware group followed: Nebius −16.8% Thursday on a $27B capex plan, then optics, memory and servers fell Friday (COHR, CRDO, LYTE −6% to −7%; Dell and CoreWeave down about 10% intraday). Rates: October PPI was +6.5% year on year, the most since 2022, a Dec 9 hike is fully priced (about 13% odds of 50 bp), the 10-year is above 5.1% and the dollar is at its highest since April 2025 (CNBC, FT). Bitcoin fell to about $62K over the weekend. Monday morning: SK hynix fell 5.6% in Seoul as the Kospi dropped 3.6%, and US tech opened lower (CNBC). <font color="#13804a"><b>Tailwind.</b></font> Money is rotating to Nvidia's rivals and suppliers of custom chips (Broadcom +5.5% Thursday, Cerebras +11% Friday on a beat and a Microsoft deal); Cisco and Applied Materials beat and raised; SpaceX caught Starship's upper stage from orbit; and Anthropic's IPO (trading Thursday) has Nvidia, Broadcom, Micron, TSMC and AMD in its $26B placement (CNBC).', S_B)], WARNBG),
+          box([Paragraph("<font color=\"#b42318\"><b>Headwind.</b></font> Nvidia lost its CEO: Jensen Huang resigned Nov 12 after reports of affairs, including one with a woman US officials suspect of spying for China; CFO Colette Kress is interim CEO (CNBC). NVDA fell as much as 14% that day and 12.75% on the week, its sixth straight weekly drop, and closed below a $4T value Friday. HSBC cut it to Hold ($170). The AI-hardware group followed: Nebius −16.8% Thursday on a $27B capex plan, then optics, memory and servers fell Friday (COHR, CRDO, LYTE −6% to −7%; Dell and CoreWeave down about 10% intraday). Rates: October PPI was +6.5% year on year, the most since 2022, a Dec 9 hike is fully priced (about 13% odds of 50 bp), the 10-year is above 5.1% and the dollar is at its highest since April 2025 (CNBC, FT). Bitcoin fell to about $62K over the weekend. Monday morning: SK hynix fell 5.6% in Seoul as the Kospi dropped 3.6%, and US tech opened lower (CNBC). <font color=\"#13804a\"><b>Tailwind.</b></font> Money is rotating to Nvidia's rivals and suppliers of custom chips (Broadcom +5.5% Thursday, Cerebras +11% Friday on a beat and a Microsoft deal); Cisco and Applied Materials beat and raised; SpaceX caught Starship's upper stage from orbit; and Anthropic's IPO (trading Thursday) has Nvidia, Broadcom, Micron, TSMC and AMD in its $26B placement (CNBC).", S_B)], WARNBG),
           Spacer(1, 6)]
 spx, comp, y10, y30, btc = MK["SPX"], MK["COMP"], MK["US10Y"], MK["US30Y"], MK["BTC"]
 # EDIT EACH MONTH (editorial: verified facts only; the Headwind box above too)
