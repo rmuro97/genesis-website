@@ -955,3 +955,5 @@ S["SKHY"]["partners"] = ["About $75B (₩100T) of 2026 shareholder returns: $22.
 S["BABA"]["results"] = "June quarter (Aug 20): revenue about $39.5B (¥268.95B; +9%); net income down 75%; cloud about $7.1B (¥48.4B; +45%); AI product revenue grew by triple digits for the 12th straight quarter. At the Q2 average of ¥6.80 per dollar."
 S["BABA"]["guide"] = "Will spend beyond its 3-year AI plan of about $57B (¥380B, at ¥6.67 per dollar). Next report Thu Nov 19, before the open."
 S["BABA"]["capex"] = "Latest quarter's capex was about $10.0B (¥67.7B), up 75%. It targets 20 GW of data centers, with new sites in Europe and the Middle East. As a foreign filer it has no quarterly 10-Q figure."
+
+S["HPE"]["catalysts"] = ["⚠ Fiscal Q4 earnings Mon Nov 23 (Nasdaq date): no new options held into the report", "Dell reports Nov 24; Barron's: the Dell and HPE selloff may be overdone; Citi sees both benefiting from a hardware refresh (Seeking Alpha)", "Nvidia earnings Nov 17"]
