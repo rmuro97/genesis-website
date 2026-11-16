@@ -12,6 +12,10 @@ H = json.load(open(ROOT + "/pdf/hist.json"))
 PX = {t["ticker"]: t for t in json.load(open(ROOT + "/p2/final/prices/latest.json"))["tickers"]}
 K = json.load(open(ROOT + "/rep/consensus.json"))
 ASOF = dt.date.fromisoformat(max(r[-1][0] for r in H.values()))
+import os
+LIVE = os.environ.get("LIVE") == "1"  # intraday build: option quotes are live, so price them off the live stock price and today's date
+if LIVE:
+    ASOF = dt.date.today()
 R = 0.0385
 HDR = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 
@@ -74,6 +78,13 @@ out = {}
 for _, _, names in C.LISTS:
     for t in names:
         S = H[t][-1][1]
+        if LIVE:
+            try:
+                ac_ = "etf" if t in getattr(C, "ETFS", set()) else "stocks"
+                q = json.load(urllib.request.urlopen(urllib.request.Request(f"https://api.nasdaq.com/api/quote/{t}/info?assetclass={ac_}", headers=HDR), timeout=30))["data"]
+                S = float(q["primaryData"]["lastSalePrice"].replace("$", "").replace(",", "")) or S
+            except Exception:
+                pass
         try:
             d = chain(t)
         except Exception as e:

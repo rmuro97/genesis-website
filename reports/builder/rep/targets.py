@@ -159,3 +159,4 @@ T["AVGO"] = T["AVGO"] + [("Rothschild & Co.", "Neutral (downgraded)", 398, "Nov 
 T["CRWV"] = [("Goldman Sachs", "Buy", 101, "Nov 16 (from $106)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html")] + [x for x in T["CRWV"] if x[0] != "Goldman Sachs"]
 T["SPCX"] = [("Citi", "Buy", 280, "Nov 16 (from $240)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html")] + T["SPCX"]
 T["ANET"] = [("Evercore ISI", "Buy", 250, "Nov 13", "CNBC", CN + "2026/11/13/nvidia-ceo-exit-amd-broadcom-and-ai-trade-fallout-.html")] + [x for x in T["ANET"] if x[0] != "Evercore ISI"]
+T["ARM"] = [("JPMorgan", "Overweight (reiterated)", 0, "Nov 5", "Seeking Alpha", SA_ + "4666514-arm-holdings-in-spotlight-as-wall-street-digests-results-and-guidance-agi-opportunity")]

@@ -1,62 +1,46 @@
 {
- "SKHY": null,
- "AVGO": {
-  "lowPriceTarget": 400.0,
-  "highPriceTarget": 630.0,
-  "priceTarget": 524.0,
-  "buy": 29,
-  "sell": 0,
-  "hold": 1
- },
- "AMZN": {
-  "lowPriceTarget": 230.0,
-  "highPriceTarget": 390.0,
-  "priceTarget": 324.71,
-  "buy": 41,
-  "sell": 0,
-  "hold": 1
- },
- "NVDA": {
-  "lowPriceTarget": 200.0,
-  "highPriceTarget": 465.0,
-  "priceTarget": 311.17,
-  "buy": 32,
-  "sell": 0,
-  "hold": 3
- },
- "SPCX": null,
  "BE": {
   "lowPriceTarget": 182.0,
   "highPriceTarget": 351.0,
-  "priceTarget": 295.0,
+  "priceTarget": 295.17,
   "buy": 11,
   "sell": 0,
   "hold": 9
  },
- "COHR": {
-  "lowPriceTarget": 228.0,
-  "highPriceTarget": 500.0,
-  "priceTarget": 359.0,
-  "buy": 14,
+ "SKHY": null,
+ "AVGO": {
+  "lowPriceTarget": 398.0,
+  "highPriceTarget": 630.0,
+  "priceTarget": 517.71,
+  "buy": 29,
   "sell": 0,
-  "hold": 4
+  "hold": 2
  },
- "HPE": {
-  "lowPriceTarget": 62.0,
-  "highPriceTarget": 92.0,
-  "priceTarget": 72.38,
-  "buy": 10,
+ "AMAT": {
+  "lowPriceTarget": 430.0,
+  "highPriceTarget": 850.0,
+  "priceTarget": 588.32,
+  "buy": 21,
   "sell": 0,
-  "hold": 8
+  "hold": 2
  },
- "CRDO": {
-  "lowPriceTarget": 235.0,
-  "highPriceTarget": 310.0,
-  "priceTarget": 281.0,
-  "buy": 13,
+ "NVDA": {
+  "lowPriceTarget": 170.0,
+  "highPriceTarget": 345.0,
+  "priceTarget": 240.82,
+  "buy": 27,
+  "sell": 0,
+  "hold": 11
+ },
+ "AMZN": {
+  "lowPriceTarget": 230.0,
+  "highPriceTarget": 390.0,
+  "priceTarget": 324.9,
+  "buy": 41,
   "sell": 0,
   "hold": 1
  },
+ "SPCX": null,
  "TER": {
   "lowPriceTarget": 284.0,
   "highPriceTarget": 550.0,
@@ -65,20 +49,20 @@
   "sell": 0,
   "hold": 3
  },
- "AMAT": {
-  "lowPriceTarget": 475.0,
-  "highPriceTarget": 850.0,
-  "priceTarget": 649.68,
-  "buy": 22,
+ "CRDO": {
+  "lowPriceTarget": 175.0,
+  "highPriceTarget": 310.0,
+  "priceTarget": 270.58,
+  "buy": 13,
   "sell": 0,
   "hold": 1
  },
- "LRCX": {
-  "lowPriceTarget": 290.0,
-  "highPriceTarget": 500.0,
-  "priceTarget": 380.95,
-  "buy": 21,
-  "sell": 0,
+ "NBIS": {
+  "lowPriceTarget": 125.0,
+  "highPriceTarget": 399.0,
+  "priceTarget": 260.9,
+  "buy": 9,
+  "sell": 1,
   "hold": 2
  },
  "MRVL": {
@@ -89,29 +73,37 @@
   "sell": 0,
   "hold": 5
  },
- "CIEN": {
-  "lowPriceTarget": 347.0,
-  "highPriceTarget": 658.0,
-  "priceTarget": 518.88,
-  "buy": 13,
+ "CSCO": {
+  "lowPriceTarget": 109.0,
+  "highPriceTarget": 150.0,
+  "priceTarget": 130.07,
+  "buy": 10,
   "sell": 0,
-  "hold": 3
+  "hold": 5
  },
- "CRWD": {
-  "lowPriceTarget": 177.0,
-  "highPriceTarget": 425.0,
-  "priceTarget": 268.46,
-  "buy": 34,
+ "COHR": {
+  "lowPriceTarget": 228.0,
+  "highPriceTarget": 500.0,
+  "priceTarget": 350.87,
+  "buy": 12,
   "sell": 0,
-  "hold": 6
+  "hold": 4
  },
- "ANET": {
-  "lowPriceTarget": 220.0,
-  "highPriceTarget": 291.0,
-  "priceTarget": 251.62,
-  "buy": 14,
+ "HPE": {
+  "lowPriceTarget": 62.0,
+  "highPriceTarget": 86.0,
+  "priceTarget": 71.13,
+  "buy": 10,
   "sell": 0,
-  "hold": 0
+  "hold": 8
+ },
+ "LRCX": {
+  "lowPriceTarget": 290.0,
+  "highPriceTarget": 500.0,
+  "priceTarget": 380.95,
+  "buy": 21,
+  "sell": 0,
+  "hold": 2
  },
  "WDC": {
   "lowPriceTarget": 405.0,
@@ -121,13 +113,13 @@
   "sell": 0,
   "hold": 3
  },
- "APH": {
-  "lowPriceTarget": 90.0,
-  "highPriceTarget": 122.0,
-  "priceTarget": 108.67,
-  "buy": 10,
+ "CIEN": {
+  "lowPriceTarget": 347.0,
+  "highPriceTarget": 658.0,
+  "priceTarget": 517.31,
+  "buy": 13,
   "sell": 0,
-  "hold": 1
+  "hold": 3
  },
  "QCOM": {
   "lowPriceTarget": 150.0,
@@ -137,13 +129,13 @@
   "sell": 2,
   "hold": 13
  },
- "CSCO": {
-  "lowPriceTarget": 110.0,
-  "highPriceTarget": 165.0,
-  "priceTarget": 137.5,
-  "buy": 11,
+ "CRWD": {
+  "lowPriceTarget": 177.0,
+  "highPriceTarget": 425.0,
+  "priceTarget": 269.81,
+  "buy": 34,
   "sell": 0,
-  "hold": 7
+  "hold": 6
  },
  "VICR": {
   "lowPriceTarget": 350.0,
@@ -153,40 +145,72 @@
   "sell": 0,
   "hold": 0
  },
+ "APH": {
+  "lowPriceTarget": 90.0,
+  "highPriceTarget": 122.0,
+  "priceTarget": 108.67,
+  "buy": 10,
+  "sell": 0,
+  "hold": 1
+ },
+ "ANET": {
+  "lowPriceTarget": 220.0,
+  "highPriceTarget": 291.0,
+  "priceTarget": 251.62,
+  "buy": 14,
+  "sell": 0,
+  "hold": 0
+ },
  "LYTE": null,
  "DRAM": null,
  "NCLD": null,
- "ARM": {
-  "lowPriceTarget": 212.0,
-  "highPriceTarget": 480.0,
-  "priceTarget": 290.0,
-  "buy": 16,
+ "DELL": {
+  "lowPriceTarget": 403.0,
+  "highPriceTarget": 735.0,
+  "priceTarget": 589.32,
+  "buy": 14,
   "sell": 0,
-  "hold": 2
- },
- "INTC": {
-  "lowPriceTarget": 70.0,
-  "highPriceTarget": 145.0,
-  "priceTarget": 91.62,
-  "buy": 7,
-  "sell": 1,
-  "hold": 24
- },
- "ALAB": {
-  "lowPriceTarget": 225.0,
-  "highPriceTarget": 500.0,
-  "priceTarget": 360.14,
-  "buy": 9,
-  "sell": 0,
-  "hold": 5
+  "hold": 7
  },
  "VRT": {
   "lowPriceTarget": 187.0,
   "highPriceTarget": 376.0,
-  "priceTarget": 321.13,
+  "priceTarget": 316.06,
   "buy": 14,
   "sell": 1,
+  "hold": 2
+ },
+ "CRWV": {
+  "lowPriceTarget": 39.0,
+  "highPriceTarget": 200.0,
+  "priceTarget": 104.7,
+  "buy": 19,
+  "sell": 3,
+  "hold": 6
+ },
+ "CBRS": {
+  "lowPriceTarget": 155.0,
+  "highPriceTarget": 300.0,
+  "priceTarget": 236.7,
+  "buy": 10,
+  "sell": 0,
+  "hold": 0
+ },
+ "NOW": {
+  "lowPriceTarget": 110.0,
+  "highPriceTarget": 266.0,
+  "priceTarget": 163.5,
+  "buy": 28,
+  "sell": 1,
   "hold": 1
+ },
+ "INTC": {
+  "lowPriceTarget": 70.0,
+  "highPriceTarget": 145.0,
+  "priceTarget": 90.93,
+  "buy": 7,
+  "sell": 1,
+  "hold": 24
  },
  "KLAC": {
   "lowPriceTarget": 180.0,
@@ -196,13 +220,21 @@
   "sell": 0,
   "hold": 4
  },
- "NBIS": {
-  "lowPriceTarget": 144.0,
-  "highPriceTarget": 410.0,
-  "priceTarget": 296.73,
-  "buy": 9,
-  "sell": 1,
+ "ARM": {
+  "lowPriceTarget": 212.0,
+  "highPriceTarget": 480.0,
+  "priceTarget": 290.0,
+  "buy": 15,
+  "sell": 0,
   "hold": 2
+ },
+ "ALAB": {
+  "lowPriceTarget": 225.0,
+  "highPriceTarget": 500.0,
+  "priceTarget": 360.14,
+  "buy": 9,
+  "sell": 0,
+  "hold": 5
  },
  "DDOG": {
   "lowPriceTarget": 171.0,
@@ -215,8 +247,8 @@
  "HOOD": {
   "lowPriceTarget": 100.0,
   "highPriceTarget": 170.0,
-  "priceTarget": 132.57,
-  "buy": 20,
+  "priceTarget": 132.55,
+  "buy": 19,
   "sell": 0,
   "hold": 3
  },
@@ -239,7 +271,7 @@
  "ORCL": {
   "lowPriceTarget": 110.0,
   "highPriceTarget": 400.0,
-  "priceTarget": 242.5,
+  "priceTarget": 241.83,
   "buy": 28,
   "sell": 1,
   "hold": 4
@@ -276,22 +308,6 @@
   "sell": 4,
   "hold": 18
  },
- "NOW": {
-  "lowPriceTarget": 110.0,
-  "highPriceTarget": 266.0,
-  "priceTarget": 163.5,
-  "buy": 28,
-  "sell": 1,
-  "hold": 1
- },
- "CRWV": {
-  "lowPriceTarget": 39.0,
-  "highPriceTarget": 200.0,
-  "priceTarget": 106.28,
-  "buy": 19,
-  "sell": 3,
-  "hold": 6
- },
  "VST": {
   "lowPriceTarget": 169.0,
   "highPriceTarget": 255.0,
@@ -300,10 +316,19 @@
   "sell": 0,
   "hold": 0
  },
+ "MSTR": {
+  "lowPriceTarget": 100.0,
+  "highPriceTarget": 350.0,
+  "priceTarget": 217.92,
+  "buy": 12,
+  "sell": 0,
+  "hold": 1
+ },
+ "IBIT": null,
  "COIN": {
   "lowPriceTarget": 100.0,
   "highPriceTarget": 330.0,
-  "priceTarget": 198.88,
+  "priceTarget": 196.46,
   "buy": 16,
   "sell": 3,
   "hold": 7
@@ -317,18 +342,10 @@
   "hold": 4
  },
  "BABA": {
-  "lowPriceTarget": 160.0,
+  "lowPriceTarget": 140.0,
   "highPriceTarget": 220.1,
-  "priceTarget": 190.47,
-  "buy": 13,
-  "sell": 0,
-  "hold": 0
- },
- "CBRS": {
-  "lowPriceTarget": 178.0,
-  "highPriceTarget": 320.0,
-  "priceTarget": 267.13,
-  "buy": 9,
+  "priceTarget": 186.86,
+  "buy": 14,
   "sell": 0,
   "hold": 0
  }

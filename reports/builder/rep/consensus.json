@@ -1,4 +1,12 @@
 {
+ "BE": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
  "SKHY": {
   "ann": "",
   "eps": null,
@@ -15,7 +23,7 @@
   "status": "expected",
   "prior": "1.61."
  },
- "AMZN": {
+ "AMAT": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -26,10 +34,18 @@
  "NVDA": {
   "ann": "Nov 17, 2026",
   "eps": "2.49.",
-  "n": "13",
+  "n": "14",
   "time": "AMC",
   "status": "expected",
   "prior": "1.24."
+ },
+ "AMZN": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "SPCX": {
   "ann": "",
@@ -39,7 +55,39 @@
   "status": "",
   "prior": null
  },
- "BE": {
+ "TER": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CRDO": {
+  "ann": "Dec 01, 2026",
+  "eps": "1.03.",
+  "n": "6",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0.44."
+ },
+ "NBIS": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "MRVL": {
+  "ann": "Dec 01, 2026",
+  "eps": "0.79.",
+  "n": "12",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0.62."
+ },
+ "CSCO": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -63,63 +111,7 @@
   "status": "expected",
   "prior": "0.54."
  },
- "CRDO": {
-  "ann": "Dec 7, 2026",
-  "eps": "1.03.",
-  "n": "6",
-  "time": "",
-  "status": "expected",
-  "prior": "0.44."
- },
- "TER": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "AMAT": {
-  "ann": "Nov 12, 2026",
-  "eps": "4.06.",
-  "n": "10",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "2.17."
- },
  "LRCX": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "MRVL": {
-  "ann": "Dec 01, 2026",
-  "eps": "0.79.",
-  "n": "12",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "0.62."
- },
- "CIEN": {
-  "ann": "Dec 10, 2026",
-  "eps": "1.77.",
-  "n": "8",
-  "time": "",
-  "status": "expected",
-  "prior": "0.64."
- },
- "CRWD": {
-  "ann": "Dec 01, 2026",
-  "eps": "0.",
-  "n": "13",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "0."
- },
- "ANET": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -135,13 +127,13 @@
   "status": "",
   "prior": null
  },
- "APH": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
+ "CIEN": {
+  "ann": "Dec 10, 2026",
+  "eps": "1.77.",
+  "n": "8",
+  "time": "BMO",
+  "status": "expected",
+  "prior": "0.64."
  },
  "QCOM": {
   "ann": "",
@@ -151,15 +143,31 @@
   "status": "",
   "prior": null
  },
- "CSCO": {
-  "ann": "Nov 12, 2026",
-  "eps": "1.15.",
-  "n": "8",
+ "CRWD": {
+  "ann": "Dec 01, 2026",
+  "eps": "0.",
+  "n": "13",
   "time": "AMC",
   "status": "expected",
-  "prior": "0.81."
+  "prior": "0."
  },
  "VICR": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "APH": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "ANET": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -191,7 +199,39 @@
   "status": "",
   "prior": null
  },
- "ARM": {
+ "DELL": {
+  "ann": "Nov 24, 2026",
+  "eps": "6.41.",
+  "n": "8",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "2.35."
+ },
+ "VRT": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CRWV": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CBRS": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "NOW": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -207,22 +247,6 @@
   "status": "",
   "prior": null
  },
- "ALAB": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "VRT": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
  "KLAC": {
   "ann": "",
   "eps": null,
@@ -231,13 +255,21 @@
   "status": "",
   "prior": null
  },
- "NBIS": {
-  "ann": "Nov 12, 2026",
-  "eps": "-0.61.",
-  "n": "4",
-  "time": "BMO",
-  "status": "expected",
-  "prior": "-0.39."
+ "ARM": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "ALAB": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "DDOG": {
   "ann": "",
@@ -311,23 +343,23 @@
   "status": "",
   "prior": null
  },
- "NOW": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "CRWV": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
  "VST": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "MSTR": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "IBIT": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -358,13 +390,5 @@
   "time": "BMO",
   "status": "expected",
   "prior": "0.44."
- },
- "CBRS": {
-  "ann": "Nov 12, 2026",
-  "eps": "-0.13.",
-  "n": "3",
-  "time": "AMC",
-  "status": "expected",
-  "prior": null
  }
 }
