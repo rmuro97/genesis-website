@@ -144,3 +144,18 @@ T["NVDA"] = [("BofA", "Buy", 350, "Nov 6", "CNBC", CN + "2026/11/06/biggest-frid
              ("Baird", "Neutral (downgraded)", 200, "Nov 11 (from $500)", "Bloomberg", "https://www.bloomberg.com/news/articles/2026-11-11/nvidia-gets-rare-downgrade-as-baird-raises-ceo-uncertainities")] + \
             [x for x in T["NVDA"] if x[0] in ("JPMorgan", "Goldman Sachs", "Melius", "Seaport")]
 T["GLW"] = [("Jefferies", "Buy (initiated)", 134, "Nov 11", "Seeking Alpha", SA_ + "4670820-corning-in-focus-as-jefferies-starts-with-buy-rating")] + T["GLW"]
+
+# ---- Nov 16, 2026: Dell, Strategy and iShares Bitcoin Trust added; Nov 12–16 calls ----
+T["DELL"] = [("BofA", "Buy", 600, "Sep 2 (from $505)", "CNBC", CN + "2026/09/02/dell-has-more-than-tripled-in-2026-two-analysts-say-it-has-more-room-to-run.html"),
+             ("Citi", "Buy", 600, "Sep 2 (from $515)", "CNBC", CN + "2026/09/02/dell-has-more-than-tripled-in-2026-two-analysts-say-it-has-more-room-to-run.html"),
+             ("Barclays", "Overweight", 550, "May 29", "CNBC", CN + "2026/05/29/dell-shocked-street-on-booming-q1-server-sales-analysts-weigh-in.html"),
+             ("Bernstein", "Outperform", 500, "May 29", "CNBC", CN + "2026/05/29/dell-shocked-street-on-booming-q1-server-sales-analysts-weigh-in.html"),
+             ("UBS", "Neutral (downgraded)", 243, "May 11", "CNBC", CN + "2026/05/11/dell-has-been-on-fire-this-year-why-ubs-is-downgrading-the-pc-maker.html")]
+T["MSTR"] = [("Barclays", "Overweight", 175, "fall (from $160)", "Seeking Alpha", SA_ + "4651746-strategy-in-focus-as-barclays-lifts-price-target-on-sector-strength"),
+             ("Canaccord Genuity", "Buy", 175, "raised; cut to $185 from $474 in Feb", "Seeking Alpha", SA_ + "4636620-canaccord-genuity-raises-price-target-on-strategy-to-175-balance-sheet-is-war-chested")]
+T["NVDA"] = [("UBS", "Buy", 240, "Nov 16 (from $300)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html"),
+             ("HSBC", "Hold (downgraded)", 170, "Nov 13 (from $365)", "CNBC", CN + "2026/11/13/hsbc-downgrades-nvidia-says-stock-to-struggle-until-new-ceo-named.html")] + T["NVDA"]
+T["AVGO"] = T["AVGO"] + [("Rothschild & Co.", "Neutral (downgraded)", 398, "Nov 13", "CNBC", CN + "2026/11/13/nvidia-ceo-exit-amd-broadcom-and-ai-trade-fallout-.html")]
+T["CRWV"] = [("Goldman Sachs", "Buy", 101, "Nov 16 (from $106)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html")] + [x for x in T["CRWV"] if x[0] != "Goldman Sachs"]
+T["SPCX"] = [("Citi", "Buy", 280, "Nov 16 (from $240)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html")] + T["SPCX"]
+T["ANET"] = [("Evercore ISI", "Buy", 250, "Nov 13", "CNBC", CN + "2026/11/13/nvidia-ceo-exit-amd-broadcom-and-ai-trade-fallout-.html")] + [x for x in T["ANET"] if x[0] != "Evercore ISI"]
