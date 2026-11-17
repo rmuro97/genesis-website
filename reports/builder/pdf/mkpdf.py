@@ -117,7 +117,7 @@ for key, label, names in C.LISTS:
         LISTPOS[t] = (label, i, len(names))
 
 TIME_PT = {"AMC": "after the close (after 1:00 PM PT)", "BMO": "before the open (before 6:30 AM PT)"}
-TIME_OVERRIDE = {"SKHY": "evening, by ~5:00 PM PT (Seoul morning)", "CRCL": "before the open"}
+TIME_OVERRIDE = {"SKHY": "evening, by ~5:00 PM PT (Seoul morning)", "CRCL": "before the open", "NVDA": "after the close (1:20 PM PT)"}
 
 
 def earn_info(t):
@@ -238,7 +238,7 @@ def iv_rows(t, ei):
         elif v["hv_has_earn"]:
             txt += f' <font color="#8a5a00">Actual movement includes the {fmt_d(ei["last"], False)} earnings move, so "cheap" may be overstated.</font>'
         if v["wide"]:
-            txt += ' <font color="#8a5a00">Wide bid/ask at the last close; check live quotes.</font>'
+            txt += ' <font color="#8a5a00">Wide bid/ask ' + ("in the intraday quotes" if LIVE_AT else "at the last close") + '; check live quotes.</font>'
     rows = [("IV CHECK", txt)]
     if v["em"]:
         em = v["em"]
@@ -384,7 +384,7 @@ for t in OPEN_T:
                   Paragraph(f'{v["iv"]:.0f}% vs {v["hv"]:.0f}% <font color="#62656e">({v["ratio"]:.2f})</font>', S_SM),
                   Paragraph(f'{fmt_d(dt.date.fromisoformat(v["exp"]), False)} · {v["dte"]} DTE', S_SM),
                   Paragraph(ne, S_SM), Paragraph(X("; ".join(note)), st("nt", fontSize=7, leading=8.4, textColor=WARN))])
-bt = Table(brows, colWidths=[0.72 * inch, 1.02 * inch, 0.7 * inch, 1.34 * inch, 1.12 * inch, 1.16 * inch, CW - 6.06 * inch], repeatRows=1)
+bt = Table(brows, colWidths=[0.62 * inch, 0.98 * inch, 0.66 * inch, 1.54 * inch, 1.12 * inch, 0.98 * inch, CW - 5.9 * inch], repeatRows=1)
 bsty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.8), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.8),
         ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
 for i, t in enumerate(OPEN_T, 1):
@@ -396,7 +396,7 @@ story += [Spacer(1, 8), Paragraph("Where to buy options: IV check", S_H1),
                          '<font color="#13804a"><b>Cheap</b></font> = options cost less than the stock has actually been moving (IV below 20-day movement): the better time to buy. '
                          'Normal = fair. Expensive = wait. The expiry shown is the allowed one nearest 30 days (7–60 DTE and ending before the next report); take profit at +25% to +100% (Rule 1).', S_B)], OKBG, border=OK),
           Spacer(1, 4), bt, Spacer(1, 3),
-          Paragraph("Quotes are Nasdaq delayed option prices at the last close; recheck live before buying. A cheap reading is not a buy signal on its own.", S_M),
+          Paragraph(("Quotes are Nasdaq delayed option prices taken intraday Tuesday; " if LIVE_AT else "Quotes are Nasdaq delayed option prices at the last close; ") + "recheck live before buying. A cheap reading is not a buy signal on its own.", S_M),
           Spacer(1, 8)]
 # the names blocked by earnings: earnings-adjusted IV and the first day each can be bought
 SHUT_T.sort(key=lambda t: (first_buy(t, earn_info(t)) or dt.date.max, t))
@@ -526,11 +526,11 @@ THEMES = [
     ("Nvidia without Jensen Huang", "Huang resigned Nov 12 amid an affair and espionage scandal; CFO Colette Kress runs the company until a successor is named. The stock lost about $1.7T over six losing weeks. Treasury Secretary Bessent wants an outside CEO, while a petition and large holders back Huang's return; Congress is pushing tighter export rules (CNBC). Tuesday's report is the first under the interim CEO: the numbers, the Rubin ramp and any word on the search decide the AI group's next move.", "NVDA, AVGO, AMAT, SKHY, DELL, HPE, VRT, ARM, ALAB, CRDO, COHR, CBRS, CRWV, NBIS"),
     ("Rotation to custom chips and challengers", "Money left Nvidia for Broadcom (+5.5% Thursday) and AMD; Wedbush says 'custom ASICs are where we believe companies want to turn' and Evercore calls Arista the clearest beneficiary of a shift to open Ethernet (CNBC). Cerebras jumped 11% on a beat and a Microsoft deal. Rothschild & Co. cut Broadcom to Neutral on its reliance on OpenAI and Anthropic.", "AVGO, ANET, CBRS, MRVL, CRDO, ALAB, ARM"),
     ("Neoclouds lose their backer", "Nebius guided 2026 revenue to the low end and raised capex to $27B (2027: $40–45B), falling 16.8%; Barron's says CoreWeave and Nebius 'lost a friend in Huang', since Nvidia backs about $36B of their cloud deals. CoreWeave is seeking at least $4B of cheaper high-grade loans; Goldman trimmed its target to $101 (still Buy).", "CRWV, NBIS, NCLD, DOCN, DELL, HPE, BE, VST, VRT"),
-    ("Rates: a December hike is priced", "Hot October CPI and PPI (+6.5% y/y) leave a Dec 9 hike fully priced; Goldman added a March hike. The 10-year is above 5.1% and the 30-year near 5.5%; Treasuries had their worst week since April 2025 and the dollar is at its highest since then. FOMC minutes Wednesday; GDP and PCE Nov 25.", "All 49, most of all IONQ, CRWV, NBIS, CBRS, ALAB, NOW, DDOG, ZS, CRWD, MSTR, IBIT"),
+    ("Rates: a December hike is priced", "Hot October CPI and PPI (+6.5% y/y) leave a Dec 9 hike fully priced; Goldman added a March hike. The 10-year is above 5.1% and the 30-year near 5.5%; Treasuries had their worst week since April 2025 and the dollar is at its highest since then. FOMC minutes Wednesday; GDP and PCE Nov 25.", "All 50, most of all IONQ, CRWV, NBIS, CBRS, ALAB, NOW, DDOG, ZS, CRWD, MSTR, IBIT"),
     ("Chip equipment and memory", "Applied Materials beat and sees 2027 chip-equipment spending up more than 30%, but the group fell with Nvidia (LRCX −3.4%, KLAC −3.2%, TER −5.4% Friday). Monday SK hynix fell 5.6% in Seoul as the Kospi dropped 3.6% (CNBC). Sen. Cotton wants China's CXMT, the No. 4 DRAM maker, blacklisted: protective for SK hynix.", "AMAT, LRCX, KLAC, TER, SKHY, DRAM, WDC"),
     ("The Anthropic IPO", "Prices Wednesday ($70–78), trades Thursday. Nvidia, Broadcom, Micron, TSMC, AMD, Microsoft and Google are strategic buyers in its $26B placement at the IPO price (CNBC); Amazon is one of its biggest holders. CNBC also flags it as one reason speculative money is leaving bitcoin.", "AMZN, AVGO, NVDA, SKHY, DRAM, AKAM, CBRS"),
     ("Crypto slide", "Bitcoin fell below $70K Friday and to about $62K late Saturday, its lowest since August, on liquidations, a strong dollar and Fed-hike bets; Nansen sees $60–62K as the next test (CNBC). Strategy bought only 485 bitcoin last week and spent $228M buying back preferred stock (SEC). Your new MSTR and IBIT trade directly with bitcoin.", "MSTR, IBIT, COIN, HOOD, CRCL"),
-    ("Event risk ahead", "Nvidia Nov 17; FOMC minutes, Palo Alto and Anthropic pricing Nov 18; Anthropic trading and Alibaba Nov 19; HPE Nov 23; Dell Nov 24; GDP and PCE Nov 25; Thanksgiving Nov 26; Nvidia GTC DC and AWS re:Invent from Nov 30; CrowdStrike and Marvell Dec 1; Zscaler Dec 2; jobs Dec 4; FOMC, Broadcom and Oracle Dec 9.", "All 49"),
+    ("Event risk ahead", "Nvidia Nov 17; FOMC minutes, Palo Alto and Anthropic pricing Nov 18; Anthropic trading and Alibaba Nov 19; HPE Nov 23; Dell Nov 24; GDP and PCE Nov 25; Thanksgiving Nov 26; Nvidia GTC DC and AWS re:Invent from Nov 30; CrowdStrike and Marvell Dec 1; Zscaler Dec 2; jobs Dec 4; FOMC, Broadcom and Oracle Dec 9.", "All 50"),
 ]
 story.append(Paragraph("Market themes that can move your stocks", S_H1))
 for a, b, c in THEMES:
