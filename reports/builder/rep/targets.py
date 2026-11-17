@@ -1,0 +1,162 @@
+# Named Wall Street price targets (sell-side firms only), as reported by his outlets. EDIT EACH MONTH.
+# (firm, rating or "", target $, date "Mon D" (year 2026 unless noted), outlet, url). "via TipRanks" = headline on the CNBC quote page.
+CN = "https://www.cnbc.com/"
+T = {
+ "SPCX": [("Morgan Stanley", "Overweight", 300, "Jul", "Seeking Alpha", "https://seekingalpha.com/news/4611831-morgan-stanley-buys-into-spacexs-ai-future-with-new-overweight-rating"),
+          ("Evercore ISI", "Outperform", 275, "Oct 16", "CNBC", CN + "2026/10/16/spacex-evercore-isi-price-target.html"),
+          ("PhillipCapital", "Buy", 250, "Oct 23", "CNBC", CN + "2026/10/23/spacex-double-upgraded-by-phillipcapital.html"),
+          ("Pivotal", "Buy", 220, "Sep 8", "CNBC", CN + "2026/09/08/spcx-is-a-buy-based-on-one-bet-pivotal-research-says.html"),
+          ("TD Cowen", "Buy", 200, "Sep 29", "CNBC", CN + "2026/09/29/spacex-is-poised-for-a-big-comeback-after-recent-struggles-says-td-cowen.html")],
+ "AVGO": [("JPMorgan", "Overweight", 580, "Jun", "CNBC", CN + "2026/06/17/jpmorgan-says-clients-should-be-aggressive-buyers-of-this-chip-stock.html"),
+          ("Bernstein", "Outperform", 575, "Sep 22", "CNBC", CN + "2026/09/22/a-top-chip-stock-analyst-sees-big-things-for-nvidia-broadcom-how-his-case-aligns-with-ours.html"),
+          ("Morgan Stanley", "Overweight", 502, "Jul 14", "CNBC", CN + "2026/07/14/analysts-run-to-broadcoms-defense-as-investors-worry-about-competition.html")],
+ "AMZN": [("Goldman Sachs", "Buy", 370, "Oct 30", "CNBC", CN + "2026/10/30/amazon-earnings-analysts-stock.html"),
+          ("JPMorgan", "Overweight", 365, "Oct 30", "CNBC", CN + "2026/10/30/amazon-earnings-analysts-stock.html"),
+          ("Barclays", "Overweight", 365, "Oct 30", "CNBC", CN + "2026/10/30/amazon-earnings-analysts-stock.html"),
+          ("Morgan Stanley", "Overweight", 335, "Oct 30", "CNBC", CN + "2026/10/30/amazon-earnings-analysts-stock.html"),
+          ("Bank of America", "Buy", 317, "Oct 30", "CNBC", CN + "2026/10/30/amazon-earnings-analysts-stock.html")],
+ "SKHY": [("Barclays", "Overweight", 330, "Jul 14", "CNBC", CN + "2026/07/14/barclays-believes-sk-hynixs-us-shares-can-double-heres-why.html"),
+          ("Cantor Fitzgerald", "Overweight", 300, "Aug 4", "CNBC", CN + "2026/08/04/sk-hynix-us-shares-will-double-in-the-next-12-months-cantor-fitzgerald-says-.html"),
+          ("BofA", "Buy", 250, "Aug", "Seeking Alpha", "https://seekingalpha.com/news/4624768-sk-hynix-receives-multiple-buy-ratings-as-financial-firms-initiate-coverage")],
+ "BE": [("Jefferies", "", 242, "Oct 23", "CNBC via TipRanks", CN + "quotes/BE")],
+ "CRDO": [("BofA", "Buy", 340, "Jun", "CNBC", CN + "2026/06/28/top-analysts-bullish-on-these-stocks-for-long-term-growth-potential.html"),
+          ("Evercore ISI", "Outperform", 325, "Jun 22", "CNBC", CN + "2026/06/22/credo-technology-nearly-doubled-in-2026-evercore-isi-says-gains-ahead.html")],
+ "CIEN": [("Citi", "Buy", 658, "Sep 4", "CNBC", CN + "2026/09/04/buy-the-dip-on-this-networking-stock-that-set-to-more-than-double-says-citi.html")],
+ "MRVL": [("Stifel", "Buy", 370, "Oct", "CNBC", CN + "2026/10/07/biggest-analyst-calls-on-wall-street-like-nvidia.html"),
+          ("TD Cowen", "Buy", 350, "Oct 7", "CNBC", CN + "2026/10/07/marvell-just-gave-a-bullish-outlook-it-led-td-cowen-to-upgrade-the-stock.html"),
+          ("Wells Fargo", "Overweight", 310, "Aug 24", "CNBC", CN + "2026/08/24/mrvl-has-nearly-tripled-in-2026-wells-fargo-says-there-are-more-gains-ahead.html")],
+ "AMAT": [("Evercore ISI", "", 590, "Oct 15", "CNBC via TipRanks", CN + "quotes/AMAT"),
+          ("Morgan Stanley", "", 563, "Sep 28", "Seeking Alpha", "https://seekingalpha.com/news/4647542-morgan-stanley-cuts-applied-materials-price-target-by-79")],
+ "VRT": [("Bernstein", "", 376, "Oct 29", "CNBC via TipRanks", CN + "quotes/VRT"),
+         ("Roth", "", 345, "Oct 29", "CNBC via TipRanks", CN + "quotes/VRT"),
+         ("Morgan Stanley", "", 330, "Oct 16", "CNBC via TipRanks", CN + "quotes/VRT"),
+         ("BMO", "Outperform", 329, "Oct 5", "Seeking Alpha", "https://seekingalpha.com/news/4650319-vertiv-nvent-electric-initiated-at-outperform-by-bmo")],
+ "COHR": [("Susquehanna", "", 350, "Oct 21", "CNBC via TipRanks", CN + "quotes/COHR"),
+          ("B. Riley", "", 297, "Oct 15", "CNBC via TipRanks", CN + "quotes/COHR")],
+ "HOOD": [("Morgan Stanley", "Overweight", 150, "Sep 1", "CNBC", CN + "2026/09/01/theres-an-underappreciated-growth-driver-for-robinhood-morgan-stanley-says.html"),
+          ("Mizuho", "Outperform", 130, "Jul 2", "CNBC", CN + "2026/07/02/robinhood-will-soar-as-it-moves-closer-to-becoming-the-first-hyperscaler-brokerage-says-mizuho.html"),
+          ("Evercore ISI", "Outperform", 130, "Oct 12", "CNBC", CN + "2026/10/12/robinhood-has-underperformed-this-year-evercore-isi-says-the-stock-is-a-buy.html"),
+          ("StoneX", "Buy", 170, "Sep 9", "Seeking Alpha", "https://seekingalpha.com/news/4641114-robinhood-initiated-with-buy-recommendation-at-stonex-price-target-set-at-170"),
+          ("Deutsche Bank", "Buy", 136, "Sep 4", "CNBC", CN + "2026/09/04/robinhood-may-pop-on-one-of-latest-crypto-ventures-deutsche-bank-says.html")],
+ "GLW": [("JPMorgan", "", 165, "Oct 21", "CNBC via TipRanks", CN + "quotes/GLW")],
+ "INTC": [("Bank of America", "Neutral (downgraded)", 100, "Oct 30", "CNBC", CN + "2026/10/30/intel-guidance-analyst-price-targets.html"),
+          ("UBS", "", 80, "Oct 30", "CNBC", CN + "2026/10/30/intel-guidance-analyst-price-targets.html"),
+          ("Wells Fargo", "", 80, "Oct 30", "CNBC", CN + "2026/10/30/intel-guidance-analyst-price-targets.html"),
+          ("Bernstein", "", 75, "Oct 30", "CNBC", CN + "2026/10/30/intel-guidance-analyst-price-targets.html"),
+          ("Barclays", "", 75, "Oct 30", "CNBC", CN + "2026/10/30/intel-guidance-analyst-price-targets.html")],
+ "KLAC": [("Morgan Stanley", "", 227, "Oct 6", "CNBC via TipRanks", CN + "quotes/KLAC")],
+ "NVDA": [("BofA", "Buy", 350, "Aug 27", "CNBC", CN + "2026/08/27/nvidia-reports-blowout-earnings-heres-why-analysts-are-impressed.html"),
+          ("JPMorgan", "Overweight", 320, "Aug 27", "CNBC", CN + "2026/08/27/nvidia-reports-blowout-earnings-heres-why-analysts-are-impressed.html"),
+          ("Goldman Sachs", "Buy", 300, "Aug 27", "CNBC", CN + "2026/08/27/nvidia-reports-blowout-earnings-heres-why-analysts-are-impressed.html"),
+          ("Bernstein", "Outperform", 400, "Oct", "CNBC", CN + "2026/10/22/wall-street-analyst-calls-nvidia-tesla-meta-spacex.html"),
+          ("Seaport", "Sell", 180, "Oct 22", "CNBC", CN + "2026/10/22/wall-street-analyst-calls-nvidia-tesla-meta-spacex.html")],
+ "QCOM": [("Susquehanna", "", 185, "Oct 21", "Seeking Alpha", "https://seekingalpha.com/news/4655233-amd-intel-qualcomm-among-chip-stocks-to-see-price-target-changes-at-susquehanna")],
+ "IONQ": [("BofA", "Buy", 60, "Sep 28", "CNBC", CN + "2026/09/28/ionq-has-been-on-fire-this-month-bank-of-america-says-buy-the-quantum-computing-stock.html")],
+ "CBRS": [("Freedom Capital", "Buy", 209, "Oct 2", "Seeking Alpha", "https://seekingalpha.com/news/4649838-cerebras-upgraded-to-buy-following-stock-slump-fcm"),
+          ("Morgan Stanley", "Overweight", 273, "earlier 2026", "Seeking Alpha", "https://seekingalpha.com/news/4606558-cerebras-falls-after-margin-woes-but-analysts-say-it-is-conservative")],
+ "CRWV": [("Goldman Sachs", "Buy (upgraded)", 106, "Oct 19", "CNBC", CN + "2026/10/19/buy-neocloud-stock-coreweave-goldman-sachs-says.html"),
+          ("JPMorgan", "Overweight", 125, "early Oct", "CNBC", CN + "2026/10/16/coreweave-stock-selloff-analysts.html"),
+          ("Cantor Fitzgerald", "Overweight", 176, "Oct 16", "Seeking Alpha", "https://seekingalpha.com/news/4653819-coreweave-drops-even-as-cantor-fitzgerald-joins-buy-the-dip-crowd"),
+          ("Deutsche Bank", "Buy", 150, "Oct 15", "CNBC", CN + "2026/10/15/coreweave-stock-deutsche-bank-buy-rating.html"),
+          ("HSBC", "Reduce", 39, "Oct 20", "CNBC", CN + "2026/10/20/coreweave-hsbc-debt-risks.html")],
+ "VICR": [("Roth", "", 360, "Oct 21", "CNBC via TipRanks", CN + "quotes/VICR")],
+ "LRCX": [("Deutsche Bank", "Buy", 375, "Oct 19", "Seeking Alpha", "https://seekingalpha.com/news/4654214-lam-research-edges-up-ahead-of-earnings-as-deutsche-expects-strong-results")],
+ "TER": [("UBS", "Buy", 440, "Apr", "Seeking Alpha", "https://seekingalpha.com/news/4581567-teradyne-slumps-but-analysts-remain-positive-despite-softer-guidance")],
+ "VST": [("Raymond James", "", 176, "Oct 21", "CNBC via TipRanks", CN + "quotes/VST"),
+         ("Morgan Stanley", "Buy reiterated", None, "Oct 21", "CNBC via TipRanks", CN + "quotes/VST")],
+ "ORCL": [("Goldman Sachs", "Buy", 206, "Oct 23", "CNBC", CN + "quotes/ORCL"),
+          ("Citi", "Buy", 330, "Aug 26", "CNBC", CN + "2026/08/26/this-cloud-name-has-lagged-peers-citi-says-it-can-still-double.html")],
+ "AKAM": [("Oppenheimer", "Outperform", 180, "Jun", "Seeking Alpha", "https://seekingalpha.com/news/4608591-akamais-cloud-business-undervalued-in-light-of-1_8b-anthropic-deal-oppenheimer"),
+          ("Piper Sandler", "", 120, "Oct 21", "CNBC via TipRanks", CN + "quotes/AKAM"),
+          ("UBS", "", 100, "Oct 22", "CNBC via TipRanks", CN + "quotes/AKAM"),
+          ("DA Davidson", "Buy", 150, "Sep 28", "Seeking Alpha", "https://seekingalpha.com/news/4647532-akamai-in-focus-as-da-davidson-cuts-price-target"),
+          ("HSBC", "Hold (downgraded)", 123, "Aug", "Seeking Alpha", "https://seekingalpha.com/news/4629931-akamai-gets-a-rating-cut-at-hsbc")],
+ "DOCN": [("Oppenheimer", "", 220, "date not shown", "CNBC via TipRanks", CN + "quotes/DOCN")],
+ "COIN": [("BofA", "", 203, "Oct 5", "CNBC via TipRanks", CN + "quotes/COIN"),
+          ("Morgan Stanley", "Equal-weight", 250, "Sep", "Seeking Alpha", "https://seekingalpha.com/news/4641666-morgan-stanley-rates-coinbase-as-hold-equivalent-price-target-set-at-250"),
+          ("BTIG", "Buy", 240, "Jul 31", "CNBC", CN + "2026/07/31/analysts-sees-coinbase-miss-driven-by-crypto-market-weakness-not-business-fundamentals.html"),
+          ("Rosenblatt", "", 200, "Jul 31", "CNBC", CN + "2026/07/31/analysts-sees-coinbase-miss-driven-by-crypto-market-weakness-not-business-fundamentals.html"),
+          ("Piper Sandler", "", 146, "Jul 31", "CNBC", CN + "2026/07/31/analysts-sees-coinbase-miss-driven-by-crypto-market-weakness-not-business-fundamentals.html")],
+ "CRCL": [("JPMorgan", "", 155, "May 12", "CNBC", CN + "2026/05/12/after-circles-arc-token-reveal-even-cautious-analysts-are-raising-price-targets-.html"),
+          ("Mizuho", "", 135, "May 12", "CNBC", CN + "2026/05/12/after-circles-arc-token-reveal-even-cautious-analysts-are-raising-price-targets-.html"),
+          ("Morgan Stanley", "Underweight (downgraded)", 38, "Aug 3", "CNBC", CN + "2026/08/03/td-cowen-says-buy-stablecoin-issuer-circle-morgan-stanley-thinks-its-time-to-sell.html"),
+          ("TD Cowen", "Buy", 82, "Aug 3", "CNBC", CN + "2026/08/03/td-cowen-says-buy-stablecoin-issuer-circle-morgan-stanley-thinks-its-time-to-sell.html")],
+ "RDDT": [("BofA", "Neutral", 190, "May 1", "Seeking Alpha", "https://seekingalpha.com/symbol/RDDT")],
+ "AEHR": [("Jefferies", "Buy", 175, "Aug", "Seeking Alpha", "https://seekingalpha.com/news/4633322-aehr-test-systems-surges-after-jefferies-initiates-with-bullish-views"),
+          ("Oppenheimer", "Outperform", 120, "Sep 10", "Seeking Alpha", "https://seekingalpha.com/news/4641618")],
+ "GOOGL": [("Goldman Sachs", "Buy", 385, "Oct 29", "CNBC", CN + "2026/10/29/alphabet-q3-earnings-analyst-reaction.html"),
+          ("Bank of America", "Buy", 380, "Oct 29", "CNBC", CN + "2026/10/29/alphabet-q3-earnings-analyst-reaction.html"),
+          ("Morgan Stanley", "Overweight", 375, "Oct 29", "CNBC", CN + "2026/10/29/alphabet-q3-earnings-analyst-reaction.html")],
+ "NOW": [("Guggenheim", "", 175, "Oct", "Seeking Alpha", "https://seekingalpha.com/news/4656546-servicenow-target-bumped-to-175-at-guggenheim-on-expected-earnings-upside")],
+ "FTNT": [("TD Cowen", "", 190, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT"),
+          ("RBC Capital", "", 165, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT"),
+          ("Scotiabank", "", 140, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT"),
+          ("Deutsche Bank", "", 130, "Oct 29", "CNBC via TipRanks", CN + "quotes/FTNT")],
+}
+TOP_FIRMS = {"JPMorgan", "BofA", "Morgan Stanley", "Goldman Sachs", "Oppenheimer", "Mizuho"}
+
+# ---- Nov 4, 2026 additions (new names and Nov 2–3 calls) ----
+SA_ = "https://seekingalpha.com/news/"
+T["ANET"] = [("Evercore ISI", "", 250, "Aug 5", "CNBC via TipRanks", CN + "quotes/ANET"),
+             ("JPMorgan", "Overweight", 250, "Aug 5", "Seeking Alpha", SA_ + "4625836-arista-surges-after-q2-results-and-outlook-keep-analysts-bullish"),
+             ("Citi", "", 248, "Oct 8", "CNBC via TipRanks", CN + "quotes/ANET"),
+             ("Morgan Stanley", "", 220, "Aug 5", "CNBC via TipRanks", CN + "quotes/ANET")]
+T["WDC"] = [("Morgan Stanley", "", 650, "Jun", "Seeking Alpha", SA_ + "4603551-western-digital-sees-bullish-views-at-morgan-stanley-on-hdd-demand-hamr-roadmap"),
+            ("Wells Fargo", "", 450, "Oct 16", "CNBC via TipRanks", CN + "quotes/WDC")]
+T["HPE"] = [("Citi", "", 92, "Oct", "Seeking Alpha", SA_ + "4648988-hpe-in-spotlight-as-citi-ups-price-target-after-investor-event"),
+            ("Loop Capital", "Buy", 75, "Jun 2", "CNBC", CN + "2026/06/02/hewlett-packard-is-surging-on-big-beat-loop-capital-sees-more-upside.html"),
+            ("Morgan Stanley", "Equal-weight", 69, "Aug 10", "CNBC", CN + "2026/08/10/hpe-will-gain-ground-on-sky-high-hardware-demand-morgan-stanley-says.html")]
+T["CSCO"] = [("Morgan Stanley", "", 135, "Aug 13", "CNBC", CN + "2026/08/13/cisco-shares-slide-9percent-despite-earnings-beat-and-strong-guidance.html")]
+T["ALAB"] = [("Jefferies", "", 350, "recent (from $450)", "CNBC via TipRanks", CN + "quotes/ALAB"),
+             ("JPMorgan", "Overweight", 280, "May", "Seeking Alpha", SA_ + "4586856-asteras-strong-q1-results-see-bullish-views-from-analysts")]
+T["NBIS"] = [("BofA", "Buy", 310, "Aug 13", "CNBC", CN + "2026/08/13/nebius-has-tripled-in-2026-but-it-can-rise-more-bank-of-america-says.html"),
+             ("Freedom Capital", "Buy", 200, "Jul 20", "Seeking Alpha", SA_ + "4615238-nebius-in-focus-as-freedom-capital-upgrades-boosts-price-target")]
+T["BABA"] = [("Citi", "Buy", 205, "Apr", "CNBC", CN + "2026/04/19/baba-makes-ai-investments-stock-analysts-want-to-see.html"),
+             ("Bernstein", "Outperform", 186, "Apr", "CNBC", CN + "2026/04/19/baba-makes-ai-investments-stock-analysts-want-to-see.html"),
+             ("BofA", "Buy", 172, "Apr", "CNBC", CN + "2026/04/19/baba-makes-ai-investments-stock-analysts-want-to-see.html")]
+T["MRVL"] = [("BofA", "Neutral (downgraded)", 225, "Nov 3", "CNBC", CN + "2026/11/03/acquisition-marvell-lumentum-acquisition-bofa-downgrade.html")] + T["MRVL"]
+T["COIN"] = [("Morgan Stanley", "Underweight (downgraded)", 120, "Nov 2", "CNBC", CN + "2026/11/02/coinbase-stock-morgan-stanley-downgrade.html")] + [x for x in T["COIN"] if x[0] != "Morgan Stanley"]
+T["BE"] = [("Barclays", "Overweight (upgraded)", 289, "Nov 3", "CNBC", CN + "2026/11/03/stocks-making-the-biggest-moves-midday-aapl-pltr-nvda-coin-be.html")] + T["BE"]
+T["NVDA"] = T["NVDA"] + [("Melius", "Buy", 315, "Nov 2", "CNBC", CN + "2026/11/02/biggest-stocks-by-analyst-calls-on-wall-street.html")]
+T["QCOM"] = [("Bernstein", "", 155, "Nov 2", "CNBC via TipRanks", CN + "quotes/QCOM")] + T["QCOM"]
+T["KLAC"] = T["KLAC"] + [("Wells Fargo", "", 210, "Oct 29", "CNBC via TipRanks", CN + "quotes/KLAC")]
+for _old in ("RDDT", "AEHR", "GOOGL", "AAOI", "IREN", "NOK", "BAC"):  # IREN re-added Nov 17: its old (pre-Nov 5) firm targets stay dropped; the page uses Nasdaq consensus
+    T.pop(_old, None)
+T["DDOG"] = [("Bernstein", "Outperform (upgraded)", 350, "Oct", "Seeking Alpha", SA_ + "4654186-datadog-receives-upgrade-to-outperform-on-ai-driven-demand-bernstein"),
+             ("BofA", "Buy", 335, "Nov 1", "CNBC", CN + "2026/11/01/top-analysts-are-bullish-on-these-3-stocks-for-the-long-haul.html"),
+             ("Benchmark", "Buy", 330, "Jul", "Seeking Alpha", SA_ + "4609688-datadogs-moat-should-thrive-in-ai-super-cycle-benchmark")]
+
+# Nov 6: new names
+T["APH"] = [("JPMorgan", "", 115, "Oct 29 (from $107)", "CNBC via TipRanks", CN + "quotes/APH"),
+            ("UBS", "", 111, "Oct 29 (from $105)", "CNBC via TipRanks", CN + "quotes/APH"),
+            ("BNP Paribas", "", 110, "Sep 22", "Seeking Alpha", SA_ + "4645447-bnp-paribas-ups-estimates-price-target-on-amphenol-after-management-meeting")]
+T["CRWD"] = [("Deutsche Bank", "Buy (upgraded)", 300, "Nov 2 (from $240)", "CNBC", CN + "2026/11/02/this-stock-is-a-double-in-2026-and-still-has-room-to-run-deutsche-bank-says.html"),
+             ("Truist", "Buy", 300, "Sep 1 (from $245)", "Seeking Alpha", SA_ + "4638911-crowdstrikes-mythos-moment-drives-platform-wide-adoption-truist")]
+
+# ---- Nov 12, 2026: Zscaler added; Nov 6–11 calls ----
+T["ZS"] = [("KeyBanc", "", 210, "Aug (raised)", "Seeking Alpha", SA_ + "4635864-zscaler-in-focus-as-keybanc-ups-price-target"),
+           ("B. Riley", "Buy (upgraded)", 225, "May (from $275)", "Seeking Alpha", SA_ + "4594397-zscaler-rises-after-rating-upgrade-at-b-riley"),
+           ("Guggenheim", "Buy (upgraded)", 214, "May", "Seeking Alpha", SA_ + "4598910-zscaler-pops-up-guggenheim-upgrades-to-buy-after-post-earnings-plunge"),
+           ("Morgan Stanley", "Equal-weight (downgraded)", 155, "Apr (from $200)", "Seeking Alpha", SA_ + "4577690-zscalers-rating-cut-at-morgan-stanley-on-growing-competition")]
+T["NVDA"] = [("BofA", "Buy", 350, "Nov 6", "CNBC", CN + "2026/11/06/biggest-friday-wall-street-analyst-calls-like-nvidia.html"),
+             ("Wells Fargo", "Overweight", 300, "Nov 10 (from $315)", "CNBC", CN + "2026/11/10/tuesday-biggest-analyst-calls-like-nvidia.html"),
+             ("Citi", "Buy", 285, "Nov 10 (from $315)", "CNBC", CN + "2026/11/10/tuesday-biggest-analyst-calls-like-nvidia.html"),
+             ("Baird", "Neutral (downgraded)", 200, "Nov 11 (from $500)", "Bloomberg", "https://www.bloomberg.com/news/articles/2026-11-11/nvidia-gets-rare-downgrade-as-baird-raises-ceo-uncertainities")] + \
+            [x for x in T["NVDA"] if x[0] in ("JPMorgan", "Goldman Sachs", "Melius", "Seaport")]
+T["GLW"] = [("Jefferies", "Buy (initiated)", 134, "Nov 11", "Seeking Alpha", SA_ + "4670820-corning-in-focus-as-jefferies-starts-with-buy-rating")] + T["GLW"]
+
+# ---- Nov 16, 2026: Dell, Strategy and iShares Bitcoin Trust added; Nov 12–16 calls ----
+T["DELL"] = [("BofA", "Buy", 600, "Sep 2 (from $505)", "CNBC", CN + "2026/09/02/dell-has-more-than-tripled-in-2026-two-analysts-say-it-has-more-room-to-run.html"),
+             ("Citi", "Buy", 600, "Sep 2 (from $515)", "CNBC", CN + "2026/09/02/dell-has-more-than-tripled-in-2026-two-analysts-say-it-has-more-room-to-run.html"),
+             ("Barclays", "Overweight", 550, "May 29", "CNBC", CN + "2026/05/29/dell-shocked-street-on-booming-q1-server-sales-analysts-weigh-in.html"),
+             ("Bernstein", "Outperform", 500, "May 29", "CNBC", CN + "2026/05/29/dell-shocked-street-on-booming-q1-server-sales-analysts-weigh-in.html"),
+             ("UBS", "Neutral (downgraded)", 243, "May 11", "CNBC", CN + "2026/05/11/dell-has-been-on-fire-this-year-why-ubs-is-downgrading-the-pc-maker.html")]
+T["MSTR"] = [("Barclays", "Overweight", 175, "fall (from $160)", "Seeking Alpha", SA_ + "4651746-strategy-in-focus-as-barclays-lifts-price-target-on-sector-strength"),
+             ("Canaccord Genuity", "Buy", 175, "raised; cut to $185 from $474 in Feb", "Seeking Alpha", SA_ + "4636620-canaccord-genuity-raises-price-target-on-strategy-to-175-balance-sheet-is-war-chested")]
+T["NVDA"] = [("UBS", "Buy", 240, "Nov 16 (from $300)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html"),
+             ("HSBC", "Hold (downgraded)", 170, "Nov 13 (from $365)", "CNBC", CN + "2026/11/13/hsbc-downgrades-nvidia-says-stock-to-struggle-until-new-ceo-named.html")] + T["NVDA"]
+T["AVGO"] = T["AVGO"] + [("Rothschild & Co.", "Neutral (downgraded)", 398, "Nov 13", "CNBC", CN + "2026/11/13/nvidia-ceo-exit-amd-broadcom-and-ai-trade-fallout-.html")]
+T["CRWV"] = [("Goldman Sachs", "Buy", 101, "Nov 16 (from $106)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html")] + [x for x in T["CRWV"] if x[0] != "Goldman Sachs"]
+T["SPCX"] = [("Citi", "Buy", 280, "Nov 16 (from $240)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html")] + T["SPCX"]
+T["ANET"] = [("Evercore ISI", "Buy", 250, "Nov 13", "CNBC", CN + "2026/11/13/nvidia-ceo-exit-amd-broadcom-and-ai-trade-fallout-.html")] + [x for x in T["ANET"] if x[0] != "Evercore ISI"]
+T["ARM"] = [("JPMorgan", "Overweight (reiterated)", 0, "Nov 5", "Seeking Alpha", SA_ + "4666514-arm-holdings-in-spotlight-as-wall-street-digests-results-and-guidance-agi-opportunity")]

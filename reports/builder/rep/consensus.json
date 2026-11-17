@@ -1,0 +1,402 @@
+{
+ "AMZN": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "SKHY": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "AVGO": {
+  "ann": "Dec 09, 2026",
+  "eps": "3.47.",
+  "n": "10",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "1.61."
+ },
+ "AMAT": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "BE": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "COHR": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "SPCX": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "NVDA": {
+  "ann": "Earnings announcement* for NVDA: Nov 17, 2026",
+  "eps": null,
+  "n": null,
+  "time": "AMC",
+  "status": "",
+  "prior": null
+ },
+ "TER": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CRDO": {
+  "ann": "Dec 01, 2026",
+  "eps": "1.03.",
+  "n": "6",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0.44."
+ },
+ "NBIS": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "MRVL": {
+  "ann": "Dec 01, 2026",
+  "eps": "0.79.",
+  "n": "12",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0.62."
+ },
+ "CSCO": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "HPE": {
+  "ann": "Nov 23, 2026",
+  "eps": "1.17.",
+  "n": "7",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0.54."
+ },
+ "ANET": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "LRCX": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "WDC": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CIEN": {
+  "ann": "Dec 10, 2026",
+  "eps": "1.79.",
+  "n": "8",
+  "time": "BMO",
+  "status": "expected",
+  "prior": "0.64."
+ },
+ "QCOM": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CRWD": {
+  "ann": "Dec 01, 2026",
+  "eps": "0.",
+  "n": "13",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "0."
+ },
+ "APH": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "VICR": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "LYTE": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "DRAM": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "NCLD": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "DELL": {
+  "ann": "Nov 24, 2026",
+  "eps": "6.41.",
+  "n": "8",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "2.35."
+ },
+ "VRT": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "VST": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "ARM": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "INTC": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CRWV": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CBRS": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "NOW": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "KLAC": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "ALAB": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "DDOG": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "HOOD": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "ZS": {
+  "ann": "Dec 02, 2026",
+  "eps": "0.12.",
+  "n": "12",
+  "time": "AMC",
+  "status": "expected",
+  "prior": "-0.01."
+ },
+ "IONQ": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "ORCL": {
+  "ann": "Dec 9, 2026",
+  "eps": "1.56.",
+  "n": "10",
+  "time": "",
+  "status": "expected",
+  "prior": "1.95."
+ },
+ "GLW": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "DOCN": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "AKAM": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "FTNT": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "MSTR": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "IBIT": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "COIN": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "CRCL": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "BABA": {
+  "ann": "Nov 19, 2026",
+  "eps": "1.56.",
+  "n": "2",
+  "time": "BMO",
+  "status": "expected",
+  "prior": "0.44."
+ },
+ "IREN": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ }
+}
