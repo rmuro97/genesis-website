@@ -120,7 +120,7 @@ T["BE"] = [("Barclays", "Overweight (upgraded)", 289, "Nov 3", "CNBC", CN + "202
 T["NVDA"] = T["NVDA"] + [("Melius", "Buy", 315, "Nov 2", "CNBC", CN + "2026/11/02/biggest-stocks-by-analyst-calls-on-wall-street.html")]
 T["QCOM"] = [("Bernstein", "", 155, "Nov 2", "CNBC via TipRanks", CN + "quotes/QCOM")] + T["QCOM"]
 T["KLAC"] = T["KLAC"] + [("Wells Fargo", "", 210, "Oct 29", "CNBC via TipRanks", CN + "quotes/KLAC")]
-for _old in ("RDDT", "AEHR", "GOOGL", "AAOI", "IREN", "NOK", "BAC"):
+for _old in ("RDDT", "AEHR", "GOOGL", "AAOI", "IREN", "NOK", "BAC"):  # IREN re-added Nov 17: its old (pre-Nov 5) firm targets stay dropped; the page uses Nasdaq consensus
     T.pop(_old, None)
 T["DDOG"] = [("Bernstein", "Outperform (upgraded)", 350, "Oct", "Seeking Alpha", SA_ + "4654186-datadog-receives-upgrade-to-outperform-on-ai-driven-demand-bernstein"),
              ("BofA", "Buy", 335, "Nov 1", "CNBC", CN + "2026/11/01/top-analysts-are-bullish-on-these-3-stocks-for-the-long-haul.html"),

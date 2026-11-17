@@ -2,9 +2,9 @@
 # Every fact comes from the notes gathered Oct 25–30, 2026 (his outlets: CNBC, Bloomberg, Seeking Alpha, plus company SEC filings where coverage cited them).
 SA = "https://seekingalpha.com/news/"
 LISTS = [
- ("top5", "Top 5", ["BE", "SKHY", "AVGO", "AMAT", "NVDA"]),
- ("portfolio", "2026 Portfolio", ["AMZN", "SPCX", "TER", "CRDO", "NBIS", "MRVL", "CSCO", "COHR", "HPE", "LRCX", "WDC", "CIEN", "QCOM", "CRWD", "VICR", "APH", "ANET", "LYTE", "DRAM", "NCLD"]),
- ("dips", "15–50% Dip", ["DELL", "VRT", "CRWV", "CBRS", "NOW", "INTC", "KLAC", "ARM", "ALAB", "DDOG", "HOOD", "ZS", "IONQ", "ORCL", "GLW", "DOCN", "AKAM", "FTNT", "VST", "MSTR", "IBIT", "COIN", "CRCL", "BABA"]),
+ ("top5", "Top 5", ["AMZN", "SKHY", "AVGO", "AMAT", "BE"]),
+ ("portfolio", "2026 Portfolio", ["COHR", "SPCX", "NVDA", "TER", "CRDO", "NBIS", "MRVL", "CSCO", "HPE", "ANET", "LRCX", "WDC", "CIEN", "QCOM", "CRWD", "APH", "VICR", "LYTE", "DRAM", "NCLD"]),
+ ("dips", "15–50% Dip", ["DELL", "VRT", "VST", "ARM", "INTC", "CRWV", "CBRS", "NOW", "KLAC", "ALAB", "DDOG", "HOOD", "ZS", "IONQ", "ORCL", "GLW", "DOCN", "AKAM", "FTNT", "MSTR", "IBIT", "COIN", "CRCL", "BABA", "IREN"]),
 ]
 
 S = {}
@@ -891,7 +891,7 @@ S["IBIT"]["profile"] = "iShares Bitcoin Trust ETF: BlackRock's spot bitcoin fund
 S["NVDA"]["catalysts"] = ["⚠ Earnings Tue Nov 17 after the close (1:20 PM PT; LSEG consensus about $109.1B revenue, $2.47 EPS, via CNBC): no new options into the report",
                           "Jensen Huang resigned as CEO and from the board Nov 12 after reports of affairs, including one with Megaspeed's Alice Huang, whom US officials suspect of spying for China. CFO Colette Kress is interim CEO and Harvey Jones is chair. The stock fell as much as 14% that day and closed −4.3% (CNBC)",
                           "Down 12.75% on the week, a sixth straight weekly drop, and below a $4T value. HSBC cut to Hold ($170 from $365); Bernstein cut its target to $200 from $400; UBS to $240 from $300 (still Buy, sees a $3–4B revenue beat). FT: the board approached Arm's Rene Haas; Bessent wants an outside CEO",
-                          "Stays in your Top 5 (#5) on the Nov 16 lists"]
+                          "Moved down to your 2026 Portfolio (#3) Nov 17"]
 S["NVDA"]["src"] = S["NVDA"]["src"][:2] + [("CNBC · stock closes down 4% after Huang resigns", CN_ + "2026/11/12/nvidia-nvda-jensen-huang-second-affair.html"),
                                            ("CNBC · HSBC downgrades, says stock struggles until a new CEO", CN_ + "2026/11/13/hsbc-downgrades-nvidia-says-stock-to-struggle-until-new-ceo-named.html"),
                                            ("CNBC · stock falls as investors price in the fallout (Nov 16)", CN_ + "2026/11/16/nvidia-stock-price-jensen-huang.html")]
@@ -927,7 +927,7 @@ S["SPCX"]["catalysts"] = ["Starship caught its upper stage from orbit for the fi
 S["SPCX"]["src"] = S["SPCX"]["src"][:3] + [("Bloomberg · SpaceX plans $74B computing centers", BB_ + "2026-11-12/spacex-plans-74-billion-data-center-projects-in-arizona-texas"),
                                            ("CNBC · Monday's biggest analyst calls (Citi on SpaceX)", CN_ + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html")]
 S["AMZN"]["catalysts"] = ["Reported Oct 29; next report late January (date not set)", "Blackstone's data-center trust is buying 75% of two AWS data-center ventures for about $5B (WSJ, Nov 16): cash back after the $77.3B capex quarter",
-                          "Anthropic IPO prices Nov 18 and trades Nov 19 ($70–78); Amazon is one of its biggest holders", "Moved to your 2026 Portfolio (#1) Nov 16; AWS re:Invent Nov 30–Dec 4"]
+                          "Anthropic IPO prices Nov 18 and trades Nov 19 ($70–78); Amazon is one of its biggest holders", "Moved back up to #1 in your Top 5 Nov 17; AWS re:Invent Nov 30–Dec 4"]
 S["AMZN"]["src"] = S["AMZN"]["src"][:3] + [("WSJ · Blackstone trust to buy Amazon data-center portfolio for $5B", "https://www.wsj.com/business/deals/blackstone-digital-infrastructure-trust-to-acquire-data-center-portfolio-from-amazon-for-5-billion-87e53519"),
                                            ("CNBC · Anthropic sets IPO range of $70–78", S["AMZN"]["src"][3][1])]
 S["CRWV"]["catalysts"] = ["Reported Nov 10; next report February", "Gave back 6.9% Nov 12 and 6.1% Nov 13 after Nebius's capex jump and Huang's exit (Barron's: neoclouds lost their Nvidia backer)",
@@ -938,7 +938,7 @@ S["SKHY"]["catalysts"] = ["Reported Oct 27 (US time); next date not set", "Fell 
                           "Sen. Cotton urged Commerce to blacklist China's CXMT, the No. 4 DRAM maker pushing into HBM (CNBC, Nov 12): protective for SK hynix", "Moved to #2 in your Top 5 Nov 16; Nvidia Nov 17"]
 S["SKHY"]["src"] = S["SKHY"]["src"][:3] + [("CNBC · Cotton: ban Chinese memory maker CXMT", CN_ + "2026/11/12/lutnick-cxmt-china-cotton.html"),
                                            ("CNBC · stock futures slide as Nvidia leads AI lower (Nov 16)", CN_ + "2026/11/15/stock-market-today-live-updates.html")]
-S["BE"]["catalysts"] = ["Moved up to #1 in your Top 5 Nov 16", "Rose 13% Nov 11 as CoreWeave's outlook calmed data-center fears (MarketWatch)", "Barclays upgraded to Overweight (Nov 3), target $289", "Texas data-center policy after the midterms; on-site power is the workaround"]
+S["BE"]["catalysts"] = ["In your Top 5 (#5 since Nov 17)", "Rose 13% Nov 11 as CoreWeave's outlook calmed data-center fears (MarketWatch)", "Barclays upgraded to Overweight (Nov 3), target $289", "Texas data-center policy after the midterms; on-site power is the workaround"]
 S["COIN"]["catalysts"] = ["Bitcoin fell below $70K Nov 13 and to about $62K late Sat Nov 14, its lowest since August (Barron's, CNBC)", "Received final approval for a national trust-bank charter (Bloomberg, Nov 9–10)", "Morgan Stanley (Underweight) says the earnings recovery is less certain (Bloomberg, Nov 6)"]
 S["COIN"]["src"] = S["COIN"]["src"][:3] + [("Barron's · bitcoin tumbles, bringing Coinbase and Strategy down", BRN_ + "bitcoin-prices-strategy-coinbase-f7d3191e")]
 S["INTC"]["catalysts"] = ["Reported Oct 29; next report late January", "CEO Lip-Bu Tan bought $9.7M of stock after the record drop (Barron's); investors sued over the 29% plunge (WSJ, Nov 16)", "Moved to your 15–50% Dip list Nov 12"]
@@ -957,3 +957,20 @@ S["BABA"]["guide"] = "Will spend beyond its 3-year AI plan of about $57B (¥380B
 S["BABA"]["capex"] = "Latest quarter's capex was about $10.0B (¥67.7B), up 75%. It targets 20 GW of data centers, with new sites in Europe and the Middle East. As a foreign filer it has no quarterly 10-Q figure."
 
 S["HPE"]["catalysts"] = ["⚠ Fiscal Q4 earnings Mon Nov 23 (Nasdaq date): no new options held into the report", "Dell reports Nov 24; Barron's: the Dell and HPE selloff may be overdone; Citi sees both benefiting from a hardware refresh (Seeking Alpha)", "Nvidia earnings Nov 17"]
+
+
+# ---------------- NOV 17: lists reordered again (50 names); IREN added back to the 15–50% Dip ----------------
+S["IREN"] = dict(
+ name="IREN", what="AI cloud and data-center operator (Nasdaq: IREN) that grew out of bitcoin mining; Microsoft is its anchor AI-cloud customer.",
+ results="Fiscal Q1 (quarter to Sep 30, reported Nov 5): revenue $228M, up 66% from the prior quarter, above the $221M LSEG consensus (CNBC). AI Cloud $200M ($135M services, $65M lease); bitcoin mining $28M. Net loss $263M; adjusted EBITDA $66M (SEC 8-K). EPS −$0.62 vs −$0.49 expected (Nasdaq).",
+ guide="Its >$4B annualized AI-cloud revenue target is fully contracted and funded, but now due about Jan 31, 2027 (possibly February) after Microsoft asked for a 200 MW network reconfiguration (CNBC). Contracted backlog $20.3B, up 22%, about two-thirds investment-grade.",
+ capex="Quarter: $2.13B of property and equipment plus $2.69B of computer hardware. About $15B of fiscal-2027 capex remains: $9B already covered and $6B being raised. Cash $3.52B (unrestricted); debt $10.2B (SEC 8-K).",
+ partners=["Microsoft: Horizon 1 in service, with Nvidia 'Exemplar' status", "Contracts with Microsoft, Nvidia and 13 other customers; expanded deal with a 'leading frontier AI lab'"],
+ catalysts=["Added back to your 15–50% Dip list Nov 17 (it was removed Nov 4)", "Fell 17% on results day (Nov 5) after the delay; $16.39 at Monday's close, down from about $41 in early October (Nasdaq closes)",
+            "Next report: no date set (last reported Nov 5)", "Neocloud read-through: CoreWeave and Nebius financing; Nvidia earnings Nov 17 after the close", "Bitcoin: still mines it, so crypto swings move the stock"],
+ macro="Trades with CoreWeave and Nebius on AI-cloud financing and GPU demand, and with bitcoin. Rising yields and neocloud credit stress hit it hardest.",
+ risks="Heavy capex and $10.2B of debt; the >$4B target already slipped once; wide losses; high volatility.",
+ src=[("SEC 8-K · IREN Q1 FY27 results", "https://www.sec.gov/Archives/edgar/data/0001878848/000187884826000065/irenreportsq1-fy27result.htm"),
+      ("CNBC · IREN Q1 results, ARR target delayed", "https://www.cnbc.com/2026/11/05/iren-earnings-report-q1-2027-.html"),
+      ("Bloomberg · IREN's AI cloud sales soar though loss is wider", "https://www.bloomberg.com/news/articles/2026-11-05/iren-s-ai-cloud-sales-soar-though-loss-is-wider-than-expected")])
+S["IREN"]["profile"] = "IREN Limited (Sydney-founded, Nasdaq-listed) builds and runs large data centers powered by renewable energy in Texas and Canada, and rents Nvidia GPU capacity to AI customers on multi-year contracts; Microsoft is its biggest customer. It began as a bitcoin miner (formerly Iris Energy) and still mines bitcoin, but AI cloud is now most of its revenue."

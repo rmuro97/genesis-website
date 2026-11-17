@@ -29,7 +29,7 @@ H = json.load(open(os.path.join(HERE, "hist.json")))
 PX = {t["ticker"]: t for t in P["tickers"]}
 MK = {m["key"]: m for m in P["market"]}
 # EDIT EACH MONTH: TODAY = the edition date (the Monday after the build Sunday); NEXT_SESSION = first trading day.
-TODAY = dt.date(2026, 11, 16)
+TODAY = dt.date(2026, 11, 17)
 NEXT_SESSION = dt.date(2026, 11, 17)
 LAST = max(dt.date.fromisoformat(r[-1][0]) for r in H.values())  # last official close in pdf/hist.json
 LIVE_AT = os.environ.get("LIVE_AT", "")  # intraday build: the last row in hist.json is a live, cross-checked price at this time, not a close
@@ -302,7 +302,7 @@ def spark(t):
 
 # ---------- doc ----------
 M1 = (TODAY + dt.timedelta(days=7)).replace(day=1); M2 = (M1 + dt.timedelta(days=32)).replace(day=1)  # named for the month the edition mainly covers (a Nov 30 edition is "December")
-EDITION = f"{M1:%B} {M1.year} edition · {TODAY:%A} {fmt_d(TODAY, False)} · updated Nov 16"
+EDITION = f"{M1:%B} {M1.year} edition · {TODAY:%A} {fmt_d(TODAY, False)} · updated Nov 17"
 TITLE = f"{M1:%B} Market Analysis"
 OUT = os.path.join(HERE, f"{M1:%B}_Market_Analysis_{M1.year}.pdf")
 W, Hh = letter
@@ -319,7 +319,7 @@ def on_page(c, doc):
 
 doc = BaseDocTemplate(OUT, pagesize=letter, leftMargin=M, rightMargin=M, topMargin=0.5 * inch, bottomMargin=0.6 * inch,
                       title=TITLE, author="Muro's Investing Analysis",
-                      subject="Price targets, 2026 capex, earnings, guidance, catalysts and market events for 49 stocks and ETFs")
+                      subject="Price targets, 2026 capex, earnings, guidance, catalysts and market events for 50 stocks and ETFs")
 FRAME_H = Hh - 1.1 * inch
 frame = Frame(M, 0.6 * inch, W - 2 * M, FRAME_H, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
 doc.addPageTemplates([PageTemplate(id="p", frames=[frame], onPage=on_page)])
@@ -342,7 +342,7 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY REPORT", S_LAB), Spacer(1, 4),
           Paragraph(X(TITLE), S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph("All 49 names on your lists, in your broker's order as of Nov 16, each with a company summary (what it does and specializes in; all 49 together on the \"Company summaries\" pages, and at the top of every stock page), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. <b>Updated Nov 16 with your new lists and order:</b> Top 5 is now <b>BE, SKHY, AVGO, AMAT, NVDA</b> (Bloom Energy and Applied Materials moved up; Amazon and SpaceX moved to the top of the 2026 Portfolio); <b>NBIS</b> moved up to the 2026 Portfolio; and three names are new, each with a full page: <b>Dell Technologies (DELL)</b>, <b>Strategy (MSTR)</b> and the <b>iShares Bitcoin Trust ETF (IBIT)</b>. It covers the news since Nov 12: Huang's resignation as Nvidia CEO, results from Cisco, Applied Materials, Cerebras and Nebius, PPI and the priced-in December hike, Monday's AI selloff and bitcoin's slide. Prices are official Nasdaq closes through Monday Nov 16 (cross-checked on a second feed), and IV checks use Nasdaq option quotes at that close. All figures are in US dollars (SK hynix and Alibaba converted at ECB reference rates). Times are Pacific.", S_BL),
+          Paragraph("All 50 names on your lists, in your broker's order as of Nov 17, each with a company summary (what it does and specializes in; all 50 together on the \"Company summaries\" pages, and at the top of every stock page), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. <b>Updated Nov 17 with your new lists and order:</b> Top 5 is now <b>AMZN, SKHY, AVGO, AMAT, BE</b> (Amazon back on top; Nvidia moved to #3 in the 2026 Portfolio, which Coherent now leads); and <b>IREN (IREN Limited)</b> is back on the 15–50% Dip list with a full page. It covers the news since Nov 12: Huang's resignation as Nvidia CEO, results from Cisco, Applied Materials, Cerebras and Nebius, PPI and the priced-in December hike, the AI selloff and bitcoin's slide. " + (f"Prices are live Nasdaq trades at {LIVE_AT} Tue Nov 17 (cross-checked on a second feed; history through Monday's official closes), and IV checks use Tuesday's intraday Nasdaq option quotes. " if LIVE_AT else f"Prices are official Nasdaq closes through {LAST:%A} {fmt_d(LAST, False)} (cross-checked on a second feed), and IV checks use Nasdaq option quotes at that close. ") + "All figures are in US dollars (SK hynix and Alibaba converted at ECB reference rates). Times are Pacific.", S_BL),
           Spacer(1, 5),
           Paragraph("Price targets: Nasdaq consensus (mean, low–high, buy/hold/sell count) for every name, plus named firm targets from your outlets. 2026 capex: spending to date from company SEC filings, with guidance from your outlets where companies give it. Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Seeking Alpha and Fox Business, plus company releases and SEC filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
@@ -438,10 +438,10 @@ spx, comp, y10, y30, btc = MK["SPX"], MK["COMP"], MK["US10Y"], MK["US30Y"], MK["
 TILES = [("FED FUNDS", "3.75–4.00%", "Dec 9 hike fully priced; ~13% odds of 50 bp (CME FedWatch via CNBC)", BAD),
          ("PPI (OCT)", "+0.3% m/m", "+6.5% y/y, the most since Nov 2022 (CNBC)", BAD),
          ("CPI (OCT)", "+0.4% m/m", "Core +0.3% vs +0.2% expected (CNBC)", BAD),
-         ("10-YR YIELD", f"{y10['price']:.2f}%", f"30-yr {y30['price']:.2f}% · Mon close", WARN),
+         ("10-YR YIELD", f"{y10['price']:.2f}%", f"30-yr {y30['price']:.2f}% · " + ("live" if LIVE_AT else f"{LAST:%a} close"), WARN),
          ("US DOLLAR", "Apr 2025 high", "Dollar index at its highest since April 2025 on Fed-hike bets (CNBC)", WARN),
-         ("S&P 500", f"{spx['price']:,.0f}", f"{spx['chg']:+.2f}% Mon · Nasdaq {comp['chg']:+.2f}%", INK),
-         ("BITCOIN", f"${btc['price']:,.0f}", f"Mon close · low ~$62K Sat (CNBC)", INK),
+         ("S&P 500", f"{spx['price']:,.0f}", f"{spx['chg']:+.2f}% {LAST:%a} · Nasdaq {comp['chg']:+.2f}%", INK),
+         ("BITCOIN", f"${btc['price']:,.0f}", ("live" if LIVE_AT else f"{LAST:%a} close") + " · low ~$62K Sat Nov 14 (CNBC)", INK),
          ("NEXT BIG EVENTS", "Nov 17–25", "Nvidia Tue · Anthropic IPO Thu · Dell Nov 24 · GDP/PCE Nov 25", INK)]
 cells = [[Paragraph(X(a), S_LAB), Paragraph(f'<font name="DVB" size="14" color="{c.hexval().replace("0x", "#")}">{X(b)}</font>', st("tv", leading=18)), Paragraph(X(s_), S_M)] for a, b, s_, c in TILES]
 tw = (CW - 3 * 6) / 4
@@ -459,13 +459,13 @@ story += [tt, PageBreak()]
 # EDIT EACH MONTH (editorial: verified facts only)
 # Monday game plan
 story += [Paragraph("Tuesday Nov 17 game plan", S_H1),
-          Paragraph("What changed this week, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, Seeking Alpha, Barron's, MarketWatch and Fox Business, plus company releases; prices are Monday's official closes.", S_M), Spacer(1, 6)]
+          Paragraph("What changed this week, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, Seeking Alpha, Barron's, MarketWatch and Fox Business, plus company releases; " + ("prices are live (" + LIVE_AT + " Tue)." if LIVE_AT else f"prices are {LAST:%A}'s official closes."), S_M), Spacer(1, 6)]
 WKND = [
     ("Rules", "<b>Tue Nov 17, Wed Nov 18, Thu Nov 19 and Mon Nov 23 are clear.</b> Fri Nov 20 is out (a Friday). No new options held into reports: NVDA (Nov 17), BABA (Nov 19), HPE (Nov 23), DELL (Nov 24), CRWD and MRVL (Dec 1), ZS (Dec 2), AVGO and ORCL (Dec 9). Wed Nov 25 (GDP, PCE) is Rule 3."),
     ("Nvidia", "Jensen Huang resigned as CEO and from the board Nov 12; CFO Colette Kress is interim CEO and Harvey Jones is chair. NVDA fell as much as 14% that day, 12.75% on the week, and below a $4T value. HSBC cut it to Hold ($170 from $365); UBS trimmed to $240 but expects a $3–4B revenue beat. FT says the board approached Arm's Rene Haas. Earnings Tue after the close: LSEG consensus about $109.1B revenue and $2.47 EPS (CNBC)."),
     ("Results", "<b>CSCO</b>: revenue $18.5B (+24%), Q2 guide above consensus, hyperscaler AI revenue now seen at $9B; still −6.2% Friday. <b>AMAT</b>: revenue $10.4B (+53%), Q1 guide $11.1B, sees 2027 chip-equipment spending up 30%+. <b>CBRS</b>: core revenue $230.9M (+70%), Q4 guide $310–330M, Microsoft deal; +11.2%. <b>NBIS</b>: revenue $980.8M, but 2026 revenue at the low end and capex $27B; −16.8% and −9.9%."),
     ("Rates", "October PPI +0.3% m/m (est. +0.4%) but +6.5% y/y, the most since Nov 2022. Fed's Daly and Hammack said more hikes are needed; a Dec 9 hike is fully priced and Goldman added a March hike. Treasuries had their worst week since April 2025 and the dollar its highest level since then (CNBC, FT)."),
-    ("Your lists", "Updated Nov 16 in your broker's order (49 names). Top 5: <b>BE, SKHY, AVGO, AMAT, NVDA</b>. 2026 Portfolio: <b>AMZN, SPCX</b> (moved down from the Top 5), TER, CRDO, <b>NBIS</b> (moved up), MRVL, CSCO, COHR, HPE, LRCX, WDC, CIEN, QCOM, CRWD, VICR, APH, ANET, LYTE, DRAM, NCLD. 15–50% Dip: <b>DELL</b> (new), VRT, CRWV, CBRS, NOW, INTC, KLAC, ARM, ALAB, DDOG, HOOD, ZS, IONQ, ORCL, GLW, DOCN, AKAM, FTNT, VST, <b>MSTR, IBIT</b> (new), COIN, CRCL, BABA."),
+    ("Your lists", "Updated Nov 17 in your broker's order (50 names). Top 5: <b>AMZN, SKHY, AVGO, AMAT, BE</b> (Amazon back on top). 2026 Portfolio: COHR, SPCX, <b>NVDA</b> (moved down from the Top 5), TER, CRDO, NBIS, MRVL, CSCO, HPE, ANET, LRCX, WDC, CIEN, QCOM, CRWD, APH, VICR, LYTE, DRAM, NCLD. 15–50% Dip: DELL, VRT, VST, ARM, INTC, CRWV, CBRS, NOW, KLAC, ALAB, DDOG, HOOD, ZS, IONQ, ORCL, GLW, DOCN, AKAM, FTNT, MSTR, IBIT, COIN, CRCL, BABA, <b>IREN</b> (back on the list)."),
     ("Market", "Last week still ended as the best since early August despite Thursday–Friday losses (CNBC). Monday: S&amp;P 500 −1.92%, Nasdaq −2.49%; optics, neoclouds, memory and AI power led the drop."),
 ]
 wk = Table([[Paragraph(f'<font name="DVB">{X(a)}</font>', S_SM), Paragraph(b, S_B)] for a, b in WKND], colWidths=[0.9 * inch, CW - 0.9 * inch])
@@ -588,7 +588,7 @@ ct.setStyle(TableStyle(sty)); story.append(ct)
 
 # At a glance
 story += [PageBreak(), Paragraph(f"All {len(ALL)} at a glance", S_H1),
-          Paragraph((f"Prices are live Nasdaq trades at {LIVE_AT} {fmt_d(LAST)}, cross-checked on a second feed; DAY = change from Friday's official close. " if LIVE_AT else f"Official closes {fmt_d(LAST)}. ") + f"1M = since {fmt_d(ST['AVGO']['m1_from'], False)}; 3M = since {fmt_d(ST['AVGO']['m3_from'], False)}. Sparkline = 3 months, shaded = last month. IV check: see the next page. Red earnings dates are within 21 days.", S_M)]
+          Paragraph((f"Prices are live Nasdaq trades at {LIVE_AT} {fmt_d(LAST)}, cross-checked on a second feed; DAY = change from the previous session's official close. " if LIVE_AT else f"Official closes {fmt_d(LAST)}. ") + f"1M = since {fmt_d(ST['AVGO']['m1_from'], False)}; 3M = since {fmt_d(ST['AVGO']['m3_from'], False)}. Sparkline = 3 months, shaded = last month. IV check: see the next page. Red earnings dates are within 21 days.", S_M)]
 for key, label, names in C.LISTS:
     data = [[Paragraph(x, S_LAB) for x in ("TICKER", "PRICE" if LIVE_AT else "CLOSE", "DAY", "1M", "3M", "FROM HIGH", "3-MONTH TREND", "IV CHECK", "NEXT EARNINGS")]]
     for t in names:
@@ -650,7 +650,7 @@ IVP_START = PageBreak()
 story += [IVP_START, Paragraph("Options IV check: are the options you're allowed to buy cheap?", S_H1),
           Paragraph(f"For each name, I took the expiry your rules allow (7–60 DTE from {fmt_d(NEXT_SESSION)}, ending before the next report) closest to 30 days. Its at-the-money implied volatility (IV) is compared with how much the stock has actually moved over the last 20 trading days (HV).", S_B), Spacer(1, 3),
           Paragraph('<font color="#13804a"><b>Cheap</b></font>: IV below actual movement (ratio under 1.0); the better time to buy. <b>Normal</b>: ratio 1.0–1.5. <font color="#b42318"><b>Expensive</b></font>: ratio 1.5 or more; you pay up and need a bigger move. <b>after earn.</b> = every allowed expiry runs into earnings, so no new options yet (Rule 3); the verdict and IV marked * are estimated without the earnings move, from two expiries after the report (term structure), so you know where each name stands once it has reported.', S_B), Spacer(1, 3),
-          Paragraph((f"Source: Nasdaq delayed option quotes taken late Monday morning, priced off the live stock price (mid of bid/ask)" if LIVE_AT else f"Source: Nasdaq delayed option quotes at {LAST:%A} {fmt_d(LAST, False)}'s close (mid of bid/ask)") + f", IV solved with Black-Scholes; HV from official closes. This compares IV with actual movement, not a true IV rank, because I don't have a verified year of IV history. Earnings move = straddle price on the first expiry after the report. Quotes change daily; check live before trading.", S_M), Spacer(1, 8)]
+          Paragraph((f"Source: Nasdaq delayed option quotes taken intraday Tuesday ({LIVE_AT}), priced off the live stock price (mid of bid/ask)" if LIVE_AT else f"Source: Nasdaq delayed option quotes at {LAST:%A} {fmt_d(LAST, False)}'s close (mid of bid/ask)") + f", IV solved with Black-Scholes; HV from official closes. This compares IV with actual movement, not a true IV rank, because I don't have a verified year of IV history. Earnings move = straddle price on the first expiry after the report. Quotes change daily; check live before trading.", S_M), Spacer(1, 8)]
 data = [[Paragraph(x, S_LAB) for x in ("TICKER", "IV CHECK", "IV", "HV (20D)", "RATIO", "EXPIRY USED", "EARNINGS MOVE", "NOTE")]]
 sty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.1), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.1), ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
 S_T8 = st("t8", fontSize=8, leading=10)
