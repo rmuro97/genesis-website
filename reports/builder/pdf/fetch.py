@@ -25,6 +25,21 @@ for _, _, names in C.LISTS:
                         sm = json.load(urllib.request.urlopen(urllib.request.Request(f'https://api.nasdaq.com/api/quote/{t}/summary?assetclass={ac}', headers=H), timeout=20))['data']['summaryData']
                         hi, lo = sm['TodayHighLow']['value'].split('/')
                         out[t].append((day, f(sd['lastSalePrice']), f(hi), f(lo)))
+                # Nasdaq adjusts its daily history for a split only some time later (SanDisk's 8-for-1 on Nov 20, 2026 was still raw;
+                # Amphenol's Sep 3 split was already adjusted): divide earlier rows by the ratio only when Nasdaq's last pre-split close
+                # is about ratio x the second feed's split-adjusted close for that day
+                try:
+                    sp = json.load(urllib.request.urlopen(urllib.request.Request(f'https://query1.finance.yahoo.com/v8/finance/chart/{t}?interval=1d&range=1y&events=split', headers={'User-Agent': 'Mozilla/5.0'}), timeout=20))
+                    r_ = sp['chart']['result'][0]
+                    yc = {dt.datetime.utcfromtimestamp(ts).date().isoformat(): c for ts, c in zip(r_['timestamp'], r_['indicators']['quote'][0]['close']) if c}
+                    for k, v in ((r_.get('events') or {}).get('splits') or {}).items():
+                        sd_, ratio = dt.datetime.utcfromtimestamp(int(k)).date().isoformat(), v['numerator'] / v['denominator']
+                        pre = [row for row in out[t] if row[0] < sd_ and row[0] in yc]
+                        if ratio and ratio != 1 and pre and abs(pre[-1][1] / yc[pre[-1][0]] / ratio - 1) < 0.25:
+                            out[t] = [(a, round(b / ratio, 4), round(c / ratio, 4), round(e / ratio, 4)) if a < sd_ else (a, b, c, e) for a, b, c, e in out[t]]
+                            print('  split-adjusted', t, sd_, ratio)
+                except Exception:
+                    pass
                 break
             except Exception as e:
                 err = e; time.sleep(2)

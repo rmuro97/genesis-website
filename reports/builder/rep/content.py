@@ -2,9 +2,9 @@
 # Every fact comes from the notes gathered Oct 25–30, 2026 (his outlets: CNBC, Bloomberg, Seeking Alpha, plus company SEC filings where coverage cited them).
 SA = "https://seekingalpha.com/news/"
 LISTS = [
- ("top5", "Top 5", ["AMZN", "SKHY", "AVGO", "AMAT", "BE"]),
- ("portfolio", "2026 Portfolio", ["COHR", "SPCX", "NVDA", "TER", "CRDO", "NBIS", "MRVL", "CSCO", "HPE", "ANET", "LRCX", "WDC", "CIEN", "QCOM", "CRWD", "APH", "VICR", "LYTE", "DRAM", "NCLD"]),
- ("dips", "15–50% Dip", ["DELL", "VRT", "VST", "ARM", "INTC", "CRWV", "CBRS", "NOW", "KLAC", "ALAB", "DDOG", "HOOD", "ZS", "IONQ", "ORCL", "GLW", "DOCN", "AKAM", "FTNT", "MSTR", "IBIT", "COIN", "CRCL", "BABA", "IREN"]),
+ ("top5", "Top 5", ["AMZN", "SKHY", "AVGO", "BE", "AMAT"]),
+ ("portfolio", "2026 Portfolio", ["NVDA", "CSCO", "MRVL", "SPCX", "GOOGL", "TER", "LRCX", "KLAC", "COHR", "ANET", "HPE", "NBIS", "CRDO", "APH", "LYTE", "DRAM", "NCLD", "BAC", "WMT", "C", "TGT"]),
+ ("dips", "15–50% Dip", ["SNDK", "ARM", "VRT", "DELL", "VICR", "VST", "ORCL", "INTC", "QCOM", "HOOD", "NOW", "DDOG", "ALAB", "IONQ", "CRWV", "CBRS", "GLW", "FTNT", "DOCN", "AKAM", "COIN", "MSTR", "CRCL", "IREN", "BABA", "STZ"]),
 ]
 
 S = {}
@@ -659,7 +659,7 @@ for _t, _p in PROFILE.items():
 
 # ---------------- NOV 6 UPDATE: new list order from his broker (45 names); APH, CRWD, LYTE, DRAM, NCLD added ----------------
 LISTS = LISTS  # Nov 16 lists are set at the top of the file
-ETFS = {"LYTE", "DRAM", "NCLD", "IBIT"}
+ETFS = {"LYTE", "DRAM", "NCLD"}  # IBIT removed from the lists Nov 20
 RH_ = "https://www.roundhillinvestments.com/etf/"
 
 S["APH"] = dict(
@@ -974,3 +974,118 @@ S["IREN"] = dict(
       ("CNBC · IREN Q1 results, ARR target delayed", "https://www.cnbc.com/2026/11/05/iren-earnings-report-q1-2027-.html"),
       ("Bloomberg · IREN's AI cloud sales soar though loss is wider", "https://www.bloomberg.com/news/articles/2026-11-05/iren-s-ai-cloud-sales-soar-though-loss-is-wider-than-expected")])
 S["IREN"]["profile"] = "IREN Limited (Sydney-founded, Nasdaq-listed) builds and runs large data centers powered by renewable energy in Texas and Canada, and rents Nvidia GPU capacity to AI customers on multi-year contracts; Microsoft is its biggest customer. It began as a bitcoin miner (formerly Iris Energy) and still mines bitcoin, but AI cloud is now most of its revenue."
+
+
+# ---------------- NOV 20: lists reordered (52 names). Added GOOGL, BAC, WMT, C, TGT (2026 Portfolio) and SNDK, STZ (15–50% Dip);
+# KLAC up to the Portfolio; VICR and QCOM down to the Dip; WDC, CIEN, CRWD, ZS and IBIT removed ----------------
+SEC_WMT = "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningsreleasefy27q3.htm"
+SEC_TGT = "https://www.sec.gov/Archives/edgar/data/27419/000002741926000051/a2026q3ex-99.htm"
+SEC_SNDK = "https://www.sec.gov/Archives/edgar/data/0002023554/000162828026068243/sndkq1-27ex991xpressrelease.htm"
+SEC_STZ = "https://www.sec.gov/Archives/edgar/data/16918/000001691826000039/stzex991_83120268kearnings.htm"
+SEC_BAC = "https://www.sec.gov/Archives/edgar/data/70858/000007085826000481/bac09302026ex991.htm"
+SEC_C10Q = "https://www.sec.gov/Archives/edgar/data/0000831001/000083100126000056/c-20260930.htm"
+
+S["GOOGL"].update(
+ results="Q3 (Oct 28): revenue $127.6B, up 25%; Google Cloud $30.7B, up 103% (GCP plus TPU system sales); Search $63.35B, up 12% but below the $64.96B estimate; EPS $2.12 vs $2.94 expected, hit by an $8.66B loss on equity holdings (CNBC). Fell 12.6% Oct 29, its worst day on record.",
+ guide="2026 capex held at $195–205B. Next report early February (date not set). Trades at about 15x 2026 earnings vs 20–30x over five years (CNBC).",
+ partners=["Broadcom designs its TPUs; Ming-Chi Kuo says Google will cut 2027 Broadcom TPU 8i shipments by ~1M units (~20%) in favor of MediaTek-designed TPU 8t (Seeking Alpha, Nov 20; unconfirmed)", "TPU systems sold to outside customers through partners (CNBC, Oct 28)", "Anthropic and other AI labs on Google Cloud; Google is a strategic buyer in Anthropic's IPO"],
+ catalysts=["Added to your 2026 Portfolio Nov 20", "Overtook Nvidia in market value for the first time in over 2 years (MarketWatch, Nov 20): GOOGL held near flat while the AI-hardware group fell 7–15%", "YouTube is finalizing a ~$3B settlement with school districts over social-media addiction claims (Bloomberg, Nov 20)", "Raised $4.19B in a Canadian bond sale (Reuters, Nov 20): it now funds AI capex with debt", "Nvidia GTC DC and AWS re:Invent from Nov 30; next report early February"],
+ macro="AI-spending scrutiny (investors punish cash burn); antitrust remedies; the ad market; rates (it now borrows to fund capex).",
+ risks="AI eroding search revenue; negative free cash flow; legal settlements; capex discipline questions.",
+ src=[("CNBC · Q3 earnings", "https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html"),
+      ("MarketWatch · Alphabet overtakes Nvidia in market value", "https://www.marketwatch.com/story/alphabet-just-overtook-nvidia-in-market-value-for-the-first-time-in-over-2-years-23e296ee"),
+      ("Seeking Alpha · Kuo: Google shifts 2027 TPU orders to MediaTek", "https://seekingalpha.com/news/4675203-google-shifts-2027-ai-chip-orders-from-broadcom-to-mediatek-ming-chi-kuo-says"),
+      ("Bloomberg · YouTube schools settlement", "https://www.bloomberg.com/news/articles/2026-11-20/youtube-finalizing-multibillion-dollar-schools-settlement-over-addiction-claims")])
+S["GOOGL"]["capex"] = "2026: $131.95B in the first 9 months vs $63.60B a year ago (SEC 10-Q), toward the $195–205B full-year guide (held Oct 28). 2025 total: $91.45B (SEC 10-K). Free cash flow about −$9B in Q3 (Fox Business)."
+S["GOOGL"]["profile"] = "Alphabet (Mountain View) owns Google: Search and YouTube advertising, Google Cloud, the Gemini AI models, Android and Chrome, and Waymo self-driving. It designs its own TPU AI chips (with Broadcom, and increasingly MediaTek), which it uses in-house and now sells to outside customers through Google Cloud."
+
+S["BAC"] = dict(
+ name="Bank of America", what="One of the largest US banks: consumer banking (#1 in US consumer deposits), Merrill wealth management, commercial lending and global markets.",
+ results="Q3 (Oct 14): net income $6.9B, EPS $0.91, including a $1.2B ($0.17 a share) regulatory settlement charge; adjusted net income $8.1B, EPS $1.08. Revenue $30.0B, up 3%; net interest income $16.4B, up 8% ($16.6B FTE); loans $1.25T. Investment banking and trading revenue fell; equities trading rose 11% (SEC 8-K).",
+ guide="Expects 2027 net interest income up 8% or more (Seeking Alpha). Next report about Jan 13 (Nasdaq estimate).",
+ capex="Not a driver for a bank: it doesn't break out capex in its cash-flow statement; spending goes to technology and branches.",
+ partners=["$0.32 quarterly dividend", "Berkshire Hathaway, long its largest shareholder, files its Q3 stock moves (Barron's, Nov 20)"],
+ catalysts=["Added to your 2026 Portfolio Nov 20", "Dec 9 FOMC: a hike lifts net interest income but raises hard-landing and credit risks; its own strategist warns of a 'doom loop' if markets underprice a hard landing (MarketWatch, Nov 20)", "Q3 GDP and PCE Wed Nov 25 (Rule 3)", "Bank capital rules; next report about Jan 13 (est.)"],
+ macro="Rates and the yield curve drive net interest income; credit quality; regulation.",
+ risks="Credit losses if the economy slows; compliance costs (the $1.2B settlement); trading weakness.",
+ src=[("SEC 8-K · Q3 2026 results", SEC_BAC), ("CNBC · Q3 report", "https://www.cnbc.com/2026/10/14/bank-of-america-bac-q3-2026-earnings.html"),
+      ("Seeking Alpha · 2027 NII +8%", SA + "4653213"),
+      ("MarketWatch · BofA strategist warns of a doom loop", "https://www.marketwatch.com/")])
+S["BAC"]["src"] = S["BAC"]["src"][:3]
+S["BAC"]["profile"] = "Bank of America (Charlotte) is the second-largest US bank by assets. It runs the country's largest consumer-deposit franchise, Merrill and the Private Bank in wealth management, and commercial and investment banking with global trading. Its profits move with interest rates (net interest income), loan growth and credit quality."
+
+S["WMT"] = dict(
+ name="Walmart", what="The largest US retailer: Walmart U.S. stores and e-commerce, Sam's Club, Walmart International (incl. Flipkart), plus advertising and memberships.",
+ results="Q3 FY27 (quarter to Oct 31, reported Nov 19): revenue $188.8B, up 5.2% (net sales +5.1%); Walmart U.S. comparable sales +2.9% excluding fuel; global e-commerce +17%; operating income +16.0% (adjusted +5.5% in constant currency); GAAP EPS $0.62, adjusted $0.65. Narrow beat; the stock dipped (SEC 8-K, CNBC).",
+ guide="Raised FY27 (to Jan 2027): net sales growth 4.9–5.2% (from 4.0–5.0%), adjusted operating income growth 8.0–8.6%, adjusted EPS $2.84–2.89 (from $2.80–2.87). Flipkart's Big Billion Days sale moved into Q4 (SEC 8-K). CNBC called the EPS raise tepid.",
+ capex="",
+ partners=["Store-fulfilled pickup and delivery drive e-commerce (WSJ: digital, not stores, now drives growth)", "Advertising (Walmart Connect) and Walmart+ memberships: membership income +20%", "Flipkart (India)"],
+ catalysts=["Added to your 2026 Portfolio Nov 20", "Black Friday Nov 27 and holiday sales; it gains share as wealthier shoppers trade down (Bloomberg)", "Tariffs and consumer spending; Q3 GDP and PCE Nov 25", "Next report about mid-February (not set)"],
+ macro="A defensive name: consumer spending, grocery inflation, tariffs; it held up (+2.9% Friday) while tech sold off.",
+ risks="Premium valuation near its high (about 4% below); tariffs on imported goods; margin pressure from price cuts.",
+ src=[("SEC 8-K · Q3 FY27 results", SEC_WMT), ("CNBC · Q3 earnings", "https://www.cnbc.com/2026/11/19/walmart-wmt-q3-2026-earnings.html"),
+      ("Bloomberg · raises outlook as wealthier shoppers hunt for deals", "https://www.bloomberg.com/news/articles/2026-11-19/walmart-raises-outlook-as-higher-income-shoppers-hunt-for-deals"),
+      ("Seeking Alpha · Stifel expects new highs", SA + "4673767-stifel-expects-walmart-to-rally-to-new-highs")])
+S["WMT"]["capex"] = "Fiscal 2027 (Jan year-end): $22.62B in the first 9 months vs $18.63B, up $4.0B (SEC 8-K), guided at about 4.0% of net sales (unchanged); FY26 total $26.64B (SEC 10-K). Free cash flow $6.8B year to date, down $2.0B on the higher capex."
+S["WMT"]["profile"] = "Walmart (Bentonville, Arkansas) is the world's largest retailer by revenue, with about 4,600 US stores, Sam's Club warehouse clubs and international businesses including India's Flipkart. Groceries are its biggest category; its fastest growth now comes from e-commerce, store-fulfilled delivery, advertising and Walmart+ memberships."
+
+S["C"] = dict(
+ name="Citigroup", what="Global bank: treasury and trade services, markets, investment banking, wealth and US cards, in a multiyear restructuring under CEO Jane Fraser.",
+ results="Q3 (Oct 13): net income $5.2B, EPS $2.85 vs $2.66 expected; revenue $23.8B, up 8% (estimate $23.72B), its best third quarter in a decade; net interest income +14%; RoTCE 11.5%; loans $820B, up 12% (SEC 10-Q, CNBC).",
+ guide="Expects 2026 RoTCE above 11% with an efficiency ratio below 60% (Seeking Alpha). Next report about Jan 13 (Nasdaq estimate).",
+ capex="",
+ partners=["Picked with JPMorgan to run PayPo's IPO (Bloomberg, Nov 20)", "Institutional stablecoin payments with Coinbase (Sep)"],
+ catalysts=["Added to your 2026 Portfolio Nov 20", "Undercounted $35B of risk-weighted assets at its UK unit after trade errors (WSJ, Reuters via Seeking Alpha, Nov 20): a capital/controls headline", "Dec 9 FOMC; Q3 GDP and PCE Nov 25 (Rule 3)", "Next report about Jan 13 (est.)"],
+ macro="Rates, global markets activity and capital rules; restructuring progress and regulators' consent orders.",
+ risks="Control and risk-management lapses (the $35B UK error); credit losses; execution of the restructuring.",
+ src=[("SEC 10-Q · Q3 2026", SEC_C10Q), ("CNBC · bank earnings Oct 13", "https://www.cnbc.com/2026/10/13/bank-earnings-live-updates.html"),
+      ("Seeking Alpha · 2026 RoTCE >11% target", SA + "4652685-citi-expects-2026-rotce-above-11-percent-with-efficiency-ratio-below-60-percent"),
+      ("WSJ · Citi undercounted $35B at UK subsidiary", "https://www.wsj.com/")])
+S["C"]["src"] = S["C"]["src"][:3]
+S["C"]["capex"] = "2026: $4.47B in the first 9 months on premises, equipment and capitalized software vs $4.89B a year ago (SEC 10-Q); 2025 total $6.52B (SEC 10-K). Spending is mostly technology for the transformation program."
+S["C"]["profile"] = "Citigroup (New York) is the most global of the big US banks. Its core is Services (treasury, trade and securities services for multinationals), plus Markets, investment Banking, Wealth and US Personal Banking (cards). It is midway through a restructuring that sold or is exiting most overseas consumer units, including Mexico's Banamex."
+
+S["TGT"] = dict(
+ name="Target", what="US discount retailer: about 2,000 stores plus digital, selling general merchandise, food, beauty and owned brands.",
+ results="Q3 (quarter to Nov 1, reported Nov 18): net sales $27.1B, up 7.1%; comparable sales +5.6% on traffic +5.0% (stores +4.6%, digital +9.8%); EPS $2.65 vs $1.78 adjusted a year ago, including $0.50 of tariff refunds; operating income $1.7B incl. a $301M refund benefit. Revenue beat ($27.07B vs $26.56B, LSEG). Best sales growth in about five years; stock +7% that day (SEC 8-K, CNBC).",
+ guide="Raised 2026: net sales growth about 6% (+1 point); EPS $10.65–11.40 (from $9.90–10.90), which includes about $2.14 of tariff refunds; operating margin about 6.2%. November sales are in line with guidance (SEC 8-K).",
+ capex="",
+ partners=["Price cuts on about 2,000 more items in Q3 (CNBC)", "Roundel ads, Target Circle 360 membership and Target+ marketplace: non-merchandise sales +19.3%"],
+ catalysts=["Added to your 2026 Portfolio Nov 20", "Black Friday Nov 27 and the holiday season", "Tariff refunds: guidance excludes any further refunds", "Hedgeye named it a short in October (Seeking Alpha); next report about early March"],
+ macro="Discretionary consumer spending, tariffs and margins; a defensive-leaning name in this selloff.",
+ risks="EPS lift partly one-time (tariff refunds); price cuts squeeze margins; competition from Walmart and Amazon.",
+ src=[("SEC 8-K · Q3 2026 results", SEC_TGT), ("CNBC · best sales growth in five years", "https://www.cnbc.com/2026/11/18/target-tgt-q3-2026-earnings.html"),
+      ("Fox Business · price cuts drive strongest growth", "https://www.foxbusiness.com/retail/target-price-cuts-help-retailer-post-strongest-sales-growth-years-heading-holidays"),
+      ("Barron's · what Target and Walmart say about consumers", "https://www.barrons.com/articles/target-walmart-earnings-stocks-retail-consumer-7068e928")])
+S["TGT"]["capex"] = "2026: about $3.8B through Oct ($2.40B in the first half, SEC 10-Q, plus $1.4B in Q3 per the release); 2025 total $3.73B (SEC 10-K). Plans $5–6B of capex in 2027 for new and remodeled stores (SEC 8-K)."
+S["TGT"]["profile"] = "Target (Minneapolis) runs about 2,000 US discount stores and a large digital business, with most online orders filled from stores. It is known for owned brands, home, apparel, beauty and toys, and is growing advertising (Roundel), the Target Circle 360 membership and a third-party marketplace."
+
+S["SNDK"] = dict(
+ name="SanDisk", what="NAND flash memory and SSDs for data centers, PCs and phones; spun off from Western Digital in 2025. Split 8-for-1 on Nov 20, 2026.",
+ results="Fiscal Q1 2027 (quarter to Oct 2, reported Oct 29): revenue $11.03B, up 23% from the prior quarter (vs $2.31B a year ago); gross margin 85.1% (non-GAAP); data center $4.80B, up 61% q/q; edge $5.83B; consumer $0.40B; net income $8.1B. Non-GAAP EPS $49.51 pre-split (about $6.19 after the 8-for-1 split) (SEC 8-K). Beat its own $10.3–10.8B guide, but shares fell 13% (Seeking Alpha).",
+ guide="Fiscal Q2: revenue $12.2–12.6B, gross margin 84.5–85.5%, non-GAAP EPS $55–57 pre-split (about $6.88–7.13 after the split) (SEC 8-K). Buyback authorization expanded to $15.5B (Seeking Alpha).",
+ capex="",
+ partners=["Flash Ventures: its joint-venture fabs with Kioxia in Japan", "Long-term supply agreements with data-center customers (Bernstein's thesis)"],
+ catalysts=["Added to the top of your 15–50% Dip Nov 20, the day its 8-for-1 split took effect: the price fell from ~$755 to ~$80 on the split, not a crash (Barron's)", "Fell ~16% Nov 20 with memory (Micron ~−12%, WDC >−12%) (Seeking Alpha)", "Micron says 2027–28 memory supply will be even tighter than 2026 (Nov 18)", "Next report about late January (not set)"],
+ macro="NAND and enterprise-SSD prices, AI data-center demand, Micron/Samsung/SK hynix/Kioxia supply; the AI-capex trade.",
+ risks="Memory cycles turn fast: an 85% gross margin is a peak-cycle number; a 2027 NAND glut is the bear case (Seeking Alpha); very high volatility.",
+ src=[("SEC 8-K · fiscal Q1 2027 results and split", SEC_SNDK), ("Barron's · it looked like it fell 87%: the split", "https://www.barrons.com/articles/sandisk-stock-shares-fall-memory-8c01863d"),
+      ("Seeking Alpha · slides 14% with memory", "https://seekingalpha.com/news/4675224-sandisk-slides-14-percent-amid-broad-memory-sector-weakness"),
+      ("CNBC · Bernstein's $3,000 (pre-split) target", "https://www.cnbc.com/2026/06/30/this-stock-has-seen-8x-growth-in-2026-bernstein-sees-more-gains-ahead.html")])
+S["SNDK"]["capex"] = "Fiscal 2027 (Jun year-end): $54M in Q1 vs $50M a year ago (SEC 10-Q); fiscal 2026 total $177M (SEC 10-K). Very light: its fabs sit in the Flash Ventures joint venture with Kioxia ($148M of Flash Ventures activity in Q1)."
+S["SNDK"]["profile"] = "SanDisk (Milpitas) makes NAND flash memory and the SSDs, cards and drives built on it, after splitting from Western Digital in February 2025. Its chips come from the Flash Ventures fabs it runs with Kioxia in Japan; data-center SSDs for AI are now its fastest-growing business."
+
+S["STZ"] = dict(
+ name="Constellation Brands", what="US importer and marketer of Mexican beers (Modelo, Corona, Pacifico) plus wine and spirits.",
+ results="Fiscal Q2 2027 (quarter to Aug 31, reported Oct 6): beer net sales $2.47B, up 5% on shipments +5.5%, but depletions −0.6% (Modelo Especial declined); beer operating margin 39.0%, down 160 bp; wine and spirits net sales +17%. Comparable EPS $3.74 on $2.63B revenue, a beat (SEC 8-K, CNBC).",
+ guide="Fiscal 2027 (Feb year-end): comparable EPS $11.20–11.90 (reported $11.85–12.55), organic net sales −1% to +1%, beer operating margin 37–38%, free cash flow $1.6–1.7B. Midpoint below estimates (Seeking Alpha). Next report about Jan 6 (Nasdaq estimate).",
+ capex="",
+ partners=["Bought ready-to-drink brand SpikedAde (Seeking Alpha)", "$1.03 quarterly dividend"],
+ catalysts=["Added to your 15–50% Dip Nov 20 (near its high: about 14% below it)", "CNBC Investing Club started a position Nov 9 ($165 target) to diversify beyond AI", "Beer depletions (September improved per management); next report about Jan 6 (est.)"],
+ macro="Hispanic-consumer spending, tariffs on Mexican imports and aluminum, fuel costs.",
+ risks="Soft beer demand (depletions falling), tariff costs, weak wine.",
+ src=[("SEC 8-K · fiscal Q2 2027 results", SEC_STZ), ("CNBC · beat, but beer demand slows", "https://www.cnbc.com/2026/10/07/constellation-brands-earnings-beer-demand.html"),
+      ("Seeking Alpha · FY27 outlook, SpikedAde", SA + "4650732-constellation-brands-misses-fy27-outlook-acquires-ready-to-drink-spikedade"),
+      ("CNBC · Investing Club starts a position", "https://www.cnbc.com/investingclub/2026/11/09/were-starting-a-position-to-diversify-beyond-the-volatile-ai-trade.html")])
+S["STZ"]["capex"] = "Fiscal 2027 (Feb year-end): $354M in the first half vs $410M a year ago (SEC 10-Q), toward about $800M guided for the year (SEC 8-K); fiscal 2026 total $875M (SEC 10-K). Spending is mostly Mexican brewery capacity."
+S["STZ"]["profile"] = "Constellation Brands (Victor, New York) holds the exclusive US rights to Grupo Modelo's Mexican beers (Modelo Especial, Corona, Pacifico), which it brews in its own breweries in Mexico and which make up most of its profit. It also owns wine and spirits brands."

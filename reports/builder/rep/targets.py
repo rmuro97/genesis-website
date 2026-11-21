@@ -120,7 +120,7 @@ T["BE"] = [("Barclays", "Overweight (upgraded)", 289, "Nov 3", "CNBC", CN + "202
 T["NVDA"] = T["NVDA"] + [("Melius", "Buy", 315, "Nov 2", "CNBC", CN + "2026/11/02/biggest-stocks-by-analyst-calls-on-wall-street.html")]
 T["QCOM"] = [("Bernstein", "", 155, "Nov 2", "CNBC via TipRanks", CN + "quotes/QCOM")] + T["QCOM"]
 T["KLAC"] = T["KLAC"] + [("Wells Fargo", "", 210, "Oct 29", "CNBC via TipRanks", CN + "quotes/KLAC")]
-for _old in ("RDDT", "AEHR", "GOOGL", "AAOI", "IREN", "NOK", "BAC"):  # IREN re-added Nov 17: its old (pre-Nov 5) firm targets stay dropped; the page uses Nasdaq consensus
+for _old in ("RDDT", "AEHR", "GOOGL", "AAOI", "IREN", "NOK", "BAC"):  # IREN re-added Nov 17: its old (pre-Nov 5) firm targets stay dropped; GOOGL and BAC get fresh targets in the Nov 20 block below
     T.pop(_old, None)
 T["DDOG"] = [("Bernstein", "Outperform (upgraded)", 350, "Oct", "Seeking Alpha", SA_ + "4654186-datadog-receives-upgrade-to-outperform-on-ai-driven-demand-bernstein"),
              ("BofA", "Buy", 335, "Nov 1", "CNBC", CN + "2026/11/01/top-analysts-are-bullish-on-these-3-stocks-for-the-long-haul.html"),
@@ -160,3 +160,16 @@ T["CRWV"] = [("Goldman Sachs", "Buy", 101, "Nov 16 (from $106)", "CNBC", CN + "2
 T["SPCX"] = [("Citi", "Buy", 280, "Nov 16 (from $240)", "CNBC", CN + "2026/11/16/big-monday-wall-street-calls-like-nvidia-spacex.html")] + T["SPCX"]
 T["ANET"] = [("Evercore ISI", "Buy", 250, "Nov 13", "CNBC", CN + "2026/11/13/nvidia-ceo-exit-amd-broadcom-and-ai-trade-fallout-.html")] + [x for x in T["ANET"] if x[0] != "Evercore ISI"]
 T["ARM"] = [("JPMorgan", "Overweight (reiterated)", 0, "Nov 5", "Seeking Alpha", SA_ + "4666514-arm-holdings-in-spotlight-as-wall-street-digests-results-and-guidance-agi-opportunity")]
+
+# ---- Nov 20, 2026: GOOGL, BAC, WMT, C, TGT, SNDK and STZ added to his lists ----
+T["GOOGL"] = [("HSBC", "Buy", 360, "Nov 12", "Seeking Alpha", SA_ + "4671704-hsbc-says-the-time-is-right-to-buy-alphabet"),
+              ("Goldman Sachs", "Buy", 385, "Oct 29", "CNBC", CN + "2026/10/29/alphabet-q3-earnings-analyst-reaction.html")]
+T["WMT"] = [("Stifel", "Buy", 145, "Nov 17", "Seeking Alpha", SA_ + "4673767-stifel-expects-walmart-to-rally-to-new-highs")]
+T["TGT"] = [("Telsey Advisory", "", 190, "Nov 19 (from $182)", "CNBC via TipRanks", CN + "quotes/TGT"),
+            ("HSBC", "Buy (upgraded)", 190, "Sep 30 (from $125)", "Seeking Alpha", SA_ + "4648556-hsbc-upgrades-target-to-buy-raises-pt-to-190")]
+T["C"] = [("Wells Fargo (Mike Mayo)", "top pick", 160, "Apr 15 (from $150)", "CNBC", CN + "2026/04/15/mike-mayo-says-citi-remains-his-top-pick-sees-restructuring-driving-stock-higher.html")]
+T["SNDK"] = [("Bernstein", "Outperform", 375, "Jun 30; $3,000 before the 8-for-1 split", "CNBC", CN + "2026/06/30/this-stock-has-seen-8x-growth-in-2026-bernstein-sees-more-gains-ahead.html"),
+             ("Morgan Stanley", "", 137.5, "Apr; $1,100 before the split", "Seeking Alpha", SA_ + "4579973-sandisk-edges-up-ahead-of-q3-earnings-morgan-stanley-increases-estimates-target")]
+T["STZ"] = [("Roth Capital", "Buy", 209, "Oct 7", "CNBC", CN + "2026/10/07/constellation-brands-earnings-beer-demand.html"),
+            ("Piper Sandler", "Neutral", 161, "Oct 7", "CNBC", CN + "2026/10/07/constellation-brands-earnings-beer-demand.html"),
+            ("CNBC Investing Club", "Buy", 165, "Nov 9", "CNBC", CN + "investingclub/2026/11/09/were-starting-a-position-to-diversify-beyond-the-volatile-ai-trade.html")]

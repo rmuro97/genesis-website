@@ -29,8 +29,8 @@ H = json.load(open(os.path.join(HERE, "hist.json")))
 PX = {t["ticker"]: t for t in P["tickers"]}
 MK = {m["key"]: m for m in P["market"]}
 # EDIT EACH MONTH: TODAY = the edition date (the Monday after the build Sunday); NEXT_SESSION = first trading day.
-TODAY = dt.date(2026, 11, 17)
-NEXT_SESSION = dt.date(2026, 11, 17)
+TODAY = dt.date(2026, 11, 20)
+NEXT_SESSION = dt.date(2026, 11, 23)
 LAST = max(dt.date.fromisoformat(r[-1][0]) for r in H.values())  # last official close in pdf/hist.json
 LIVE_AT = os.environ.get("LIVE_AT", "")  # intraday build: the last row in hist.json is a live, cross-checked price at this time, not a close
 PXLAB = (f"LIVE {LIVE_AT.replace(' PT', '')}" if LIVE_AT else f"CLOSE {LAST:%b} {LAST.day}").upper()
@@ -189,6 +189,8 @@ def stats(t):
 ST = {t: stats(t) for t in H}
 IVF = json.load(open(os.path.join(ROOT, "iv/final.json")))
 PT = json.load(open(os.path.join(ROOT, "rep/consensus_pt.json")))  # Nasdaq analyst consensus
+# Nasdaq's consensus lags a stock split (it mixes pre- and post-split targets), so it is withheld until it catches up
+SPLIT_NOTE = {"SNDK": "Nasdaq's consensus isn't adjusted yet for the 8-for-1 split of Nov 20 (it mixes pre- and post-split targets), so it isn't shown. Named targets below are divided by 8."}
 
 
 def pt_named(t, short=False):
@@ -210,11 +212,13 @@ def pt_cons(t, last):
         return "Not applicable: an ETF that holds bitcoin has no analyst price targets; it moves with the bitcoin price."
     if t in ETFS:
         return "Not applicable: an ETF has no analyst price targets. See its top holdings' pages and targets instead."
+    if t in SPLIT_NOTE:
+        return SPLIT_NOTE[t]
     c = PT.get(t)
     if not c:
         return "No Nasdaq consensus yet (recent U.S. listing)."
     up = (c["priceTarget"] / last - 1) * 100
-    return (f'Consensus <b>${c["priceTarget"]:,.0f}</b> ({pc(up, False)} vs {'price' if LIVE_AT else 'close'}) · range ${c["lowPriceTarget"]:,.0f}–${c["highPriceTarget"]:,.0f} · '
+    return (f'Consensus <b>${c["priceTarget"]:,.0f}</b> ({pc(up, False)} vs {"price" if LIVE_AT else "close"}) · range ${c["lowPriceTarget"]:,.0f}–${c["highPriceTarget"]:,.0f} · '
             f'{c["buy"]} buy / {c["hold"]} hold / {c["sell"]} sell (Nasdaq)')
 VCOL = {"Cheap": "#13804a", "Normal": "#1c1d21", "Expensive": "#b42318", "Blocked": "#62656e"}
 
@@ -302,7 +306,7 @@ def spark(t):
 
 # ---------- doc ----------
 M1 = (TODAY + dt.timedelta(days=7)).replace(day=1); M2 = (M1 + dt.timedelta(days=32)).replace(day=1)  # named for the month the edition mainly covers (a Nov 30 edition is "December")
-EDITION = f"{M1:%B} {M1.year} edition · {TODAY:%A} {fmt_d(TODAY, False)} · updated Nov 17"
+EDITION = f"{M1:%B} {M1.year} edition · {TODAY:%A} {fmt_d(TODAY, False)} · updated Nov 20"
 TITLE = f"{M1:%B} Market Analysis"
 OUT = os.path.join(HERE, f"{M1:%B}_Market_Analysis_{M1.year}.pdf")
 W, Hh = letter
@@ -319,7 +323,7 @@ def on_page(c, doc):
 
 doc = BaseDocTemplate(OUT, pagesize=letter, leftMargin=M, rightMargin=M, topMargin=0.5 * inch, bottomMargin=0.6 * inch,
                       title=TITLE, author="Muro's Investing Analysis",
-                      subject="Price targets, 2026 capex, earnings, guidance, catalysts and market events for 50 stocks and ETFs")
+                      subject="Price targets, 2026 capex, earnings, guidance, catalysts and market events for 52 stocks and ETFs")
 FRAME_H = Hh - 1.1 * inch
 frame = Frame(M, 0.6 * inch, W - 2 * M, FRAME_H, id="f", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
 doc.addPageTemplates([PageTemplate(id="p", frames=[frame], onPage=on_page)])
@@ -342,17 +346,17 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY REPORT", S_LAB), Spacer(1, 4),
           Paragraph(X(TITLE), S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph("All 50 names on your lists, in your broker's order as of Nov 17, each with a company summary (what it does and specializes in; all 50 together on the \"Company summaries\" pages, and at the top of every stock page), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. <b>Updated Nov 17 with your new lists and order:</b> Top 5 is now <b>AMZN, SKHY, AVGO, AMAT, BE</b> (Amazon back on top; Nvidia moved to #3 in the 2026 Portfolio, which Coherent now leads); and <b>IREN (IREN Limited)</b> is back on the 15–50% Dip list with a full page. It covers the news since Nov 12: Huang's resignation as Nvidia CEO, results from Cisco, Applied Materials, Cerebras and Nebius, PPI and the priced-in December hike, the AI selloff and bitcoin's slide. " + (f"Prices are live Nasdaq trades at {LIVE_AT} Tue Nov 17 (cross-checked on a second feed; history through Monday's official closes), and IV checks use Tuesday's intraday Nasdaq option quotes. " if LIVE_AT else f"Prices are official Nasdaq closes through {LAST:%A} {fmt_d(LAST, False)} (cross-checked on a second feed), and IV checks use Nasdaq option quotes at that close. ") + "All figures are in US dollars (SK hynix and Alibaba converted at ECB reference rates). Times are Pacific.", S_BL),
+          Paragraph("All 52 names on your lists, in your broker's order as of Nov 20, each with a company summary (what it does and specializes in; all 52 together on the \"Company summaries\" pages, and at the top of every stock page), Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. <b>Updated Nov 20 with your new lists:</b> Top 5 is now <b>AMZN, SKHY, AVGO, BE, AMAT</b>; the 2026 Portfolio is led by NVDA and adds <b>GOOGL, BAC, WMT, C and TGT</b> (KLAC moved up from the Dip); the 15–50% Dip adds <b>SNDK</b> (top of the list) and <b>STZ</b>, with VICR and QCOM moved down. WDC, CIEN, CRWD, ZS and IBIT are no longer covered. It covers the week's news: Nvidia's beat-and-raise and the deepening Huang scandal, Anthropic's $83 IPO, the S&amp;P 500 and Dow entering a correction, the memory and AI-power rout, Walmart and Target results, and bitcoin below $60K. " + (f"Prices are live Nasdaq trades at {LIVE_AT} (cross-checked on a second feed). " if LIVE_AT else f"Prices are official Nasdaq closes through {LAST:%A} {fmt_d(LAST, False)} (cross-checked on a second feed), and IV checks use Nasdaq option quotes at that close. ") + "SanDisk split 8-for-1 on Nov 20: all its history, highs and targets here are split-adjusted. All figures are in US dollars (SK hynix and Alibaba converted at ECB reference rates). Times are Pacific.", S_BL),
           Spacer(1, 5),
           Paragraph("Price targets: Nasdaq consensus (mean, low–high, buy/hold/sell count) for every name, plus named firm targets from your outlets. 2026 capex: spending to date from company SEC filings, with guidance from your outlets where companies give it. Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Seeking Alpha and Fox Business, plus company releases and SEC filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
 # EDIT EACH MONTH (editorial: verified facts only)
 WEEK = [
-    ("Tue Nov 17", "ok", "Clear for trading (October retail sales at 5:30 AM PT is not a Rule 3 print). Nvidia reports after the close (1:20 PM PT): no new NVDA options, and the whole AI group will move on it. Microsoft Ignite runs Tue–Fri."),
-    ("Wed Nov 18", "ok", "Clear for trading. FOMC minutes at 11:00 AM PT. Palo Alto reports after the close (read-through to CRWD, ZS, FTNT, AKAM). Anthropic's IPO prices (range $70–78)."),
-    ("Thu Nov 19", "ok", "Clear for trading. Anthropic starts trading (AMZN, AVGO, NVDA, SKHY hold stakes or bought into its placement). Alibaba reports before the open: no new BABA options."),
-    ("Fri Nov 20", "bad", "A Friday, so no new trades (Rule 2). Monthly options expiration."),
-    ("Mon Nov 23", "ok", "Clear for trading, but HPE reports: no new HPE options. Dell reports Tue Nov 24: no new DELL options. GDP and PCE Wed Nov 25 (Rule 3)."),
+    ("Mon Nov 23", "ok", "Clear for trading. HPE reports (Nasdaq date): no new HPE options into it, and its AI-server numbers read through to DELL, NVDA, VRT, ANET, CSCO."),
+    ("Tue Nov 24", "ok", "Clear for trading. Dell reports: no new DELL options into it (read-through to NVDA, HPE, VRT, CRWV). Workday reports (read-through to NOW, DDOG)."),
+    ("Wed Nov 25", "bad", "Q3 GDP (2nd estimate) and October PCE at 5:30 AM PT: no new trades (Rule 3)."),
+    ("Fri Nov 27", "bad", "A Friday, so no new trades (Rule 2); also a half day (closes 10:00 AM PT). Thursday Nov 26 is Thanksgiving: markets closed."),
+    ("Mon Nov 30", "ok", "Clear for trading. Nvidia GTC DC and AWS re:Invent start. MRVL and CRDO report Dec 1: no new MRVL or CRDO options into those reports."),
 ]
 TONE = {"ok": (OK, OKBG), "bad": (BAD, BADBG), "warn": (WARN, WARNBG)}
 
@@ -384,7 +388,7 @@ for t in OPEN_T:
                   Paragraph(f'{v["iv"]:.0f}% vs {v["hv"]:.0f}% <font color="#62656e">({v["ratio"]:.2f})</font>', S_SM),
                   Paragraph(f'{fmt_d(dt.date.fromisoformat(v["exp"]), False)} · {v["dte"]} DTE', S_SM),
                   Paragraph(ne, S_SM), Paragraph(X("; ".join(note)), st("nt", fontSize=7, leading=8.4, textColor=WARN))])
-bt = Table(brows, colWidths=[0.62 * inch, 0.98 * inch, 0.66 * inch, 1.54 * inch, 1.12 * inch, 0.98 * inch, CW - 5.9 * inch], repeatRows=1)
+bt = Table(brows, colWidths=[0.72 * inch, 0.98 * inch, 0.66 * inch, 1.54 * inch, 1.12 * inch, 0.98 * inch, CW - 6.0 * inch], repeatRows=1)
 bsty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("TOPPADDING", (0, 0), (-1, -1), 1.8), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.8),
         ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
 for i, t in enumerate(OPEN_T, 1):
@@ -396,7 +400,7 @@ story += [Spacer(1, 8), Paragraph("Where to buy options: IV check", S_H1),
                          '<font color="#13804a"><b>Cheap</b></font> = options cost less than the stock has actually been moving (IV below 20-day movement): the better time to buy. '
                          'Normal = fair. Expensive = wait. The expiry shown is the allowed one nearest 30 days (7–60 DTE and ending before the next report); take profit at +25% to +100% (Rule 1).', S_B)], OKBG, border=OK),
           Spacer(1, 4), bt, Spacer(1, 3),
-          Paragraph(("Quotes are Nasdaq delayed option prices taken intraday Tuesday; " if LIVE_AT else "Quotes are Nasdaq delayed option prices at the last close; ") + "recheck live before buying. A cheap reading is not a buy signal on its own.", S_M),
+          Paragraph(("Quotes are Nasdaq delayed option prices taken intraday; " if LIVE_AT else "Quotes are Nasdaq delayed option prices at the last close; ") + "recheck live before buying. A cheap reading is not a buy signal on its own.", S_M),
           Spacer(1, 8)]
 # the names blocked by earnings: earnings-adjusted IV and the first day each can be bought
 SHUT_T.sort(key=lambda t: (first_buy(t, earn_info(t)) or dt.date.max, t))
@@ -431,18 +435,18 @@ for i, (_, tone, _) in enumerate(WEEK):
 wt.setStyle(TableStyle(ws)); story.append(wt)
 
 story += [PageBreak(), Paragraph("Market backdrop", S_H1),
-          box([Paragraph("<font color=\"#b42318\"><b>Headwind.</b></font> Nvidia lost its CEO: Jensen Huang resigned Nov 12 after reports of affairs, including one with a woman US officials suspect of spying for China; CFO Colette Kress is interim CEO (CNBC). NVDA fell as much as 14% that day and 12.75% on the week, its sixth straight weekly drop, and closed below a $4T value Friday. HSBC cut it to Hold ($170). The AI-hardware group followed: Nebius −16.8% Thursday on a $27B capex plan, then optics, memory and servers fell Friday (COHR, CRDO, LYTE −6% to −7%; Dell and CoreWeave down about 10% intraday). Rates: October PPI was +6.5% year on year, the most since 2022, a Dec 9 hike is fully priced (about 13% odds of 50 bp), the 10-year is above 5.1% and the dollar is at its highest since April 2025 (CNBC, FT). Bitcoin fell to about $62K over the weekend. Monday the S&amp;P 500 fell 1.92% to 7,417 and the Nasdaq 2.49% (its third straight loss); the VIX jumped as much as 25% to about 24, and staples were the only sector up (CNBC). SK hynix fell 5.6% in Seoul as the Kospi dropped 3.6% (Bloomberg), and Commerce closed the loophole that let Chinese firms rent US AI chips abroad. <font color=\"#13804a\"><b>Tailwind.</b></font> Money is rotating to Nvidia's rivals and suppliers of custom chips (Broadcom +5.5% Thursday, Cerebras +11% Friday on a beat and a Microsoft deal); Cisco and Applied Materials beat and raised; SpaceX caught Starship's upper stage from orbit; and Anthropic's IPO (trading Thursday) has Nvidia, Broadcom, Micron, TSMC and AMD in its $26B placement (CNBC).", S_B)], WARNBG),
+          box([Paragraph("<font color=\"#b42318\"><b>Headwind.</b></font> The AI trade cracked this week. Nvidia beat and raised Tuesday (revenue $115.84B vs $109.1B expected; Q4 guide $130B vs $125.1B, with no China data-center revenue assumed), but the rally faded to a 52-week low by Wednesday as CFO and interim CEO Colette Kress stressed 'discipline' on financing neoclouds (CNBC, Barron's); the Huang scandal widened with a California AG subpoena and a WSJ-reported SEC probe, and NVDA is headed for a 7th straight weekly loss (MarketWatch). Thursday the S&amp;P 500 fell 2.02% to 7,175.83 and entered a correction with the Dow; Friday the Nasdaq turned negative for 2026 and closed −5.28% (S&amp;P 500 −3.70%, Dow −1.93%); the chip index fell about 7% intraday and the VIX hit 32 (CNBC, Seeking Alpha; official closes). Drivers: Anthropic (priced at $83, above its range) gave back most of its 17% debut pop; AMD fell 11% on a short report; BofA warned higher rates could cut AI capex about 20%; Ming-Chi Kuo reported Google is shifting some 2027 TPU orders from Broadcom to MediaTek (AVGO −8%). Memory and storage were crushed Friday (Micron ~−12%, SanDisk ~−16%, WDC −12%), as were AI-power names (Bloom −12%+) and neoclouds (CoreWeave −11%). Fed: Waller floated a 50 bp hike to 'shock people' and the minutes show nearly all officials expect more hikes; a Dec 9 hike is priced. Bitcoin broke below $60K with a record outflow from BlackRock's IBIT (Bloomberg). <font color=\"#13804a\"><b>Tailwind.</b></font> Defensives and cyber held up: Walmart raised its outlook and Target posted its best sales growth in five years; cybersecurity rallied after Palo Alto beat and raised. Yields fell Friday on a flight to safety. Micron says 2027–28 memory supply will be even tighter than 2026, and Lam sees 2027 chip-equipment spending above $200B (CNBC): the fundamentals under the selloff haven't broken.", S_B)], WARNBG),
           Spacer(1, 6)]
 spx, comp, y10, y30, btc = MK["SPX"], MK["COMP"], MK["US10Y"], MK["US30Y"], MK["BTC"]
 # EDIT EACH MONTH (editorial: verified facts only; the Headwind box above too)
-TILES = [("FED FUNDS", "3.75–4.00%", "Dec 9 hike fully priced; ~13% odds of 50 bp (CME FedWatch via CNBC)", BAD),
+TILES = [("FED FUNDS", "3.75–4.00%", "Dec 9 hike priced; Waller floated 50 bp (CNBC)", BAD),
          ("PPI (OCT)", "+0.3% m/m", "+6.5% y/y, the most since Nov 2022 (CNBC)", BAD),
          ("CPI (OCT)", "+0.4% m/m", "Core +0.3% vs +0.2% expected (CNBC)", BAD),
-         ("10-YR YIELD", f"{y10['price']:.2f}%", f"30-yr {y30['price']:.2f}% · " + ("live" if LIVE_AT else f"{LAST:%a} close"), WARN),
-         ("US DOLLAR", "Apr 2025 high", "Dollar index at its highest since April 2025 on Fed-hike bets (CNBC)", WARN),
-         ("S&P 500", f"{spx['price']:,.0f}", f"{spx['chg']:+.2f}% {LAST:%a} · Nasdaq {comp['chg']:+.2f}%", INK),
-         ("BITCOIN", f"${btc['price']:,.0f}", ("live" if LIVE_AT else f"{LAST:%a} close") + " · low ~$62K Sat Nov 14 (CNBC)", INK),
-         ("NEXT BIG EVENTS", "Nov 17–25", "Nvidia Tue · Anthropic IPO Thu · Dell Nov 24 · GDP/PCE Nov 25", INK)]
+         ("10-YR YIELD", f"{y10['price']:.2f}%", f"30-yr {y30['price']:.2f}% · " + ("live" if LIVE_AT else f"{LAST:%a} close") + " · fell on a flight to safety", WARN),
+         ("VIX", "32", "Intraday high Fri Nov 20 as the Nasdaq turned negative for 2026 (CNBC)", BAD),
+         ("S&P 500", f"{spx['price']:,.0f}", f"{spx['chg']:+.2f}% {LAST:%a} · Nasdaq {comp['chg']:+.2f}% · in a correction", INK),
+         ("BITCOIN", f"${btc['price']:,.0f}", ("live" if LIVE_AT else f"{LAST:%a} close") + " · broke below $60K Fri (Bloomberg)", INK),
+         ("NEXT BIG EVENTS", "Nov 23–Dec 1", "HPE Mon · Dell Tue · GDP/PCE Wed · GTC DC Nov 30 · MRVL/CRDO Dec 1", INK)]
 cells = [[Paragraph(X(a), S_LAB), Paragraph(f'<font name="DVB" size="14" color="{c.hexval().replace("0x", "#")}">{X(b)}</font>', st("tv", leading=18)), Paragraph(X(s_), S_M)] for a, b, s_, c in TILES]
 tw = (CW - 3 * 6) / 4
 tt = Table([cells[0:4], cells[4:8]], colWidths=[tw] * 4, rowHeights=None)
@@ -458,15 +462,15 @@ story += [tt, PageBreak()]
 
 # EDIT EACH MONTH (editorial: verified facts only)
 # Monday game plan
-story += [Paragraph("Tuesday Nov 17 game plan", S_H1),
-          Paragraph("What changed this week, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, Seeking Alpha, Barron's, MarketWatch and Fox Business, plus company releases; " + ("prices are live (" + LIVE_AT + " Tue)." if LIVE_AT else f"prices are {LAST:%A}'s official closes."), S_M), Spacer(1, 6)]
+story += [Paragraph(f"{NEXT_SESSION:%A} {fmt_d(NEXT_SESSION, False)} game plan", S_H1),
+          Paragraph("What changed this week, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, Seeking Alpha, Barron's, MarketWatch and Fox Business, plus company releases; " + ("prices are live (" + LIVE_AT + ")." if LIVE_AT else f"prices are {LAST:%A}'s official closes."), S_M), Spacer(1, 6)]
 WKND = [
-    ("Rules", "<b>Tue Nov 17, Wed Nov 18, Thu Nov 19 and Mon Nov 23 are clear.</b> Fri Nov 20 is out (a Friday). No new options held into reports: NVDA (Nov 17), BABA (Nov 19), HPE (Nov 23), DELL (Nov 24), CRWD and MRVL (Dec 1), ZS (Dec 2), AVGO and ORCL (Dec 9). Wed Nov 25 (GDP, PCE) is Rule 3."),
-    ("Nvidia", "Jensen Huang resigned as CEO and from the board Nov 12; CFO Colette Kress is interim CEO and Harvey Jones is chair. NVDA fell as much as 14% that day, 12.75% on the week, and below a $4T value. HSBC cut it to Hold ($170 from $365); UBS trimmed to $240 but expects a $3–4B revenue beat. FT says the board approached Arm's Rene Haas. Earnings Tue after the close: LSEG consensus about $109.1B revenue and $2.47 EPS (CNBC)."),
-    ("Results", "<b>CSCO</b>: revenue $18.5B (+24%), Q2 guide above consensus, hyperscaler AI revenue now seen at $9B; still −6.2% Friday. <b>AMAT</b>: revenue $10.4B (+53%), Q1 guide $11.1B, sees 2027 chip-equipment spending up 30%+. <b>CBRS</b>: core revenue $230.9M (+70%), Q4 guide $310–330M, Microsoft deal; +11.2%. <b>NBIS</b>: revenue $980.8M, but 2026 revenue at the low end and capex $27B; −16.8% and −9.9%."),
-    ("Rates", "October PPI +0.3% m/m (est. +0.4%) but +6.5% y/y, the most since Nov 2022. Fed's Daly and Hammack said more hikes are needed; a Dec 9 hike is fully priced and Goldman added a March hike. Treasuries had their worst week since April 2025 and the dollar its highest level since then (CNBC, FT)."),
-    ("Your lists", "Updated Nov 17 in your broker's order (50 names). Top 5: <b>AMZN, SKHY, AVGO, AMAT, BE</b> (Amazon back on top). 2026 Portfolio: COHR, SPCX, <b>NVDA</b> (moved down from the Top 5), TER, CRDO, NBIS, MRVL, CSCO, HPE, ANET, LRCX, WDC, CIEN, QCOM, CRWD, APH, VICR, LYTE, DRAM, NCLD. 15–50% Dip: DELL, VRT, VST, ARM, INTC, CRWV, CBRS, NOW, KLAC, ALAB, DDOG, HOOD, ZS, IONQ, ORCL, GLW, DOCN, AKAM, FTNT, MSTR, IBIT, COIN, CRCL, BABA, <b>IREN</b> (back on the list)."),
-    ("Market", "Last week still ended as the best since early August despite Thursday–Friday losses (CNBC). Monday: S&amp;P 500 −1.92%, Nasdaq −2.49%; optics, neoclouds, memory and AI power led the drop."),
+    ("Rules", "<b>Mon Nov 23, Tue Nov 24 and Mon Nov 30 are clear.</b> Wed Nov 25 is out (GDP and PCE, Rule 3), Thu Nov 26 is Thanksgiving, and Fri Nov 27 is out (a Friday, and a half day). No new options held into reports: HPE (Nov 23), DELL (Nov 24), MRVL and CRDO (Dec 1), AVGO and ORCL (Dec 9). Rule 1 every day: up 25–100%? Sell."),
+    ("Nvidia", "Beat and raised Tuesday: revenue $115.84B vs $109.1B, adjusted EPS $2.68 vs $2.48, Q4 guide $130B vs $125.1B, no China data-center revenue assumed (CNBC). The pop faded to a 52-week low Wednesday on Kress's 'discipline' comments about neocloud financing; the scandal widened (California AG subpoena, a WSJ-reported SEC probe). Alphabet passed it in market value Friday (MarketWatch)."),
+    ("Anthropic", "Priced at $83 Wednesday night, above the $70–78 range; Amazon owns about 15% after the IPO (CNBC). It jumped 17% Thursday, then gave back most of it Friday (CNBC), taking the AI trade with it."),
+    ("Correction", "Thursday: S&amp;P 500 −2.02% to 7,175.83, Nasdaq −2.25%, Dow −2.19%; the S&amp;P and Dow entered a correction (CNBC). Friday it got worse: the S&amp;P 500 fell 3.70% to 6,910, the Nasdaq 5.28% (negative for 2026) and the Dow 1.93%; the chip index fell about 7% intraday (Seeking Alpha), the VIX hit 32, and NVDA closed −14.0% (official closes). Memory, AI power and neoclouds led the drop; staples, retail and cybersecurity held up."),
+    ("Your lists", "Updated Nov 20 in your broker's order (52 names). Top 5: <b>AMZN, SKHY, AVGO, BE, AMAT</b>. 2026 Portfolio: NVDA, CSCO, MRVL, SPCX, <b>GOOGL</b>, TER, LRCX, <b>KLAC</b> (up from the Dip), COHR, ANET, HPE, NBIS, CRDO, APH, LYTE, DRAM, NCLD, <b>BAC, WMT, C, TGT</b>. 15–50% Dip: <b>SNDK</b>, ARM, VRT, DELL, <b>VICR</b> (down from the Portfolio), VST, ORCL, INTC, <b>QCOM</b> (down), HOOD, NOW, DDOG, ALAB, IONQ, CRWV, CBRS, GLW, FTNT, DOCN, AKAM, COIN, MSTR, CRCL, IREN, BABA, <b>STZ</b>. Removed: WDC, CIEN, CRWD, ZS, IBIT."),
+    ("New names", "<b>GOOGL</b> near flat Friday while AI hardware fell; <b>WMT</b> raised its outlook (adj. EPS $2.84–2.89); <b>TGT</b> comps +5.6% and a higher guide (part tariff refunds); <b>BAC</b> and <b>C</b> trade with the Fed path and the yield curve; <b>SNDK</b> split 8-for-1 Friday (the price drop from ~$755 to ~$80 is the split, not a crash) and fell ~16% with memory; <b>STZ</b> sits about 14% below its high, a defensive."),
 ]
 wk = Table([[Paragraph(f'<font name="DVB">{X(a)}</font>', S_SM), Paragraph(b, S_B)] for a, b in WKND], colWidths=[0.9 * inch, CW - 0.9 * inch])
 wk.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LINEBELOW", (0, 0), (-1, -2), 0.4, LINE),
@@ -479,7 +483,7 @@ mv = sorted(((t, ST[t]["day"]) for _, _, ns in C.LISTS for t in ns), key=lambda 
 dn, up = mv[:5], mv[::-1][:5]
 def mvcell(xs):
     return Paragraph(" · ".join(f'<font name="DVB">{t}</font> {pc(v, False)}' for t, v in xs), S_B)
-mt = Table([[Paragraph("MONDAY'S BIGGEST GAINERS" if up[0][1] > 0 else "HELD UP BEST MONDAY (ALL FELL)", S_LAB), Paragraph("MONDAY'S BIGGEST DECLINERS" if dn[0][1] < 0 else "SMALLEST GAINS MONDAY (ALL ROSE)", S_LAB)], [mvcell(up), mvcell(dn)]],
+mt = Table([[Paragraph(f"{LAST:%A}'S BIGGEST GAINERS".upper() if up[0][1] > 0 else f"HELD UP BEST {LAST:%A} (ALL FELL)".upper(), S_LAB), Paragraph(f"{LAST:%A}'S BIGGEST DECLINERS".upper() if dn[0][1] < 0 else f"SMALLEST GAINS {LAST:%A} (ALL ROSE)".upper(), S_LAB)], [mvcell(up), mvcell(dn)]],
            colWidths=[CW / 2] * 2)
 mt.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, -1), CHIP), ("VALIGN", (0, 0), (-1, -1), "TOP"),
                         ("LINEAFTER", (0, 0), (0, -1), 4, colors.white), ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5)]))
@@ -508,7 +512,7 @@ os_ = [("VALIGN", (0, 0), (-1, -1), "TOP"), ("TOPPADDING", (0, 0), (-1, -1), 5),
 for i, (tone, _, _) in enumerate(OPT):
     os_ += [("BACKGROUND", (0, i), (-1, i), TONE[tone][1]), ("LINEBEFORE", (0, i), (0, i), 3, TONE[tone][0])]
 ot.setStyle(TableStyle(os_))
-story += [Paragraph("Your options on Tue Nov 17", S_H2), Paragraph("Where options look cheap is on page 1.", S_M), Spacer(1, 3), ot, Spacer(1, 8)]
+story += [Paragraph(f"Your options on {fmt_d(NEXT_SESSION)}", S_H2), Paragraph("Where options look cheap is on page 1.", S_M), Spacer(1, 3), ot, Spacer(1, 8)]
 
 SCHED = [("5:50 AM", "Morning analysis in chat, with a live IV check"),
          ("6:30 AM", "Open; app prices refresh about every 15 min"),
@@ -523,14 +527,14 @@ story += [KeepTogether([Paragraph("Daily schedule (PT)", S_H2), sc]), PageBreak(
 
 # EDIT EACH MONTH (editorial: verified facts only)
 THEMES = [
-    ("Nvidia without Jensen Huang", "Huang resigned Nov 12 amid an affair and espionage scandal; CFO Colette Kress runs the company until a successor is named. The stock lost about $1.7T over six losing weeks. Treasury Secretary Bessent wants an outside CEO, while a petition and large holders back Huang's return; Congress is pushing tighter export rules (CNBC). Tuesday's report is the first under the interim CEO: the numbers, the Rubin ramp and any word on the search decide the AI group's next move.", "NVDA, AVGO, AMAT, SKHY, DELL, HPE, VRT, ARM, ALAB, CRDO, COHR, CBRS, CRWV, NBIS"),
-    ("Rotation to custom chips and challengers", "Money left Nvidia for Broadcom (+5.5% Thursday) and AMD; Wedbush says 'custom ASICs are where we believe companies want to turn' and Evercore calls Arista the clearest beneficiary of a shift to open Ethernet (CNBC). Cerebras jumped 11% on a beat and a Microsoft deal. Rothschild & Co. cut Broadcom to Neutral on its reliance on OpenAI and Anthropic.", "AVGO, ANET, CBRS, MRVL, CRDO, ALAB, ARM"),
-    ("Neoclouds lose their backer", "Nebius guided 2026 revenue to the low end and raised capex to $27B (2027: $40–45B), falling 16.8%; Barron's says CoreWeave and Nebius 'lost a friend in Huang', since Nvidia backs about $36B of their cloud deals. CoreWeave is seeking at least $4B of cheaper high-grade loans; Goldman trimmed its target to $101 (still Buy).", "CRWV, NBIS, NCLD, DOCN, DELL, HPE, BE, VST, VRT"),
-    ("Rates: a December hike is priced", "Hot October CPI and PPI (+6.5% y/y) leave a Dec 9 hike fully priced; Goldman added a March hike. The 10-year is above 5.1% and the 30-year near 5.5%; Treasuries had their worst week since April 2025 and the dollar is at its highest since then. FOMC minutes Wednesday; GDP and PCE Nov 25.", "All 50, most of all IONQ, CRWV, NBIS, CBRS, ALAB, NOW, DDOG, ZS, CRWD, MSTR, IBIT"),
-    ("Chip equipment and memory", "Applied Materials beat and sees 2027 chip-equipment spending up more than 30%, but the group fell with Nvidia (LRCX −3.4%, KLAC −3.2%, TER −5.4% Friday). Monday SK hynix fell 5.6% in Seoul as the Kospi dropped 3.6% (CNBC). Sen. Cotton wants China's CXMT, the No. 4 DRAM maker, blacklisted: protective for SK hynix.", "AMAT, LRCX, KLAC, TER, SKHY, DRAM, WDC"),
-    ("The Anthropic IPO", "Prices Wednesday ($70–78), trades Thursday. Nvidia, Broadcom, Micron, TSMC, AMD, Microsoft and Google are strategic buyers in its $26B placement at the IPO price (CNBC); Amazon is one of its biggest holders. CNBC also flags it as one reason speculative money is leaving bitcoin.", "AMZN, AVGO, NVDA, SKHY, DRAM, AKAM, CBRS"),
-    ("Crypto slide", "Bitcoin fell below $70K Friday and to about $62K late Saturday, its lowest since August, on liquidations, a strong dollar and Fed-hike bets; Nansen sees $60–62K as the next test (CNBC). Strategy bought only 485 bitcoin last week and spent $228M buying back preferred stock (SEC). Your new MSTR and IBIT trade directly with bitcoin.", "MSTR, IBIT, COIN, HOOD, CRCL"),
-    ("Event risk ahead", "Nvidia Nov 17; FOMC minutes, Palo Alto and Anthropic pricing Nov 18; Anthropic trading and Alibaba Nov 19; HPE Nov 23; Dell Nov 24; GDP and PCE Nov 25; Thanksgiving Nov 26; Nvidia GTC DC and AWS re:Invent from Nov 30; CrowdStrike and Marvell Dec 1; Zscaler Dec 2; jobs Dec 4; FOMC, Broadcom and Oracle Dec 9.", "All 50"),
+    ("The AI trade cracks: a correction", "The S&P 500 and Dow entered a correction Thursday and the Nasdaq turned negative for 2026 Friday, with the chip index down about 7% (CNBC, Seeking Alpha). Nvidia's beat-and-raise couldn't hold, Anthropic's IPO pop faded, AMD fell on a short report and BofA warned higher rates could cut AI capex about 20%. Your Dip list is now mostly past −50%: to you that's upside, but wait for the selling to stop and use clear days only.", "NVDA, AVGO, AMAT, LRCX, KLAC, TER, MRVL, CRDO, COHR, ANET, ARM, ALAB, CBRS, VRT, DELL, HPE"),
+    ("Nvidia without Huang, and its suppliers", "Results were strong (Q4 guide $130B) but the stock hit a 52-week low; the scandal widened (California AG subpoena, a WSJ-reported SEC probe), and Kress signaled tighter financing for neoclouds. Kuo's report that Google is shifting part of 2027 TPU volume from Broadcom to MediaTek hit AVGO 8% (unconfirmed; Morgan Stanley earlier saw Broadcom keeping ~80%).", "NVDA, AVGO, GOOGL, CRWV, NBIS, NCLD, IREN, DELL, HPE"),
+    ("Memory: strong fundamentals, brutal tape", "Micron says 2027–28 supply will be even tighter than 2026 with ~75% of 2027 output sold, yet Friday Micron fell ~12%, SanDisk ~16% and Western Digital 12%. SK hynix will become Kioxia's top shareholder in December; CNBC reports a hedge fund betting the US SKHY premium (~48%) over Seoul collapses.", "SKHY, SNDK, DRAM, LRCX, TER, AMAT"),
+    ("Rates: a December hike is priced", "Waller floated a 50 bp hike to 'shock people'; the October minutes show nearly all officials expect more hikes; Gov. Cook warned waiting risks bigger hikes later. A Dec 9 hike is priced. Yields fell Friday on a flight to safety. GDP and PCE Wed Nov 25 (Rule 3).", "All 52; banks (BAC, C) gain on margins but face credit risk; high-multiple names (IONQ, CRWV, NBIS, CBRS, ALAB, NOW, DDOG) are hit hardest"),
+    ("Defensives and retail hold up", "Walmart raised its outlook (adjusted EPS $2.84–2.89) as wealthier shoppers trade down (Bloomberg); Target's comps rose 5.6% and it raised guidance, partly on tariff refunds. Staples and healthcare were bid Friday. Your new WMT, TGT and STZ add ballast to an AI-heavy list.", "WMT, TGT, STZ, AMZN"),
+    ("Cybersecurity is the tech hideout", "After a CISA warning and US outages, CrowdStrike, Akamai, Zscaler and Fortinet rallied 6–8% Wednesday, and Palo Alto then beat and raised (Seeking Alpha, Barron's).", "FTNT, AKAM, CSCO"),
+    ("Crypto slide", "Bitcoin broke below $60K Friday with a record outflow from BlackRock's IBIT (Bloomberg); Strategy, Robinhood and Coinbase fell 3–6% (CNBC).", "MSTR, COIN, HOOD, CRCL, IREN"),
+    ("Event risk ahead", "HPE Nov 23; Dell and Workday Nov 24; GDP and PCE Nov 25; Thanksgiving Nov 26 (half day Nov 27); Nvidia GTC DC and AWS re:Invent from Nov 30; Marvell and Credo Dec 1; jobs Dec 4; FOMC, Broadcom and Oracle Dec 9.", "All 52"),
 ]
 story.append(Paragraph("Market themes that can move your stocks", S_H1))
 for a, b, c in THEMES:
@@ -539,14 +543,10 @@ for a, b, c in THEMES:
 # Key dates
 # EDIT EACH MONTH (editorial: verified facts only)
 MACRO = [
-    ("2026-11-17", "5:30 AM", "October retail sales", "m2", ""),
-    ("2026-11-17", "all week", "Microsoft Ignite (Nov 17–20) and SC26 supercomputing conference, Chicago (through Nov 20)", "r", ""),
-    ("2026-11-18", "11:00 AM", "FOMC minutes (Oct 27–28 meeting)", "m2", ""),
-    ("2026-11-18", "after close", "Palo Alto Networks earnings (read-through: CRWD, ZS, FTNT, AKAM)", "r", ""),
-    ("2026-11-18", "all day", "Anthropic IPO prices ($70–78 range); trading starts Thu Nov 19", "r", ""),
-    ("2026-11-20", "all day", "Monthly options expiration", "m2", ""),
+    ("2026-11-24", "after close", "Workday earnings (read-through: NOW, DDOG)", "r", ""),
     ("2026-11-25", "5:30 AM", "Q3 GDP (2nd estimate) + October PCE", "m", "rule3"),
     ("2026-11-26", "all day", "Thanksgiving: markets closed (Fri Nov 27 closes 10:00 AM PT)", "m2", ""),
+    ("2026-11-27", "all day", "Black Friday: holiday-sales read for WMT, TGT, AMZN", "r", ""),
     ("2026-11-30", "all week", "Nvidia GTC DC (Nov 30–Dec 3) and AWS re:Invent (Nov 30–Dec 4)", "r", ""),
     ("2026-12-04", "5:30 AM", "November jobs report", "m", "rule3"),
     ("2026-12-09", "11:00 AM", "FOMC decision", "m", "rule3"),
