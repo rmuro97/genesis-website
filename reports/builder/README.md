@@ -1,0 +1,30 @@
+# Monthly Market Analysis PDF
+
+Builds **<Month> Market Analysis** (`<Month>_Market_Analysis_<Year>.pdf`, named for the month the edition
+mainly covers, i.e. the month of TODAY + 7 days, so the last-Sunday build is next month's report; first edition: November_Market_Analysis_2026.pdf, Nov 4), one per month, made on the
+**last Sunday of the month**. Page 1 is the "Where to buy options: IV check" list; then the week's
+trading calendar, market backdrop, game plan, themes, key dates, all names at a glance, the IV page
+and one page per stock.
+
+Run everything from this folder with `/usr/bin/python3` (needs reportlab + matplotlib, DejaVu fonts).
+
+## Monthly steps
+1. **Lists**: update `LISTS` in `rep/content.py` from the app DB (`lists/conviction`), in the broker's order.
+2. **Prices**: save the app DB doc `prices/latest` to `p2/final/prices/latest.json` (earnings dates, highs).
+3. **Closes**: `python3 pdf/fetch.py` (100 days of official Nasdaq closes into `pdf/hist.json`).
+4. **Consensus**: `python3 rep/fetch_consensus.py` (Nasdaq earnings-date + EPS forecast per name). Nasdaq drops a date on report
+   day: keep a known report date for today or later by hand, and set `PRE_REPORT` in `pdf/mkpdf.py` for names that reported after the last close.
+5. **IV**: `python3 iv/fetch_iv.py .`, `python3 iv/analyze.py .`, then `python3 iv/exearn.py .` (writes `iv/final.json`;
+   exearn adds the earnings-adjusted IV so names blocked by earnings still get a verdict and a first buy day).
+5b. **Price targets**: `python3 rep/fetch_targets.py` (Nasdaq consensus) and update `rep/targets.py` with the latest named
+   targets (JPMorgan, BofA, Morgan Stanley, Goldman Sachs, Oppenheimer, Mizuho first; 3–5 per name; firm, rating, target, date,
+   outlet, link) from his outlets. Also update `RULE3_DAYS` / `HOLIDAYS` in `pdf/mkpdf.py`.
+6. **Research**: rewrite each name's entry in `rep/content.py` (results, guidance, capex, partners,
+   catalysts, macro, risks, sources). Every name needs a price target (Nasdaq consensus from step 4, plus named firms in `rep/targets.py`), a **current-year capex** line that leads with the year's figure (`CAPEX26` in `rep/content.py`: spending to date from the SEC filing, guidance from his outlets), current catalysts, and a 2–3 sentence company profile (what it does and specializes in) in `PROFILE` in `rep/content.py`. A name new to the lists has no entry yet: add a full `S["<TICKER>"]` entry
+   for it, plus its targets, before building (an ETF on the lists goes in `ETFS` in `rep/content.py`: no earnings, targets or capex; its page covers holdings, launch date and fee from the issuer's fund page) and every block in `pdf/mkpdf.py` marked `EDIT EACH MONTH`
+   (dates, week table, tiles, game plan, themes, key dates). His 16 outlets only, never Yahoo,
+   verified facts only.
+7. **Build**: `python3 pdf/mkpdf.py`, check every stock fits on one page, copy the PDF to `reports/`.
+
+## Nasdaq access
+Nasdaq's CDN blocks Python's urllib but not curl, so run the Nasdaq fetch steps through `curlrun.py`, e.g. `python3 curlrun.py pdf/fetch.py`, `python3 curlrun.py rep/fetch_consensus.py`, `python3 curlrun.py rep/fetch_targets.py`, `python3 curlrun.py iv/fetch_iv.py .`. `pdf/fetch.py` and `iv/fetch_iv.py` use assetclass=etf for the names in `ETFS`.
