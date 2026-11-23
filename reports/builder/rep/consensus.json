@@ -7,14 +7,6 @@
   "status": "",
   "prior": null
  },
- "SKHY": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
  "AVGO": {
   "ann": "Dec 09, 2026",
   "eps": "3.45.",
@@ -23,7 +15,7 @@
   "status": "expected",
   "prior": "1.61."
  },
- "BE": {
+ "SKHY": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -40,6 +32,30 @@
   "prior": null
  },
  "NVDA": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "BE": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "LRCX": {
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
+ },
+ "TER": {
   "ann": "",
   "eps": null,
   "n": null,
@@ -79,22 +95,6 @@
   "status": "",
   "prior": null
  },
- "TER": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
- "LRCX": {
-  "ann": "",
-  "eps": null,
-  "n": null,
-  "time": "",
-  "status": "",
-  "prior": null
- },
  "KLAC": {
   "ann": "",
   "eps": null,
@@ -120,12 +120,12 @@
   "prior": null
  },
  "HPE": {
-  "ann": "Nov 23, 2026",
-  "eps": "1.18.",
-  "n": "7",
-  "time": "AMC",
-  "status": "expected",
-  "prior": "0.54."
+  "ann": "",
+  "eps": null,
+  "n": null,
+  "time": "",
+  "status": "",
+  "prior": null
  },
  "NBIS": {
   "ann": "",
@@ -176,10 +176,10 @@
   "prior": null
  },
  "BAC": {
-  "ann": "Jan 13, 2027",
+  "ann": "Jan 15, 2027",
   "eps": "1.13.",
   "n": "7",
-  "time": "",
+  "time": "BMO",
   "status": "expected",
   "prior": "0.98."
  },

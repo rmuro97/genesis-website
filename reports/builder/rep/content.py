@@ -2,8 +2,8 @@
 # Every fact comes from the notes gathered Oct 25–30, 2026 (his outlets: CNBC, Bloomberg, Seeking Alpha, plus company SEC filings where coverage cited them).
 SA = "https://seekingalpha.com/news/"
 LISTS = [
- ("top5", "Top 5", ["AMZN", "SKHY", "AVGO", "BE", "AMAT"]),
- ("portfolio", "2026 Portfolio", ["NVDA", "CSCO", "MRVL", "SPCX", "GOOGL", "TER", "LRCX", "KLAC", "COHR", "ANET", "HPE", "NBIS", "CRDO", "APH", "LYTE", "DRAM", "NCLD", "BAC", "WMT", "C", "TGT"]),
+ ("top5", "Top 5", ["AMZN", "AVGO", "SKHY", "AMAT", "NVDA"]),
+ ("portfolio", "2026 Portfolio", ["BE", "LRCX", "TER", "CSCO", "MRVL", "SPCX", "GOOGL", "KLAC", "COHR", "ANET", "HPE", "NBIS", "CRDO", "APH", "LYTE", "DRAM", "NCLD", "BAC", "WMT", "C", "TGT"]),
  ("dips", "15–50% Dip", ["SNDK", "ARM", "VRT", "DELL", "VICR", "VST", "ORCL", "INTC", "QCOM", "HOOD", "NOW", "DDOG", "ALAB", "IONQ", "CRWV", "CBRS", "GLW", "FTNT", "DOCN", "AKAM", "COIN", "MSTR", "CRCL", "IREN", "BABA", "STZ"]),
 ]
 
@@ -1089,3 +1089,14 @@ S["STZ"] = dict(
       ("CNBC · Investing Club starts a position", "https://www.cnbc.com/investingclub/2026/11/09/were-starting-a-position-to-diversify-beyond-the-volatile-ai-trade.html")])
 S["STZ"]["capex"] = "Fiscal 2027 (Feb year-end): $354M in the first half vs $410M a year ago (SEC 10-Q), toward about $800M guided for the year (SEC 8-K); fiscal 2026 total $875M (SEC 10-K). Spending is mostly Mexican brewery capacity."
 S["STZ"]["profile"] = "Constellation Brands (Victor, New York) holds the exclusive US rights to Grupo Modelo's Mexican beers (Modelo Especial, Corona, Pacifico), which it brews in its own breweries in Mexico and which make up most of its profit. It also owns wine and spirits brands."
+
+
+# ---------------- NOV 23: Top 5 is now AMZN, AVGO, SKHY, AMAT, NVDA; BE leads the 2026 Portfolio; Dip unchanged ----------------
+S["NVDA"]["catalysts"] = ["Board reinstated Jensen Huang as CEO Mon Nov 23; the stock rose as much as 35%, its biggest intraday jump since 2000, adding over $1T in value (Bloomberg, CNBC)",
+                          "Moved up to your Top 5 Nov 23", "Reported FQ3 Nov 17: revenue $115.84B vs $109.1B expected; Q4 guide $130B (CNBC)",
+                          "California AG subpoena and a WSJ-reported SEC probe remain open", "GTC DC from Nov 30; next report late February (date not set)"]
+S["NVDA"]["results"] = "Fiscal Q3 FY27 (reported Tue Nov 17): revenue $115.84B vs $109.1B expected; adjusted EPS $2.68 vs $2.48 (CNBC). The stock faded to a 52-week low by Wednesday as interim CEO Colette Kress stressed 'discipline' on financing neoclouds (CNBC, Barron's)."
+S["NVDA"]["guide"] = "Q4 revenue guide $130B vs $125.1B expected, assuming no China data-center revenue (CNBC)."
+S["NVDA"]["src"] = [("CNBC · Nvidia skyrockets 33% on Huang's return as CEO", "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo.html"),
+                    ("Bloomberg · AI stocks take off after Nvidia reinstates Huang", "https://www.bloomberg.com/news/articles/2026-11-23/ai-linked-stocks-take-off-after-nvidia-reinstates-jensen-huang")] + S["NVDA"]["src"][:2]
+S["BE"]["catalysts"] = ["Moved from your Top 5 to lead the 2026 Portfolio Nov 23"] + S["BE"]["catalysts"][:3]
