@@ -2,9 +2,9 @@
 # Every fact comes from the notes gathered Oct 25–30, 2026 (his outlets: CNBC, Bloomberg, Seeking Alpha, plus company SEC filings where coverage cited them).
 SA = "https://seekingalpha.com/news/"
 LISTS = [
- ("top5", "Top 10", ["AMZN", "SPCX", "NVDA", "LYTE", "DRAM", "HPE", "NBIS", "INTC", "SKHY", "BE"]),
- ("portfolio", "2026 Portfolio", ["EWY", "VRT", "APH", "CSCO", "ARM", "AMAT", "ANET", "LRCX", "AVGO", "MRVL", "KLAC", "CRDO", "SNDK", "TER", "COHR", "NCLD"]),
- ("dips", "15–50% Dip", ["DKS", "EWT", "VICR", "DOCN", "ASX", "CRWV", "VST", "ORCL", "QCOM", "HOOD", "SMCI", "NOW", "DDOG", "P", "IONQ", "CBRS", "GLW", "AKAM", "IREN", "BABA", "COIN", "MSTR", "CRCL"]),
+ ("top5", "Top 10", ["AMZN", "NVDA", "SPCX", "SKHY", "ASX", "LYTE", "HPE", "DRAM", "EWY", "INTC"]),
+ ("portfolio", "2026 Portfolio", ["EWT", "NBIS", "BE", "VRT", "APH", "CSCO", "ARM", "AMAT", "ANET", "LRCX", "AVGO", "MRVL", "KLAC", "CRDO", "SNDK", "TER", "COHR"]),
+ ("dips", "15–50% Dip", ["DKS", "DOCN", "ORCL", "VICR", "NCLD", "CRWV", "VST", "QCOM", "HOOD", "SMCI", "NOW", "DDOG", "P", "IONQ", "CBRS", "GLW", "AKAM", "IREN", "BABA", "COIN", "MSTR", "CRCL"]),
 ]
 
 S = {}
@@ -862,7 +862,7 @@ S["MSTR"] = dict(
  results="Q3 (Oct 29): net income to common holders $19.12B, diluted EPS $44.75, on a $20.91B fair-value gain on its bitcoin; software revenue $125.4M, down 3%. Year to date it still has a $1.86B digital-asset loss, and its BTC Yield is −3.7% (company release). Bloomberg: back to profit for the first time in four quarters.",
  guide="No earnings guidance (results swing with the bitcoin price). Saylor: 'We're at the beginning of the next bitcoin bull market.' It moved its STRC preferred to daily dividends from Nov 1 (STRF, STRK and STRD from Jan 1).",
  capex="2026: negligible property spending (net property and equipment $27.2M at Sep 30). Its real 'capex' is bitcoin: about $14.3B bought this year to Oct 25 (company release). Week to Nov 15: bought 485 BTC for $33.4M ($68,887 each) and spent $228M buying back STRC preferred, funded by $244.7M of MSTR stock sales (SEC 8-K, Nov 16).",
- partners=["Holds 850,849 bitcoin at an average cost of $75,452 (about $64.2B) as of Nov 15 (SEC 8-K): above today's bitcoin price, so the stake is under water", "Funding stack: MSTR at-the-market stock sales ($18.1B capacity left) and four preferred lines (STRC, STRF, STRK, STRD); USD reserve $4.75B covers preferred dividends and interest", "Trades with bitcoin, Coinbase and IBIT (also on your list)"],
+ partners=["Holds 850,849 bitcoin at an average cost of $75,452 (about $64.2B) as of Nov 15 (SEC 8-K): above bitcoin's price (about $60.3K Nov 24, before the open), so the stake is under water", "Funding stack: MSTR at-the-market stock sales ($18.1B capacity left) and four preferred lines (STRC, STRF, STRK, STRD); USD reserve $4.75B covers preferred dividends and interest", "Trades with bitcoin, Coinbase and IBIT (also on your list)"],
  catalysts=["Reported Oct 29; next report early February (date not set)", "Bitcoin fell to about $62,000 late Sat Nov 14, its lowest since August, and is on a sixth straight weekly drop (CNBC, Nov 16); Barron's: bitcoin's slide is dragging Strategy and Coinbase down", "Weekly Monday 8-K filings show its buying and stock sales; a Dec 9 Fed hike is priced"],
  macro="A leveraged bitcoin bet: it moves with bitcoin, rates, the dollar and risk appetite. Rising yields and a strong dollar (highest since April 2025) are headwinds; crypto regulation (the Clarity Act) is a swing factor.",
  risks="If the stock trades near or below the value of its bitcoin (mNAV), selling shares to buy bitcoin stops working; preferred dividends and debt need cash; bitcoin below its $75,452 average cost; heavy dilution.",
@@ -966,7 +966,7 @@ S["IREN"] = dict(
  guide="Its >$4B annualized AI-cloud revenue target is fully contracted and funded, but now due about Jan 31, 2027 (possibly February) after Microsoft asked for a 200 MW network reconfiguration (CNBC). Contracted backlog $20.3B, up 22%, about two-thirds investment-grade.",
  capex="Quarter: $2.13B of property and equipment plus $2.69B of computer hardware. About $15B of fiscal-2027 capex remains: $9B already covered and $6B being raised. Cash $3.52B (unrestricted); debt $10.2B (SEC 8-K).",
  partners=["Microsoft: Horizon 1 in service, with Nvidia 'Exemplar' status", "Contracts with Microsoft, Nvidia and 13 other customers; expanded deal with a 'leading frontier AI lab'"],
- catalysts=["Added back to your 15–50% Dip list Nov 17 (it was removed Nov 4)", "Fell 17% on results day (Nov 5) after the delay; $16.39 at Monday's close, down from about $41 in early October (Nasdaq closes)",
+ catalysts=["Added back to your 15–50% Dip list Nov 17 (it was removed Nov 4)", "Fell 17% on results day (Nov 5) after the delay; $14.64 at the Nov 23 close, down from about $41 in early October (Nasdaq closes)",
             "Next report: no date set (last reported Nov 5)", "Neocloud read-through: CoreWeave and Nebius financing; Nvidia earnings Nov 17 after the close", "Bitcoin: still mines it, so crypto swings move the stock"],
  macro="Trades with CoreWeave and Nebius on AI-cloud financing and GPU demand, and with bitcoin. Rising yields and neocloud credit stress hit it hardest.",
  risks="Heavy capex and $10.2B of debt; the >$4B target already slipped once; wide losses; high volatility.",
@@ -1144,7 +1144,7 @@ S["DKS"] = dict(
  partners=["Foot Locker: closing unproductive stores (67 so far; up to $750M of charges planned)", "Nike and other athletic brands: its key suppliers", "$1.25 quarterly dividend"],
  catalysts=["⚠️ Reports Q3 TODAY, Tue Nov 24, before the open (call 5:00 AM PT)", "Added to your 15–50% Dip Nov 24, about 44% below its June high", "Holiday spending and Foot Locker turnaround progress"],
  macro="US consumer spending, the athletic footwear cycle (Nike), promotions, and tariffs on imported apparel and shoes.",
- risks="Foot Locker losses and store closures; a promotional holiday season; guidance cut again today.",
+ risks="Foot Locker losses and store closures; a promotional holiday season; another guidance cut in the Q3 report.",
  src=[("SEC 8-K · Q2 fiscal 2026 results", SEC_DKS), ("CNBC · Dick's Q2 2026 earnings", "https://www.cnbc.com/2026/08/25/dicks-sporting-goods-dks-earnings-q2-2026.html"),
       ("CNBC · worst day ever; Cramer's take", "https://www.cnbc.com/2026/08/25/dicks-sporting-goods-worst-day-ever-jim-cramer-advice.html"),
       ("Seeking Alpha · $11–12 EPS and Foot Locker loss outlook", SA + "4636775-dicks-outlines-11-12-fy2026-eps-amid-promotional-pressure-and-a-40m-80m-foot-locker-operating")])
@@ -1229,3 +1229,26 @@ for _t, _note in _POS.items():
     _keep = ["Its 8-for-1 split took effect Nov 20: the price fell from ~$755 to ~$80 on the split, not a crash (Barron's)"] if _keep else []
     S[_t]["catalysts"] = [_note] + _keep + _c
 S["BE"]["catalysts"] = [x for x in S["BE"]["catalysts"] if "Top 5" not in x]
+
+
+# ---------------- NOV 24 FINAL LISTS (his "final decision"): one list-position note per name, computed against his Nov 23 lists ----------------
+import re as _re
+_NOV23 = {"Top 5": "AMZN AVGO SKHY AMAT NVDA".split(),
+          "2026 Portfolio": "BE LRCX TER CSCO MRVL SPCX GOOGL KLAC COHR ANET HPE NBIS CRDO APH LYTE DRAM NCLD BAC WMT C TGT".split(),
+          "15–50% Dip": "SNDK ARM VRT DELL VICR VST ORCL INTC QCOM HOOD NOW DDOG ALAB IONQ CRWV CBRS GLW FTNT DOCN AKAM COIN MSTR CRCL IREN BABA STZ".split()}
+_OLDLIST = {t: lab for lab, ns in _NOV23.items() for t in ns}
+_LISTNOTE = _re.compile(r"your (?:new )?Top 10|of your Top 10|Top 10 Nov 24|your Top 5|the Top 5|Top 5 \(|2026 Portfolio(?: \(#\d+\))? Nov 2\d|15–50% Dip(?: list)? Nov 2\d|Added to (?:the top of )?your|Added back to your|^Moved (?:up|down|from|to)|^#\d+ of your")
+for _key, _lab, _names in LISTS:
+    for _i, _t in enumerate(_names, 1):
+        _c = [x for x in S[_t].get("catalysts", []) if not _LISTNOTE.search(x)]
+        _old = _OLDLIST.get(_t)
+        _here = f"your {_lab} (#{_i} of {len(_names)})"
+        if _old is None:
+            _note = f"New on your lists Nov 24: {_here}"
+        elif _old == _lab:
+            _note = None
+        elif _old == "Top 5" and _lab == "Top 10":
+            _note = f"#{_i} of your Top 10 (your Top 5 became a Top 10 Nov 24)"
+        else:
+            _note = f"Moved from the {_old} to {_here} in your final Nov 24 lists"
+        S[_t]["catalysts"] = ([_note] if _note else []) + _c

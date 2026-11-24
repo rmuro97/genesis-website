@@ -16,7 +16,7 @@ Run everything from this folder with `/usr/bin/python3` (needs reportlab + matpl
    day: keep a known report date for today or later by hand, and set `PRE_REPORT` in `pdf/mkpdf.py` for names that reported after the last close.
 5. **IV**: `python3 iv/fetch_iv.py .`, `python3 iv/analyze.py .`, then `python3 iv/exearn.py .` (writes `iv/final.json`;
    exearn adds the earnings-adjusted IV so names blocked by earnings still get a verdict and a first buy day).
-5a. **April calls** (added Nov 24, Ricky's request): `python3 iv/april.py <every ticker in list order> > iv/april.jsonl` (Apr 16, 2027 calls costing $100–$1,200 per contract at the ask, April IV vs 60-day movement, liquidity; names with no April expiry use May, else March). It feeds the "April 2027 calls" pages.
+5a. **April calls** (added Nov 24, Ricky's request): `python3 iv/april.py <every ticker in list order> > iv/april.jsonl` (Apr 16, 2027 calls costing $100–$1,000 per contract at the ask so 2–5 contracts total $500–$2,000, April IV vs 60-day movement, liquidity; names with no April expiry use May, else March). It feeds the "April 2027 calls" pages.
 5b. **Price targets**: `python3 rep/fetch_targets.py` (Nasdaq consensus) and update `rep/targets.py` with the latest named
    targets (JPMorgan, BofA, Morgan Stanley, Goldman Sachs, Oppenheimer, Mizuho first; 3–5 per name; firm, rating, target, date,
    outlet, link) from his outlets. Also update `RULE3_DAYS` / `HOLIDAYS` in `pdf/mkpdf.py`.

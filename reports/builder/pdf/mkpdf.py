@@ -306,7 +306,7 @@ def spark(t):
 
 # ---------- doc ----------
 M1 = ((TODAY + dt.timedelta(days=7)) if TODAY.day >= 28 else TODAY).replace(day=1); M2 = (M1 + dt.timedelta(days=32)).replace(day=1)  # named for the month the edition mainly covers (a Nov 30 edition is "December")
-EDITION = f"{M1:%B} {M1.year} edition · {TODAY:%A} {fmt_d(TODAY, False)} · new lists Nov 24"
+EDITION = f"{M1:%B} {M1.year} edition · {TODAY:%A} {fmt_d(TODAY, False)} · final lists"
 TITLE = f"{M1:%B} Market Analysis"
 OUT = os.path.join(HERE, f"{M1:%B}_Market_Analysis_{M1.year}.pdf")
 W, Hh = letter
@@ -346,7 +346,7 @@ def box(flows, bg, pad=8, border=None):
 story += [Paragraph("MURO'S INVESTING ANALYSIS · MONTHLY REPORT", S_LAB), Spacer(1, 4),
           Paragraph(X(TITLE), S_T), Spacer(1, 2),
           Paragraph(X(EDITION), st("sub", fontName="DVB", fontSize=15, leading=19, textColor=ACC)), Spacer(1, 6),
-          Paragraph(f"All {sum(len(n) for _, _, n in C.LISTS)} names on your lists, in your broker's order as of Tue Nov 24, each with a company summary, Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. <b>Updated Nov 24 with your new lists:</b> the Top 5 is now a <b>Top 10: AMZN, SPCX, NVDA, LYTE, DRAM, HPE, NBIS, INTC, SKHY, BE</b>, built around Nvidia's close ecosystem after its board reinstated Jensen Huang as CEO. New names: <b>EWY</b> (South Korea ETF) leads the 2026 Portfolio; <b>DKS, EWT</b> (Taiwan ETF), <b>ASX</b> (ASE), <b>SMCI</b> and <b>P</b> (Everpure) join the 15–50% Dip. Removed: GOOGL, BAC, WMT, C, TGT, DELL, ALAB, FTNT, STZ. <b>New this edition: April 2027 calls costing $100–$1,200 per contract</b>, screened for cheap volatility and liquidity (see the April 2027 calls page). Monday's snapback: NVDA closed +31.5%, the biggest one-day gain in market value ever (Seeking Alpha), and the Nasdaq rose 6.5%. " + (f"Prices are live Nasdaq trades at {LIVE_AT} (cross-checked on a second feed), and IV checks use intraday Nasdaq option quotes. " if LIVE_AT else f"Prices are official Nasdaq closes through {LAST:%A} {fmt_d(LAST, False)} (cross-checked on a second feed), and IV checks use Nasdaq option quotes at that close. ") + "SanDisk split 8-for-1 on Nov 20: its history, highs and targets are split-adjusted. All figures are in US dollars (SK hynix and Alibaba at ECB reference rates; ASE at its own NT$31.96 rate). Times are Pacific.", S_BL),
+          Paragraph(f"All {sum(len(n) for _, _, n in C.LISTS)} names on your lists, in your broker's order as of Tue Nov 24, each with a company summary, Wall Street price targets, 2026 capex, latest results and guidance, catalysts, partnerships, risks and a 3-month chart. <b>Your final Nov 24 lists:</b> the Top 5 is now a <b>Top 10: AMZN, NVDA, SPCX, SKHY, ASX, LYTE, HPE, DRAM, EWY, INTC</b>, built around Nvidia's close ecosystem after its board reinstated Jensen Huang as CEO. <b>EWT</b> leads the 2026 Portfolio (17 names); <b>DKS</b> leads the 15–50% Dip (22). New names: EWY, EWT, DKS, ASX, SMCI, P (Everpure). Removed: GOOGL, BAC, WMT, C, TGT, DELL, ALAB, FTNT, STZ. <b>April 2027 calls sized your way:</b> 2–5 contracts for $500–$2,000 in total ($100–$1,000 each), with the current price, cheap-volatility and liquidity checks (see the April 2027 calls pages). Monday's snapback: NVDA closed +31.5%, the biggest one-day gain in market value ever (Seeking Alpha), and the Nasdaq rose 6.5%. " + (f"Prices are live Nasdaq trades at {LIVE_AT} (cross-checked on a second feed), and IV checks use intraday Nasdaq option quotes. " if LIVE_AT else f"Prices are official Nasdaq closes through {LAST:%A} {fmt_d(LAST, False)} (cross-checked on a second feed), and IV checks use Nasdaq option quotes at that close. ") + "SanDisk split 8-for-1 on Nov 20: its history, highs and targets are split-adjusted. All figures are in US dollars (SK hynix and Alibaba at ECB reference rates; ASE at its own NT$31.96 rate). Times are Pacific.", S_BL),
           Spacer(1, 5),
           Paragraph("Price targets: Nasdaq consensus (mean, low–high, buy/hold/sell count) for every name, plus named firm targets from your outlets. 2026 capex: spending to date from company SEC filings, with guidance from your outlets where companies give it. Charts show 3 months of daily closes, which shows each stock's trend and how far it has pulled back; the shaded band is the last month. Decision support, not advice. News facts come from CNBC, Bloomberg, Seeking Alpha and Fox Business, plus company releases and SEC filings. Consensus EPS is from Nasdaq. Earnings dates marked \"est.\" are not confirmed by the company.", S_M),
           ]
@@ -434,7 +434,8 @@ for i, (_, tone, _) in enumerate(WEEK):
     ws += [("BACKGROUND", (0, i), (-1, i), TONE[tone][1]), ("LINEBEFORE", (0, i), (0, i), 3, TONE[tone][0])]
 wt.setStyle(TableStyle(ws)); story.append(wt)
 
-# April 2027 calls ($100–$1,200 per contract at the ask), from iv/april.py -> iv/april.jsonl (Nasdaq option chain, official close)
+# April 2027 calls, sized his way (Nov 24): 2–5 contracts for $500–$2,000 in total, i.e. $100–$1,000 per contract at the ask.
+# Data: iv/april.py -> iv/april.jsonl (Nasdaq option chain at the last close; price = verified price used for the screen)
 AP = {}
 for _ln in open(os.path.join(ROOT, "iv/april.jsonl")):
     try:
@@ -444,15 +445,15 @@ for _ln in open(os.path.join(ROOT, "iv/april.jsonl")):
 APEXP = dt.date(2027, 4, 16)
 def _ap_key(t):
     o = AP.get(t, {}); pk = o.get("pick") or {}
-    return (0 if pk.get("liquid") else 1, {"Cheap": 0, "Normal": 1, "Expensive": 2}.get(o.get("verdict"), 3), o.get("ratio60") or 9)
+    return (0 if pk.get("liquid") else 1, {"Cheap": 0, "Normal": 1, "Expensive": 2}.get(o.get("verdict"), 3), pk.get("toBreakeven", 999))
 AP_IN = [t for t in ALLT if (AP.get(t) or {}).get("pick")]
 AP_OUT = [t for t in ALLT if t not in AP_IN]
 AP_IN.sort(key=_ap_key)
-S_AP = st("ap", fontSize=7.4, leading=9); S_APL = st("apl", fontName="DVB", fontSize=6.6, leading=8, textColor=MUT)
-aph = [Paragraph(x, S_APL) for x in ("TICKER", "LIST", "APRIL IV vs 60-DAY MOVE", "CALL", "COST", "BREAKEVEN", "DELTA", "LIQUIDITY", "REPORTS TO APR 16")]
+S_AP = st("ap", fontSize=7.3, leading=8.9); S_APL = st("apl", fontName="DVB", fontSize=6.5, leading=7.8, textColor=MUT); S_APS = st("aps", fontSize=6.6, leading=8, textColor=MUT)
+aph = [Paragraph(x, S_APL) for x in ("TICKER", "PRICE", "APRIL IV vs 60-DAY MOVE", "CALL · DELTA", "EACH", "2–5 CONTRACTS ($500–$2,000)", "BREAKEVEN", "LIQUIDITY", "REPORTS TO APR 16")]
 aprows = [aph]
-apsty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 3), ("RIGHTPADDING", (0, 0), (-1, -1), 3), ("TOPPADDING", (0, 0), (-1, -1), 1.4), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.4),
-         ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
+apsty = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 3), ("RIGHTPADDING", (0, 0), (-1, -1), 3),
+         ("TOPPADDING", (0, 0), (-1, -1), 1.3), ("BOTTOMPADDING", (0, 0), (-1, -1), 1.3), ("LINEBELOW", (0, 0), (-1, -1), 0.4, LINE)]
 for i, t in enumerate(AP_IN, 1):
     o = AP[t]; pk = o["pick"]; ei = earn_info(t)
     lab, pos, _ = LISTPOS[t]
@@ -460,6 +461,8 @@ for i, t in enumerate(AP_IN, 1):
     vd = o.get("verdict", "IV n/a")
     vtxt = (f'<font color="{VCOL.get(vd, "#62656e")}"><b>{vd}</b></font> {o["atmIv"]:.0f}% vs {o["hv60"]:.0f}% <font color="#62656e">({o["ratio60"]:.2f})</font>'
             if o.get("ratio60") else '<font color="#62656e">IV n/a</font>')
+    sz = pk.get("sizes") or []
+    sztxt = (" · ".join(f"{n} = ${n * pk['cost']:,}" for n in sz)) if sz else '<font color="#b42318">none fits</font>'
     liq = f'OI {pk["oi"]:,} · spread {pk["spread"]:.0f}%' + ("" if pk["liquid"] else ' <font color="#b42318"><b>thin</b></font>')
     if t in ETFS:
         rep_ = '<font color="#13804a">none (ETF)</font>'
@@ -467,27 +470,30 @@ for i, t in enumerate(AP_IN, 1):
         rep_ = f'<font color="#8a5a00">{fmt_d(ei["nxt"], False)}' + (" + 1 more</font>" if (APEXP - ei["nxt"]).days > 80 else "</font>")
     else:
         rep_ = '<font color="#8a5a00">1+ (date not set)</font>'
-    aprows.append([Paragraph(f'<font name="DVB">{t}</font>', S_AP), Paragraph(f"{short} #{pos}", S_AP), Paragraph(vtxt, S_AP),
-                   Paragraph(f'${pk["strike"]:g} <font color="#62656e">({pk["otm"]:+.0f}%)</font>' + ("" if o.get("april", True) else f'<br/><font color="#8a5a00">{fmt_d(dt.date.fromisoformat(o["exp"]), False)} exp.</font>'), S_AP),
-                   Paragraph(f'<b>${pk["cost"]:,}</b>', S_AP),
+    aprows.append([Paragraph(f'<font name="DVB">{t}</font><br/><font size="6.4" color="#62656e">{short} #{pos}</font>', S_AP),
+                   Paragraph(f'<b>${o["close"]:,.2f}</b>', S_AP), Paragraph(vtxt, S_AP),
+                   Paragraph(f'${pk["strike"]:g} <font color="#62656e">({pk["otm"]:+.0f}%)</font> · {pk["delta"]:.2f}' if pk.get("delta") else f'${pk["strike"]:g}', S_AP) if o.get("april", True) else
+                   Paragraph(f'${pk["strike"]:g} <font color="#62656e">({pk["otm"]:+.0f}%)</font>' + (f' · {pk["delta"]:.2f}' if pk.get("delta") else "") + f'<br/><font color="#8a5a00">{fmt_d(dt.date.fromisoformat(o["exp"]), False)} exp.</font>', S_AP),
+                   Paragraph(f'<b>${pk["cost"]:,}</b>', S_AP), Paragraph(sztxt, S_APS),
                    Paragraph(f'${pk["breakeven"]:,.2f} <font color="#62656e">(+{pk["toBreakeven"]:.0f}%)</font>', S_AP),
-                   Paragraph(f'{pk["delta"]:.2f}' if pk.get("delta") else "–", S_AP), Paragraph(liq, st("lq", fontSize=7.4, leading=9)), Paragraph(rep_, st("rp", fontSize=7.4, leading=9))])
-    if pk["liquid"] and vd == "Cheap" and pk["toBreakeven"] <= 35:
+                   Paragraph(liq, S_APS), Paragraph(rep_, S_APS)])
+    if pk["liquid"] and vd == "Cheap" and pk["toBreakeven"] <= 35 and sz:
         apsty.append(("BACKGROUND", (0, i), (-1, i), OKBG))
-    elif not pk["liquid"]:
-        apsty.append(("TEXTCOLOR", (0, i), (-1, i), MUT))
-apt = Table(aprows, colWidths=[0.5 * inch, 0.66 * inch, 1.42 * inch, 0.78 * inch, 0.54 * inch, 1.02 * inch, 0.44 * inch, 1.08 * inch, CW - 6.44 * inch], repeatRows=1)
+apt = Table(aprows, colWidths=[0.62 * inch, 0.6 * inch, 1.12 * inch, 0.92 * inch, 0.58 * inch, 1.08 * inch, 0.92 * inch, 0.86 * inch, CW - 6.7 * inch], repeatRows=1)
 apt.setStyle(TableStyle(apsty))
-_best = [t for t in AP_IN if AP[t]["pick"]["liquid"] and AP[t].get("verdict") == "Cheap" and AP[t]["pick"]["toBreakeven"] <= 35]
-_out = "; ".join(f'{t} (ATM ${AP[t]["atmCost"]:,})' if AP.get(t, {}).get("atmCost") else f"{t} (no April chain)" for t in AP_OUT)
-story += [PageBreak(), Paragraph("April 2027 calls: $100 to $1,200 per contract", S_H1),
-          box([Paragraph(f"<b>Expiry Fri Apr 16, 2027 ({(APEXP - LAST).days} days from the {fmt_d(LAST, False)} close).</b> For each name: the call nearest the money whose ask costs $100–$1,200 per contract, preferring liquid strikes (open interest 100+, bid/ask spread 15% or less). Names with no April expiry listed use May 21 if listed, otherwise March 19 (marked under the strike). "
-                         "<font color=\"#13804a\"><b>Cheap</b></font> = at-the-money April IV below the stock's actual movement over the last 60 trading days (a 5-month option is better judged on a longer window than 20 days; the last 20 days were extreme). "
-                         "Breakeven = strike + premium at expiry. Green rows: Cheap, liquid, and needing +35% or less. <b>Your rules:</b> April is outside Rule 4 (7–60 DTE), and every stock's April call is held through at least one earnings report (Rule 3); the ETFs have none. "
-                         "This is the separate long-dated bucket you asked for: Rule 1 still applies (take profit at +25% to +100%), Rule 2 (no new trades Fridays) too.", S_B)], WARNBG, border=WARN),
+_best = [t for t in AP_IN if AP[t]["pick"]["liquid"] and AP[t].get("verdict") == "Cheap" and AP[t]["pick"]["toBreakeven"] <= 35 and AP[t]["pick"].get("sizes")]
+_out = "; ".join(f'{t} (ATM ${AP[t]["atmCost"]:,})' if AP.get(t, {}).get("atmCost") else f"{t} (no chain)" for t in AP_OUT)
+_px = "the official close " + fmt_d(LAST, False) if not LIVE_AT else "live " + LIVE_AT
+story += [PageBreak(), Paragraph("April 2027 calls: 2–5 contracts for $500 to $2,000", S_H1),
+          box([Paragraph(f"<b>Expiry Fri Apr 16, 2027 ({(APEXP - LAST).days} days from the {fmt_d(LAST, False)} close). Your size: 2–5 contracts totaling $500–$2,000, so each contract costs $100–$1,000 at the ask.</b> "
+                         "For each name: the call nearest the money in that range, preferring liquid strikes (open interest 100+, bid/ask spread 15% or less); the 2–5 column lists every count that keeps the total inside $500–$2,000. "
+                         f"PRICE = the stock's verified price ({_px}, cross-checked on a second feed). "
+                         "<font color=\"#13804a\"><b>Cheap</b></font> = at-the-money April IV below the stock's actual movement over the last 60 trading days. Breakeven = strike + premium at expiry. "
+                         "Names with no April expiry use May 21 if listed, otherwise March 19 (marked). Green rows: Cheap, liquid and needing +35% or less. "
+                         "<b>Your rules:</b> outside Rule 4 (7–60 DTE) and held through at least one report (Rule 3; ETFs have none): a separate long-dated bucket. Rule 1 still applies: take profit at +25% to +100%; no new trades Fridays (Rule 2).", S_B)], WARNBG, border=WARN),
           Spacer(1, 4), apt, Spacer(1, 3),
-          Paragraph(f"Best value now (green): {X(', '.join(_best)) or 'none'}. " + (f"No April call in budget (the at-the-money call costs more than $1,200, or there is no April chain): {X(_out)}. " if AP_OUT else "")
-                    + "Grey rows are thinly traded: you would give up much of the premium to the bid/ask spread. Quotes are Nasdaq delayed option prices at the last close; recheck live before buying. Decision support, not advice.", S_M)]
+          Paragraph(f"Best value now (green): {X(', '.join(_best)) or 'none'}. " + (f"No call in budget: {X(_out)}. " if AP_OUT else "")
+                    + "Rows marked thin trade little: you would give up much of the premium to the bid/ask spread. Option quotes are Nasdaq delayed prices at the last close; recheck live before buying (the morning analysis in chat reruns this screen every trading day). Decision support, not advice.", S_M)]
 
 story += [PageBreak(), Paragraph("Market backdrop", S_H1),
           box([Paragraph("<font color=\"#13804a\"><b>Monday snapback.</b></font> Nvidia's board reinstated Jensen Huang as CEO after input from senior levels of the US government; NVDA closed +31.5% at $165.05, the biggest one-day gain in market value ever, about $1 trillion (Seeking Alpha). The S&amp;P 500 rose 4.73% to 7,237, the Nasdaq 6.51% and the Dow 3.01%, the best day since April 2025 (MarketWatch; official closes). The whole Nvidia ecosystem ripped: memory (SKHY +20.0%, DRAM +18.6%, Micron +19%), chip equipment (AMAT, LRCX, KLAC, TER +14–15%; TSMC +14%), optics (CRDO +22.6%, LYTE +20.0%), neoclouds (IREN +23.9%, CRWV +22.3%, NBIS +20.3%) and AI servers (HPE +17.4%). Defensives lagged. <font color=\"#b42318\"><b>Still open.</b></font> Lawmakers of both parties vow probes: Huang sits for a House interview Dec 1 and testifies publicly to Senate Banking Dec 3 (Bloomberg); the US moved to blacklist Megaspeed, the firm at the center of the scandal (NYTimes); a Dec 9 Fed hike is priced. HPE beat and guided above consensus after the close but slipped 2.7% after hours (Bloomberg): after a short-covering day, follow-through vs. fade is the question. <font color=\"#8a5a00\"><b>Last week.</b></font> The S&amp;P 500 and Dow entered a correction Thursday and the Nasdaq turned negative for 2026 Friday (−5.28%), with the chip index down about 7% intraday and the VIX at 32 (CNBC, Seeking Alpha). Broadcom fell 12% Friday on a report that Google trimmed 2027 TPU orders (Seeking Alpha) and lagged Monday (+3.0%). Fundamentals under the selloff held: Micron says 2027–28 memory supply will be even tighter than 2026 (CNBC).", S_B)], WARNBG),
@@ -521,7 +527,7 @@ story += [Paragraph(f"{NEXT_SESSION:%A} {fmt_d(NEXT_SESSION, False)} game plan",
           Paragraph("What changed this week, what you can and can't trade, and when the system reports in. Facts from CNBC, Bloomberg, Seeking Alpha, Barron's, MarketWatch and Fox Business, plus company releases; " + ("prices are live (" + LIVE_AT + ")." if LIVE_AT else f"prices are {LAST:%A}'s official closes."), S_M), Spacer(1, 6)]
 WKND = [
     ("Rules", "<b>Tue Nov 24 is the only clear day this week</b>; Wed Nov 25 is out (GDP and PCE, Rule 3), Thu Nov 26 is Thanksgiving and Fri Nov 27 is out (a Friday, half day). Next clear: Mon Nov 30 and Tue Dec 1. No new options held into reports: MRVL and CRDO (Dec 1), AVGO (Dec 9), ORCL (Dec 14). Rule 1 every day: up 25–100%? Sell. April calls (their own page) break Rules 3 and 4 by design; they are a separate, longer-dated screen."),
-    ("Your lists", "Updated Nov 24 (49 names). <b>Top 10:</b> AMZN, SPCX, NVDA, LYTE, DRAM, HPE, NBIS, INTC, SKHY, BE. <b>2026 Portfolio:</b> EWY (new), VRT, APH, CSCO, ARM, AMAT, ANET, LRCX, AVGO, MRVL, KLAC, CRDO, SNDK, TER, COHR, NCLD. <b>15–50% Dip:</b> DKS (new), EWT (new), VICR, DOCN, ASX (new), CRWV, VST, ORCL, QCOM, HOOD, SMCI (new), NOW, DDOG, P (new), IONQ, CBRS, GLW, AKAM, IREN, BABA, COIN, MSTR, CRCL. Removed: GOOGL, BAC, WMT, C, TGT, DELL, ALAB, FTNT, STZ."),
+    ("Your lists", "Final Nov 24 (49 names). <b>Top 10:</b> AMZN, NVDA, SPCX, SKHY, ASX (new), LYTE, HPE, DRAM, EWY (new), INTC. <b>2026 Portfolio (17):</b> EWT (new), NBIS, BE, VRT, APH, CSCO, ARM, AMAT, ANET, LRCX, AVGO, MRVL, KLAC, CRDO, SNDK, TER, COHR. <b>15–50% Dip (22):</b> DKS (new), DOCN, ORCL, VICR, NCLD, CRWV, VST, QCOM, HOOD, SMCI (new), NOW, DDOG, P (new), IONQ, CBRS, GLW, AKAM, IREN, BABA, COIN, MSTR, CRCL. Removed: GOOGL, BAC, WMT, C, TGT, DELL, ALAB, FTNT, STZ."),
     ("Nvidia", "<b>Huang is back:</b> reinstated Monday after input from senior US government levels; NVDA +31.5% with upgrades from Melius ($220), Bernstein ($200), StoneX ($270) and Oppenheimer (CNBC, Seeking Alpha). Last week it beat and raised (revenue $115.84B; Q4 guide $130B, CNBC) but sank on the scandal. Open: board investigation, SEC probe, House interview Dec 1, Senate testimony Dec 3 (Bloomberg)."),
     ("New names", "<b>EWY</b>: Samsung 22% + SK hynix 21% of the fund (iShares). <b>EWT</b>: TSMC 24%, MediaTek, Hon Hai, ASE (iShares). <b>ASX</b>: Q3 revenue +45%, 2026 advanced-packaging revenue target lifted above $4B (SEC 6-K, Seeking Alpha). <b>SMCI</b>: fiscal Q1 revenue $19.9B, FY27 guide $72–82B, but $434M operating cash burn (company). <b>P</b>: Q3 revenue +51%, third guidance raise this year (company). <b>DKS</b>: reports Q3 today before the open; Foot Locker drags (SEC 8-K)."),
     ("HPE", "Reported Monday after the close: EPS $1.43 (beat by $0.14), revenue $14.55B; FQ1 guide $14.0–14.6B and EPS $1.30–1.40 vs consensus $12.8B and $1.08 (Bloomberg). Fell 2.7% after hours after a 17.4% gain. Dell reports tonight."),
@@ -587,7 +593,7 @@ THEMES = [
     ("Taiwan and advanced packaging", "TSMC rose 14% Monday (Seeking Alpha). ASE lifted its 2026 leading-edge packaging revenue target above $4B and sees it roughly doubling in 2027, funded by an $11.5B capex plan (Seeking Alpha). EWT is ~24% TSMC.", "EWT, ASX, AMAT, LRCX, KLAC, TER, NVDA"),
     ("AI servers: the Dell test tonight", "HPE beat and guided above consensus but slipped after hours (Bloomberg). Dell reports tonight; Super Micro guided fiscal 2027 to $72–82B but burns cash (company). Server margins are thin; watch gross margin, not just revenue.", "HPE, SMCI, NVDA, VRT, P"),
     ("Rates: a December hike is priced", "A Dec 9 hike is priced after Waller floated 50 bp (CNBC). GDP and PCE Wed Nov 25 (Rule 3). Higher rates hit the highest-multiple names hardest.", "All 49; most exposed IONQ, CRWV, NBIS, CBRS, NOW, DDOG, SMCI"),
-    ("April 2027 calls: time on your side", "Long-dated calls cost more in dollars but lose value more slowly and ride through the Dec 1–3 hearings, the Dec 9 FOMC and January–February earnings. On the April calls page most names screen Cheap (April IV below 60-day movement), because the last month's swings were extreme. They do break Rules 3 and 4, so treat them as a separate bucket.", "All 49"),
+    ("April 2027 calls: time on your side", "Sized your way: 2–5 contracts for $500–$2,000. Long-dated calls cost more in dollars but lose value more slowly and ride through the Dec 1–3 hearings, the Dec 9 FOMC and January–February earnings. On the April calls page most names screen Cheap (April IV below 60-day movement), because the last month's swings were extreme. They do break Rules 3 and 4, so treat them as a separate bucket.", "All 49"),
     ("Event risk ahead", "Dell, HP Inc. and Workday Nov 24; GDP and PCE Nov 25; Thanksgiving Nov 26 (half day Nov 27); GTC DC and AWS re:Invent from Nov 30; Marvell and Credo Dec 1; Huang to Senate Dec 3; jobs Dec 4; FOMC and Broadcom Dec 9; Oracle Dec 14.", "All 49"),
 ]
 story.append(Paragraph("Market themes that can move your stocks", S_H1))

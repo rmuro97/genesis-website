@@ -3,13 +3,14 @@ from concurrent.futures import ThreadPoolExecutor
 # APRIL CALL SCREEN for Ricky. Usage: python3 aprilcheck.py TICKER ...   (one JSON line per ticker)
 # Finds the April 2027 monthly call (third Friday, Apr 16, 2027; if a name lists no April expiry, the nearest listed one:
 # May if listed (it still covers April), else March) that sits closest to the money while costing
-# $100–$1,200 per contract at the ASK (ask $1.00–$12.00), with a liquidity check, then judges whether April
+# $100–$1,000 per contract at the ASK (ask $1.00–$10.00; he buys 2–5 contracts for $500–$2,000 in total), with a liquidity check, then judges whether April
 # options are cheap: at-the-money April IV vs the stock's actual movement over 60 trading days (HV60; a
 # 5-month option is better compared with a longer window than 20 days) and over 20 days (HV20).
 # Verdict: IV/HV60 < 1.0 Cheap, < 1.25 Normal, else Expensive. Nasdaq data via curl (its CDN blocks urllib).
 TODAY = dt.date.today()
 EXP = dt.date(2027, 4, 16)
-LO, HI = 1.00, 12.00          # ask per share -> $100 to $1,200 per contract
+LO, HI = 1.00, 10.00          # ask per share -> $100 to $1,000 per contract, so 2-5 contracts total $500-$2,000 (Ricky, Nov 24)
+NMIN, NMAX, TMIN, TMAX = 2, 5, 500, 2000
 R = 0.0385
 ETF = {"LYTE", "DRAM", "NCLD", "IBIT", "EWY", "EWT"}
 
@@ -139,10 +140,11 @@ def run(t):
             o["pick"] = dict(strike=pick["k"], ask=pick["ask"], bid=pick["bid"], cost=round(pick["ask"] * 100), breakeven=round(pick["k"] + pick["ask"], 2),
                              toBreakeven=round((pick["k"] + pick["ask"]) / S * 100 - 100, 1), otm=round(pick["k"] / S * 100 - 100, 1),
                              iv=round(piv * 100, 1) if piv else None, delta=round(delta, 2) if delta else None,
-                             spread=round((pick["ask"] - pick["bid"]) / pick["mid"] * 100, 1), oi=pick["oi"], vol=pick["vol"], liquid=pick in liquid)
+                             spread=round((pick["ask"] - pick["bid"]) / pick["mid"] * 100, 1), oi=pick["oi"], vol=pick["vol"], liquid=pick in liquid,
+                             sizes=[n for n in range(NMIN, NMAX + 1) if TMIN <= n * round(pick["ask"] * 100) <= TMAX])
         else:
             o["pick"] = None
-            o["note"] = "ATM call costs ${:,.0f}; no strike between $100 and $1,200".format(atm["ask"] * 100) if atm["ask"] > HI else "no strike in budget"
+            o["note"] = "ATM call costs ${:,.0f}; no strike between $100 and $1,000".format(atm["ask"] * 100) if atm["ask"] > HI else "no strike in budget"
         ne = next_earn(t)
         o["earn"] = ne.isoformat() if ne else None
         o["spansEarnings"] = (t not in ETF)  # an April expiry spans every company's next quarterly report
