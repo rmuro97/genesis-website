@@ -693,8 +693,8 @@ S["LYTE"] = dict(
  name="Roundhill Photonics & Optics ETF", what="Actively managed ETF holding a concentrated basket of global photonics and optics makers.",
  results=_ETF_RES + " Launched Aug 6, 2026; expense ratio 0.65% (Roundhill). Down sharply from its Aug 17 high with the optics selloff.",
  guide="Not applicable (ETF). The driver is the optics group's guidance: Lumentum, Coherent and Ciena reports, plus Marvell's pending purchase of Lumentum.",
- capex="Not applicable (ETF has no capex). Its holdings ride AI data-center optics spending; see COHR and CIEN pages for their 2026 capex.",
- partners=["Top holdings (Roundhill): Lumentum, Eoptolink, Zhongji Innolight, Coherent, Ciena", "Overlaps your COHR, CIEN and, through Lumentum, MRVL"],
+ capex="Not applicable (ETF has no capex). Its holdings ride AI data-center optics spending; see the COHR page for its 2026 capex.",
+ partners=["Top holdings (Roundhill): Lumentum, Eoptolink, Zhongji Innolight, Coherent, Ciena", "Overlaps your COHR and, through Lumentum, MRVL"],
  catalysts=["Holdings' earnings: Lumentum and AAOI reported Nov 5; Coherent Nov 4", "Marvell–Lumentum deal news", "Hyperscaler capex and 800G/1.6T optics orders"],
  macro="AI networking spend, China supplier exposure (Eoptolink and Innolight are Chinese), and rates; it fell hard in the Nov 5 chip rout.",
  risks="Concentrated, actively managed and young (launched Aug 2026); China-listed holdings add tariff and export-control risk; wide option spreads.",
@@ -904,7 +904,7 @@ S["AMAT"].update(
 S["CSCO"].update(
  results="Fiscal Q1 FY27 (Nov 12): adjusted EPS $1.40 vs $1.33 expected; revenue $18.5B, up 24%, vs $18.1B (CNBC).",
  guide="Q2 revenue $18.0–18.2B and EPS $1.34–1.36 vs $17.88B and $1.23 expected; fiscal 2027 EPS $5.47–5.53 vs $5.10. It now sees $9B of hyperscaler AI-infrastructure revenue this fiscal year, more than double fiscal 2026 (CNBC, Bloomberg).",
- catalysts=["Reported Nov 12; next report mid-February", "Fell 6.2% Nov 13 to $95.64 despite the beat-and-raise: analysts flagged hyperscaler AI orders and margins", "Reads through to ANET, CIEN, COHR, CRDO, MRVL, GLW, ALAB; Nvidia Nov 17"],
+ catalysts=["Reported Nov 12; next report mid-February", "Fell 6.2% Nov 13 to $95.64 despite the beat-and-raise: analysts flagged hyperscaler AI orders and margins", "Reads through to ANET, COHR, CRDO, MRVL, GLW, LYTE; Nvidia Nov 17"],
  src=[("CNBC · Cisco beats, says AI infrastructure revenue will double", CN_ + "2026/11/12/cisco-csco-q1-2027-earnings.html"),
       ("Bloomberg · Cisco raises sales guidance on AI momentum", BB_ + "2026-11-12/cisco-raises-sales-guidance-in-sign-of-ai-fueled-momentum")] + S["CSCO"]["src"][:2])
 S["CBRS"].update(
@@ -1212,7 +1212,20 @@ S["AMZN"]["catalysts"] = ["Agreed Nov 23 to buy Decart's chip-optimization softw
 S["AMZN"]["src"] = [("CNBC · Amazon to acquire Decart's chip software", "https://www.cnbc.com/2026/11/23/amazon-decarts-ai-acquisition.html")] + S["AMZN"]["src"][:3]
 S["SPCX"]["catalysts"] = ["Jefferies initiated at Buy with a $210 target Nov 23 (CNBC)", "#2 of your new Top 10 Nov 24"] + S["SPCX"]["catalysts"][:2]
 S["SPCX"]["src"] = [("CNBC · Jefferies: SpaceX can rally 60%+", "https://www.cnbc.com/2026/11/23/spacex-jefferies-buy-price-target.html")] + S["SPCX"]["src"][:3]
-S["ARM"]["catalysts"] = ["CEO Rene Haas extended his contract through 2033 after being approached about the Nvidia CEO job (Bloomberg, Nov 23); closed +16.1%", "Moved up to the 2026 Portfolio Nov 24"] + S["ARM"]["catalysts"][:2]
+S["ARM"]["catalysts"] = ["CEO Rene Haas extended his contract through 2033 after being approached about the Nvidia CEO job (Bloomberg, Nov 23); closed +16.1%", "Moved up to the 2026 Portfolio (#5) Nov 24"] + S["ARM"]["catalysts"][:2]
 S["ARM"]["src"] = [("Bloomberg · Arm CEO extends contract through 2033", "https://www.bloomberg.com/news/articles/2026-11-23/arm-ceo-extends-contract-through-2033-after-nvidia-approach")] + S["ARM"]["src"][:3]
 S["INTC"]["catalysts"] = ["Goldman: hedge funds are buying Intel (Seeking Alpha, Nov 23); closed +16.3%", "Moved up to #8 of your new Top 10 Nov 24"] + S["INTC"]["catalysts"][:2]
 S["INTC"]["src"] = [("Seeking Alpha · Intel, Meta among AI stocks hedge funds are buying", SA + "4675807-intel-meta-among-ai-stocks-hedge-funds-are-buying-goldman")] + S["INTC"]["src"][:3]
+
+# Nov 24 list positions: replace stale list-move notes with where each name sits now
+_POS = {"NBIS": "Moved up to #7 of your new Top 10 Nov 24", "AMAT": "Moved from the Top 5 to the 2026 Portfolio (#6) Nov 24",
+        "AVGO": "Moved from the Top 5 to the 2026 Portfolio (#9) Nov 24", "LYTE": "Moved up to #4 of your new Top 10 Nov 24",
+        "DRAM": "Moved up to #5 of your new Top 10 Nov 24",
+        "VRT": "Moved up to the 2026 Portfolio (#2) Nov 24", "SNDK": "Moved up to the 2026 Portfolio (#13) Nov 24"}
+_STALE = ("Top 5", "Moved up to your 2026 Portfolio", "Added to the top of your 15–50% Dip", "Moved to #", "Moved up to your Top")
+for _t, _note in _POS.items():
+    _c = [x for x in S[_t]["catalysts"] if not any(k in x for k in _STALE)]
+    _keep = [x for x in S[_t]["catalysts"] if "split took effect" in x]  # SanDisk's split explanation stays, without the old list note
+    _keep = ["Its 8-for-1 split took effect Nov 20: the price fell from ~$755 to ~$80 on the split, not a crash (Barron's)"] if _keep else []
+    S[_t]["catalysts"] = [_note] + _keep + _c
+S["BE"]["catalysts"] = [x for x in S["BE"]["catalysts"] if "Top 5" not in x]
