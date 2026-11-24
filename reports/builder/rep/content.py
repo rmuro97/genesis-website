@@ -2,9 +2,9 @@
 # Every fact comes from the notes gathered Oct 25–30, 2026 (his outlets: CNBC, Bloomberg, Seeking Alpha, plus company SEC filings where coverage cited them).
 SA = "https://seekingalpha.com/news/"
 LISTS = [
- ("top5", "Top 5", ["AMZN", "AVGO", "SKHY", "AMAT", "NVDA"]),
- ("portfolio", "2026 Portfolio", ["BE", "LRCX", "TER", "CSCO", "MRVL", "SPCX", "GOOGL", "KLAC", "COHR", "ANET", "HPE", "NBIS", "CRDO", "APH", "LYTE", "DRAM", "NCLD", "BAC", "WMT", "C", "TGT"]),
- ("dips", "15–50% Dip", ["SNDK", "ARM", "VRT", "DELL", "VICR", "VST", "ORCL", "INTC", "QCOM", "HOOD", "NOW", "DDOG", "ALAB", "IONQ", "CRWV", "CBRS", "GLW", "FTNT", "DOCN", "AKAM", "COIN", "MSTR", "CRCL", "IREN", "BABA", "STZ"]),
+ ("top5", "Top 10", ["AMZN", "SPCX", "NVDA", "LYTE", "DRAM", "HPE", "NBIS", "INTC", "SKHY", "BE"]),
+ ("portfolio", "2026 Portfolio", ["EWY", "VRT", "APH", "CSCO", "ARM", "AMAT", "ANET", "LRCX", "AVGO", "MRVL", "KLAC", "CRDO", "SNDK", "TER", "COHR", "NCLD"]),
+ ("dips", "15–50% Dip", ["DKS", "EWT", "VICR", "DOCN", "ASX", "CRWV", "VST", "ORCL", "QCOM", "HOOD", "SMCI", "NOW", "DDOG", "P", "IONQ", "CBRS", "GLW", "AKAM", "IREN", "BABA", "COIN", "MSTR", "CRCL"]),
 ]
 
 S = {}
@@ -1100,3 +1100,119 @@ S["NVDA"]["guide"] = "Q4 revenue guide $130B vs $125.1B expected, assuming no Ch
 S["NVDA"]["src"] = [("CNBC · Nvidia skyrockets 33% on Huang's return as CEO", "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo.html"),
                     ("Bloomberg · AI stocks take off after Nvidia reinstates Huang", "https://www.bloomberg.com/news/articles/2026-11-23/ai-linked-stocks-take-off-after-nvidia-reinstates-jensen-huang")] + S["NVDA"]["src"][:2]
 S["BE"]["catalysts"] = ["Moved from your Top 5 to lead the 2026 Portfolio Nov 23"] + S["BE"]["catalysts"][:3]
+
+
+# ---------------- NOV 24: the Top 5 became a Top 10 (AMZN, SPCX, NVDA, LYTE, DRAM, HPE, NBIS, INTC, SKHY, BE) after Huang's reinstatement;
+# 2026 Portfolio 16 names (EWY new); 15–50% Dip 23 names (DKS, EWT, ASX, SMCI, P new). Removed: GOOGL, BAC, WMT, C, TGT, DELL, ALAB, FTNT, STZ. 49 names.
+ETFS = ETFS | {"EWY", "EWT"}
+ISH_ = "https://www.ishares.com/us/products/"
+SEC_SMCI = "https://www.sec.gov/Archives/edgar/data/0001375365/000137536526000025/smcifirstquarterfy2027busi.htm"
+SEC_DKS = "https://www.sec.gov/Archives/edgar/data/0001089063/000108906326000033/dks-2026801xex991earningsr.htm"
+SEC_ASX = "https://www.sec.gov/Archives/edgar/data/1122411/000095010326016324/dp255760_6k.htm"
+SEC_ASXP = "https://www.sec.gov/Archives/edgar/data/0001122411/000095010326016323/dp255782_6k.htm"
+EP_ = "https://s21.q4cdn.com/687136699/files/content_files/Everpure-Q3FY27-Earnings-Press-Release.pdf"
+
+S["EWY"] = dict(
+ name="iShares MSCI South Korea ETF", what="Index ETF of 75 large South Korean stocks; about 43% sits in the two memory makers Samsung Electronics and SK hynix.",
+ results=_ETF_RES + " Net assets $19.5B (Nov 23); expense ratio 0.59%; launched May 2000 (iShares). Up 10.1% Mon Nov 23 with the AI snapback, about 38% below its June high.",
+ guide="Not applicable (ETF). The drivers are Samsung's and SK hynix's memory pricing and HBM outlooks, Korean exports and the won.",
+ capex="Not applicable (ETF has no capex). Its two biggest holdings are the memory capex story: see the SKHY page for SK hynix's 2026 capex; Samsung is the largest holding.",
+ partners=["Top holdings (iShares, Nov 20): Samsung Electronics 22.04%, SK hynix 20.86%, SK Square 2.69%, KB Financial 2.52%, Samsung Electro-Mechanics 2.03%", "Sectors: information technology 47.6%, industrials 18.0%, financials 13.4%", "Overlaps your SKHY and DRAM; both Samsung and SK hynix supply HBM to Nvidia"],
+ catalysts=["Added to the top of your 2026 Portfolio Nov 24", "Nvidia's Huang reinstatement (Nov 23) lifted Korean memory names; SK hynix ADRs closed +20.0%", "Korean monthly export data (early December) and Micron's next report (date not set) for memory pricing"],
+ macro="Memory and AI-chip demand, the Kospi, the won against the dollar (a weaker won cuts the ETF's dollar value) and US tariff or export-control headlines.",
+ risks="Concentrated: two memory makers are ~43% of the fund, so a memory-cycle turn hits it hard; currency risk on the won; Korean politics and North Korea headlines.",
+ src=[("iShares · EWY fund page and holdings", ISH_ + "239681/ishares-msci-south-korea-capped-etf"), ("Bloomberg · AI stocks take off after Nvidia reinstates Huang", BB_ + "2026-11-23/ai-linked-stocks-take-off-after-nvidia-reinstates-jensen-huang")])
+S["EWY"]["profile"] = "The iShares MSCI South Korea ETF (BlackRock, launched 2000) holds about 75 large South Korean companies. It is dominated by memory chips — Samsung Electronics and SK hynix together are about 43% — with Korean banks, carmakers, batteries and biotech making up most of the rest. Its price in dollars also moves with the won."
+
+S["EWT"] = dict(
+ name="iShares MSCI Taiwan ETF", what="Index ETF of 76 Taiwanese stocks, led by TSMC (about a quarter of the fund) and the AI-hardware supply chain.",
+ results=_ETF_RES + " Net assets $8.4B (Nov 23); expense ratio 0.59%; tracks the MSCI Taiwan 25/50 Index; launched June 2000 (iShares). Up 18.0% Mon Nov 23, about 25% below its October high.",
+ guide="Not applicable (ETF). The driver is TSMC's guidance (next report mid-January) and the AI-server supply chain (Hon Hai, Delta, ASE, Asia Vital).",
+ capex="Not applicable (ETF has no capex). TSMC, its largest holding, sets the pace of Taiwan's chip spending; see ASX for ASE's 2026 capex.",
+ partners=["Top holdings (iShares, Nov 20): TSMC 24.19%, MediaTek 6.70%, Hon Hai 3.69%, ASE Technology 2.64%, Delta Electronics 2.55%", "Sectors: information technology 69.9%, financials 17.7%, materials 4.3%", "Overlaps your ASX; TSMC builds Nvidia's GPUs and Hon Hai assembles its AI servers"],
+ catalysts=["Added to your 15–50% Dip Nov 24", "TSMC's November sales (about Dec 10) and Taiwan export orders", "Nvidia and AI-server demand after Huang's reinstatement"],
+ macro="AI-chip demand, the Taiwan dollar, US–China relations, export controls and cross-strait tension.",
+ risks="Concentrated in TSMC; geopolitical risk around Taiwan; currency moves; it fell 10.9% in the Nov 20 rout before Monday's 18% rebound.",
+ src=[("iShares · EWT fund page and holdings", ISH_ + "239686/ishares-msci-taiwan-etf"), ("Bloomberg · AI stocks take off after Nvidia reinstates Huang", BB_ + "2026-11-23/ai-linked-stocks-take-off-after-nvidia-reinstates-jensen-huang")])
+S["EWT"]["profile"] = "The iShares MSCI Taiwan ETF (BlackRock, launched 2000) holds about 76 large Taiwanese companies. About a quarter is TSMC, the world's leading contract chipmaker, and most of the rest is the AI-hardware supply chain — MediaTek, Hon Hai (Foxconn), ASE, Delta Electronics — plus Taiwan's big financial groups."
+
+S["DKS"] = dict(
+ name="Dick's Sporting Goods", what="Largest US sporting-goods retailer; bought Foot Locker in Sep 2025, now about 3,100 stores.",
+ results="Q2 fiscal 2026 (quarter to Aug 1, reported Aug 25): net sales $5.59B, up 53% with Foot Locker ($3.85B DICK'S, $1.74B Foot Locker); DICK'S comps +4.9%, Foot Locker proforma comps −3.6%; non-GAAP EPS $3.53 vs $4.38 a year ago; gross margin 34.8% vs 37.1% (SEC 8-K). Missed estimates and fell the most on record (CNBC).",
+ guide="Full fiscal 2026 (to Jan 2027), cut Aug 25: net sales $21.9–22.2B; non-GAAP EPS $11.00–12.00; DICK'S comps +2.5% to +4.0%; Foot Locker comps −2% to 0% with a $40–80M operating loss (SEC 8-K, Seeking Alpha). Q3 results come before the open Tue Nov 24 (company).",
+ capex="Fiscal 2026 (Feb 2026–Jan 2027): $743M gross in the first half vs $526M a year ago (SEC 10-Q); guided about $1.6B gross / $1.4B net for the year ($1.2B DICK'S, $0.4B Foot Locker) (SEC 8-K). Mostly new House of Sport stores and Foot Locker remodels.",
+ partners=["Foot Locker: closing unproductive stores (67 so far; up to $750M of charges planned)", "Nike and other athletic brands: its key suppliers", "$1.25 quarterly dividend"],
+ catalysts=["⚠️ Reports Q3 TODAY, Tue Nov 24, before the open (call 5:00 AM PT)", "Added to your 15–50% Dip Nov 24, about 44% below its June high", "Holiday spending and Foot Locker turnaround progress"],
+ macro="US consumer spending, the athletic footwear cycle (Nike), promotions, and tariffs on imported apparel and shoes.",
+ risks="Foot Locker losses and store closures; a promotional holiday season; guidance cut again today.",
+ src=[("SEC 8-K · Q2 fiscal 2026 results", SEC_DKS), ("CNBC · Dick's Q2 2026 earnings", "https://www.cnbc.com/2026/08/25/dicks-sporting-goods-dks-earnings-q2-2026.html"),
+      ("CNBC · worst day ever; Cramer's take", "https://www.cnbc.com/2026/08/25/dicks-sporting-goods-worst-day-ever-jim-cramer-advice.html"),
+      ("Seeking Alpha · $11–12 EPS and Foot Locker loss outlook", SA + "4636775-dicks-outlines-11-12-fy2026-eps-amid-promotional-pressure-and-a-40m-80m-foot-locker-operating")])
+S["DKS"]["profile"] = "Dick's Sporting Goods (Pittsburgh) is the largest US sporting-goods retailer, with DICK'S stores, the large-format House of Sport, Golf Galaxy and a big online business. In September 2025 it bought Foot Locker, the global sneaker chain, which it is restructuring by closing weak stores."
+
+S["ASX"] = dict(
+ name="ASE Technology", what="World's largest outsourced chip packaging and testing company (Taiwan); ramping AI advanced packaging and testing.",
+ results="Q3 2026 (reported Oct 29): revenue NT$244.2B (about US$7.64B), up 45% y/y and 28% q/q; gross margin 22.1%, operating margin 13.6%; net income NT$27.0B (about US$845M); diluted EPS US$0.365 per ADS. Packaging and testing (ATM) revenue NT$151.5B, up 51%, with a 30.6% gross margin (SEC 6-K). US$ at the company's NT$31.96 rate.",
+ guide="Q4 2026: revenue +6% to +8% q/q, gross margin 23–24%, operating margin 14.5–15.5%; ATM revenue +11–13% (SEC 6-K). Lifted its 2026 leading-edge advanced packaging (LEAP) revenue target to over US$4B and expects LEAP to roughly double in 2027 (Seeking Alpha).",
+ capex="2026: equipment capex US$2.10B in Q3 ($991M packaging, $1,067M testing) after US$2.7B of machinery plus US$1.4B of buildings and facilities in the first half (company 6-Ks); the full-year plan was lifted to US$11.5B, 60% for LEAP, with more in 2027 (Seeking Alpha).",
+ partners=["AI advanced packaging (CoWoS-type and its FoCoS) alongside TSMC for AI accelerators", "Testing for AI GPUs and ASICs", "SPIL and USI (electronics manufacturing) subsidiaries"],
+ catalysts=["Added to your 15–50% Dip Nov 24", "Up 21.4% Mon Nov 23 with the AI rebound after falling 13.8% Fri Nov 20", "Monthly sales (about Dec 10); TSMC and Nvidia demand; next report late January (not set)"],
+ macro="AI-chip demand, TSMC's capacity, the Taiwan dollar, export controls and cross-strait risk.",
+ risks="Heavy capex and negative free cash flow funded partly by debt (Seeking Alpha); a slowdown in AI orders; Taiwan geopolitical risk.",
+ src=[("SEC 6-K · Q3 2026 results", SEC_ASX), ("SEC 6-K · Q3 2026 presentation and Q4 outlook", SEC_ASXP),
+      ("Seeking Alpha · Q4 outlook; 2026 LEAP target over $4B", SA + "4660020-ase-technology-expects-q4-revenue-growth-of-6-percent-to-8-percent-qoq-as-it-lifts-2026-leap")])
+S["ASX"]["profile"] = "ASE Technology Holding (Kaohsiung, Taiwan; NYSE ADRs) is the world's largest outsourced semiconductor assembly and test (OSAT) company, packaging and testing chips for Nvidia's suppliers, Apple, Qualcomm and others. Its growth engine is leading-edge advanced packaging for AI accelerators; it also builds electronics modules through USI."
+
+S["SMCI"] = dict(
+ name="Super Micro Computer", what="Builds AI servers and full liquid-cooled racks on Nvidia (and AMD) GPUs; sells 'DCBBS' data-center building blocks.",
+ results="Fiscal Q1 2027 (quarter to Sep 30, reported Nov 3): net sales $19.9B vs $5.0B a year ago and $11.1B in Q4; gross margin 12.7%; GAAP EPS $1.75, non-GAAP $1.81; operating cash flow −$434M; cash $6.9B vs $8.6B of bank debt and convertibles (company release). The stock rose 7% (Seeking Alpha).",
+ guide="Fiscal Q2 (to Dec 31): net sales $19.5–21.5B, non-GAAP EPS $1.66–1.90. Fiscal 2027 (to Jun 2027): net sales $72–82B, raised from $65–72B (company release).",
+ capex="Fiscal 2027 (Jul–Jun): $41.6M of property and equipment in Q1 vs $32.3M a year ago (company cash-flow statement); $47M including investments. Light: it spends on working capital (inventory) rather than plants.",
+ partners=["Nvidia: Blackwell and next-gen GPU servers and racks", "AMD Instinct GPU servers", "Neoclouds and sovereign AI build-outs"],
+ catalysts=["Added to your 15–50% Dip Nov 24 (about 51% below its June high)", "Up 13.3% Mon Nov 23 with Nvidia's Huang rally", "Next report early February (not set)"],
+ macro="AI data-center spending, Nvidia's product cycle, financing for neoclouds, and server price competition (Dell, HPE).",
+ risks="Thin 12–13% margins; cash burn and $8.6B of debt; past accounting and compliance issues; customer concentration.",
+ src=[("Supermicro · fiscal Q1 2027 results (release)", "https://www.supermicro.com/en/pressreleases/supermicro-announces-first-quarter-fiscal-year-2027-financial-results"),
+      ("SEC 8-K · Oct 20 preliminary Q1 update", SEC_SMCI), ("Seeking Alpha · climbs after Q1 results and outlook", SA + "4664035-supermicro-climbs-after-q1-results-and-outlook-show-successful-ai-strategy")])
+S["SMCI"]["profile"] = "Super Micro Computer (San Jose) designs and builds servers, storage and complete liquid-cooled AI racks, mostly around Nvidia GPUs, and sells them to neoclouds, hyperscalers and enterprises. Its edge is speed to market and rack-scale 'building block' designs; its weakness is thin margins and heavy working-capital needs."
+
+S["P"] = dict(
+ name="Everpure", what="All-flash enterprise storage and data management (formerly Pure Storage; ticker P since April 2026).",
+ results="Fiscal Q3 2027 (quarter to Nov 1, reported Nov 18): revenue $1.46B, up 51%; product revenue $948M, up 77%; subscription ARR $2.2B, up 20%; RPO $4.2B, up 44%; non-GAAP gross margin 69.2%, operating margin 23.6%; non-GAAP EPS $0.86 vs $0.58; free cash flow $265M (company release). Beat the top of its guidance.",
+ guide="Q4: revenue $1.50–1.52B (+42–43%), non-GAAP operating income $350–360M. Fiscal 2027 raised to revenue $5.20–5.21B (+42%) and operating income $1.08–1.09B, the third raise this year (company release).",
+ capex="Fiscal 2027 (Feb–Oct 2026): $347.6M of property and equipment in the first three quarters vs $197.8M a year ago, including $177.9M in Q3 (company cash-flow statement).",
+ partners=["Hyperscalers: design wins with two top-five hyperscalers for its DirectFlash technology", "AI storage: FlashBlade//EXA led MLPerf Storage v3.0 checkpointing results", "Joined the S&P 500 in September"],
+ catalysts=["Added to your 15–50% Dip Nov 24 (about 36% below its October high)", "UBS tech conference Dec 1; Wells Fargo Dec 8; Barclays Dec 10 (company)", "Next report late February (not set)"],
+ macro="Enterprise IT and AI storage spending, NAND flash prices (a cost for it), and hyperscaler capex.",
+ risks="Rising NAND costs squeeze margins; hyperscaler deals are lumpy; stock fell after the report despite the beat.",
+ src=[("Everpure · Q3 FY27 results (release)", EP_), ("Seeking Alpha · jumps as Wedbush praises earnings", SA + "4674663-everpure-jumps-as-wedbush-praises-strong-earnings-earnings"),
+      ("CNBC · biggest movers Nov 18", "https://www.cnbc.com/2026/11/18/stocks-moving-the-most-today-live-updates.html")])
+S["P"]["profile"] = "Everpure (Santa Clara; renamed from Pure Storage in March 2026, ticker P since April) sells all-flash storage arrays and software (FlashArray, FlashBlade, Portworx) to enterprises, mostly on subscription (Evergreen). It is now winning hyperscaler data centers with its DirectFlash technology and pitching itself as an AI data platform."
+
+# NVDA / BE descriptions for the new Top 10
+S["NVDA"]["catalysts"] = ["Board reinstated Jensen Huang as CEO Mon Nov 23: up as much as 35% intraday, its biggest intraday jump since 2000 (Bloomberg, CNBC); closed +31.5%",
+                          "#3 of your new Top 10 Nov 24; you rebuilt the lists around its close ecosystem (memory, optics, servers, Korea/Taiwan)",
+                          "Reported FQ3 Nov 17: revenue $115.84B vs $109.1B expected; Q4 guide $130B (CNBC)",
+                          "GTC DC from Nov 30; next report late February (date not set)"]
+S["BE"]["catalysts"] = ["#10 of your Top 10 Nov 24"] + S["BE"]["catalysts"][1:4]
+
+# Nov 23 session facts (Monday close scan; his outlets)
+S["NVDA"]["catalysts"] = ["Board reinstated Jensen Huang as CEO Mon Nov 23 after input from senior US government levels; closed +31.5% at $165.05, the biggest one-day market-value gain ever, about $1T (Seeking Alpha)",
+                          "Upgrades Nov 23: Melius Buy $220, Bernstein Outperform $200 (CNBC), StoneX Buy $270, Oppenheimer Outperform",
+                          "Still open: House interview Dec 1 and public Senate Banking testimony Dec 3 (Bloomberg); US to blacklist Megaspeed (NYTimes); SEC probe",
+                          "#3 of your new Top 10 Nov 24; GTC DC from Nov 30; next report late February (not set)"]
+S["NVDA"]["src"] = [("Seeking Alpha · Nvidia surges 30%+, adds $1T as Huang returns", SA + "4675565-nvidia-reinstates-jensen-huang-as-ceo"),
+                    ("CNBC · analysts upgrade after Huang's reinstatement", "https://www.cnbc.com/2026/11/23/nvidia-has-reinstated-ceo-jensen-huang-analysts-upgraded-the-stock.html"),
+                    ("Bloomberg · Huang to testify publicly before senators", "https://www.bloomberg.com/news/articles/2026-11-23/jensen-huang-will-testify-publicly-before-us-senators-next-week")] + S["NVDA"]["src"][2:4]
+S["HPE"]["catalysts"] = ["Reported FQ4 after the close Mon Nov 23: EPS $1.43 (beat by $0.14), revenue $14.55B; FQ1 guide revenue $14.0–14.6B and EPS $1.30–1.40 vs consensus $12.8B / $1.08 (Bloomberg)", "Fell 2.7% after hours after a 17.4% gain Monday", "#6 of your new Top 10 Nov 24; Dell reports Tue Nov 24 after the close (read-through)"]
+S["HPE"]["src"] = [("Bloomberg · HPE forecast falls short of most optimistic estimates", "https://www.bloomberg.com/news/articles/2026-11-23/hpe-gives-forecast-that-falls-short-of-most-optimistic-estimates")] + S["HPE"]["src"][:3]
+S["SKHY"]["catalysts"] = ["Closed +20.0% Mon Nov 23: The Information reported SoftBank's Masayoshi Son explored financing a ~$1T buyout; SoftBank says it is no longer under consideration (Seeking Alpha)", "#9 of your new Top 10 Nov 24"] + S["SKHY"]["catalysts"][1:3]
+S["SKHY"]["src"] = [("Seeking Alpha · SoftBank explored $1T SK hynix buyout", SA + "4675637-softbanks-masayoshi-explored-1t-buyout-of-sk-hynix---the-information")] + S["SKHY"]["src"][:3]
+S["AMZN"]["catalysts"] = ["Agreed Nov 23 to buy Decart's chip-optimization software and hire its founders; Bloomberg reports $7.5B (CNBC, Bloomberg)", "#1 of your new Top 10 Nov 24"] + S["AMZN"]["catalysts"][:2]
+S["AMZN"]["src"] = [("CNBC · Amazon to acquire Decart's chip software", "https://www.cnbc.com/2026/11/23/amazon-decarts-ai-acquisition.html")] + S["AMZN"]["src"][:3]
+S["SPCX"]["catalysts"] = ["Jefferies initiated at Buy with a $210 target Nov 23 (CNBC)", "#2 of your new Top 10 Nov 24"] + S["SPCX"]["catalysts"][:2]
+S["SPCX"]["src"] = [("CNBC · Jefferies: SpaceX can rally 60%+", "https://www.cnbc.com/2026/11/23/spacex-jefferies-buy-price-target.html")] + S["SPCX"]["src"][:3]
+S["ARM"]["catalysts"] = ["CEO Rene Haas extended his contract through 2033 after being approached about the Nvidia CEO job (Bloomberg, Nov 23); closed +16.1%", "Moved up to the 2026 Portfolio Nov 24"] + S["ARM"]["catalysts"][:2]
+S["ARM"]["src"] = [("Bloomberg · Arm CEO extends contract through 2033", "https://www.bloomberg.com/news/articles/2026-11-23/arm-ceo-extends-contract-through-2033-after-nvidia-approach")] + S["ARM"]["src"][:3]
+S["INTC"]["catalysts"] = ["Goldman: hedge funds are buying Intel (Seeking Alpha, Nov 23); closed +16.3%", "Moved up to #8 of your new Top 10 Nov 24"] + S["INTC"]["catalysts"][:2]
+S["INTC"]["src"] = [("Seeking Alpha · Intel, Meta among AI stocks hedge funds are buying", SA + "4675807-intel-meta-among-ai-stocks-hedge-funds-are-buying-goldman")] + S["INTC"]["src"][:3]

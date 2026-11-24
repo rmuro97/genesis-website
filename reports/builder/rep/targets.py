@@ -173,3 +173,14 @@ T["SNDK"] = [("Bernstein", "Outperform", 375, "Jun 30; $3,000 before the 8-for-1
 T["STZ"] = [("Roth Capital", "Buy", 209, "Oct 7", "CNBC", CN + "2026/10/07/constellation-brands-earnings-beer-demand.html"),
             ("Piper Sandler", "Neutral", 161, "Oct 7", "CNBC", CN + "2026/10/07/constellation-brands-earnings-beer-demand.html"),
             ("CNBC Investing Club", "Buy", 165, "Nov 9", "CNBC", CN + "investingclub/2026/11/09/were-starting-a-position-to-diversify-beyond-the-volatile-ai-trade.html")]
+
+# ---- Nov 24, 2026: EWY, EWT (ETFs: no targets), DKS, ASX, SMCI, P added to his lists ----
+T["P"] = [("Wedbush", "Outperform", 130, "Nov 19 (after Q3)", "Seeking Alpha", SA_ + "4674663-everpure-jumps-as-wedbush-praises-strong-earnings-earnings"),
+          ("Piper Sandler", "", 162, "Sep 24 (from $133)", "Seeking Alpha", SA_ + "4646764-wall-street-raises-everpure-targets-after-upbeat-outlook"),
+          ("Evercore ISI", "", 145, "Sep 24 (from $130)", "Seeking Alpha", SA_ + "4646764-wall-street-raises-everpure-targets-after-upbeat-outlook")]
+T["ASX"] = [("BofA", "Buy", 48, "Jun 24 (from $36)", "CNBC via TipRanks", CN + "quotes/ASX")]
+# Nov 23: Huang reinstated — upgrades; SpaceX initiation
+T["NVDA"] = [("Melius Research", "Buy (upgraded)", 220, "Nov 23", "CNBC", CN + "2026/11/23/nvidia-has-reinstated-ceo-jensen-huang-analysts-upgraded-the-stock.html"),
+             ("Bernstein", "Outperform (upgraded)", 200, "Nov 23", "CNBC", CN + "2026/11/23/nvidia-has-reinstated-ceo-jensen-huang-analysts-upgraded-the-stock.html"),
+             ("StoneX", "Buy (upgraded)", 270, "Nov 23", "Seeking Alpha", SA_ + "4675565-nvidia-reinstates-jensen-huang-as-ceo")] + T.get("NVDA", [])[:2]
+T["SPCX"] = [("Jefferies", "Buy (initiated)", 210, "Nov 23", "CNBC", CN + "2026/11/23/spacex-jefferies-buy-price-target.html")] + T.get("SPCX", [])[:3]
